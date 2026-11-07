@@ -1,0 +1,124 @@
+export interface PortfolioItem {
+  id: string;
+  title: string;
+  category: "flex" | "signage" | "xerox" | "gifts" | "offset" | "vehicle";
+  categoryLabel: string;
+  image: string;
+  description: string;
+  location: string;
+  clientType: string;
+  turnaround: string;
+}
+
+export const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  {
+    id: "work-1",
+    title: "Multi-Speciality Hospital 3D Acrylic LED Glow Signboard",
+    category: "signage",
+    categoryLabel: "3D LED Signage",
+    image: "/images/3d-led-signage-storefront.jpg",
+    description: "Custom laser-cut 3D cast acrylic letters with internal Samsung IP67 waterproof LED modules on heavy MS iron framework.",
+    location: "Opp. Tirumala Hospital, Kadapa",
+    clientType: "Healthcare & Clinic",
+    turnaround: "3 Days (with 48-hr testing)",
+  },
+  {
+    id: "work-2",
+    title: "1440 DPI Star Flex Grand Showroom Inauguration Banner",
+    category: "flex",
+    categoryLabel: "Flex Printing",
+    image: "/images/flex-printing-machine.jpg",
+    description: "Heavy-duty 340+ GSM Star Flex with Japanese eco-solvent outdoor UV ink, brass ring eyelets, and wooden beeding.",
+    location: "Seven Roads Circle, Kadapa",
+    clientType: "Retail Showroom",
+    turnaround: "3 Hours",
+  },
+  {
+    id: "work-3",
+    title: "KUDA Approved Multi-Acre Venture Layout Master Map",
+    category: "xerox",
+    categoryLabel: "Jumbo Xerox & CAD",
+    image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1000&q=80",
+    description: "Full-color 44-inch continuous roll print with precise plot boundary zoning and clear survey numbers.",
+    location: "Kadapa Outskirts",
+    clientType: "Real Estate Developer",
+    turnaround: "Same-Day",
+  },
+  {
+    id: "work-4",
+    title: "Bangaram Bakery 3-Sided Auto Rickshaw Promotion Campaign",
+    category: "vehicle",
+    categoryLabel: "Auto Publicity",
+    image: "/images/auto-publicity-branding.jpg",
+    description: "Full auto rickshaw promotion with 3-sided flex branding (W6xH5 & W4xH5), DTS sound announcement, and pamphlet distribution across 7 Roads Circle & Kadapa.",
+    location: "7 Roads Circle, Kadapa",
+    clientType: "Retail Bakery & Sweets",
+    turnaround: "Same-Day Dispatch",
+  },
+  {
+    id: "work-5",
+    title: "Velvet Spot UV 350 GSM Corporate Visiting Cards",
+    category: "offset",
+    categoryLabel: "Commercial Offset",
+    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1000&q=80",
+    description: "Wholesale 1000-pack business cards with matte velvet lamination and raised gloss Spot UV detailing on brand typography.",
+    location: "Ganagapeta Commercial Hub, Kadapa",
+    clientType: "Corporate Enterprise",
+    turnaround: "36 Hours",
+  },
+  {
+    id: "work-6",
+    title: "Custom Magic Heat Reveal Ceramic Mugs & Gift Boxes",
+    category: "gifts",
+    categoryLabel: "Personalized Gifts",
+    image: "/images/personalized-gifts-collection.jpg",
+    description: "High-gloss heat-sensitive ceramic mugs that reveal high-definition photographs upon pouring hot beverages.",
+    location: "Kadapa City",
+    clientType: "Corporate & Personal Gifting",
+    turnaround: "1 Hour",
+  },
+  {
+    id: "work-7",
+    title: "Civil Engineering A0 Structural AutoCAD Blueprints",
+    category: "xerox",
+    categoryLabel: "Jumbo Xerox & CAD",
+    image: "/images/cad-blueprint-plotter.jpg",
+    description: "1200 DPI vector line reproduction plotted on 90 GSM high-opacity bond paper with accordion folding to A4.",
+    location: "RIMS Corridor, Kadapa",
+    clientType: "Consulting Engineers",
+    turnaround: "20 Minutes",
+  },
+  {
+    id: "work-8",
+    title: "National Highway Megasite Billboard & Hoarding Flex",
+    category: "flex",
+    categoryLabel: "Highway Hoardings",
+    image: "/images/highway-hoarding-billboard.jpg",
+    description: "Massive roadside steel truss billboard with heavy wind-resistant GSM flex, double-stitched brass ring eyelets, and UV outdoor ink.",
+    location: "Kadapa Highway Corridor",
+    clientType: "National FMCG Brand",
+    turnaround: "24 Hours",
+  },
+  {
+    id: "work-9",
+    title: "Live WhatsApp Route Tracking & Auto Promotion Proof",
+    category: "vehicle",
+    categoryLabel: "Auto Publicity",
+    image: "/images/auto-publicity-route-tracking.jpg",
+    description: "Transparent live promotion tracking: geo-tagged route photos sent to customer WhatsApp every 10 minutes covering 50 Km daily across Kadapa streets.",
+    location: "Kadapa Town Streets & Mandals",
+    clientType: "Commercial Promotion Proof",
+    turnaround: "Real-Time / 10-Min Updates",
+  },
+  {
+    id: "work-10",
+    title: "Ambient Warm LED Backlit Synthetic Wood Wall Frames",
+    category: "gifts",
+    categoryLabel: "Personalized Gifts",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1000&q=80",
+    description: "12x18 inch family portrait framed in rich antique teak finish with internal warm LED night glow lighting.",
+    location: "Kadapa",
+    clientType: "Family Home Decor",
+    turnaround: "Same-Day",
+  },
+];

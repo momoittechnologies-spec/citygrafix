@@ -1,0 +1,426 @@
+================================================================================
+CITY GRAFIX KADAPA - COMPLETE RAW BUSINESS INFORMATION DOCUMENT
+================================================================================
+Document Purpose: Complete, unstyled raw business data, specifications, pricing,
+services, contact details, policies, and operational information to recreate
+the City Grafix Kadapa website from scratch.
+(Contains ZERO design, CSS, UI, or framework-specific instructions.)
+================================================================================
+
+
+1. BUSINESS IDENTITY & OVERVIEW
+--------------------------------------------------------------------------------
+• Business Name: City Grafix Kadapa
+• Short Brand Name: City Grafix
+• Nature of Business:
+  - Commercial Digital Printing Press
+  - Wide-Format Outdoor Flex & Hoarding Manufacturer
+  - Architectural 3D Signage & LED Glow Sign Fabrication Workshop
+  - A0–A4 Jumbo Xerox & CAD Engineering Blueprints Plotting Hub
+  - Commercial Offset Stationery Printing (Visiting Cards, Bill Books, Flyers)
+  - Sublimation & DTF Personalized Gifts Customization Studio
+• Year Established: 2014 (Over 10+ years of continuous service in Kadapa)
+• Google Business Profile Rating: 5.0 / 5.0 (Verified Local Customer Reviews)
+• Regional Brand Tagline:
+  Kadapa's most trusted printing and jumbo xerox partner
+• English Brand Mottos:
+  - Complete Printing, Designing, Advertising & Gifting Solutions
+  - Quality Printing • Direct Wholesale Rates • On-Time Express Delivery
+  - Zero Middlemen • Direct Workshop Fabrication
+
+
+2. WORKSHOP LOCATION & LANDMARKS
+--------------------------------------------------------------------------------
+• Street Address:
+  #21/135, Opp. Tirumala Hospital,
+  Beside New AF Automart Street,
+  Kadapa, Andhra Pradesh – 516001, India.
+• Prime Landmarks:
+  - Directly opposite Tirumala Hospital
+  - Beside New AF Automart Street
+  - Near Seven Roads Circle / Ganagapeta commercial corridor
+• Geographic Coordinates:
+  - Latitude: 14.4673° N
+  - Longitude: 78.8242° E
+• Google Maps Location Link:
+  https://maps.google.com/?q=City+Grafix+Kadapa+Opp+Tirumala+Hospital
+
+
+3. OPERATING HOURS & DISPATCH SPEEDS
+--------------------------------------------------------------------------------
+• Working Hours:
+  - Monday to Saturday: 09:30 AM – 09:30 PM (Workshop operations active until 10:00 PM)
+  - Sunday: 10:00 AM – 06:00 PM
+  - Open 7 days a week
+• Dispatch Speeds:
+  - Jumbo Xerox & CAD Blueprints: 15 to 30 Minutes (Instant while-you-wait)
+  - Photo Mugs & Caps: 1 to 2 Hours same-day dispatch
+  - Star Flex & Event Banners: 2 to 4 Hours same-day express turnaround
+  - Auto Publicity & Pamphlets: 24 to 48 Hours
+  - 3D Acrylic Letters & LED Glow Boards: 2 to 4 Days (includes 48-hr electrical burn-in testing)
+
+
+4. OFFICIAL CONTACT NUMBERS & CHANNELS
+--------------------------------------------------------------------------------
+• Line 1 (Primary Orders & Customer Support):
+  - Number: 72878 67584 / +91 72878 67584
+  - Capabilities: Phone Voice Calls & WhatsApp
+  - Purpose: New orders, flex printing, urgent same-day jobs, artwork drops
+  - Email: citygrafix5@gmail.com
+  - WhatsApp Direct URL: https://wa.me/917287867584
+
+• Line 2 (Signage & Structural Inquiries):
+  - Number: 95817 64937 / +91 95817 64937
+  - Capabilities: Phone Voice Calls & WhatsApp
+  - Purpose: 3D LED glow sign boards, acrylic channel letters, architectural site surveys
+  - WhatsApp Direct URL: https://wa.me/919581764937
+
+• Line 3 (Reception Desk):
+  - Number: 76010 43674 / +91 76010 43674
+  - Capabilities: ONLY WhatsApp (No incoming phone calls accepted)
+  - Purpose: General reception, order status updates, file receipt
+  - WhatsApp Direct URL: https://wa.me/917601043674
+
+
+5. CUSTOMER FILE POLICIES & ORDER PROCEDURES
+--------------------------------------------------------------------------------
+• Printing Policy:
+  City Grafix prints from customer-supplied ready-to-print design files.
+• Supported File Formats:
+  - CorelDRAW (.cdr - any version)
+  - Adobe Photoshop (.psd)
+  - Adobe Acrobat (.pdf)
+  - Tagged Image File Format (.tiff / .tif)
+  - High-Resolution JPEG / JPG
+  - AutoCAD Drawing (.dwg / .dxf for CAD plots)
+• Pre-Flight Verification:
+  In-house technicians check dimensions, color space (CMYK calibration), bleed,
+  and DPI resolution before printing to guarantee sharp reproduction.
+• Proof Approval Workflow:
+  1. Customer shares specifications or drops file via WhatsApp or at the workshop.
+  2. Workshop formats quote & digital pre-print proof preview.
+  3. Customer approves on WhatsApp.
+  4. Same-day fabrication and dispatch at the Kadapa workshop.
+• Wholesale Direct Rate Policy:
+  Direct manufacturing on in-house machinery with zero third-party agent/broker markups.
+
+
+6. THE 11 CORE PRINTING & PRODUCTION SERVICES (DETAILED)
+--------------------------------------------------------------------------------
+
+SERVICE 1: JUMBO XEROX SERVICES (A0, A1, A2, A3, A4)
+• Telugu Title: జంబో జిరాక్స్ సర్వీసెస్ (కలర్ & B/W)
+• Category: Jumbo Xerox & Large Format Plans
+• Target Audience: Civil engineers, contractors, survey officers, architects, students.
+• Scope & Description:
+  High-speed large format color and black & white photocopying and digital printing.
+  Equipped with high-speed wide-format digital plotters capable of scanning and
+  printing from standard A4/A3 up to massive A2, A1, and continuous A0 sheet sizes.
+• Key Specs & Features:
+  - Ultra-sharp 1200 DPI vector line reproduction
+  - Supports A0, A1, A2, A3, A4 sheet dimensions
+  - High-speed bond paper (75–90 GSM)
+  - Instant while-you-wait bulk copying
+• Turnaround Time: Instant / Same-Hour
+
+SERVICE 2: ENGINEERING & ARCHITECTURAL DRAWING PRINTING
+• Telugu Title: ఇంజనీరింగ్ & ఆర్కిటెక్చరల్ డ్రాయింగ్స్
+• Category: Jumbo Xerox & Large Format Plans
+• Target Audience: Architects, structural designers, MEP engineers, town planners.
+• Scope & Description:
+  Millimeter-accurate AutoCAD drawings, structural blueprints, column layouts,
+  elevation plans, electrical schematics, and plumbing designs.
+• Key Specs & Features:
+  - Maintains strict 1:100, 1:50, and 1:200 architectural scales
+  - Smudge-proof and moisture-resistant digital toner
+  - Automatic folding to standard A4 filing size upon request
+• Turnaround Time: 15 to 30 Minutes
+
+SERVICE 3: MUNICIPAL LAYOUT & VILLAGE MAP PRINTING
+• Telugu Title: మున్సిపల్ లేఅవుట్స్ & విలేజ్ మ్యాప్స్
+• Category: Jumbo Xerox & Large Format Plans
+• Target Audience: Real estate developers, land surveyors, revenue officers, advocates.
+• Scope & Description:
+  Large-size map reproduction for town planning master plans, real estate venture
+  layouts, revenue village maps (FMB sketches), and municipal building sanctions.
+• Key Specs & Features:
+  - High-definition line clarity up to 44-inch continuous roll length
+  - Accurate boundary coloring for plots and survey numbers
+  - Archival paper stock accepted by government sanction authorities
+• Turnaround Time: Express (Same Day)
+
+SERVICE 4: TRACING PAPER & TRACING CLOTH PRINTING
+• Telugu Title: ట్రేసింగ్ పేపర్ & ట్రేసింగ్ క్లాత్ ప్రింటింగ్
+• Category: Jumbo Xerox & Large Format Plans
+• Target Audience: Government sanction submissions, town planning, archival records.
+• Scope & Description:
+  Specialized printing onto imported translucent tracing paper (90–110 GSM) and
+  heavy-duty archival drafting tracing cloth required for permanent legal records.
+• Key Specs & Features:
+  - High-translucency imported gateway tracing paper
+  - Tear-resistant architectural drafting cloth
+  - Heat-stable toner adhesion that will not peel or flake
+• Turnaround Time: 30 to 60 Minutes
+
+SERVICE 5: LARGE FORMAT DOCUMENT & MAP SCANNING
+• Telugu Title: లార్జ్ సైజ్ మ్యాప్ & డాక్యుమెంట్ స్కానింగ్
+• Category: Jumbo Xerox & Large Format Plans
+• Target Audience: Land owners, government offices, historians, civil engineers.
+• Scope & Description:
+  Optical scanning of fragile blueprints, old revenue cloth maps, and oversized
+  documents up to A0 width into crisp digital PDF, TIFF, or high-res JPEG files.
+• Key Specs & Features:
+  - True 600 DPI optical scanning resolution
+  - Gentle roll-feed mechanism safe for aged, delicate blueprints
+  - Direct output to USB Pen Drive, Email, or WhatsApp
+• Turnaround Time: Instant while you wait
+
+SERVICE 6: STAR FLEX BANNER PRINTING
+• Telugu Title: స్టార్ ఫ్లెక్స్ బ్యానర్ ప్రింటింగ్
+• Category: Flex & Outdoor Signage
+• Target Audience: Retail shops, political parties, event organizers, wedding families.
+• Scope & Description:
+  Flagship outdoor advertising flex. Heavy-duty 340+ GSM high-gloss substrate
+  printed with fade-resistant Japanese eco-solvent outdoor UV inks that withstand
+  Kadapa’s scorching summer heat and rains.
+• Key Specs & Features:
+  - 1440 DPI high-definition heavy roll-to-roll plotters
+  - Thick, tear-resistant high-gloss coating
+  - Weatherproof, sun-resistant, and rain-resistant
+  - Custom spans from 2 ft up to 100+ continuous feet
+• Turnaround Time: Same Day (2 to 4 Hours)
+
+SERVICE 7: ARCH FLEX & GRAND WELCOME ARCHES
+• Telugu Title: ఆర్చ్ ఫ్లెక్స్ ప్రింటింగ్ (స్వాగత తోరణాలు)
+• Category: Flex & Outdoor Signage
+• Target Audience: Weddings, temple Brahmotsavams, political rallies, showroom openings.
+• Scope & Description:
+  Grand entrance welcome arch banners custom fabricated for road crossings,
+  wedding hall gates, and festive venues across Kadapa district.
+• Key Specs & Features:
+  - Standard sizes: 20ft × 10ft, 30ft × 15ft, up to 50ft mega spans
+  - Heavy welded MS iron tubular framework and wooden beeding
+  - High-gloss Star Flex with rich Telugu typography and cultural motifs
+  - Complete on-site erection and night spotlighting available
+• Turnaround Time: Same Day Express Dispatch
+
+SERVICE 8: HOARDING FLEX & HIGHWAY BILLBOARDS
+• Telugu Title: హోర్డింగ్ ఫ్లెక్స్ & హైవే బిల్ బోర్డ్స్
+• Category: Flex & Outdoor Signage
+• Target Audience: Commercial brands, educational institutions, hospitals, theatres.
+• Scope & Description:
+  Massive roadside hoardings and national highway advertising billboards.
+  Frontlit and backlit industrial flex engineered to withstand high wind velocity.
+• Key Specs & Features:
+  - Heavy industrial wind-resistant GSM outdoor flex
+  - Heavy brass eyelets (రింగులు) and high-tensile nylon rope ties
+  - Multi-month color retention under intense sun
+• Turnaround Time: 2 to 4 Hours Fast Dispatch
+
+SERVICE 9: 3D ACRYLIC LED LETTERS & GLOW SIGN BOARDS
+• Telugu Title: 3D అక్రిలిక్ ఎల్ఈడీ బోర్డ్స్ & లైటింగ్ సైన్ బోర్డులు
+• Category: Architectural Signage
+• Target Audience: Doctors, pharmacies, retail stores, jewelry showrooms, corporate offices.
+• Scope & Description:
+  Elite architectural storefront signage. Custom CNC laser-cut imported cast acrylic
+  channel letters, solid aluminum returns, internal Samsung/Osram IP67 waterproof
+  LED modules, and heavy anti-rust MS tubular framework.
+• Key Specs & Features:
+  - Available in Front-lit, Halo Back-lit, or Full 360° Neon Glow
+  - Anti-rust powder coated MS tubular steel framework
+  - Energy-efficient waterproof LED modules with 12V power supply
+  - 3-Year structural & lighting durability guarantee
+  - 48-hour continuous electrical burn-in testing before mounting
+• Turnaround Time: 2 to 4 Days
+
+SERVICE 10: AUTO PUBLICITY & MOBILE RICKSHAW ADVERTISING
+• Telugu Title: ఆటో పబ్లిసిటీ & వెహికల్ బ్రాండింగ్
+• Category: Commercial Publicity & Offset
+• Target Audience: Movie releases, school admissions, hospital camps, local businesses.
+• Scope & Description:
+  Mobile advertising across Kadapa town gallis, circles, and rural mandals.
+  Auto rickshaw front hood flex, rear passenger panel branding, and sound campaign vans.
+• Key Specs & Features:
+  - High-tensile vinyl and Star Flex weather-proof panels
+  - Single auto rickshaw up to fleet campaigns of 5 to 50+ autos
+  - Sound campaign van flex framing and megaphone mounts
+• Turnaround Time: Same Day / 24 Hours
+
+SERVICE 11: COMMERCIAL OFFSET STATIONERY (CARDS, BILL BOOKS, PAMPHLETS)
+• Telugu Title: విజిటింగ్ కార్డ్స్, బిల్ బుక్స్ & పాంప్లెట్లు
+• Category: Commercial Publicity & Offset
+• Target Audience: New shops, doctors, wholesale merchants, supermarkets, colleges.
+• Scope & Description:
+  High-speed commercial offset printing for everyday business operations.
+• Key Specs & Features:
+  - 350 GSM Velvet Visiting Cards with Spot UV gloss embossing
+  - Carbonless NCR Bill Books (Duplicate 1+1 and Triplicate 1+2) with numbering
+  - Multi-Colour Promotional Pamphlets on 70–130 GSM art paper
+• Turnaround Time: 24 to 48 Hours
+
+
+7. COMPLETE WORKSHOP RATE CARD & PRICING RULES
+--------------------------------------------------------------------------------
+
+A. FLEX, BOARDS & SIGNAGE (PER SQ. FT. OR PER INCH)
+--------------------------------------------------------------------------------
+1. Star Flex Banner (High-Gloss 340+ GSM):
+   - Rate: ₹18 per sq. ft.
+   - Minimum Order Charge: ₹100
+   - Recommended for: Shopfront banners, wedding flex, political banners.
+
+2. Normal Flex Banner (Standard Event Grade):
+   - Rate: ₹12 per sq. ft.
+   - Minimum Order Charge: ₹70
+   - Recommended for: Short-term announcements, temporary notices.
+
+3. Backlit Flex (For Lighted Sign Boxes):
+   - Rate: ₹35 per sq. ft.
+   - Minimum Order Charge: ₹200
+   - Recommended for: Uniform light distribution inside backlit boxes.
+
+4. Arch Flex & Welcome Arches:
+   - Rate: ₹22 per sq. ft.
+   - Minimum Order Charge: ₹800
+
+5. Hoarding Flex (Highway / Heavy Wind Resistant):
+   - Rate: ₹20 per sq. ft.
+   - Minimum Order Charge: ₹500
+
+6. Sunboard & PVC Foam Board (3mm / 5mm Rigid Board):
+   - Rate: ₹65 per sq. ft.
+   - Minimum Order Charge: ₹150
+   - Recommended for: Indoor retail displays, menu boards, clinic signs.
+
+7. Vinyl Sticker & Product Labels (Self-Adhesive):
+   - Rate: ₹38 per sq. ft.
+   - Minimum Order Charge: ₹120
+
+8. One-Way Vision Glass Film (Micro-Perforated Facade):
+   - Rate: ₹65 per sq. ft.
+   - Minimum Order Charge: ₹250
+
+9. Complete LED Glow Sign Board:
+   - Rate: ₹220 per sq. ft.
+   - Minimum Order Charge: ₹1,200
+   - Includes: Steel box enclosure + waterproof LED modules + power supply + backlit print.
+
+10. 3D Acrylic LED Channel Letters:
+   - Rate: ₹45 per inch height per letter
+   - Minimum Order Charge: ₹1,500
+   - Example: A 12-inch high letter = ₹540 per letter.
+   - Standard 10-letter board (12" height) ≈ ₹5,400 + frame.
+
+B. FINISHING & ADD-ON CHARGES
+--------------------------------------------------------------------------------
+• Metal Brass Eyelets / Rings (రింగులు వేయడం): ₹20 flat per banner
+• Wooden Beeding Border (కొయ్య బీడింగ్): ₹6 per sq. ft.
+• Heavy MS Iron Square Pipe Frame (ఐరన్ ఫ్రేమ్ వెల్డింగ్): ₹35 per sq. ft.
+• Protective Gloss / Matte Lamination: ₹10 per sq. ft.
+• Rigid Foam Board Mounting: ₹45 per sq. ft.
+• Magic Mug Heat Upgrade: ₹90 per piece
+
+
+C. JUMBO XEROX & LARGE FORMAT CAD DRAWING RATES
+--------------------------------------------------------------------------------
+• A0 Colour Plan / Map (841 × 1189 mm): ₹220 per sheet
+• A0 Black & White Plan / Xerox: ₹90 per sheet
+• A1 Colour Engineering Drawing (594 × 841 mm): ₹140 per sheet
+• A1 Black & White Architectural Plan: ₹60 per sheet
+• A2 Colour Layout Plan (420 × 594 mm): ₹90 per sheet
+• A2 Black & White Plan: ₹40 per sheet
+• A3 High-Speed Colour Xerox: ₹25 per sheet
+• A0 Tracing Paper / Drafting Cloth Plot: ₹320 per sheet
+• Large Document Scanning to PDF (A0 / A1): ₹80 per document
+
+
+D. COMMERCIAL OFFSET STATIONERY & PUBLICITY RATES
+--------------------------------------------------------------------------------
+1. Visiting Cards (1000 Cards Wholesale Pack):
+   - Normal Matte Finish: ₹750 (for 1000 cards)
+   - 350 GSM Gloss Lamination: ₹950 (for 1000 cards)
+   - 350 GSM Velvet Soft Touch + Raised Spot UV: ₹1,650 (for 1000 cards)
+
+2. Carbonless NCR Bill Books (Numbered & Bound):
+   - Duplicate 1+1 (5 Books pack - 50 sets/book): ₹850
+   - Duplicate 1+1 (10 Books wholesale pack): ₹1,550
+   - Triplicate 1+2 (5 Books pack - 50 sets/book): ₹1,250
+   - Triplicate 1+2 (10 Books wholesale pack): ₹2,300
+
+3. Multi-Colour Pamphlets & Flyers:
+   - A5 Single Side Full-Color (1000 Copies): ₹950
+   - A5 Double Side Full-Color (1000 Copies): ₹1,650
+   - A4 Single Side Full-Color (1000 Copies): ₹1,750
+   - A4 Double Side Full-Color (1000 Copies): ₹2,950
+   - Newspaper Insert Pamphlets Bulk (5000 Copies): ₹3,800
+
+4. Auto Publicity Campaigns:
+   - Single Auto Rickshaw (Front Hood Flex + Rear Board): ₹450
+   - 5 Autos Fleet Branding Package: ₹2,100
+   - 10 Autos Mega Campaign Package: ₹3,900
+   - Sound Campaign Van / Rickshaw Flex Set: ₹1,200
+
+
+E. PERSONALIZED GIFTS RATE CARD & MENU PRICING
+--------------------------------------------------------------------------------
+1. Ceramic Coffee Mugs:
+   - Plain Sparkling White Ceramic Mug (AAA Grade): ₹350
+   - Inner Colour Mug (Red, Blue, Black, Yellow, Green, Orange interior): ₹450
+   - Heart Handle Couple Mug (Sculpted romantic handle): ₹500
+   - Magic Heat Reveal Mug (Pitch black when cold, reveals photo on hot liquid): ₹550
+   (Includes individual protective gift box packaging; ready in 1 to 2 hours)
+
+2. Custom Photo T-Shirts (Combed Cotton & Sports Dry-Fit):
+   - Sublimation Print - Round Neck (Sizes S, M, L): ₹300
+   - Sublimation Print - Collar Polo (Sizes S, M, L): ₹400
+   - DTF Print - Round Neck (Sizes S, M, L - 100% Washproof): ₹400
+   - DTF Print - Collar Polo (Sizes S, M, L - 100% Washproof): ₹500
+   - Size Surcharge: XL and XXL sizes are +₹50 extra.
+   - Available Colors: Solid Black, Pure White, Navy Blue, Classic Red, Royal Blue, Grey.
+   - Print Placement Options: Front chest (10×12"), Back center (10×14"), Left pocket (4×4").
+
+3. Custom Photo Frames & LED Wall Art (Synthetic Wooden Moldings):
+   - Desktop Stand Frame (6 × 8 inches): ₹250 (includes fold-out easel & wall hook)
+   - Classic Wall Frame (8 × 12 inches / A4): ₹350
+   - Family Collage Wall Frame (12 × 18 inches): ₹650 (fits 4 to 8 photos)
+   - Grand Living Room Portrait (16 × 24 inches): ₹1,100
+   - Ambient LED Glow Backlit Frame (12 × 18 inches): ₹1,250 (internal warm night light)
+   - Border Styles: Matte Jet Black, Rich Teak Wood, Royal Antique Gold, Minimal White.
+
+4. Photo Pillows & Cushions (Hypoallergenic Micro-Fiber Stuffed):
+   - Standard Heart or Square Pillow: ₹450
+   - Fancy Fur Border Heart or Square Pillow: ₹600
+   - Magic Reversible Sequins Pillow (Swipe hand to reveal): ₹800
+   - L.E.D Internal Glow Pillow (Built-in warm fairy lights): ₹850
+   - Colors: Romantic Red, Rose Pink, Champagne Gold, Royal Blue, Metallic Silver.
+
+5. Custom Caps & Merch:
+   - Structured Cap with DTF Logo / Photo Print: ₹300 fixed
+   - Styles: Red & White Trucker, Solid Black, Navy Blue, Pure White.
+
+
+8. STANDARD POPULAR SIZES (FOR CALCULATOR PRESETS)
+--------------------------------------------------------------------------------
+• 6 ft × 4 ft (Event Banner) = 24 sq. ft.
+  - Star Flex Cost: 24 × ₹18 = ₹432
+• 8 ft × 3 ft (Standard Shop Fascia) = 24 sq. ft.
+  - Star Flex Cost: 24 × ₹18 = ₹432
+• 10 ft × 5 ft (Hoarding / Medium Arch) = 50 sq. ft.
+  - Star Flex Cost: 50 × ₹18 = ₹900
+• 12 ft × 8 ft (Stage Backdrop) = 96 sq. ft.
+  - Star Flex Cost: 96 × ₹18 = ₹1,728
+• 20 ft × 10 ft (Grand Welcome Arch / Stage) = 200 sq. ft.
+  - Star Flex Cost: 200 × ₹18 = ₹3,600
+
+
+9. SOCIAL MEDIA, EXTERNAL LINKS & PARTNERS
+--------------------------------------------------------------------------------
+• Instagram Profile: https://www.instagram.com/citygrafix1/ (@citygrafix1)
+• YouTube Channel: https://www.youtube.com/@Citygrafix1 (@Citygrafix1)
+• Google Business Review Link: https://www.reviewsmart.online/r/citygrafix
+• Technology Partner: MOMO IT TECHNOLOGIES (https://www.momoittechnologies.com)
+  - Website: https://www.citygrafix.in
+
+================================================================================
+END OF BUSINESS INFORMATION DOCUMENT - CITY GRAFIX KADAPA
+
