@@ -38,7 +38,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: "KUDA Approved Multi-Acre Venture Layout Master Map",
     category: "xerox",
     categoryLabel: "Jumbo Xerox & CAD",
-    image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1000&q=80",
+    image: "/images/municipal-layout-village-map.jpg",
     description: "Full-color 44-inch continuous roll print with precise plot boundary zoning and clear survey numbers.",
     location: "Kadapa Outskirts",
     clientType: "Real Estate Developer",

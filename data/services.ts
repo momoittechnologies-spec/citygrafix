@@ -231,7 +231,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     startingPrice: "₹90 / sheet",
     pricingDetails: "A2 Colour: ₹90 | A1 Colour: ₹140 | A0 Colour: ₹220 | Lamination: ₹10/sq.ft",
     supportedSizes: ["A2", "A1", "A0", "Custom Roll Lengths up to 10+ feet"],
-    image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/municipal-layout-village-map.jpg",
     benefits: [
       "Vibrant plot demarcation colors (yellow, green, pink boundaries)",
       "High readability of tiny survey numbers and road width dimensions",
