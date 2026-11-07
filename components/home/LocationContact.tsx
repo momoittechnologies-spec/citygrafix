@@ -185,7 +185,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                       placeholder="e.g. Ramesh Kumar"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
+                      className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
                     />
                   </div>
 
@@ -199,7 +199,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                       placeholder="e.g. 98765 43210"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
+                      className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
                     />
                   </div>
                 </div>
@@ -211,7 +211,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
-                    className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50 font-medium"
+                    className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50 font-medium"
                   >
                     <option>Star Flex Banner Printing (340+ GSM)</option>
                     <option>Jumbo Xerox / A0 CAD Blueprints</option>
@@ -235,7 +235,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     placeholder="e.g. 10x4 ft banner, need urgent delivery by 4 PM today..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
+                    className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
                   />
                 </div>
 

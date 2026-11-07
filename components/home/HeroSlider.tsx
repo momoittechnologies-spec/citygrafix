@@ -12,8 +12,6 @@ import {
   Clock,
   Tag,
   CheckCircle2,
-  Maximize2,
-  Volume2,
 } from "lucide-react";
 import { getWhatsAppLink } from "@/data/business";
 import { motion, AnimatePresence } from "framer-motion";
@@ -303,22 +301,24 @@ export default function HeroSlider() {
     };
   }, [isPaused, currentSlide, nextSlide]);
 
-  // Touch Swipe Handling
+  // Touch Swipe Handling (Optimized for Mobile Gestures)
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.targetTouches[0].clientX;
   };
 
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const distance = touchStartX.current - touchEndX.current;
-    if (distance > 50) {
-      nextSlide();
-    } else if (distance < -50) {
-      prevSlide();
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const endX = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientX : touchEndX.current;
+    if (!touchStartX.current || !endX) return;
+    const distance = touchStartX.current - endX;
+    if (distance > 40) {
+      nextSlide(); // swipe left -> next
+    } else if (distance < -40) {
+      prevSlide(); // swipe right -> prev
     }
     touchStartX.current = 0;
     touchEndX.current = 0;
@@ -330,7 +330,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full bg-brand-dark overflow-hidden py-8 sm:py-12 xl:py-16 select-none"
+      className="relative w-full bg-brand-dark overflow-hidden py-6 sm:py-10 xl:py-16 select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => {
         progressStartTimeRef.current = Date.now() - (progress / 100) * ROTATION_DURATION_MS;
@@ -340,7 +340,7 @@ export default function HeroSlider() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Hidden Preloader for the very next slide image to guarantee 0ms latency on transitions */}
+      {/* Hidden Preloader for next slide image */}
       <link rel="preload" as="image" href={nextSlideData.image} />
 
       {/* Cinematic Ambient Mesh & Lighting */}
@@ -350,7 +350,25 @@ export default function HeroSlider() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] bg-[size:36px_36px] pointer-events-none" />
 
       <div className="site-container-hero relative z-10">
-        {/* Top Ticker: 10 Clickable Category Showcase Pills */}
+        {/* Mobile Horizontal Category Ticker (Swipeable with Thumb) */}
+        <div className="flex lg:hidden items-center space-x-2 overflow-x-auto pb-2.5 mb-4 scrollbar-none -mx-4 px-4">
+          {HERO_SLIDES.map((s, idx) => (
+            <button
+              key={s.id}
+              onClick={() => goToSlide(idx)}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all shrink-0 flex items-center space-x-1 ${
+                currentSlide === idx
+                  ? "bg-gradient-to-r from-brand-royal to-cyan-500 text-white shadow-md shadow-cyan-500/40 border border-cyan-300/40 scale-105"
+                  : "bg-white/5 text-slate-300 border border-white/10"
+              }`}
+            >
+              <span className="font-mono text-[10px] text-amber-300">{String(s.id).padStart(2, "0")}</span>
+              <span>{s.categoryName}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Desktop Ticker: 10 Clickable Category Showcase Pills */}
         <div className="hidden lg:flex items-center space-x-2 overflow-x-auto pb-5 scrollbar-none border-b border-white/10 mb-8">
           <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest mr-3 shrink-0 flex items-center">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400 mr-1.5" />
@@ -377,22 +395,22 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Cinematic Split Showcase Layout (42% Content / 58% Visuals) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 2xl:gap-16 items-center min-h-[560px] lg:min-h-[620px] xl:min-h-[660px]">
-          {/* LEFT COLUMN: Editorial Presentation & CTAs (42% width) */}
-          <div className="lg:col-span-5 xl:col-span-5 2xl:col-span-5 space-y-6">
+        {/* Cinematic Showcase Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 xl:gap-16 items-center min-h-0 lg:min-h-[580px] xl:min-h-[640px]">
+          {/* CONTENT COLUMN (Editorial, Headlines & Buttons) */}
+          <div className="lg:col-span-5 xl:col-span-5 2xl:col-span-5 space-y-4 sm:space-y-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={slide.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                className="space-y-5"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="space-y-4 sm:space-y-5"
               >
                 {/* Category Pill with Counter & Trust Badge */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center space-x-2 bg-brand-navy/90 border border-cyan-400/40 rounded-full px-3.5 py-1 shadow-md shadow-cyan-950/40">
+                  <div className="inline-flex items-center space-x-2 bg-brand-navy/90 border border-cyan-400/40 rounded-full px-3 py-1 shadow-md shadow-cyan-950/40">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
                     <span className="text-xs font-bold text-cyan-300 font-mono tracking-wider">
                       {String(slide.id).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
@@ -400,26 +418,47 @@ export default function HeroSlider() {
                     <span className="text-white/30">•</span>
                     <span className="text-xs font-bold text-brand-gold">{slide.badge}</span>
                   </div>
-                  <span className="text-xs font-semibold text-slate-400 hidden xl:inline">
+                  <span className="text-xs font-semibold text-slate-400 hidden sm:inline">
                     {slide.badgeTelugu}
                   </span>
                 </div>
 
                 {/* Big Display Headline */}
-                <h1 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white tracking-tight leading-[1.12]">
+                <h1 className="text-2xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white tracking-tight leading-[1.15]">
                   <span>{slide.headline} </span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-amber-300 text-glow">
                     {slide.highlightWord}
                   </span>
                 </h1>
 
+                {/* MOBILE-ONLY INLINE PHOTOGRAPH: Immediately visible without scrolling */}
+                <div className="block lg:hidden relative w-full h-[250px] sm:h-[340px] rounded-2xl overflow-hidden border border-cyan-400/30 shadow-xl bg-slate-900 my-3">
+                  <Image
+                    src={slide.image}
+                    alt={slide.headline}
+                    fill
+                    priority
+                    className="object-cover object-center"
+                    sizes="100vw"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-brand-dark/90 to-transparent pointer-events-none" />
+                  <div className="absolute top-3 right-3 bg-brand-navy/90 backdrop-blur-md border border-cyan-400/50 text-cyan-300 text-[10px] font-extrabold px-2.5 py-1 rounded-full flex items-center space-x-1">
+                    <Sparkles className="w-3 h-3 text-cyan-400" />
+                    <span>{slide.floatingBadge}</span>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between bg-brand-navy/85 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-xl text-xs">
+                    <span className="text-white font-bold truncate mr-2">{slide.categoryName}</span>
+                    <span className="text-brand-gold font-bold shrink-0">{slide.turnaroundTime}</span>
+                  </div>
+                </div>
+
                 {/* Clear Narrative Description */}
-                <p className="text-slate-300 text-sm sm:text-base xl:text-lg leading-relaxed max-w-xl">
+                <p className="text-slate-300 text-xs sm:text-base xl:text-lg leading-relaxed max-w-xl">
                   {slide.description}
                 </p>
 
                 {/* Machine / Quality Spec Highlights */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
                   {slide.specs.map((spec, i) => (
                     <div
                       key={i}
@@ -432,28 +471,28 @@ export default function HeroSlider() {
                 </div>
 
                 {/* Live Commercial Pricing & Turnaround Speed */}
-                <div className="flex flex-wrap items-center gap-4 pt-1 text-xs xl:text-sm">
-                  <div className="flex items-center bg-brand-gold/10 border border-brand-gold/30 px-3.5 py-1.5 rounded-xl">
-                    <Tag className="w-4 h-4 text-brand-gold mr-1.5" />
+                <div className="flex flex-wrap items-center gap-3 pt-1 text-xs sm:text-sm">
+                  <div className="flex items-center bg-brand-gold/10 border border-brand-gold/30 px-3 py-1.5 rounded-xl">
+                    <Tag className="w-3.5 h-3.5 text-brand-gold mr-1.5" />
                     <span className="text-slate-300">
                       Rate: <strong className="text-brand-gold font-bold">{slide.startingPrice}</strong>
                     </span>
                   </div>
 
-                  <div className="flex items-center bg-cyan-500/10 border border-cyan-400/30 px-3.5 py-1.5 rounded-xl">
-                    <Clock className="w-4 h-4 text-cyan-400 mr-1.5" />
+                  <div className="flex items-center bg-cyan-500/10 border border-cyan-400/30 px-3 py-1.5 rounded-xl">
+                    <Clock className="w-3.5 h-3.5 text-cyan-400 mr-1.5" />
                     <span className="text-slate-300">
                       Speed: <strong className="text-white font-bold">{slide.turnaroundTime}</strong>
                     </span>
                   </div>
                 </div>
 
-                {/* Dual Primary Action CTAs */}
-                <div className="flex flex-wrap items-center gap-3 pt-3">
+                {/* Action CTAs (Finger-Friendly Full Width on Mobile) */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-2 sm:pt-3">
                   <Link
                     href={slide.primaryCtaLink}
                     data-cursor="EXPLORE"
-                    className="bg-gradient-to-r from-brand-red via-brand-redDark to-brand-red hover:from-brand-redLight hover:to-brand-red text-white font-extrabold px-7 py-3.5 rounded-xl shadow-lg shadow-brand-red/40 hover:shadow-brand-red/60 transition-all flex items-center space-x-2 text-xs sm:text-sm group"
+                    className="bg-gradient-to-r from-brand-red via-brand-redDark to-brand-red hover:from-brand-redLight hover:to-brand-red text-white font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-brand-red/40 hover:shadow-brand-red/60 transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm group"
                   >
                     <span>{slide.primaryCtaText}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
@@ -464,7 +503,7 @@ export default function HeroSlider() {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="CHAT"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 text-xs sm:text-sm group"
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm"
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                     <span>WhatsApp Quote</span>
@@ -473,7 +512,7 @@ export default function HeroSlider() {
                   <Link
                     href="/pricing#calculator"
                     data-cursor="CALC"
-                    className="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-3.5 rounded-xl border border-white/20 transition-colors text-xs sm:text-sm hidden sm:inline-flex items-center space-x-1.5"
+                    className="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-3.5 rounded-xl border border-white/20 transition-colors text-xs sm:text-sm flex items-center justify-center space-x-1.5"
                   >
                     <span>Calculator</span>
                   </Link>
@@ -482,9 +521,9 @@ export default function HeroSlider() {
             </AnimatePresence>
           </div>
 
-          {/* RIGHT COLUMN: Dominant Cinematic Visual Presentation (58% width) */}
-          <div className="lg:col-span-7 xl:col-span-7 2xl:col-span-7 relative">
-            <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[540px] xl:h-[600px] 2xl:h-[660px] rounded-3xl overflow-hidden border border-cyan-400/30 shadow-2xl shadow-cyan-950/70 bg-slate-900 group">
+          {/* DESKTOP/TABLET RIGHT COLUMN: Dominant Cinematic Visual Viewport */}
+          <div className="hidden lg:block lg:col-span-7 xl:col-span-7 2xl:col-span-7 relative">
+            <div className="relative w-full h-[520px] xl:h-[580px] 2xl:h-[640px] rounded-3xl overflow-hidden border border-cyan-400/30 shadow-2xl shadow-cyan-950/70 bg-slate-900 group">
               {/* Cinematic Edge Glow */}
               <div className="absolute inset-0 rounded-3xl border-2 border-cyan-400/40 pointer-events-none z-20 shadow-[inset_0_0_30px_rgba(0,240,255,0.15)]" />
 
@@ -497,7 +536,6 @@ export default function HeroSlider() {
                   transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute inset-0 w-full h-full"
                 >
-                  {/* Dominant Crystal-Clear Photography */}
                   <Image
                     src={slide.image}
                     alt={slide.headline}
@@ -506,8 +544,6 @@ export default function HeroSlider() {
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out"
                     sizes="(max-width: 1024px) 100vw, 60vw"
                   />
-
-                  {/* Gentle Bottom Gradient for Card Readability */}
                   <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent pointer-events-none" />
                 </motion.div>
               </AnimatePresence>
@@ -518,7 +554,7 @@ export default function HeroSlider() {
                 <span>{slide.floatingBadge}</span>
               </div>
 
-              {/* Bottom Integrated Service Information Strip */}
+              {/* Bottom Integrated Information Strip */}
               <div className="absolute bottom-5 left-5 right-5 z-20 flex items-center justify-between bg-brand-navy/85 backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl shadow-xl">
                 <div>
                   <span className="text-[10px] uppercase font-bold text-cyan-300 tracking-wider block">
@@ -538,46 +574,46 @@ export default function HeroSlider() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Bottom Controls Strip: Animated Progress Bar & Slide Navigation */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-5">
-              {/* Animated Progress Bar */}
-              <div className="w-full sm:w-2/3 flex items-center space-x-3">
-                <span className="font-mono text-xs font-bold text-cyan-300 shrink-0">
-                  {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
-                </span>
-                <div className="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div
-                    className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-brand-royal via-cyan-400 to-brand-gold rounded-full"
-                    style={{ width: `${progress}%` }}
-                    transition={{ ease: "linear" }}
-                  />
-                </div>
-                <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider shrink-0 hidden md:inline">
-                  {slide.categoryName}
-                </span>
-              </div>
-
-              {/* Prev / Next Arrow Navigation */}
-              <div className="flex items-center space-x-2.5 shrink-0 self-end sm:self-auto">
-                <button
-                  onClick={prevSlide}
-                  data-cursor="PREV"
-                  className="w-11 h-11 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95 shadow-md"
-                  aria-label="Previous Slide"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  data-cursor="NEXT"
-                  className="w-11 h-11 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95 shadow-md"
-                  aria-label="Next Slide"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
+        {/* Universal Controls Strip: Animated Progress Bar & Touch-Friendly Arrows */}
+        <div className="flex items-center justify-between gap-3 mt-5 pt-3 border-t border-white/10">
+          {/* Animated Progress Bar */}
+          <div className="flex-1 flex items-center space-x-3">
+            <span className="font-mono text-xs font-bold text-cyan-300 shrink-0">
+              {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+            </span>
+            <div className="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
+              <motion.div
+                className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-brand-royal via-cyan-400 to-brand-gold rounded-full"
+                style={{ width: `${progress}%` }}
+                transition={{ ease: "linear" }}
+              />
             </div>
+            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider shrink-0 hidden sm:inline">
+              {slide.categoryName}
+            </span>
+          </div>
+
+          {/* Prev / Next Arrow Navigation */}
+          <div className="flex items-center space-x-2 shrink-0">
+            <button
+              onClick={prevSlide}
+              data-cursor="PREV"
+              className="w-10 h-10 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95 shadow-md"
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextSlide}
+              data-cursor="NEXT"
+              className="w-10 h-10 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95 shadow-md"
+              aria-label="Next Slide"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>

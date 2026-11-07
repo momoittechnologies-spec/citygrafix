@@ -55,24 +55,24 @@ export default function PriceHighlights() {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 xl:gap-8">
           {highlights.map((item, idx) => (
             <div
               key={idx}
               data-cursor="INSPECT"
-              className="p-5 xl:p-6 rounded-3xl bg-slate-50/70 border border-slate-200/80 hover:border-brand-royal hover:shadow-xl transition-all group flex flex-col justify-between card-3d-tilt"
+              className="p-3.5 sm:p-5 xl:p-6 rounded-2xl sm:rounded-3xl bg-slate-50/70 border border-slate-200/80 hover:border-brand-royal hover:shadow-xl transition-all group flex flex-col justify-between card-3d-tilt"
             >
               <div>
-                <span className="text-[10px] uppercase font-bold text-brand-royal bg-blue-50 px-2 py-0.5 rounded">
+                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-brand-royal bg-blue-50 px-2 py-0.5 rounded">
                   {item.badge}
                 </span>
-                <h3 className="text-sm font-bold text-slate-900 mt-2 group-hover:text-brand-royal transition-colors">
+                <h3 className="text-xs sm:text-sm font-bold text-slate-900 mt-1.5 group-hover:text-brand-royal transition-colors line-clamp-2">
                   {item.name}
                 </h3>
-                <span className="text-[11px] text-brand-red font-medium block">{item.telugu}</span>
+                <span className="text-[10px] sm:text-[11px] text-brand-red font-medium block mt-0.5">{item.telugu}</span>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-baseline justify-between">
+              <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-200/60 flex items-baseline justify-between">
                 <div>
                   <span className="text-xl sm:text-2xl font-black text-brand-navy font-mono">
                     {item.rate}

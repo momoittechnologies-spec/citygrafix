@@ -11,6 +11,7 @@ import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -26,6 +27,7 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
     setIsServicesOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
 
   const navLinks = [
@@ -269,27 +271,66 @@ export default function Navbar() {
 
         {/* Mobile Slide-down Drawer */}
         {isOpen && (
-          <div className="lg:hidden bg-brand-navy border-b border-white/15 px-4 pt-3 pb-6 animate-in slide-in-from-top-4 duration-300 shadow-2xl">
+          <div className="lg:hidden bg-brand-navy border-b border-white/15 px-4 pt-3 pb-6 max-h-[85vh] overflow-y-auto animate-in slide-in-from-top-4 duration-300 shadow-2xl">
             <nav className="flex flex-col space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between ${
-                    pathname === link.href
-                      ? "bg-white/15 text-brand-gold font-bold"
-                      : "text-slate-200 hover:bg-white/5"
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  {link.hasDropdown && <span className="text-xs text-brand-gold bg-white/10 px-2 py-0.5 rounded">11 Services</span>}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                if (link.hasDropdown) {
+                  return (
+                    <div key={link.label} className="flex flex-col">
+                      <div className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5">
+                        <Link href={link.href} className="flex-1 font-semibold">
+                          {link.label}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                          className="px-2.5 py-1 text-brand-gold bg-white/10 rounded-lg text-xs font-bold flex items-center space-x-1 border border-white/10"
+                        >
+                          <span>11 Categories</span>
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                              mobileServicesOpen ? "rotate-180 text-cyan-400" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+                      {mobileServicesOpen && (
+                        <div className="pl-3 pr-2 py-2 space-y-1 bg-white/5 rounded-2xl my-1 border border-white/10">
+                          {SERVICE_CATEGORIES.map((cat) => (
+                            <Link
+                              key={cat.id}
+                              href={`/services#${cat.id}`}
+                              className="block p-2 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg font-medium"
+                            >
+                              <div className="font-bold text-slate-200">{cat.title}</div>
+                              <div className="text-[10px] text-brand-gold">{cat.teluguTitle}</div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className={`px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between ${
+                      pathname === link.href
+                        ? "bg-white/15 text-brand-gold font-bold"
+                        : "text-slate-200 hover:bg-white/5"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
 
               <div className="pt-4 mt-2 border-t border-white/10 space-y-2">
                 <Link
                   href="/pricing#calculator"
-                  className="w-full bg-gradient-to-r from-brand-red to-brand-redDark text-white py-3 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-lg"
+                  className="w-full bg-gradient-to-r from-brand-red to-brand-redDark text-white py-3.5 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <Calculator className="w-4 h-4" />
                   <span>Flex & Signage Price Calculator</span>
@@ -298,7 +339,7 @@ export default function Navbar() {
                 <div className="grid grid-cols-2 gap-2 pt-2">
                   <a
                     href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-                    className="bg-white/10 text-white py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 border border-white/10"
+                    className="bg-white/10 text-white py-3 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 border border-white/10 active:scale-95"
                   >
                     <Phone className="w-3.5 h-3.5 text-brand-gold" />
                     <span>Call Order Desk</span>
@@ -307,7 +348,7 @@ export default function Navbar() {
                     href={getWhatsAppLink("Hello City Grafix, I want to inquire about printing in Kadapa.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-emerald-600 text-white py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5"
+                    className="bg-emerald-600 text-white py-3 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 active:scale-95"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
                     <span>WhatsApp Now</span>

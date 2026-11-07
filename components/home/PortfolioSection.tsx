@@ -50,14 +50,14 @@ export default function PortfolioSection() {
           </Link>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-2.5 mb-10">
+        {/* Filter Buttons (Smooth Horizontal Scroll on Mobile, Wrapped on Desktop) */}
+        <div className="flex items-center space-x-2 overflow-x-auto pb-3 mb-8 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:space-x-0 sm:gap-2.5">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               data-cursor="FILTER"
-              className={`px-4 py-2 rounded-xl text-xs xl:text-sm font-bold transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs xl:text-sm font-bold whitespace-nowrap transition-all shrink-0 sm:shrink ${
                 activeCategory === cat.id
                   ? "bg-brand-navy text-white shadow-md shadow-brand-navy/20"
                   : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
@@ -122,18 +122,18 @@ export default function PortfolioSection() {
             onClick={() => setSelectedItem(null)}
           >
             <div
-              className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative"
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
+                className="absolute top-3.5 right-3.5 z-10 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="relative h-72 sm:h-96 w-full bg-slate-900">
+              <div className="relative h-60 sm:h-80 md:h-96 w-full bg-slate-900">
                 <Image
                   src={selectedItem.image}
                   alt={selectedItem.title}

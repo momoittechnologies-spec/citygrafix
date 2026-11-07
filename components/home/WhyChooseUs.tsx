@@ -73,17 +73,17 @@ export default function WhyChooseUs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8">
           {reasons.map((r, i) => {
             const Icon = r.icon;
             return (
               <div
                 key={i}
                 data-cursor="INSPECT"
-                className="bg-white/5 border border-white/10 rounded-3xl p-6 xl:p-8 hover:bg-white/10 hover:border-brand-gold/40 transition-all duration-300 group card-3d-tilt"
+                className="bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 xl:p-8 hover:bg-white/10 hover:border-brand-gold/40 transition-all duration-300 group card-3d-tilt"
               >
-                <div className="w-12 h-12 xl:w-14 xl:h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-brand-red transition-all shadow-inner">
-                  <Icon className="w-6 h-6 xl:w-7 xl:h-7 text-brand-gold group-hover:text-white transition-colors" />
+                <div className="w-11 h-11 sm:w-12 sm:h-12 xl:w-14 xl:h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 group-hover:bg-brand-red transition-all shadow-inner">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 xl:w-7 xl:h-7 text-brand-gold group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-base xl:text-lg font-black text-white mb-1">{r.title}</h3>
                 <span className="text-xs xl:text-sm font-semibold text-brand-gold/90 block mb-2">{r.telugu}</span>

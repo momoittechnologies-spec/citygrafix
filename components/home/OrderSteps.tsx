@@ -86,7 +86,7 @@ export default function OrderSteps() {
             href={getWhatsAppLink("Hello City Grafix, I want to place a printing order. Here are my requirements:")}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-md flex items-center space-x-2 shrink-0"
+            className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold px-6 py-3.5 rounded-xl transition-colors text-sm shadow-md flex items-center justify-center space-x-2 shrink-0 w-full sm:w-auto"
           >
             <span>Start WhatsApp Order Now</span>
             <ArrowRight className="w-4 h-4" />

@@ -54,26 +54,28 @@ export default function TrustHighlights() {
   ];
 
   return (
-    <section className="relative -mt-10 sm:-mt-14 z-30 site-container">
-      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 sm:p-8 xl:p-10 transition-all hover:shadow-2xl">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 xl:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
+    <section className="relative -mt-6 sm:-mt-12 z-30 site-container">
+      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-4 sm:p-8 xl:p-10 transition-all hover:shadow-2xl">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-6 xl:gap-8">
           {highlights.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
-                className={`flex flex-col items-center text-center px-2 xl:px-4 ${
-                  index !== 0 ? "pt-4 lg:pt-0" : ""
-                }`}
+                className="flex flex-col items-center text-center p-3 sm:p-2 bg-slate-50/70 sm:bg-transparent rounded-2xl border border-slate-100 sm:border-0 hover:bg-slate-50 transition-colors"
               >
                 <div
-                  className={`w-12 h-12 xl:w-14 xl:h-14 rounded-2xl ${item.bgColor} ${item.color} flex items-center justify-center mb-3.5 shadow-inner`}
+                  className={`w-11 h-11 sm:w-12 sm:h-12 xl:w-14 xl:h-14 rounded-2xl ${item.bgColor} ${item.color} flex items-center justify-center mb-2.5 sm:mb-3.5 shadow-inner`}
                 >
-                  <Icon className="w-6 h-6 xl:w-7 xl:h-7" />
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 xl:w-7 xl:h-7" />
                 </div>
-                <h4 className="font-extrabold text-slate-900 text-sm xl:text-base">{item.title}</h4>
-                <span className="text-[11px] xl:text-xs font-semibold text-brand-red mt-0.5">{item.telugu}</span>
-                <p className="text-[11px] xl:text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">
+                <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm xl:text-base leading-tight">
+                  {item.title}
+                </h4>
+                <span className="text-[10px] sm:text-xs font-semibold text-brand-red mt-0.5 sm:mt-1">
+                  {item.telugu}
+                </span>
+                <p className="text-[10px] sm:text-xs text-slate-500 mt-1 leading-snug line-clamp-2 hidden sm:block">
                   {item.description}
                 </p>
               </div>

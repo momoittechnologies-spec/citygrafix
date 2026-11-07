@@ -211,7 +211,7 @@ Please confirm the quote and let me know the artwork submission and delivery tim
                       max={100}
                       value={width}
                       onChange={(e) => setWidth(Math.max(1, Number(e.target.value) || 1))}
-                      className="w-16 px-2 py-1 text-right font-mono font-bold text-sm bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-royal"
+                      className="w-16 px-2 py-1 text-right font-mono font-bold text-base sm:text-sm bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-royal"
                     />
                     <span className="text-xs text-slate-500 font-semibold">ft</span>
                   </div>
@@ -237,7 +237,7 @@ Please confirm the quote and let me know the artwork submission and delivery tim
                       max={50}
                       value={height}
                       onChange={(e) => setHeight(Math.max(1, Number(e.target.value) || 1))}
-                      className="w-16 px-2 py-1 text-right font-mono font-bold text-sm bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-royal"
+                      className="w-16 px-2 py-1 text-right font-mono font-bold text-base sm:text-sm bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-royal"
                     />
                     <span className="text-xs text-slate-500 font-semibold">ft</span>
                   </div>

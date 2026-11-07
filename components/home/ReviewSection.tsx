@@ -37,8 +37,8 @@ export default function ReviewSection() {
   return (
     <section className="py-20 lg:py-24 bg-white relative">
       <div className="site-container">
-        <div className="bg-gradient-to-br from-brand-navy via-brand-navyLight to-brand-dark rounded-3xl p-8 sm:p-12 xl:p-16 text-white relative overflow-hidden shadow-2xl">
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 pb-10 border-b border-white/10">
+        <div className="bg-gradient-to-br from-brand-navy via-brand-navyLight to-brand-dark rounded-3xl p-5 sm:p-12 xl:p-16 text-white relative overflow-hidden shadow-2xl">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 sm:pb-10 border-b border-white/10">
             <div>
               <div className="inline-flex items-center space-x-1.5 bg-amber-400/20 text-amber-300 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
                 <Star className="w-3.5 h-3.5 fill-amber-300" />
