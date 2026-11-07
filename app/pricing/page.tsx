@@ -48,7 +48,7 @@ export default function PricingPage() {
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-container text-center">
           <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
             <Tag className="w-3.5 h-3.5" />
             <span>Official Business Rate Card</span>
@@ -63,7 +63,7 @@ export default function PricingPage() {
       </section>
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 space-y-12 relative z-20">
+      <div className="site-container -mt-8 space-y-12 relative z-20">
         {/* Interactive Flex Calculator Section */}
         <FlexCalculator />
 

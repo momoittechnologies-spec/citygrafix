@@ -86,7 +86,7 @@ export default function ServiceDetailView({ service }: Props) {
       <article className="min-h-screen bg-slate-50 pb-20">
         {/* Breadcrumb Header */}
         <div className="bg-brand-navy text-slate-300 py-3 border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="site-container">
             <nav className="flex items-center space-x-2 text-xs">
               <Link href="/" className="hover:text-white transition-colors">
                 Home
@@ -103,7 +103,7 @@ export default function ServiceDetailView({ service }: Props) {
 
         {/* Hero Section */}
         <header className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white pt-10 pb-16 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="site-container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-4">
                 <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 text-xs">
@@ -190,7 +190,7 @@ export default function ServiceDetailView({ service }: Props) {
         </header>
 
         {/* Content Body Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+        <div className="site-container -mt-8 relative z-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Left Main Column: In-depth Details, Specs, Audience, FAQs */}
             <div className="lg:col-span-8 space-y-8">

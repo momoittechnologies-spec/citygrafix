@@ -41,7 +41,7 @@ export default function Navbar() {
     <>
       {/* Top Notification Bar for Kadapa Local Trust */}
       <div className="bg-brand-dark text-slate-300 text-xs py-2 px-4 border-b border-white/10 hidden md:block">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="site-container flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <span className="flex items-center text-amber-400 font-medium">
               <Sparkles className="w-3.5 h-3.5 mr-1.5 text-amber-400" />
@@ -88,7 +88,7 @@ export default function Navbar() {
             : "bg-brand-navy border-b border-white/10 py-3.5"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="site-container flex items-center justify-between">
           {/* Brand Logo - Preserving exact original logo */}
           <Link href="/" className="flex items-center group">
             <div className="relative bg-white/95 rounded-xl p-1.5 shadow-md border border-white/30 group-hover:scale-105 transition-transform duration-200">

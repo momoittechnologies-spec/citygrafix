@@ -17,7 +17,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-container text-center">
           <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
             <MapPin className="w-3.5 h-3.5" />
             <span>Opposite Tirumala Hospital, Kadapa</span>
@@ -37,7 +37,7 @@ export default function ContactPage() {
       </div>
 
       {/* Supported Files & Pre-flight Guide */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+      <div className="site-container mt-12">
         <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
           <div className="flex items-center space-x-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-blue-50 text-brand-royal flex items-center justify-center">

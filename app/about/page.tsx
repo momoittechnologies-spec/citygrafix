@@ -18,7 +18,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-container text-center">
           <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
             <Award className="w-3.5 h-3.5" />
             <span>Established in 2014 • Over 10+ Years of Excellence</span>
@@ -33,7 +33,7 @@ export default function AboutPage() {
       </section>
 
       {/* Main Content Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 space-y-16 relative z-20">
+      <div className="site-container -mt-8 space-y-16 relative z-20">
         {/* Story Card */}
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-5">

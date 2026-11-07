@@ -26,7 +26,7 @@ export default function ServicesIndexPage() {
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-container text-center">
           <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Complete Printing Solutions in Kadapa</span>
@@ -42,7 +42,7 @@ export default function ServicesIndexPage() {
 
       {/* Main Categories Navigation Bar */}
       <div className="sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 overflow-x-auto pb-1 text-xs">
+        <div className="site-container flex items-center space-x-2 overflow-x-auto pb-1 text-xs">
           <span className="text-slate-400 font-semibold uppercase tracking-wider shrink-0 mr-2">Jump to:</span>
           {SERVICE_CATEGORIES.map((cat) => (
             <a
@@ -62,7 +62,7 @@ export default function ServicesIndexPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 space-y-20">
+      <div className="site-container pt-12 space-y-20">
         {/* Iterate each Category */}
         {SERVICE_CATEGORIES.map((cat) => {
           const categoryServices = CORE_SERVICES.filter((s) => s.categorySlug === cat.slug);

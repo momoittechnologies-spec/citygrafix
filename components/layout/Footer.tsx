@@ -8,7 +8,7 @@ import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
 export default function Footer() {
   return (
     <footer className="bg-brand-dark text-slate-300 border-t border-white/10 pt-16 pb-24 md:pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="site-container">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Column 1: Brand & Positioning */}

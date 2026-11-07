@@ -22,9 +22,9 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
   };
 
   return (
-    <section className="py-20 bg-slate-50 relative" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section className="py-20 lg:py-24 bg-slate-50 relative" id="contact">
+      <div className="site-container">
+        <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-red-50 px-3.5 py-1 rounded-full">
             Direct Workshop & Reception Desk
           </span>

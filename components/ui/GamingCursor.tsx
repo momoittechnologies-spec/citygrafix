@@ -1,226 +1,246 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface ClickRipple {
-  id: number;
-  x: number;
-  y: number;
-}
+import React, { useEffect, useRef, useState } from "react";
 
 export default function GamingCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const pointerRef = useRef<HTMLDivElement | null>(null);
+  const ringRef = useRef<HTMLDivElement | null>(null);
+  const rippleContainerRef = useRef<HTMLDivElement | null>(null);
+
   const [cursorState, setCursorState] = useState<"default" | "pointer" | "card" | "text">("default");
-  const [cardBadgeText, setCardBadgeText] = useState("EXPLORE");
-  const [isClicking, setIsClicking] = useState(false);
-  const [ripples, setRipples] = useState<ClickRipple[]>([]);
-  const [isVisible, setIsVisible] = useState(false);
+  const [badgeText, setBadgeText] = useState("EXPLORE");
   const [isDesktop, setIsDesktop] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
-    // Only enable on true desktop with fine pointer (mouse)
+    // 1. Check for genuine desktop with fine mouse pointer
     const mediaQuery = window.matchMedia("(pointer: fine) and (hover: hover)");
-    if (!mediaQuery.matches) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (!mediaQuery.matches || prefersReducedMotion.matches) {
+      return;
+    }
     setIsDesktop(true);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+    // Coordinate storage (separate from React state to eliminate re-renders during mouse movement)
+    let mouseX = -200;
+    let mouseY = -200;
+    let ringX = -200;
+    let ringY = -200;
+    let rafId: number;
+    let isVisible = false;
 
-      // Check element under cursor
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
+    const onPointerMove = (e: PointerEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
 
-      const interactiveCard = target.closest<HTMLElement>("[data-cursor], .card-tilt, [data-service-card]");
-      const interactiveButton = target.closest<HTMLElement>("button, a, [role='button'], input[type='submit']");
-      const isInput = target.closest<HTMLElement>("input, textarea, select, [contenteditable='true']");
+      if (!isVisible) {
+        isVisible = true;
+        if (pointerRef.current) pointerRef.current.style.opacity = "1";
+        if (ringRef.current) ringRef.current.style.opacity = "1";
+      }
 
-      if (isInput) {
-        setCursorState("text");
-      } else if (interactiveCard) {
-        setCursorState("card");
-        const customText = interactiveCard.getAttribute("data-cursor");
-        setCardBadgeText(customText || "VIEW");
-      } else if (interactiveButton) {
-        setCursorState("pointer");
-      } else {
-        setCursorState("default");
+      // Hardware-level instant response (0ms perceived latency)
+      if (pointerRef.current) {
+        pointerRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
       }
     };
 
-    const handleMouseDown = (e: MouseEvent) => {
-      setIsClicking(true);
-      const newRipple: ClickRipple = {
-        id: Date.now(),
-        x: e.clientX,
-        y: e.clientY,
-      };
-      setRipples((prev) => [...prev.slice(-3), newRipple]); // keep last 4 ripples
+    // Ultra-snappy RAF loop for concentric outer ring (lerp factor 0.35)
+    const animateRing = () => {
+      // 0.35 factor gives buttery high-framerate response without sluggish floating
+      ringX += (mouseX - ringX) * 0.35;
+      ringY += (mouseY - ringY) * 0.35;
+
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+      }
+
+      rafId = requestAnimationFrame(animateRing);
     };
 
-    const handleMouseUp = () => {
+    rafId = requestAnimationFrame(animateRing);
+
+    // Event delegation for hover states (runs ONLY on entering/exiting elements, not on move)
+    const onPointerOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      const isInput = target.closest("input, textarea, select, [contenteditable='true']");
+      if (isInput) {
+        setCursorState("text");
+        return;
+      }
+
+      const card = target.closest<HTMLElement>("[data-cursor], .card-3d-tilt, [data-service-card]");
+      if (card) {
+        setCursorState("card");
+        const customBadge = card.getAttribute("data-cursor");
+        setBadgeText(customBadge || "INSPECT");
+        return;
+      }
+
+      const interactive = target.closest("button, a, [role='button'], input[type='submit'], [tabindex='0']");
+      if (interactive) {
+        setCursorState("pointer");
+        return;
+      }
+
+      setCursorState("default");
+    };
+
+    // Click handler for gaming shockwave pulse
+    const onMouseDown = (e: MouseEvent) => {
+      setIsClicking(true);
+
+      // Spawn CSS shockwave ripple at click coordinates
+      if (rippleContainerRef.current) {
+        const ripple = document.createElement("div");
+        ripple.className = "absolute rounded-full pointer-events-none";
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        ripple.style.width = "10px";
+        ripple.style.height = "10px";
+        ripple.style.marginLeft = "-5px";
+        ripple.style.marginTop = "-5px";
+        ripple.style.border = "2px solid #00F0FF";
+        ripple.style.boxShadow = "0 0 16px #00F0FF, inset 0 0 10px rgba(0, 240, 255, 0.5)";
+        ripple.style.animation = "gamingShockwave 0.55s cubic-bezier(0.1, 0.8, 0.3, 1) forwards";
+
+        rippleContainerRef.current.appendChild(ripple);
+
+        // Remove element once CSS animation finishes
+        ripple.addEventListener("animationend", () => {
+          ripple.remove();
+        });
+      }
+    };
+
+    const onMouseUp = () => {
       setIsClicking(false);
     };
 
-    const handleMouseLeave = () => {
-      setIsVisible(false);
+    const onMouseLeave = () => {
+      isVisible = false;
+      if (pointerRef.current) pointerRef.current.style.opacity = "0";
+      if (ringRef.current) ringRef.current.style.opacity = "0";
     };
 
-    const handleMouseEnter = () => {
-      setIsVisible(true);
+    const onMouseEnter = () => {
+      isVisible = true;
+      if (pointerRef.current) pointerRef.current.style.opacity = "1";
+      if (ringRef.current) ringRef.current.style.opacity = "1";
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    window.addEventListener("mousedown", handleMouseDown);
-    window.addEventListener("mouseup", handleMouseUp);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerdown", onMouseDown);
+    window.addEventListener("pointerup", onMouseUp);
+    document.addEventListener("pointerover", onPointerOver);
+    document.addEventListener("mouseleave", onMouseLeave);
+    document.addEventListener("mouseenter", onMouseEnter);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerdown", onMouseDown);
+      window.removeEventListener("pointerup", onMouseUp);
+      document.removeEventListener("pointerover", onPointerOver);
+      document.removeEventListener("mouseleave", onMouseLeave);
+      document.removeEventListener("mouseenter", onMouseEnter);
     };
-  }, [isVisible]);
+  }, []);
 
-  // Clean up ripples after animation
-  useEffect(() => {
-    if (ripples.length === 0) return;
-    const timer = setTimeout(() => {
-      setRipples((prev) => prev.filter((r) => Date.now() - r.id < 900));
-    }, 900);
-    return () => clearTimeout(timer);
-  }, [ripples]);
-
-  if (!isDesktop || !isVisible) return null;
-  if (cursorState === "text") return null; // let native I-beam cursor shine on forms
+  if (!isDesktop) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden select-none">
-      {/* Click Shockwave Ripples (mimicking user's uploaded reference image) */}
-      <AnimatePresence>
-        {ripples.map((ripple) => (
-          <React.Fragment key={ripple.id}>
-            {/* Concentric Ring 1 */}
-            <motion.div
-              initial={{ scale: 0.2, opacity: 0.9 }}
-              animate={{ scale: 2.4, opacity: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              style={{
-                position: "absolute",
-                left: ripple.x - 30,
-                top: ripple.y - 30,
-                width: 60,
-                height: 60,
-                borderRadius: "50%",
-                border: "2px solid #00F0FF",
-                boxShadow: "0 0 20px #00F0FF, inset 0 0 15px rgba(0, 240, 255, 0.4)",
-              }}
-            />
-            {/* Concentric Ring 2 */}
-            <motion.div
-              initial={{ scale: 0.4, opacity: 0.7 }}
-              animate={{ scale: 3.2, opacity: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.9, ease: "easeOut", delay: 0.08 }}
-              style={{
-                position: "absolute",
-                left: ripple.x - 30,
-                top: ripple.y - 30,
-                width: 60,
-                height: 60,
-                borderRadius: "50%",
-                border: "1.5px solid #2563EB",
-                boxShadow: "0 0 30px #2563EB",
-              }}
-            />
-          </React.Fragment>
-        ))}
-      </AnimatePresence>
+    <>
+      <style jsx global>{`
+        @keyframes gamingShockwave {
+          0% {
+            transform: scale(0.4);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(8.5);
+            opacity: 0;
+          }
+        }
+      `}</style>
 
-      {/* Outer Concentric Energy Ring */}
-      <motion.div
-        className="fixed top-0 left-0 rounded-full flex items-center justify-center pointer-events-none"
-        animate={{
-          x: mousePosition.x - (cursorState === "card" ? 42 : cursorState === "pointer" ? 32 : 24),
-          y: mousePosition.y - (cursorState === "card" ? 42 : cursorState === "pointer" ? 32 : 24),
-          width: cursorState === "card" ? 84 : cursorState === "pointer" ? 64 : 48,
-          height: cursorState === "card" ? 84 : cursorState === "pointer" ? 64 : 48,
-          scale: isClicking ? 0.8 : 1,
-        }}
-        transition={{
-          type: "spring",
-          damping: 24,
-          stiffness: 280,
-          mass: 0.4,
-        }}
-        style={{
-          border: cursorState === "pointer" 
-            ? "2px solid rgba(0, 240, 255, 0.9)" 
-            : cursorState === "card"
-            ? "2px dashed rgba(250, 200, 0, 0.8)"
-            : "1.5px solid rgba(0, 240, 255, 0.5)",
-          boxShadow: cursorState === "pointer"
-            ? "0 0 25px rgba(0, 240, 255, 0.6), inset 0 0 15px rgba(0, 240, 255, 0.3)"
-            : cursorState === "card"
-            ? "0 0 30px rgba(250, 200, 0, 0.5), inset 0 0 20px rgba(250, 200, 0, 0.2)"
-            : "0 0 15px rgba(0, 240, 255, 0.3)",
-          backdropFilter: cursorState === "card" ? "blur(3px)" : "none",
-          backgroundColor: cursorState === "card" ? "rgba(11, 19, 43, 0.45)" : "transparent",
-        }}
+      {/* Ripple Container */}
+      <div
+        ref={rippleContainerRef}
+        className="fixed inset-0 pointer-events-none z-[99998] overflow-hidden select-none"
+      />
+
+      {/* Custom Gaming Pointer Wrapper */}
+      <div
+        className={`fixed inset-0 pointer-events-none z-[99999] overflow-hidden select-none transition-opacity duration-200 ${
+          cursorState === "text" ? "opacity-0" : "opacity-100"
+        }`}
       >
-        {/* Secondary Inner Concentric Ring (matches reference gaming style) */}
+        {/* Snappy Concentric Outer Ring */}
         <div
-          className={`w-3/4 h-3/4 rounded-full border border-cyan-400/30 transition-all duration-300 ${
-            cursorState === "pointer" ? "scale-110 border-cyan-300/60 animate-pulse" : "scale-90"
+          ref={ringRef}
+          className={`fixed top-0 left-0 rounded-full flex items-center justify-center pointer-events-none opacity-0 will-change-transform transition-[width,height,margin,border-color,box-shadow,background-color] duration-150 ${
+            cursorState === "card"
+              ? "w-20 h-20 -ml-10 -mt-10 border-2 border-dashed border-amber-400 bg-brand-navy/60 shadow-[0_0_25px_rgba(250,200,0,0.5)] backdrop-blur-[2px]"
+              : cursorState === "pointer"
+              ? "w-14 h-14 -ml-7 -mt-7 border-2 border-cyan-400 shadow-[0_0_20px_#00F0FF,inset_0_0_10px_rgba(0,240,255,0.3)] bg-cyan-500/10"
+              : isClicking
+              ? "w-9 h-9 -ml-[18px] -mt-[18px] border-2 border-cyan-300 shadow-[0_0_15px_#00F0FF] bg-cyan-400/20"
+              : "w-10 h-10 -ml-5 -mt-5 border border-cyan-400/60 shadow-[0_0_12px_rgba(0,240,255,0.3)] bg-transparent"
           }`}
-        />
+        >
+          {/* Subtle concentric inner radar ring */}
+          <div
+            className={`rounded-full border border-cyan-400/30 transition-all duration-200 ${
+              cursorState === "pointer"
+                ? "w-8 h-8 border-cyan-300/60 scale-105"
+                : cursorState === "card"
+                ? "w-12 h-12 border-amber-400/30 scale-100"
+                : "w-5 h-5 scale-90"
+            }`}
+          />
 
-        {/* Floating Contextual Badge for Service Cards */}
-        {cursorState === "card" && (
-          <motion.span
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="absolute text-[10px] font-black text-brand-gold tracking-widest uppercase drop-shadow"
-          >
-            {cardBadgeText}
-          </motion.span>
-        )}
-      </motion.div>
-
-      {/* Precision Core Pointer (Central Gaming Arrow / Dot) */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none"
-        animate={{
-          x: mousePosition.x - 6,
-          y: mousePosition.y - 6,
-          scale: isClicking ? 0.7 : cursorState === "pointer" ? 1.3 : 1,
-        }}
-        transition={{
-          type: "spring",
-          damping: 40,
-          stiffness: 900,
-          mass: 0.1,
-        }}
-      >
-        {/* Core Glowing Arrowhead Pointer Inspired by Reference */}
-        <div className="relative w-4 h-4 flex items-center justify-center">
-          {/* Arrow SVG */}
-          <svg
-            viewBox="0 0 24 24"
-            className="w-4 h-4 text-cyan-400 drop-shadow-[0_0_8px_#00F0FF]"
-            fill="currentColor"
-          >
-            <path d="M3 3l7.5 18 2.5-6.5L19.5 12 3 3z" />
-          </svg>
-          {/* Central Bright Hotspot */}
-          <span className="absolute w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_10px_#FFFFFF] top-0.5 left-0.5" />
+          {/* Floating Contextual Badge */}
+          {cursorState === "card" && (
+            <span className="absolute text-[9px] font-black tracking-widest text-brand-gold uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+              {badgeText}
+            </span>
+          )}
         </div>
-      </motion.div>
-    </div>
+
+        {/* Immediate Zero-Lag Center Pointer (Cyan Arrowhead + Bright Hotspot) */}
+        <div
+          ref={pointerRef}
+          className="fixed top-0 left-0 pointer-events-none opacity-0 will-change-transform -ml-1 -mt-1"
+        >
+          <div className="relative w-5 h-5 flex items-center justify-center">
+            {/* Gaming Arrow SVG */}
+            <svg
+              viewBox="0 0 24 24"
+              className={`w-4 h-4 transition-transform duration-100 ${
+                isClicking ? "scale-75" : cursorState === "pointer" ? "scale-110" : "scale-100"
+              }`}
+              style={{
+                filter: "drop-shadow(0 0 6px #00F0FF) drop-shadow(0 0 12px rgba(14,165,233,0.8))",
+              }}
+              fill="none"
+            >
+              <path
+                d="M3 3L10.5 21L13.2 13.8L20.5 11L3 3Z"
+                fill="#00F0FF"
+                stroke="#FFFFFF"
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {/* Central Bright Hotspot Dot */}
+            <span className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_#FFFFFF]" />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

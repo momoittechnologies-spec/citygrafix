@@ -49,8 +49,8 @@ export default function HomePage() {
       <FeaturedShowcase />
 
       {/* 5. Live Flex & Signage Price Calculator */}
-      <section className="py-20 bg-slate-100/60" id="calculator-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 lg:py-24 bg-slate-100/60" id="calculator-section">
+        <div className="site-container">
           <FlexCalculator />
         </div>
       </section>

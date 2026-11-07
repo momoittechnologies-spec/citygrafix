@@ -18,7 +18,7 @@ export default function OurWorkPage() {
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
       <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="site-container text-center">
           <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Fabricated at City Grafix Workshop</span>
@@ -38,7 +38,7 @@ export default function OurWorkPage() {
       </div>
 
       {/* Custom Inquiry CTA */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+      <div className="site-container mt-16">
         <div className="bg-gradient-to-r from-brand-navy to-brand-dark rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-2">
             <h3 className="text-2xl font-black">Have a custom design or billboard in mind?</h3>

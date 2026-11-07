@@ -14,6 +14,7 @@
   }
   body {
     @apply bg-slate-50 text-slate-900 antialiased selection:bg-brand-red selection:text-white;
+    overflow-x: hidden;
   }
 
   /* Desktop-Only Custom Gaming Cursor Integration */
@@ -28,6 +29,122 @@
 }
 
 @layer utilities {
+  /* Intelligent Desktop Responsive Container System */
+  .site-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .site-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-container {
+      width: 94%;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1366px) {
+    .site-container {
+      width: 92%;
+      max-width: 1320px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .site-container {
+      width: 92%;
+      max-width: 1420px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .site-container {
+      width: 91%;
+      max-width: 1560px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .site-container {
+      width: 90%;
+      max-width: 1820px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .site-container {
+      max-width: 2000px;
+    }
+  }
+
+  /* Cinematic Immersive Showcase Container */
+  .site-container-hero {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .site-container-hero {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-container-hero {
+      width: 95%;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1366px) {
+    .site-container-hero {
+      width: 93%;
+      max-width: 1360px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .site-container-hero {
+      width: 93%;
+      max-width: 1460px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .site-container-hero {
+      width: 92%;
+      max-width: 1620px;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    .site-container-hero {
+      width: 91%;
+      max-width: 1860px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .site-container-hero {
+      max-width: 2100px;
+    }
+  }
+
   .text-glow {
     text-shadow: 0 0 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(200, 10, 10, 0.2);
   }

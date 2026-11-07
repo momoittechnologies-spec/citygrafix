@@ -1,6 +1,5 @@
 import React from "react";
 import { Award, Clock, Wrench, Calendar, Star, Users } from "lucide-react";
-import { BUSINESS_DATA } from "@/data/business";
 
 export default function TrustHighlights() {
   const highlights = [
@@ -55,26 +54,26 @@ export default function TrustHighlights() {
   ];
 
   return (
-    <section className="relative -mt-10 sm:-mt-14 z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-6 sm:p-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
+    <section className="relative -mt-10 sm:-mt-14 z-30 site-container">
+      <div className="bg-white rounded-3xl shadow-xl border border-slate-200/90 p-6 sm:p-8 xl:p-10 transition-all hover:shadow-2xl">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 xl:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
           {highlights.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
-                className={`flex flex-col items-center text-center px-2 ${
+                className={`flex flex-col items-center text-center px-2 xl:px-4 ${
                   index !== 0 ? "pt-4 lg:pt-0" : ""
                 }`}
               >
                 <div
-                  className={`w-12 h-12 rounded-2xl ${item.bgColor} ${item.color} flex items-center justify-center mb-3 shadow-inner`}
+                  className={`w-12 h-12 xl:w-14 xl:h-14 rounded-2xl ${item.bgColor} ${item.color} flex items-center justify-center mb-3.5 shadow-inner`}
                 >
-                  <Icon className="w-6 h-6" />
+                  <Icon className="w-6 h-6 xl:w-7 xl:h-7" />
                 </div>
-                <h4 className="font-extrabold text-slate-900 text-sm">{item.title}</h4>
-                <span className="text-[11px] font-semibold text-brand-red mt-0.5">{item.telugu}</span>
-                <p className="text-[11px] text-slate-500 mt-1 leading-snug line-clamp-2">
+                <h4 className="font-extrabold text-slate-900 text-sm xl:text-base">{item.title}</h4>
+                <span className="text-[11px] xl:text-xs font-semibold text-brand-red mt-0.5">{item.telugu}</span>
+                <p className="text-[11px] xl:text-xs text-slate-500 mt-1.5 leading-relaxed line-clamp-2">
                   {item.description}
                 </p>
               </div>

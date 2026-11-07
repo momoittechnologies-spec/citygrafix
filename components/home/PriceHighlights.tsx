@@ -19,18 +19,18 @@ export default function PriceHighlights() {
   ];
 
   return (
-    <section className="py-20 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 lg:py-24 bg-white relative">
+      <div className="site-container">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
             <div className="inline-flex items-center space-x-1.5 bg-brand-gold/10 text-brand-dark px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
               <Tag className="w-3.5 h-3.5 text-brand-goldDark" />
               <span>Transparent Rate Card</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-brand-navy tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight">
               Popular Printing Price Highlights
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-xl">
+            <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2 max-w-2xl">
               Authentic wholesale rates from our Kadapa workshop. Zero hidden charges, zero agent markups.
             </p>
           </div>
@@ -38,14 +38,16 @@ export default function PriceHighlights() {
           <div className="mt-4 md:mt-0 flex items-center space-x-3">
             <Link
               href="/pricing#calculator"
-              className="inline-flex items-center text-xs font-bold bg-brand-royal text-white px-4 py-2.5 rounded-xl hover:bg-brand-blue transition-colors shadow-md space-x-1.5"
+              data-cursor="CALC"
+              className="inline-flex items-center text-xs xl:text-sm font-bold bg-brand-royal text-white px-5 py-3 rounded-xl hover:bg-brand-blue transition-colors shadow-md space-x-1.5"
             >
-              <Calculator className="w-3.5 h-3.5" />
+              <Calculator className="w-4 h-4" />
               <span>Use Price Calculator</span>
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center text-xs font-bold text-brand-navy border border-slate-300 px-4 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+              data-cursor="PRICES"
+              className="inline-flex items-center text-xs xl:text-sm font-bold text-brand-navy border border-slate-300 px-5 py-3 rounded-xl hover:bg-slate-50 transition-colors"
             >
               <span>View Full Rate Card →</span>
             </Link>
@@ -53,11 +55,12 @@ export default function PriceHighlights() {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8">
           {highlights.map((item, idx) => (
             <div
               key={idx}
-              className="p-4 sm:p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:border-brand-royal hover:shadow-md transition-all group flex flex-col justify-between"
+              data-cursor="INSPECT"
+              className="p-5 xl:p-6 rounded-3xl bg-slate-50/70 border border-slate-200/80 hover:border-brand-royal hover:shadow-xl transition-all group flex flex-col justify-between card-3d-tilt"
             >
               <div>
                 <span className="text-[10px] uppercase font-bold text-brand-royal bg-blue-50 px-2 py-0.5 rounded">

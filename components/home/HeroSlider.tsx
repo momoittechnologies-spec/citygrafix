@@ -8,11 +8,12 @@ import {
   ChevronRight,
   MessageCircle,
   ArrowRight,
-  ShieldCheck,
   Sparkles,
   Clock,
   Tag,
   CheckCircle2,
+  Maximize2,
+  Volume2,
 } from "lucide-react";
 import { getWhatsAppLink } from "@/data/business";
 import { motion, AnimatePresence } from "framer-motion";
@@ -44,12 +45,12 @@ const HERO_SLIDES: HeroSlide[] = [
     badgeTelugu: "కడపలో సంపూర్ణ ప్రింటింగ్ సొల్యూషన్స్",
     headline: "Everything You Print.",
     highlightWord: "We Make It Better.",
-    description: "Your trusted destination for commercial printing, wide-format flex banners, architectural 3D signage, precision CAD blueprints, and personalized gifting.",
+    description: "Your trusted commercial printing destination for wide-format flex banners, architectural 3D signage, precision CAD blueprints, and corporate gifting.",
     primaryCtaText: "Explore All 11 Services",
     primaryCtaLink: "/services",
     whatsappMessage: "Hello City Grafix, I want to explore your complete printing solutions in Kadapa.",
     whatsappLine: "orders",
-    image: "/images/flex-printing-machine.jpg",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1800&q=85",
     specs: ["Direct Workshop Machine Rates", "1440 DPI Japanese Eco-Solvent Inks", "Open 7 Days a Week"],
     startingPrice: "Wholesale Rates",
     turnaroundTime: "Same-Day Express",
@@ -139,7 +140,7 @@ const HERO_SLIDES: HeroSlide[] = [
     primaryCtaLink: "/services/visiting-cards-bill-books-pamphlets-kadapa",
     whatsappMessage: "Hello City Grafix, I need Visiting Cards / Bill Books / Pamphlets printing in Kadapa.",
     whatsappLine: "orders",
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1800&q=85",
     specs: ["350 GSM Velvet + Spot UV Cards", "Carbonless NCR Duplicate Tax Books", "A5 & A4 Full-Color Flyers"],
     startingPrice: "₹750 / 1000 cards",
     turnaroundTime: "24 to 48 Hours",
@@ -175,7 +176,7 @@ const HERO_SLIDES: HeroSlide[] = [
     primaryCtaLink: "/services/cad-engineering-printing-kadapa",
     whatsappMessage: "Hello City Grafix, I have AutoCAD / Engineering Drawings to plot in Kadapa.",
     whatsappLine: "orders",
-    image: "/images/cad-blueprint-plotter.jpg",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85",
     specs: ["Strict 1:100 & 1:50 Architectural Scales", "Smudge-Proof Moisture-Resistant Toner", "Automatic A4 Filing Folding"],
     startingPrice: "From ₹40 / sheet",
     turnaroundTime: "15 to 30 Minutes",
@@ -219,28 +220,88 @@ const HERO_SLIDES: HeroSlide[] = [
   },
 ];
 
+const ROTATION_DURATION_MS = 6000;
+
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const progressStartTimeRef = useRef<number>(Date.now());
+  const animationFrameRef = useRef<number>();
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    setProgress(0);
+    progressStartTimeRef.current = Date.now();
   }, []);
 
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+    setProgress(0);
+    progressStartTimeRef.current = Date.now();
   }, []);
 
-  // Automatic slide rotation (5.5s)
+  const goToSlide = useCallback((index: number) => {
+    setCurrentSlide(index);
+    setProgress(0);
+    progressStartTimeRef.current = Date.now();
+  }, []);
+
+  // Keyboard Navigation (ArrowLeft / ArrowRight)
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5500);
-    return () => clearInterval(interval);
-  }, [isPaused, nextSlide]);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        prevSlide();
+      } else if (e.key === "ArrowRight") {
+        nextSlide();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [prevSlide, nextSlide]);
+
+  // Page Visibility API (pause when user switches tabs)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsPaused(true);
+      } else {
+        setIsPaused(false);
+        progressStartTimeRef.current = Date.now() - (progress / 100) * ROTATION_DURATION_MS;
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [progress]);
+
+  // Smooth Progress Fill and Auto-Rotation
+  useEffect(() => {
+    if (isPaused) {
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+      return;
+    }
+
+    const updateProgress = () => {
+      const elapsed = Date.now() - progressStartTimeRef.current;
+      const pct = Math.min(100, (elapsed / ROTATION_DURATION_MS) * 100);
+      setProgress(pct);
+
+      if (elapsed >= ROTATION_DURATION_MS) {
+        nextSlide();
+      } else {
+        animationFrameRef.current = requestAnimationFrame(updateProgress);
+      }
+    };
+
+    animationFrameRef.current = requestAnimationFrame(updateProgress);
+
+    return () => {
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+    };
+  }, [isPaused, currentSlide, nextSlide]);
 
   // Touch Swipe Handling
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -255,129 +316,147 @@ export default function HeroSlider() {
     if (!touchStartX.current || !touchEndX.current) return;
     const distance = touchStartX.current - touchEndX.current;
     if (distance > 50) {
-      nextSlide(); // swipe left -> next
+      nextSlide();
     } else if (distance < -50) {
-      prevSlide(); // swipe right -> prev
+      prevSlide();
     }
     touchStartX.current = 0;
     touchEndX.current = 0;
   };
 
   const slide = HERO_SLIDES[currentSlide];
+  const nextSlideIndex = (currentSlide + 1) % HERO_SLIDES.length;
+  const nextSlideData = HERO_SLIDES[nextSlideIndex];
 
   return (
     <section
-      className="relative w-full bg-brand-dark overflow-hidden py-10 lg:py-16 select-none"
+      className="relative w-full bg-brand-dark overflow-hidden py-8 sm:py-12 xl:py-16 select-none"
       onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseLeave={() => {
+        progressStartTimeRef.current = Date.now() - (progress / 100) * ROTATION_DURATION_MS;
+        setIsPaused(false);
+      }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Subtle Ambient Background Mesh & Glows (Non-obstructive) */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-royal/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] bg-[size:32px_32px] pointer-events-none" />
+      {/* Hidden Preloader for the very next slide image to guarantee 0ms latency on transitions */}
+      <link rel="preload" as="image" href={nextSlideData.image} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Ticker: Quick Slide Categories Bar */}
-        <div className="hidden lg:flex items-center space-x-2 overflow-x-auto pb-6 scrollbar-none">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-2 shrink-0">
-            Category Showcase:
+      {/* Cinematic Ambient Mesh & Lighting */}
+      <div className="absolute -top-32 -left-32 w-[650px] h-[650px] bg-brand-royal/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute -bottom-32 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 -right-32 w-[550px] h-[550px] bg-brand-red/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] bg-[size:36px_36px] pointer-events-none" />
+
+      <div className="site-container-hero relative z-10">
+        {/* Top Ticker: 10 Clickable Category Showcase Pills */}
+        <div className="hidden lg:flex items-center space-x-2 overflow-x-auto pb-5 scrollbar-none border-b border-white/10 mb-8">
+          <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-widest mr-3 shrink-0 flex items-center">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400 mr-1.5" />
+            Showcase:
           </span>
-          {HERO_SLIDES.map((s, idx) => (
-            <button
-              key={s.id}
-              onClick={() => setCurrentSlide(idx)}
-              data-cursor="SELECT"
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
-                currentSlide === idx
-                  ? "bg-gradient-to-r from-brand-royal to-cyan-500 text-white shadow-lg shadow-cyan-500/25 scale-105"
-                  : "bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10"
-              }`}
-            >
-              <span className="text-brand-gold font-mono mr-1.5">{String(s.id).padStart(2, "0")}</span>
-              <span>{s.categoryName}</span>
-            </button>
-          ))}
+          <div className="flex items-center space-x-2">
+            {HERO_SLIDES.map((s, idx) => (
+              <button
+                key={s.id}
+                onClick={() => goToSlide(idx)}
+                data-cursor="SELECT"
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 flex items-center space-x-1.5 ${
+                  currentSlide === idx
+                    ? "bg-gradient-to-r from-brand-royal via-cyan-500 to-sky-400 text-white shadow-lg shadow-cyan-500/30 scale-105 border border-cyan-300/40"
+                    : "bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20"
+                }`}
+              >
+                <span className={`font-mono text-[11px] ${currentSlide === idx ? "text-amber-200" : "text-slate-400"}`}>
+                  {String(s.id).padStart(2, "0")}
+                </span>
+                <span>{s.categoryName}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Main Split-Layout Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[520px]">
-          {/* LEFT COLUMN: Headline, Details & Action CTAs */}
-          <div className="lg:col-span-6 space-y-5">
+        {/* Cinematic Split Showcase Layout (42% Content / 58% Visuals) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 2xl:gap-16 items-center min-h-[560px] lg:min-h-[620px] xl:min-h-[660px]">
+          {/* LEFT COLUMN: Editorial Presentation & CTAs (42% width) */}
+          <div className="lg:col-span-5 xl:col-span-5 2xl:col-span-5 space-y-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={slide.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="space-y-4"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="space-y-5"
               >
-                {/* Category Pill with Slide Counter */}
+                {/* Category Pill with Counter & Trust Badge */}
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center space-x-2 bg-brand-navy/90 border border-cyan-500/30 rounded-full px-3.5 py-1 shadow-md shadow-cyan-950/40">
+                  <div className="inline-flex items-center space-x-2 bg-brand-navy/90 border border-cyan-400/40 rounded-full px-3.5 py-1 shadow-md shadow-cyan-950/40">
                     <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-                    <span className="text-xs font-bold text-cyan-300 font-mono">
-                      SLIDE {String(slide.id).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+                    <span className="text-xs font-bold text-cyan-300 font-mono tracking-wider">
+                      {String(slide.id).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
                     </span>
                     <span className="text-white/30">•</span>
                     <span className="text-xs font-bold text-brand-gold">{slide.badge}</span>
                   </div>
-                  <span className="text-xs font-semibold text-slate-400 hidden sm:inline">
+                  <span className="text-xs font-semibold text-slate-400 hidden xl:inline">
                     {slide.badgeTelugu}
                   </span>
                 </div>
 
-                {/* Big Dynamic Headline */}
-                <h1 className="text-3xl sm:text-4xl xl:text-5xl font-black text-white tracking-tight leading-[1.15]">
+                {/* Big Display Headline */}
+                <h1 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white tracking-tight leading-[1.12]">
                   <span>{slide.headline} </span>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-amber-300 text-glow">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-amber-300 text-glow">
                     {slide.highlightWord}
                   </span>
                 </h1>
 
-                {/* Description */}
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+                {/* Clear Narrative Description */}
+                <p className="text-slate-300 text-sm sm:text-base xl:text-lg leading-relaxed max-w-xl">
                   {slide.description}
                 </p>
 
-                {/* Key Spec Highlights */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+                {/* Machine / Quality Spec Highlights */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
                   {slide.specs.map((spec, i) => (
                     <div
                       key={i}
-                      className="flex items-center space-x-1.5 text-xs text-slate-200 bg-white/5 border border-white/10 px-2.5 py-1.5 rounded-lg backdrop-blur-sm"
+                      className="flex items-center space-x-2 text-xs text-slate-200 bg-white/5 border border-white/10 px-3 py-2 rounded-xl backdrop-blur-sm shadow-sm"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="truncate">{spec}</span>
+                      <span className="truncate font-medium">{spec}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Pricing & Speed Tags */}
-                <div className="flex items-center space-x-4 pt-1 text-xs">
-                  <span className="flex items-center text-slate-300">
-                    <Tag className="w-3.5 h-3.5 text-brand-gold mr-1" />
-                    <span>Price: <strong className="text-brand-gold">{slide.startingPrice}</strong></span>
-                  </span>
-                  <span className="text-white/20">|</span>
-                  <span className="flex items-center text-slate-300">
-                    <Clock className="w-3.5 h-3.5 text-cyan-400 mr-1" />
-                    <span>Turnaround: <strong className="text-white">{slide.turnaroundTime}</strong></span>
-                  </span>
+                {/* Live Commercial Pricing & Turnaround Speed */}
+                <div className="flex flex-wrap items-center gap-4 pt-1 text-xs xl:text-sm">
+                  <div className="flex items-center bg-brand-gold/10 border border-brand-gold/30 px-3.5 py-1.5 rounded-xl">
+                    <Tag className="w-4 h-4 text-brand-gold mr-1.5" />
+                    <span className="text-slate-300">
+                      Rate: <strong className="text-brand-gold font-bold">{slide.startingPrice}</strong>
+                    </span>
+                  </div>
+
+                  <div className="flex items-center bg-cyan-500/10 border border-cyan-400/30 px-3.5 py-1.5 rounded-xl">
+                    <Clock className="w-4 h-4 text-cyan-400 mr-1.5" />
+                    <span className="text-slate-300">
+                      Speed: <strong className="text-white font-bold">{slide.turnaroundTime}</strong>
+                    </span>
+                  </div>
                 </div>
 
-                {/* Action Buttons */}
+                {/* Dual Primary Action CTAs */}
                 <div className="flex flex-wrap items-center gap-3 pt-3">
                   <Link
                     href={slide.primaryCtaLink}
                     data-cursor="EXPLORE"
-                    className="bg-gradient-to-r from-brand-red to-brand-redDark hover:from-brand-redLight hover:to-brand-red text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-brand-red/40 hover:shadow-brand-red/60 transition-all flex items-center space-x-2 text-xs sm:text-sm group"
+                    className="bg-gradient-to-r from-brand-red via-brand-redDark to-brand-red hover:from-brand-redLight hover:to-brand-red text-white font-extrabold px-7 py-3.5 rounded-xl shadow-lg shadow-brand-red/40 hover:shadow-brand-red/60 transition-all flex items-center space-x-2 text-xs sm:text-sm group"
                   >
                     <span>{slide.primaryCtaText}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                   </Link>
 
                   <a
@@ -385,7 +464,7 @@ export default function HeroSlider() {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="CHAT"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 text-xs sm:text-sm"
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 text-xs sm:text-sm group"
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                     <span>WhatsApp Quote</span>
@@ -394,7 +473,7 @@ export default function HeroSlider() {
                   <Link
                     href="/pricing#calculator"
                     data-cursor="CALC"
-                    className="bg-white/10 hover:bg-white/20 text-white font-semibold px-4 py-3.5 rounded-xl border border-white/20 transition-colors text-xs sm:text-sm hidden sm:inline-flex items-center space-x-1.5"
+                    className="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-3.5 rounded-xl border border-white/20 transition-colors text-xs sm:text-sm hidden sm:inline-flex items-center space-x-1.5"
                   >
                     <span>Calculator</span>
                   </Link>
@@ -403,80 +482,88 @@ export default function HeroSlider() {
             </AnimatePresence>
           </div>
 
-          {/* RIGHT COLUMN: Crystal-Clear, Sharp 3D Service Photography Viewport */}
-          <div className="lg:col-span-6 relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slide.id}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.45, ease: "easeOut" }}
-                className="relative w-full h-[360px] sm:h-[420px] lg:h-[480px] rounded-3xl overflow-hidden border-2 border-cyan-400/30 shadow-2xl shadow-cyan-950/60 bg-slate-900 group card-3d-tilt"
-                data-cursor="INSPECT"
-              >
-                {/* 100% CRYSTAL CLEAR PHOTOGRAPHY — NO DARK COVER WASH */}
-                <Image
-                  src={slide.image}
-                  alt={slide.headline}
-                  fill
-                  priority={slide.id === 1}
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+          {/* RIGHT COLUMN: Dominant Cinematic Visual Presentation (58% width) */}
+          <div className="lg:col-span-7 xl:col-span-7 2xl:col-span-7 relative">
+            <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[540px] xl:h-[600px] 2xl:h-[660px] rounded-3xl overflow-hidden border border-cyan-400/30 shadow-2xl shadow-cyan-950/70 bg-slate-900 group">
+              {/* Cinematic Edge Glow */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-cyan-400/40 pointer-events-none z-20 shadow-[inset_0_0_30px_rgba(0,240,255,0.15)]" />
 
-                {/* Ultra-subtle bottom vignette only for floating badge legibility */}
-                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-brand-dark/85 via-brand-dark/30 to-transparent pointer-events-none" />
-
-                {/* Top-Right Floating Badge */}
-                <div className="absolute top-4 right-4 bg-brand-navy/90 backdrop-blur-md border border-cyan-400/40 text-cyan-300 text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center space-x-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>{slide.floatingBadge}</span>
-                </div>
-
-                {/* Bottom Overlay Label */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-brand-navy/85 backdrop-blur-md border border-white/15 px-4 py-2.5 rounded-2xl">
-                  <div>
-                    <span className="text-[10px] uppercase font-bold text-cyan-300 block">
-                      Direct Workshop Production
-                    </span>
-                    <span className="text-sm font-extrabold text-white">
-                      {slide.categoryName}
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] text-slate-400 block font-mono">Turnaround</span>
-                    <span className="text-xs font-bold text-brand-gold">{slide.turnaroundTime}</span>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Manual Navigation Controls */}
-            <div className="flex items-center justify-between mt-4">
-              {/* Pagination Dots */}
-              <div className="flex items-center space-x-1.5">
-                {HERO_SLIDES.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    data-cursor="GOTO"
-                    className={`transition-all duration-300 rounded-full ${
-                      currentSlide === idx
-                        ? "w-8 h-2.5 bg-gradient-to-r from-brand-royal to-cyan-400 shadow-md shadow-cyan-400/50"
-                        : "w-2.5 h-2.5 bg-white/30 hover:bg-white/60"
-                    }`}
-                    aria-label={`Go to slide ${idx + 1}`}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={slide.id}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  {/* Dominant Crystal-Clear Photography */}
+                  <Image
+                    src={slide.image}
+                    alt={slide.headline}
+                    fill
+                    priority
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
                   />
-                ))}
+
+                  {/* Gentle Bottom Gradient for Card Readability */}
+                  <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent pointer-events-none" />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Top-Right Floating Assurance Tag */}
+              <div className="absolute top-5 right-5 z-20 bg-brand-navy/90 backdrop-blur-md border border-cyan-400/50 text-cyan-300 text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl flex items-center space-x-2">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <span>{slide.floatingBadge}</span>
               </div>
 
-              {/* Prev / Next Arrow Buttons */}
-              <div className="flex items-center space-x-2">
+              {/* Bottom Integrated Service Information Strip */}
+              <div className="absolute bottom-5 left-5 right-5 z-20 flex items-center justify-between bg-brand-navy/85 backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl shadow-xl">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-cyan-300 tracking-wider block">
+                    Direct Workshop Production
+                  </span>
+                  <span className="text-base sm:text-lg font-black text-white">
+                    {slide.categoryName}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[10px] text-slate-400 block font-mono uppercase tracking-wider">
+                    Turnaround Speed
+                  </span>
+                  <span className="text-xs sm:text-sm font-extrabold text-brand-gold">
+                    {slide.turnaroundTime}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Controls Strip: Animated Progress Bar & Slide Navigation */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-5">
+              {/* Animated Progress Bar */}
+              <div className="w-full sm:w-2/3 flex items-center space-x-3">
+                <span className="font-mono text-xs font-bold text-cyan-300 shrink-0">
+                  {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+                </span>
+                <div className="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                  <motion.div
+                    className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-brand-royal via-cyan-400 to-brand-gold rounded-full"
+                    style={{ width: `${progress}%` }}
+                    transition={{ ease: "linear" }}
+                  />
+                </div>
+                <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider shrink-0 hidden md:inline">
+                  {slide.categoryName}
+                </span>
+              </div>
+
+              {/* Prev / Next Arrow Navigation */}
+              <div className="flex items-center space-x-2.5 shrink-0 self-end sm:self-auto">
                 <button
                   onClick={prevSlide}
                   data-cursor="PREV"
-                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95"
+                  className="w-11 h-11 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95 shadow-md"
                   aria-label="Previous Slide"
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -484,7 +571,7 @@ export default function HeroSlider() {
                 <button
                   onClick={nextSlide}
                   data-cursor="NEXT"
-                  className="w-10 h-10 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95"
+                  className="w-11 h-11 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-brand-dark text-white border border-white/20 transition-all flex items-center justify-center active:scale-95 shadow-md"
                   aria-label="Next Slide"
                 >
                   <ChevronRight className="w-5 h-5" />
