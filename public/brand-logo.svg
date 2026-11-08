@@ -1,0 +1,39 @@
+<svg viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cgRedGrad" x1="4" y1="4" x2="36" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FF2E55" />
+      <stop offset="60%" stopColor="#C80A0A" />
+      <stop offset="100%" stopColor="#990000" />
+    </linearGradient>
+    <linearGradient id="cgBlueGrad" x1="16" y1="12" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#00A3FF" />
+      <stop offset="50%" stopColor="#2563EB" />
+      <stop offset="100%" stopColor="#0F172A" />
+    </linearGradient>
+    <linearGradient id="cgGoldGrad" x1="22" y1="22" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FDE047" />
+      <stop offset="100%" stopColor="#EAB308" />
+    </linearGradient>
+  </defs>
+
+  <!-- Monogram Base Shield -->
+  <g transform="translate(6, 4)">
+    <rect x="2" y="2" width="48" height="48" rx="12" fill="#070E22" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+    <!-- Calibration Marks -->
+    <path d="M6 10H10M6 10V6" stroke="#C80A0A" stroke-width="1.2" stroke-linecap="round" />
+    <path d="M46 10H42M46 10V6" stroke="#00A3FF" stroke-width="1.2" stroke-linecap="round" />
+    <path d="M6 42H10M6 42V46" stroke="#EAB308" stroke-width="1.2" stroke-linecap="round" />
+    <path d="M46 42H42M46 42V46" stroke="#2563EB" stroke-width="1.2" stroke-linecap="round" />
+    <!-- "C" Arc -->
+    <path d="M34 14C31 11.5 27 10 22 10C14 10 8 16.5 8 26C8 35.5 14 42 22.5 42C27.5 42 31.5 40 34.5 37" stroke="url(#cgRedGrad)" stroke-width="5" stroke-linecap="round" />
+    <!-- "G" Inward Bar -->
+    <path d="M24 26H41V33C41 37 37 41 31 41C26.5 41 23.5 39.5 21.5 37" stroke="url(#cgBlueGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- CMYK Center Diamond -->
+    <polygon points="26,19 30.5,23.5 26,28 21.5,23.5" fill="url(#cgGoldGrad)" stroke="#FFFFFF" stroke-width="0.8" />
+  </g>
+
+  <!-- Wordmark -->
+  <text x="68" y="32" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900" fill="#FFFFFF" letter-spacing="-0.5">CITY</text>
+  <text x="126" y="32" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="900" fill="#C80A0A" letter-spacing="-0.5">GRAFIX</text>
+  <text x="69" y="47" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#94A3B8" letter-spacing="2.2">PRINTING • SIGNAGE • KADAPA</text>
+</svg>

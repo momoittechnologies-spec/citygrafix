@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, Mail, MapPin, Clock, ExternalLink, ShieldCheck, Heart } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
+import BrandLogo from "@/components/ui/BrandLogo";
 
 export default function Footer() {
   return (
@@ -13,13 +14,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Column 1: Brand & Positioning */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block bg-white/95 rounded-xl p-2 shadow-lg border border-white/20">
-              <Image
-                src="/logo.png"
-                alt="City Grafix Kadapa Logo"
-                width={170}
-                height={60}
-                className="h-12 w-auto object-contain"
+            <Link href="/" className="inline-block group" aria-label="City Grafix Homepage">
+              <BrandLogo
+                variant="horizontal"
+                theme="dark"
+                size="lg"
+                className="group-hover:opacity-95 transition-opacity"
               />
             </Link>
 

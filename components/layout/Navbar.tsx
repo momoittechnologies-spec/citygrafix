@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Phone, MessageCircle, Menu, X, ChevronDown, Calculator, Sparkles, MapPin, Clock } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
+import BrandLogo from "@/components/ui/BrandLogo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -91,18 +92,14 @@ export default function Navbar() {
         }`}
       >
         <div className="site-container flex items-center justify-between">
-          {/* Brand Logo - Preserving exact original logo */}
-          <Link href="/" className="flex items-center group">
-            <div className="relative bg-white/95 rounded-xl p-1.5 shadow-md border border-white/30 group-hover:scale-105 transition-transform duration-200">
-              <Image
-                src="/logo.png"
-                alt="City Grafix Kadapa Logo - Complete Printing Solutions"
-                width={160}
-                height={55}
-                className="h-10 sm:h-12 w-auto object-contain"
-                priority
-              />
-            </div>
+          {/* Modern Executive Brand Logo */}
+          <Link href="/" className="flex items-center group py-1" aria-label="City Grafix Homepage">
+            <BrandLogo
+              variant="horizontal"
+              theme="dark"
+              size="md"
+              className="group-hover:opacity-95 transition-opacity"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
