@@ -4,7 +4,24 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone, MessageCircle, Menu, X, ChevronDown, Calculator, Sparkles, MapPin, Clock } from "lucide-react";
+import {
+  Phone,
+  MessageCircle,
+  Menu,
+  X,
+  ChevronDown,
+  Calculator,
+  MapPin,
+  Clock,
+  ArrowRight,
+  Layers,
+  FileText,
+  Lightbulb,
+  Gift,
+  Printer,
+  Sparkles,
+  Zap,
+} from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
 import BrandLogo from "@/components/ui/BrandLogo";
@@ -38,6 +55,54 @@ export default function Navbar() {
     { label: "Our Work", href: "/our-work" },
     { label: "Pricing & Calculator", href: "/pricing" },
     { label: "Contact", href: "/contact" },
+  ];
+
+  const megaMenuCategories = [
+    {
+      id: "flex-outdoor-advertising",
+      title: "Flex & Outdoor Advertising",
+      telugu: "స్టార్ ఫ్లెక్స్ & హోర్డింగ్స్",
+      description: "340+ GSM Star Flex, Grand Arches & Highway Billboards",
+      badge: "From ₹12/sq.ft",
+      icon: Layers,
+      color: "text-brand-red bg-red-50 group-hover:bg-brand-red group-hover:text-white",
+    },
+    {
+      id: "jumbo-xerox-cad",
+      title: "Jumbo Xerox & CAD Blueprints",
+      telugu: "A0 జిరాక్స్ & ఇంజనీరింగ్ ప్లాన్స్",
+      description: "A0-A4 Plotting, Tracing Paper & Municipal Village Maps",
+      badge: "15-Min Delivery",
+      icon: FileText,
+      color: "text-blue-600 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white",
+    },
+    {
+      id: "3d-led-signage",
+      title: "Architectural 3D LED Signage",
+      telugu: "3D అక్రిలిక్ లెటర్స్ & గ్లో బోర్డ్స్",
+      description: "Laser-Cut Acrylic Channel Letters & Samsung IP67 LEDs",
+      badge: "3-Yr Assurance",
+      icon: Lightbulb,
+      color: "text-amber-600 bg-amber-50 group-hover:bg-amber-600 group-hover:text-white",
+    },
+    {
+      id: "personalized-gifts",
+      title: "Personalized Gifts Studio",
+      telugu: "కస్టమ్ ఫోటో మగ్స్ & టీ-షర్ట్స్",
+      description: "Magic Reveal Mugs, Custom T-Shirts & LED Photo Frames",
+      badge: "1–2 Hr Delivery",
+      icon: Gift,
+      color: "text-purple-600 bg-purple-50 group-hover:bg-purple-600 group-hover:text-white",
+    },
+    {
+      id: "stickers-boards-commercial",
+      title: "Stickers, Boards & Offset",
+      telugu: "వినైల్ స్టిక్కర్లు & విజిటింగ్ కార్డ్స్",
+      description: "Sunboard Displays, 350 GSM Cards & Carbonless Bill Books",
+      badge: "Wholesale Packs",
+      icon: Printer,
+      color: "text-emerald-600 bg-emerald-50 group-hover:bg-emerald-600 group-hover:text-white",
+    },
   ];
 
   return (
@@ -133,54 +198,134 @@ export default function Navbar() {
 
                     {/* Mega Dropdown Menu */}
                     {isServicesOpen && (
-                      <div className="absolute top-full left-0 w-[580px] bg-brand-navy/98 backdrop-blur-xl border border-white/15 rounded-2xl shadow-2xl p-5 grid grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-2 duration-200 z-50">
-                        <div className="col-span-2 pb-2 border-b border-white/10 flex items-center justify-between">
-                          <div>
-                            <span className="text-xs uppercase tracking-wider font-bold text-brand-gold">
-                              Printing Verticals & Services
-                            </span>
-                            <p className="text-[11px] text-slate-300">Direct workshop production in Kadapa</p>
+                      <div className="absolute top-full -left-28 xl:-left-20 pt-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                        <div className="w-[820px] xl:w-[860px] bg-white rounded-2xl shadow-2xl border border-slate-200 ring-1 ring-slate-900/10 overflow-hidden text-slate-900">
+                          {/* Top Announcement Bar */}
+                          <div className="bg-slate-50 px-6 py-2.5 border-b border-slate-100 flex items-center justify-between text-xs">
+                            <div className="flex items-center space-x-2">
+                              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                              <span className="font-bold uppercase tracking-wider text-slate-700">
+                                In-House Printing Verticals & Machinery
+                              </span>
+                              <span className="text-slate-400">• Kadapa Workshop</span>
+                            </div>
+                            <Link
+                              href="/services"
+                              onClick={() => setIsServicesOpen(false)}
+                              className="font-bold text-brand-royal hover:text-brand-navy transition-colors flex items-center space-x-1"
+                            >
+                              <span>Browse Full 11-Service Catalog</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </Link>
                           </div>
-                          <Link
-                            href="/services"
-                            className="text-xs text-brand-cyan hover:underline font-medium"
-                          >
-                            View All 11 Services →
-                          </Link>
-                        </div>
 
-                        {/* Category List */}
-                        <div className="space-y-1">
-                          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2">
-                            Core Categories
-                          </span>
-                          {SERVICE_CATEGORIES.map((cat) => (
-                            <Link
-                              key={cat.id}
-                              href={`/services#${cat.id}`}
-                              className="block p-2 rounded-lg hover:bg-white/10 text-slate-200 hover:text-white transition-colors"
-                            >
-                              <div className="text-xs font-semibold text-slate-100">{cat.title}</div>
-                              <div className="text-[11px] text-brand-gold/90">{cat.teluguTitle}</div>
-                            </Link>
-                          ))}
-                        </div>
+                          {/* Grid Body */}
+                          <div className="grid grid-cols-12">
+                            {/* Left Column: 5 Core Categories */}
+                            <div className="col-span-7 p-4 sm:p-5 space-y-1.5">
+                              <div className="flex items-center justify-between pb-2 mb-1 border-b border-slate-100 text-[11px]">
+                                <span className="font-bold uppercase tracking-wider text-slate-400">
+                                  Select Manufacturing Category
+                                </span>
+                                <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                                  Zero Middleman Brokerage
+                                </span>
+                              </div>
 
-                        {/* Top Direct Services */}
-                        <div className="space-y-1 border-l border-white/10 pl-3">
-                          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-2">
-                            Popular Local Services
-                          </span>
-                          {CORE_SERVICES.slice(0, 5).map((service) => (
-                            <Link
-                              key={service.id}
-                              href={`/services/${service.slug}`}
-                              className="block p-2 rounded-lg hover:bg-white/10 text-slate-200 hover:text-white transition-colors"
-                            >
-                              <div className="text-xs font-medium text-slate-200 truncate">{service.title}</div>
-                              <div className="text-[11px] text-emerald-400 font-mono">From {service.startingPrice}</div>
-                            </Link>
-                          ))}
+                              {megaMenuCategories.map((item) => {
+                                const Icon = item.icon;
+                                return (
+                                  <Link
+                                    key={item.id}
+                                    href={`/services#${item.id}`}
+                                    onClick={() => setIsServicesOpen(false)}
+                                    className="group flex items-start space-x-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200"
+                                  >
+                                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${item.color}`}>
+                                      <Icon className="w-4 h-4" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center justify-between">
+                                        <span className="text-xs font-bold text-slate-900 group-hover:text-brand-navy transition-colors">
+                                          {item.title}
+                                        </span>
+                                        <span className="text-[10px] font-mono font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0 ml-2">
+                                          {item.badge}
+                                        </span>
+                                      </div>
+                                      <p className="text-[11px] text-slate-500 truncate mt-0.5">
+                                        {item.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+
+                            {/* Right Column: Workshop Direct Desk & Live Calculator */}
+                            <div className="col-span-5 bg-slate-50/80 p-5 border-l border-slate-100 flex flex-col justify-between space-y-4">
+                              <div className="space-y-1.5">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red bg-red-50 px-2 py-0.5 rounded inline-block">
+                                  Direct Workshop Desk
+                                </span>
+                                <h4 className="text-sm font-black text-brand-navy">
+                                  City Grafix Kadapa
+                                </h4>
+                                <p className="text-[11px] text-slate-600 leading-snug">
+                                  #21/135, Opp. Tirumala Hospital, beside New AF Automart Street.
+                                </p>
+                                <div className="flex items-center text-[10px] text-emerald-700 font-semibold pt-1">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5" />
+                                  <span>Open 7 Days • 9:30 AM – 9:30 PM</span>
+                                </div>
+                              </div>
+
+                              {/* Mini Price Estimator CTA Card */}
+                              <Link
+                                href="/pricing#calculator"
+                                onClick={() => setIsServicesOpen(false)}
+                                className="p-3 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-royal hover:shadow-md transition-all group block"
+                              >
+                                <div className="flex items-center space-x-2 text-xs font-bold text-brand-navy mb-1">
+                                  <Calculator className="w-4 h-4 text-brand-royal" />
+                                  <span>Instant Flex Price Estimator</span>
+                                </div>
+                                <p className="text-[11px] text-slate-500 leading-snug">
+                                  Input custom dimensions in feet to get transparent rates instantly.
+                                </p>
+                                <span className="text-[11px] text-brand-royal font-bold inline-flex items-center mt-2 group-hover:translate-x-1 transition-transform">
+                                  <span>Calculate Online</span>
+                                  <ArrowRight className="w-3 h-3 ml-1" />
+                                </span>
+                              </Link>
+
+                              {/* Direct WhatsApp Quote Button */}
+                              <a
+                                href={getWhatsAppLink("Hello City Grafix, I want a quotation for printing in Kadapa.")}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl shadow-sm transition-all flex items-center justify-center space-x-1.5 text-xs"
+                              >
+                                <MessageCircle className="w-4 h-4 fill-white" />
+                                <span>WhatsApp Order Desk</span>
+                              </a>
+                            </div>
+
+                            {/* Bottom Bar */}
+                            <div className="col-span-12 bg-slate-100/90 px-6 py-2.5 border-t border-slate-200 flex items-center justify-between text-xs">
+                              <span className="text-slate-600 font-medium">
+                                Direct In-House Production • 10+ Years Trusted in Kadapa
+                              </span>
+                              <Link
+                                href="/pricing"
+                                onClick={() => setIsServicesOpen(false)}
+                                className="font-bold text-brand-navy hover:text-brand-royal transition-colors inline-flex items-center space-x-1"
+                              >
+                                <span>Official Wholesale Rate Card</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )}
