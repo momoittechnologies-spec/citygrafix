@@ -17,32 +17,31 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
-      <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
+      <section className="bg-brand-navy text-white py-14 sm:py-16 border-b border-white/10">
         <div className="site-container text-center">
-          <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
+          <div className="inline-flex items-center space-x-2 bg-white/10 px-3.5 py-1 rounded-md text-brand-gold text-xs font-bold uppercase tracking-wider mb-3.5 border border-white/15">
             <Award className="w-3.5 h-3.5" />
             <span>Established in 2014 • Over 10+ Years of Excellence</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
             About City Grafix Kadapa
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mt-3">
+          <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-2.5">
             Kadapa’s premier commercial printing press, wide-format outdoor advertising fabricator, and specialized Jumbo Xerox hub.
           </p>
         </div>
       </section>
 
       {/* Main Content Grid */}
-      <div className="site-container -mt-8 space-y-16 relative z-20">
+      <div className="site-container -mt-6 sm:-mt-8 space-y-12 sm:space-y-16 relative z-20">
         {/* Story Card */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center space-x-2 text-xs font-bold text-brand-red uppercase tracking-wider bg-red-50 px-3 py-1 rounded-full">
-              <Sparkles className="w-3 h-3" />
+        <div className="bg-white rounded-2xl p-6 sm:p-10 lg:p-12 border border-slate-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold text-brand-red uppercase tracking-wider bg-red-50 px-3 py-1 rounded-md">
               <span>Our Legacy & Commitment</span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-black text-brand-navy">
+            <h2 className="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight">
               Kadapa’s Most Trusted Printing & Jumbo Xerox Partner
             </h2>
 
@@ -54,28 +53,28 @@ export default function AboutPage() {
               Located conveniently opposite Tirumala Hospital in the Ganagapeta commercial corridor, our workshop has grown from a specialized CAD and Xerox station into Kadapa’s foremost multi-vertical printing house—spanning 1440 DPI outdoor Star Flex plotters, CNC laser-cut 3D acrylic LED channel letters, and rapid-turnaround personalized gifting.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-3xl font-black text-brand-navy font-mono">10+</span>
+            <div className="grid grid-cols-2 gap-4 pt-3 border-t border-slate-100">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <span className="text-2xl sm:text-3xl font-black text-brand-navy font-mono">10+</span>
                 <span className="text-xs text-slate-500 font-semibold block mt-1">Years Continuous Operations</span>
               </div>
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-3xl font-black text-emerald-600 font-mono">5.0 ★</span>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <span className="text-2xl sm:text-3xl font-black text-emerald-600 font-mono">5.0 ★</span>
                 <span className="text-xs text-slate-500 font-semibold block mt-1">Google Customer Rating</span>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative h-80 sm:h-96 w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-white/80 bg-slate-900">
+            <div className="relative h-72 sm:h-88 lg:h-96 w-full rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-slate-900">
               <Image
                 src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=1000&q=80"
                 alt="City Grafix Commercial Printing Workshop"
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-white text-xs">
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 text-white text-xs">
                 <span className="font-bold text-brand-gold uppercase text-[11px] block">Direct Workshop Fabrication</span>
                 <span>Opposite Tirumala Hospital, Kadapa, Andhra Pradesh</span>
               </div>
@@ -138,9 +137,9 @@ export default function AboutPage() {
         </div>
 
         {/* Location & Contact CTA Card */}
-        <div className="bg-brand-navy rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
-          <div className="space-y-3 max-w-xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-gold bg-white/10 px-3 py-1 rounded-full">
+        <div className="bg-brand-navy rounded-2xl p-6 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+          <div className="space-y-2.5 max-w-xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-gold bg-white/10 px-3 py-1 rounded-md">
               Visit Our Workshop
             </span>
             <h2 className="text-2xl sm:text-3xl font-black">

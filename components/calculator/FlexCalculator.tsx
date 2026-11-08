@@ -104,26 +104,25 @@ Please confirm the quote and let me know the artwork submission and delivery tim
   }, [calculations.width, calculations.height]);
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl border border-slate-200/80 overflow-hidden" id="calculator">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden" id="calculator">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-brand-navy via-brand-navyLight to-brand-dark p-6 sm:p-8 text-white relative overflow-hidden">
-        <div className="absolute right-0 top-0 translate-x-1/3 -translate-y-1/3 w-64 h-64 bg-brand-red/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-brand-navy p-6 sm:p-8 text-white border-b border-brand-navyLight">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center space-x-1.5 bg-brand-red/30 border border-brand-red/40 px-3 py-1 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
+            <div className="inline-flex items-center space-x-2 bg-white/10 px-3 py-1 rounded-md text-brand-gold text-xs font-bold uppercase tracking-wider mb-2">
+              <Calculator className="w-3.5 h-3.5 text-brand-gold" />
               <span>Direct Workshop Rate Calculator</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
               Instant Flex & Signage Price Estimator
             </h3>
-            <p className="text-slate-300 text-sm mt-1">
+            <p className="text-slate-300 text-sm mt-1 max-w-2xl">
               Select your printing substrate, input custom feet dimensions, and get transparent workshop rates instantly.
             </p>
           </div>
 
-          <div className="flex items-center space-x-2 text-xs bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm self-start md:self-auto">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="flex items-center space-x-2 text-xs bg-white/10 px-3.5 py-2 rounded-lg border border-white/15 self-start md:self-auto">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
             <span className="font-semibold text-slate-200">Zero Middlemen • 100% Direct Rates</span>
           </div>
         </div>

@@ -54,40 +54,37 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-20 bg-brand-navy text-white relative overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-royal/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-red/10 rounded-full blur-3xl pointer-events-none" />
-
+    <section className="py-16 sm:py-20 lg:py-24 bg-brand-navy text-white relative">
       <div className="site-container relative z-10">
-        <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-1.5 bg-white/10 border border-white/20 px-3.5 py-1 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/15 px-3 py-1 rounded-md text-brand-gold text-xs font-bold uppercase tracking-wider mb-3">
             <Zap className="w-3.5 h-3.5 text-brand-gold" />
             <span>The City Grafix Advantage</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white tracking-tight">
             Why Kadapa Trusts City Grafix
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg xl:text-xl mt-3">
+          <p className="text-slate-300 text-sm sm:text-base xl:text-lg mt-3">
             Combining state-of-the-art Japanese plotters, direct workshop pricing, and meticulous quality control under one roof.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {reasons.map((r, i) => {
             const Icon = r.icon;
             return (
               <div
                 key={i}
-                data-cursor="INSPECT"
-                className="bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 xl:p-8 hover:bg-white/10 hover:border-brand-gold/40 transition-all duration-300 group card-3d-tilt"
+                className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 hover:bg-white/[0.08] hover:border-brand-gold/40 transition-all duration-200 group flex flex-col justify-between"
               >
-                <div className="w-11 h-11 sm:w-12 sm:h-12 xl:w-14 xl:h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 group-hover:bg-brand-red transition-all shadow-inner">
-                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 xl:w-7 xl:h-7 text-brand-gold group-hover:text-white transition-colors" />
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-brand-red transition-colors">
+                    <Icon className="w-6 h-6 text-brand-gold group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-1">{r.title}</h3>
+                  <span className="text-xs font-semibold text-brand-gold/90 block mb-2">{r.telugu}</span>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{r.description}</p>
                 </div>
-                <h3 className="text-base xl:text-lg font-black text-white mb-1">{r.title}</h3>
-                <span className="text-xs xl:text-sm font-semibold text-brand-gold/90 block mb-2">{r.telugu}</span>
-                <p className="text-xs xl:text-sm text-slate-300 leading-relaxed">{r.description}</p>
               </div>
             );
           })}

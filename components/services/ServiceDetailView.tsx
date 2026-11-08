@@ -102,44 +102,44 @@ export default function ServiceDetailView({ service }: Props) {
         </div>
 
         {/* Hero Section */}
-        <header className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white pt-10 pb-16 relative overflow-hidden">
+        <header className="bg-brand-navy text-white pt-10 pb-16 relative border-b border-white/10">
           <div className="site-container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 text-xs">
+                <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/15 rounded-md px-3 py-1 text-xs">
                   <span className="text-brand-gold font-bold">{service.category}</span>
                   <span className="text-white/40">•</span>
                   <span className="text-slate-200">{service.teluguTitle}</span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white tracking-tight leading-tight">
                   {service.title}
                 </h1>
 
-                <p className="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl">
+                <p className="text-slate-200 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">
                   {service.shortDescription}
                 </p>
 
                 {/* Turnaround & Pricing Badges */}
-                <div className="flex flex-wrap items-center gap-4 pt-2 text-xs sm:text-sm">
-                  <div className="flex items-center bg-white/10 px-3.5 py-2 rounded-xl backdrop-blur-sm border border-white/15">
+                <div className="flex flex-wrap items-center gap-3 pt-2 text-xs sm:text-sm">
+                  <div className="flex items-center bg-white/10 px-3.5 py-1.5 rounded-lg border border-white/15">
                     <Clock className="w-4 h-4 text-emerald-400 mr-2" />
                     <span>Speed: <strong className="text-white">{service.turnaround}</strong></span>
                   </div>
 
-                  <div className="flex items-center bg-white/10 px-3.5 py-2 rounded-xl backdrop-blur-sm border border-white/15">
+                  <div className="flex items-center bg-white/10 px-3.5 py-1.5 rounded-lg border border-white/15">
                     <Tag className="w-4 h-4 text-brand-gold mr-2" />
                     <span>Starting: <strong className="text-brand-gold">{service.startingPrice}</strong></span>
                   </div>
                 </div>
 
                 {/* Primary Action Buttons */}
-                <div className="flex flex-wrap items-center gap-3 pt-4">
+                <div className="flex flex-wrap items-center gap-3 pt-3">
                   <a
                     href={getWhatsAppLink(service.whatsappMessage, service.recommendedLine)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 transition-all flex items-center space-x-2 text-sm sm:text-base group"
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition-all flex items-center space-x-2 text-sm group"
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                     <span>WhatsApp Inquiry</span>
@@ -152,7 +152,7 @@ export default function ServiceDetailView({ service }: Props) {
                         ? BUSINESS_DATA.contacts.signageStructural.callUrl
                         : BUSINESS_DATA.contacts.primaryOrders.callUrl
                     }
-                    className="bg-white/15 hover:bg-white/25 text-white font-semibold px-5 py-3.5 rounded-xl border border-white/20 transition-colors flex items-center space-x-2 text-sm sm:text-base"
+                    className="bg-white/10 hover:bg-white/20 text-white font-semibold px-4 py-3 rounded-xl border border-white/15 transition-colors flex items-center space-x-1.5 text-sm"
                   >
                     <Phone className="w-4 h-4 text-brand-gold" />
                     <span>Call Technician</span>
@@ -160,7 +160,7 @@ export default function ServiceDetailView({ service }: Props) {
 
                   <Link
                     href="/pricing#calculator"
-                    className="bg-brand-red hover:bg-brand-redDark text-white font-bold px-5 py-3.5 rounded-xl shadow-md transition-colors text-sm sm:text-base"
+                    className="bg-brand-red hover:bg-brand-redDark text-white font-bold px-4 py-3 rounded-xl shadow-sm transition-colors text-sm"
                   >
                     Calculate Price
                   </Link>
@@ -169,7 +169,7 @@ export default function ServiceDetailView({ service }: Props) {
 
               {/* Visual Card */}
               <div className="lg:col-span-5">
-                <div className="relative h-72 sm:h-96 w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-slate-900 group">
+                <div className="relative h-72 sm:h-88 lg:h-96 w-full rounded-2xl overflow-hidden shadow-md border border-white/20 bg-slate-900 group">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -195,7 +195,7 @@ export default function ServiceDetailView({ service }: Props) {
             {/* Left Main Column: In-depth Details, Specs, Audience, FAQs */}
             <div className="lg:col-span-8 space-y-8">
               {/* Detailed Overview */}
-              <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+              <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy mb-4 border-b border-slate-100 pb-3">
                   Service Overview & Workshop Capabilities
                 </h2>
@@ -222,7 +222,7 @@ export default function ServiceDetailView({ service }: Props) {
               </section>
 
               {/* Technical Specifications & Standards */}
-              <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+              <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy mb-4 border-b border-slate-100 pb-3 flex items-center space-x-2">
                   <FileCheck className="w-6 h-6 text-brand-royal" />
                   <span>Technical Specifications & Standards</span>
@@ -257,16 +257,16 @@ export default function ServiceDetailView({ service }: Props) {
 
               {/* Visual Showcase Gallery (if multiple images provided) */}
               {service.galleryImages && service.galleryImages.length > 1 && (
-                <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                   <h2 className="text-xl sm:text-2xl font-black text-brand-navy mb-4 border-b border-slate-100 pb-3 flex items-center space-x-2">
-                    <Sparkles className="w-6 h-6 text-brand-gold" />
+                    <FileCheck className="w-6 h-6 text-brand-navy" />
                     <span>Visual Campaign Showcase & Verification Proof</span>
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {service.galleryImages.map((imgSrc, idx) => (
                       <div
                         key={idx}
-                        className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-slate-200 shadow-md group bg-slate-900"
+                        className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group bg-slate-900"
                       >
                         <Image
                           src={imgSrc}
@@ -282,7 +282,7 @@ export default function ServiceDetailView({ service }: Props) {
               )}
 
               {/* Key Benefits */}
-              <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+              <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy mb-4 border-b border-slate-100 pb-3">
                   Why Choose City Grafix for this Service?
                 </h2>
@@ -291,7 +291,7 @@ export default function ServiceDetailView({ service }: Props) {
                   {service.benefits.map((b, i) => (
                     <div
                       key={i}
-                      className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-1"
+                      className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1"
                     >
                       <ShieldCheck className="w-5 h-5 text-brand-red" />
                       <p className="text-xs sm:text-sm text-slate-800 font-medium pt-1">{b}</p>
@@ -301,7 +301,7 @@ export default function ServiceDetailView({ service }: Props) {
               </section>
 
               {/* Frequently Asked Questions */}
-              <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+              <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy mb-4 border-b border-slate-100 pb-3 flex items-center space-x-2">
                   <HelpCircle className="w-6 h-6 text-brand-royal" />
                   <span>Frequently Asked Questions</span>
@@ -309,7 +309,7 @@ export default function ServiceDetailView({ service }: Props) {
 
                 <div className="space-y-4">
                   {service.faqs.map((faq, i) => (
-                    <div key={i} className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <div key={i} className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                       <h3 className="text-sm font-bold text-slate-900">{faq.question}</h3>
                       <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                         {faq.answer}
@@ -323,7 +323,7 @@ export default function ServiceDetailView({ service }: Props) {
             {/* Right Sticky Sidebar: Quick Summary, Direct Orders, Related Services */}
             <aside className="lg:col-span-4 space-y-6">
               {/* Workshop Summary Card */}
-              <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5 sticky top-24">
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5 sticky top-24">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
                     Direct Rate Card Info

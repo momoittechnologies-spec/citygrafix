@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyBottomBar from "@/components/layout/StickyBottomBar";
-import GamingCursor from "@/components/ui/GamingCursor";
 import { BUSINESS_DATA } from "@/data/business";
 
 export const viewport: Viewport = {
@@ -152,7 +151,6 @@ export default function RootLayout({
         {/* Google Tag Manager / GA4 placeholder: <!-- Google tag (gtag.js) - G-XXXXXXXXXX --> */}
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-900">
-        <GamingCursor />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <StickyBottomBar />

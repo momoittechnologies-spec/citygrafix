@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapPin, Phone, MessageCircle, Clock, Mail, Navigation, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Clock, Navigation, Send } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 
 export default function LocationContact() {
@@ -22,28 +22,28 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-slate-50 relative" id="contact">
+    <section className="py-16 sm:py-20 lg:py-24 bg-slate-50 relative" id="contact">
       <div className="site-container">
-        <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-red-50 px-3.5 py-1 rounded-full">
+        <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-red-50 px-3 py-1 rounded-md">
             Direct Workshop & Reception Desk
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight mt-3">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight mt-3">
             Visit Us or Contact Our Team
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg mt-2">
+          <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2">
             Conveniently located opposite Tirumala Hospital near Seven Roads Circle in Kadapa. Walk in or connect on WhatsApp.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left Column: Workshop Details & Contact Lines */}
           <div className="lg:col-span-5 space-y-6">
             {/* Workshop Address Card */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-md">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
               <div className="flex items-start space-x-3.5">
-                <div className="w-11 h-11 rounded-2xl bg-red-50 text-brand-red flex items-center justify-center shrink-0">
-                  <MapPin className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-brand-red flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="font-bold text-slate-900 text-base">Workshop Location</h3>
@@ -65,7 +65,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center text-xs font-bold bg-brand-royal text-white px-4 py-2 rounded-xl hover:bg-brand-blue transition-colors space-x-1.5"
+                    className="mt-4 inline-flex items-center text-xs font-bold bg-brand-navy text-white px-3.5 py-2 rounded-xl hover:bg-brand-navyLight transition-colors space-x-1.5"
                   >
                     <Navigation className="w-3.5 h-3.5" />
                     <span>Get Directions on Google Maps</span>
@@ -75,8 +75,8 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
             </div>
 
             {/* Dedicated Department Contacts */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/90 shadow-md space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700 border-b border-slate-100 pb-2">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3.5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 border-b border-slate-100 pb-2">
                 Official Department Lines
               </h3>
 
@@ -89,7 +89,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                 <div className="flex space-x-1.5 shrink-0">
                   <a
                     href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-                    className="p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg"
+                    className="p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors"
                     title="Call Line 1"
                   >
                     <Phone className="w-3.5 h-3.5" />
@@ -98,7 +98,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.contacts.primaryOrders.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg"
+                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
                     title="WhatsApp Line 1"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
@@ -107,7 +107,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
               </div>
 
               {/* Line 2 */}
-              <div className="flex items-start justify-between text-xs pt-2 border-t border-slate-100">
+              <div className="flex items-start justify-between text-xs pt-2.5 border-t border-slate-100">
                 <div>
                   <span className="font-bold text-slate-900 block">3D Signage & Structural:</span>
                   <span className="text-[11px] text-slate-500 block">{BUSINESS_DATA.contacts.signageStructural.purpose}</span>
@@ -115,7 +115,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                 <div className="flex space-x-1.5 shrink-0">
                   <a
                     href={BUSINESS_DATA.contacts.signageStructural.callUrl}
-                    className="p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg"
+                    className="p-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors"
                     title="Call Line 2"
                   >
                     <Phone className="w-3.5 h-3.5" />
@@ -124,7 +124,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.contacts.signageStructural.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg"
+                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
                     title="WhatsApp Line 2"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
@@ -133,7 +133,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
               </div>
 
               {/* Line 3 */}
-              <div className="flex items-start justify-between text-xs pt-2 border-t border-slate-100">
+              <div className="flex items-start justify-between text-xs pt-2.5 border-t border-slate-100">
                 <div>
                   <span className="font-bold text-slate-900 block">Reception Desk (WhatsApp Only):</span>
                   <span className="text-[11px] text-slate-500 block">{BUSINESS_DATA.contacts.receptionDesk.purpose}</span>
@@ -143,7 +143,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.contacts.receptionDesk.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg inline-flex items-center space-x-1 text-[11px] font-bold"
+                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg inline-flex items-center space-x-1 text-[11px] font-bold transition-colors"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
                     <span>WhatsApp</span>
@@ -154,10 +154,10 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
               {/* Hours */}
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
                 <span className="flex items-center font-semibold">
-                  <Clock className="w-4 h-4 text-brand-royal mr-1.5" />
+                  <Clock className="w-4 h-4 text-brand-navy mr-1.5" />
                   <span>Workshop Hours:</span>
                 </span>
-                <span className="font-medium text-right">Mon–Sat: 9:30 AM–9:30 PM | Sun: 10 AM–6 PM</span>
+                <span className="font-medium text-right text-[11px]">Mon–Sat: 9:30 AM–9:30 PM | Sun: 10 AM–6 PM</span>
               </div>
             </div>
           </div>
@@ -165,11 +165,11 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
           {/* Right Column: Interactive WhatsApp Contact Form & Map */}
           <div className="lg:col-span-7 space-y-6">
             {/* Quick WhatsApp Inquiry Form */}
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-md">
-              <h3 className="text-xl font-bold text-brand-navy mb-1">
+            <div className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-sm">
+              <h3 className="text-lg sm:text-xl font-bold text-brand-navy mb-1">
                 Fast WhatsApp Quotation Request
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 mb-6">
+              <p className="text-xs sm:text-sm text-slate-600 mb-5">
                 Fill in your basic job requirements to open an instant, structured WhatsApp chat with our workshop technician.
               </p>
 
@@ -185,7 +185,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                       placeholder="e.g. Ramesh Kumar"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
+                      className="w-full text-base sm:text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50"
                     />
                   </div>
 
@@ -199,7 +199,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                       placeholder="e.g. 98765 43210"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
+                      className="w-full text-base sm:text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50"
                     />
                   </div>
                 </div>
@@ -211,7 +211,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
-                    className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50 font-medium"
+                    className="w-full text-base sm:text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50 font-medium"
                   >
                     <option>Star Flex Banner Printing (340+ GSM)</option>
                     <option>Jumbo Xerox / A0 CAD Blueprints</option>
@@ -235,13 +235,13 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     placeholder="e.g. 10x4 ft banner, need urgent delivery by 4 PM today..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full text-base sm:text-xs px-3.5 py-3 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50/50"
+                    className="w-full text-base sm:text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 transition-all flex items-center justify-center space-x-2 text-sm"
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center space-x-2 text-sm"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>Send Request to WhatsApp Orders</span>
@@ -250,7 +250,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
             </div>
 
             {/* Embedded Responsive Google Map */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-md">
+            <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
               <div className="p-3 bg-slate-100 flex items-center justify-between text-xs text-slate-700 font-semibold">
                 <span className="flex items-center">
                   <MapPin className="w-3.5 h-3.5 text-brand-red mr-1" />

@@ -19,15 +19,15 @@ export default function PriceHighlights() {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-white relative">
+    <section className="py-16 sm:py-20 lg:py-24 bg-white relative">
       <div className="site-container">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12">
           <div>
-            <div className="inline-flex items-center space-x-1.5 bg-brand-gold/10 text-brand-dark px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">
-              <Tag className="w-3.5 h-3.5 text-brand-goldDark" />
+            <div className="inline-flex items-center space-x-1.5 bg-slate-100 text-slate-700 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2.5">
+              <Tag className="w-3.5 h-3.5 text-brand-navy" />
               <span>Transparent Rate Card</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight">
               Popular Printing Price Highlights
             </h2>
             <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2 max-w-2xl">
@@ -38,16 +38,14 @@ export default function PriceHighlights() {
           <div className="mt-4 md:mt-0 flex items-center space-x-3">
             <Link
               href="/pricing#calculator"
-              data-cursor="CALC"
-              className="inline-flex items-center text-xs xl:text-sm font-bold bg-brand-royal text-white px-5 py-3 rounded-xl hover:bg-brand-blue transition-colors shadow-md space-x-1.5"
+              className="inline-flex items-center text-xs sm:text-sm font-bold bg-brand-navy text-white px-4 py-2.5 rounded-xl hover:bg-brand-navyLight transition-colors shadow-sm space-x-1.5"
             >
-              <Calculator className="w-4 h-4" />
+              <Calculator className="w-4 h-4 text-brand-gold" />
               <span>Use Price Calculator</span>
             </Link>
             <Link
               href="/pricing"
-              data-cursor="PRICES"
-              className="inline-flex items-center text-xs xl:text-sm font-bold text-brand-navy border border-slate-300 px-5 py-3 rounded-xl hover:bg-slate-50 transition-colors"
+              className="inline-flex items-center text-xs sm:text-sm font-bold text-brand-navy border border-slate-300 px-4 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"
             >
               <span>View Full Rate Card →</span>
             </Link>
@@ -55,26 +53,25 @@ export default function PriceHighlights() {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 xl:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
           {highlights.map((item, idx) => (
             <div
               key={idx}
-              data-cursor="INSPECT"
-              className="p-3.5 sm:p-5 xl:p-6 rounded-2xl sm:rounded-3xl bg-slate-50/70 border border-slate-200/80 hover:border-brand-royal hover:shadow-xl transition-all group flex flex-col justify-between card-3d-tilt"
+              className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 hover:border-brand-royal hover:shadow-md transition-all group flex flex-col justify-between"
             >
               <div>
-                <span className="text-[9px] sm:text-[10px] uppercase font-bold text-brand-royal bg-blue-50 px-2 py-0.5 rounded">
+                <span className="text-[10px] uppercase font-bold text-brand-royal bg-blue-50 px-2 py-0.5 rounded">
                   {item.badge}
                 </span>
-                <h3 className="text-xs sm:text-sm font-bold text-slate-900 mt-1.5 group-hover:text-brand-royal transition-colors line-clamp-2">
+                <h3 className="text-xs sm:text-sm font-bold text-slate-900 mt-2 group-hover:text-brand-royal transition-colors line-clamp-2">
                   {item.name}
                 </h3>
-                <span className="text-[10px] sm:text-[11px] text-brand-red font-medium block mt-0.5">{item.telugu}</span>
+                <span className="text-[11px] text-brand-red font-medium block mt-0.5">{item.telugu}</span>
               </div>
 
-              <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-slate-200/60 flex items-baseline justify-between">
+              <div className="mt-4 pt-3 border-t border-slate-100 flex items-baseline justify-between">
                 <div>
-                  <span className="text-xl sm:text-2xl font-black text-brand-navy font-mono">
+                  <span className="text-lg sm:text-xl font-black text-brand-navy font-mono">
                     {item.rate}
                   </span>
                   <span className="text-[10px] text-slate-500 block">{item.unit}</span>

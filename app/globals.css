@@ -17,19 +17,15 @@
     overflow-x: hidden;
   }
 
-  /* Desktop-Only Custom Gaming Cursor Integration */
-  @media (pointer: fine) and (hover: hover) {
-    body, a, button, [role="button"], .interactive-cursor {
-      cursor: none !important;
-    }
-    input, textarea, select, [contenteditable="true"] {
-      cursor: text !important;
-    }
+  /* Accessible and clean focus states */
+  :focus-visible {
+    outline: 2px solid #C80A0A;
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
-  /* Intelligent Desktop Responsive Container System */
+  /* Editorial Responsive Container System */
   .site-container {
     width: 100%;
     margin-left: auto;
@@ -145,48 +141,26 @@
     }
   }
 
-  .text-glow {
-    text-shadow: 0 0 20px rgba(37, 99, 235, 0.4), 0 0 40px rgba(200, 10, 10, 0.2);
+  /* Clean human-crafted card hover transitions */
+  .editorial-card {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
   }
-  .text-glow-red {
-    text-shadow: 0 0 20px rgba(200, 10, 10, 0.6);
-  }
-  .text-glow-cyan {
-    text-shadow: 0 0 15px rgba(0, 240, 255, 0.7), 0 0 30px rgba(14, 165, 233, 0.4);
-  }
-  .glass-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-  }
-  .glass-card-dark {
-    background: rgba(11, 19, 43, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .card-3d-tilt {
-    transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.35s ease;
-    transform-style: preserve-3d;
-  }
-  .card-3d-tilt:hover {
-    transform: translateY(-6px) rotateX(1deg) rotateY(-1deg);
-    box-shadow: 0 25px 50px -12px rgba(11, 19, 43, 0.25), 0 0 25px rgba(14, 165, 233, 0.15);
+  .editorial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -8px rgba(11, 19, 43, 0.12);
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: #0B132B;
 }
 ::-webkit-scrollbar-thumb {
   background: #1C2541;
-  border-radius: 5px;
-  border: 2px solid #0B132B;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #C80A0A;

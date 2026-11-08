@@ -16,29 +16,29 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
-      <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
+      <section className="bg-brand-navy text-white py-14 sm:py-16 border-b border-white/10">
         <div className="site-container text-center">
-          <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
+          <div className="inline-flex items-center space-x-2 bg-white/10 px-3.5 py-1 rounded-md text-brand-gold text-xs font-bold uppercase tracking-wider mb-3.5 border border-white/15">
             <MapPin className="w-3.5 h-3.5" />
             <span>Opposite Tirumala Hospital, Kadapa</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
             Contact & Workshop Location
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mt-3">
+          <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-2.5">
             Open 7 days a week. Connect directly with our order desk, signage engineer, or reception desk.
           </p>
         </div>
       </section>
 
       {/* Main Location Section */}
-      <div className="-mt-8 relative z-20">
+      <div className="-mt-6 sm:-mt-8 relative z-20">
         <LocationContact />
       </div>
 
       {/* Supported Files & Pre-flight Guide */}
-      <div className="site-container mt-12">
-        <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
+      <div className="site-container mt-12 sm:mt-16">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
           <div className="flex items-center space-x-3 mb-4">
             <div className="w-10 h-10 rounded-xl bg-blue-50 text-brand-royal flex items-center justify-center">
               <FileCheck className="w-5 h-5" />

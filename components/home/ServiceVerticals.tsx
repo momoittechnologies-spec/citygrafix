@@ -1,99 +1,96 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MessageCircle, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, MessageCircle, Check } from "lucide-react";
 import { SERVICE_CATEGORIES } from "@/data/services";
 import { getWhatsAppLink } from "@/data/business";
 
 export default function ServiceVerticals() {
   return (
-    <section className="py-20 lg:py-24 bg-slate-50 relative" id="services">
+    <section className="py-16 sm:py-20 bg-slate-50 relative" id="services">
       <div className="site-container">
         {/* Section Header */}
-        <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-1.5 bg-brand-royal/10 border border-brand-royal/20 px-3.5 py-1 rounded-full text-brand-royal text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Comprehensive Printing Capabilities</span>
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center space-x-1.5 text-brand-red text-xs font-bold uppercase tracking-wider mb-2">
+            <span>Direct Workshop Production</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight">
-            Our Primary Service Verticals
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+            Printing Services & Fabrication Verticals
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg xl:text-xl mt-3">
-            Direct in-house fabrication across wide-format flex, architectural 3D signage, engineering blueprints, commercial offset, and personalized gifting in Kadapa.
+          <p className="text-slate-600 text-sm sm:text-base mt-2">
+            Everything is produced directly in our Kadapa workshop. From everyday photocopying and architectural CAD blueprints to heavy outdoor banners and 3D architectural signage.
           </p>
         </div>
 
-        {/* 3D Vertical Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
+        {/* Human-Designed Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {SERVICE_CATEGORIES.map((category) => (
             <div
               key={category.id}
-              data-cursor="EXPLORE"
-              className="group bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between card-3d-tilt"
+              className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
             >
-              {/* Image with Dark Gradient & Category Badge */}
-              <div className="relative h-60 sm:h-64 xl:h-72 w-full overflow-hidden bg-slate-900">
+              {/* Product Photo */}
+              <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100">
                 <Image
                   src={category.image}
                   alt={category.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="object-cover transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/30 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5">
-                  <span className="text-[11px] xl:text-xs font-bold text-brand-gold bg-brand-navy/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 uppercase tracking-wider">
-                    {category.teluguTitle}
-                  </span>
-                  <h3 className="text-xl xl:text-2xl font-black text-white mt-1.5 drop-shadow-sm">
-                    {category.title}
-                  </h3>
-                </div>
               </div>
 
               {/* Card Body */}
-              <div className="p-6 xl:p-8 flex-1 flex flex-col justify-between space-y-5">
-                <p className="text-slate-600 text-xs sm:text-sm xl:text-base leading-relaxed">
-                  {category.description}
-                </p>
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <h3 className="text-lg font-bold text-slate-900">
+                      {category.title}
+                    </h3>
+                    <span className="text-xs font-semibold text-brand-red shrink-0">
+                      {category.teluguTitle}
+                    </span>
+                  </div>
+                  <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                    {category.description}
+                  </p>
+                </div>
 
-                {/* Key Bullet Services */}
-                <div className="space-y-2 pt-3 border-t border-slate-100">
-                  <span className="text-[11px] xl:text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
-                    Featured Capabilities:
+                {/* Capabilities list */}
+                <div className="space-y-1.5 pt-3 border-t border-slate-100">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    What we manufacture:
                   </span>
                   {category.keyServices.map((service, idx) => (
-                    <div key={idx} className="flex items-center text-xs xl:text-sm text-slate-700 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mr-2 shrink-0" />
+                    <div key={idx} className="flex items-center text-xs text-slate-700 font-medium">
+                      <Check className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
                       <span className="truncate">{service}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="pt-2 text-xs xl:text-sm font-semibold text-brand-royal flex items-center">
-                  <span className="w-2 h-2 rounded-full bg-brand-royal mr-2" />
-                  <span>Speed: {category.turnaroundSummary}</span>
+                <div className="pt-2 text-xs font-semibold text-slate-600 flex items-center justify-between border-t border-slate-100">
+                  <span>Turnaround:</span>
+                  <span className="font-bold text-brand-navy">{category.turnaroundSummary}</span>
                 </div>
 
                 {/* Card CTA Actions */}
-                <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100">
+                <div className="grid grid-cols-2 gap-2 pt-2">
                   <Link
                     href={`/services#${category.id}`}
-                    data-cursor="VIEW"
-                    className="bg-brand-navy hover:bg-brand-navyLight text-white text-xs xl:text-sm font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-1.5 shadow-sm"
+                    className="bg-brand-navy hover:bg-brand-navyLight text-white text-xs font-bold py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center space-x-1"
                   >
-                    <span>Explore</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>View Details</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
 
                   <a
                     href={getWhatsAppLink(`Hello City Grafix, I am interested in ${category.title}. Please provide details.`)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-cursor="CHAT"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs xl:text-sm font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-1.5 shadow-sm"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center space-x-1"
                   >
-                    <MessageCircle className="w-4 h-4 fill-white" />
+                    <MessageCircle className="w-3.5 h-3.5 fill-white" />
                     <span>WhatsApp</span>
                   </a>
                 </div>

@@ -35,13 +35,13 @@ export default function OrderSteps() {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-slate-100/70 relative">
+    <section className="py-16 sm:py-20 lg:py-24 bg-slate-50 relative">
       <div className="site-container">
-        <div className="text-center max-w-2xl xl:max-w-3xl mx-auto mb-16">
-          <span className="text-xs xl:text-sm font-bold uppercase tracking-wider text-brand-royal bg-brand-royal/10 px-4 py-1.5 rounded-full">
+        <div className="text-center max-w-2xl xl:max-w-3xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs font-bold uppercase tracking-wider text-brand-royal bg-brand-royal/10 px-3.5 py-1.5 rounded-md">
             Simple 4-Step Process
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight mt-3">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight mt-3">
             How to Place an Order
           </h2>
           <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2">
@@ -49,25 +49,24 @@ export default function OrderSteps() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-10 relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((s, index) => {
             const Icon = s.icon;
             return (
               <div
                 key={index}
-                data-cursor="STEP"
-                className="bg-white rounded-3xl p-6 xl:p-8 border border-slate-200/80 shadow-md hover:shadow-2xl transition-all relative flex flex-col justify-between card-3d-tilt"
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all relative flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="text-2xl xl:text-3xl font-black text-brand-navy/20 font-mono">{s.step}</span>
-                    <div className="w-12 h-12 xl:w-14 xl:h-14 rounded-2xl bg-brand-royal/10 flex items-center justify-center text-brand-royal shadow-inner">
-                      <Icon className="w-6 h-6 xl:w-7 xl:h-7" />
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-2xl font-black text-brand-navy/20 font-mono">{s.step}</span>
+                    <div className="w-11 h-11 rounded-xl bg-brand-royal/10 flex items-center justify-center text-brand-royal">
+                      <Icon className="w-5 h-5" />
                     </div>
                   </div>
-                  <h3 className="text-lg xl:text-xl font-black text-brand-navy mb-1">{s.title}</h3>
-                  <span className="text-xs xl:text-sm font-semibold text-brand-red block mb-2">{s.telugu}</span>
-                  <p className="text-xs xl:text-sm text-slate-600 leading-relaxed">{s.description}</p>
+                  <h3 className="text-base sm:text-lg font-bold text-brand-navy mb-1">{s.title}</h3>
+                  <span className="text-xs font-semibold text-brand-red block mb-2">{s.telugu}</span>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{s.description}</p>
                 </div>
               </div>
             );
@@ -75,9 +74,9 @@ export default function OrderSteps() {
         </div>
 
         {/* WhatsApp Banner CTA */}
-        <div className="mt-14 bg-emerald-700 text-white rounded-3xl p-6 sm:p-8 xl:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="mt-12 bg-emerald-800 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
           <div>
-            <h3 className="text-xl sm:text-2xl font-extrabold">Ready to start your print order?</h3>
+            <h3 className="text-xl sm:text-2xl font-bold">Ready to start your print order?</h3>
             <p className="text-emerald-100 text-xs sm:text-sm mt-1">
               Send your CDR, PDF, PSD, or phone photos directly to our Kadapa Order Desk.
             </p>
@@ -86,7 +85,7 @@ export default function OrderSteps() {
             href={getWhatsAppLink("Hello City Grafix, I want to place a printing order. Here are my requirements:")}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold px-6 py-3.5 rounded-xl transition-colors text-sm shadow-md flex items-center justify-center space-x-2 shrink-0 w-full sm:w-auto"
+            className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold px-6 py-3 rounded-xl transition-colors text-sm shadow-sm flex items-center justify-center space-x-2 shrink-0 w-full sm:w-auto"
           >
             <span>Start WhatsApp Order Now</span>
             <ArrowRight className="w-4 h-4" />

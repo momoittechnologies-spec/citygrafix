@@ -25,16 +25,15 @@ export default function ServicesIndexPage() {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
       {/* Hero Header */}
-      <section className="bg-gradient-to-b from-brand-navy via-brand-navyLight to-brand-dark text-white py-16">
+      <section className="bg-brand-navy text-white py-14 sm:py-16 border-b border-white/10">
         <div className="site-container text-center">
-          <div className="inline-flex items-center space-x-2 bg-white/10 px-4 py-1.5 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-4 border border-white/20">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 bg-white/10 px-3.5 py-1 rounded-md text-brand-gold text-xs font-bold uppercase tracking-wider mb-3.5 border border-white/15">
             <span>Complete Printing Solutions in Kadapa</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
             Our 11 Core Printing Services
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mt-3">
+          <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-2.5">
             In-house manufacturing across wide-format flex, architectural signage, precision CAD blueprints, and personalized gifts. Zero broker markups.
           </p>
         </div>
