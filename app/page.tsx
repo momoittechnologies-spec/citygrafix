@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import HeroSlider from "@/components/home/HeroSlider";
 import TrustHighlights from "@/components/home/TrustHighlights";
 import ServiceVerticals from "@/components/home/ServiceVerticals";
-import FeaturedShowcase from "@/components/home/FeaturedShowcase";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import OrderSteps from "@/components/home/OrderSteps";
 import PriceHighlights from "@/components/home/PriceHighlights";
@@ -42,14 +41,11 @@ export default function HomePage() {
       {/* 2. Trust Statistics Bar */}
       <TrustHighlights />
 
-      {/* 3. Primary Service Verticals (3D Grid) */}
+      {/* 3. Master Capabilities & Services Hub (Interactive Filters) */}
       <ServiceVerticals />
 
-      {/* 4. Featured Services Showcase */}
-      <FeaturedShowcase />
-
-      {/* 5. Live Flex & Signage Price Calculator */}
-      <section className="py-20 lg:py-24 bg-slate-100/60" id="calculator-section">
+      {/* 4. Live Flex & Signage Price Calculator (Directly accessible below services) */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-slate-100/60" id="calculator-section">
         <div className="site-container">
           <FlexCalculator />
         </div>
