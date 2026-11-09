@@ -7,10 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
-  Clock,
-  Tag,
-  CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -194,6 +190,7 @@ export default function HeroSlider() {
   const touchEndX = useRef<number>(0);
   const progressStartTimeRef = useRef<number>(Date.now());
   const animationFrameRef = useRef<number>();
+  const categoryTabsRef = useRef<HTMLDivElement>(null);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
@@ -212,6 +209,21 @@ export default function HeroSlider() {
     setProgress(0);
     progressStartTimeRef.current = Date.now();
   }, []);
+
+  // Smoothly center active category tab into view on slide change
+  useEffect(() => {
+    if (!categoryTabsRef.current) return;
+    const activeTab = categoryTabsRef.current.querySelector<HTMLButtonElement>(
+      `[data-tab-index="${currentSlide}"]`
+    );
+    if (activeTab) {
+      activeTab.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [currentSlide]);
 
   // Keyboard Navigation (ArrowLeft / ArrowRight)
   useEffect(() => {
@@ -295,7 +307,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full bg-brand-dark text-white overflow-hidden py-5 sm:py-7 lg:py-9 select-none border-b border-white/10"
+      className="relative w-full bg-brand-dark text-white overflow-hidden pt-3 sm:pt-4 md:pt-6 pb-6 sm:pb-8 lg:pb-10 select-none border-b border-white/10"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => {
         progressStartTimeRef.current = Date.now() - (progress / 100) * ROTATION_DURATION_MS;
@@ -312,31 +324,7 @@ export default function HeroSlider() {
       <div className="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none" />
 
       <div className="site-container-hero relative z-10">
-        {/* 1. Category Navigation Bar (Preserved & Refined) */}
-        <div className="flex items-center space-x-1.5 overflow-x-auto pb-3 mb-4 sm:mb-6 scrollbar-none border-b border-white/10 -mx-4 px-4 sm:mx-0 sm:px-0">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-2 shrink-0 hidden md:inline-flex items-center space-x-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-            <span>Service Showcase:</span>
-          </span>
-          {HERO_SLIDES.map((s, idx) => (
-            <button
-              key={s.id}
-              onClick={() => goToSlide(idx)}
-              className={`px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all shrink-0 flex items-center space-x-1.5 ${
-                currentSlide === idx
-                  ? "bg-white text-brand-dark font-bold shadow-sm"
-                  : "bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white"
-              }`}
-            >
-              <span className={`font-mono text-[10px] ${currentSlide === idx ? "text-brand-red font-bold" : "text-slate-400"}`}>
-                {String(s.id).padStart(2, "0")}
-              </span>
-              <span>{s.categoryName}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* 2. Large Full-Width Immersive Image Showcase (NO side text column) */}
+        {/* Large Full-Width Immersive Image Showcase */}
         <div className="relative w-full h-[320px] sm:h-[440px] md:h-[520px] lg:h-[600px] xl:h-[660px] 2xl:h-[720px] rounded-2xl lg:rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-slate-950 group">
           <AnimatePresence mode="wait">
             <motion.div
@@ -442,35 +430,114 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* 3. Progress Bar & Segment Indicators */}
-        <div className="flex items-center justify-between gap-4 mt-4 sm:mt-5 pt-3 border-t border-white/10">
-          {/* Segmented Dots Indicator */}
-          <div className="flex items-center space-x-1.5 sm:space-x-2 overflow-x-auto scrollbar-none py-1">
-            {HERO_SLIDES.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => goToSlide(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  currentSlide === idx
-                    ? "w-8 sm:w-10 bg-brand-red"
-                    : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/40"
-                }`}
-                aria-label={`Go to Slide ${idx + 1}`}
-              />
-            ))}
+        {/* Category Navigation Dock Below Slider */}
+        <div className="mt-4 sm:mt-5 pt-3 border-t border-white/10">
+          {/* Header Row: Label & Micro-controls */}
+          <div className="flex items-center justify-between gap-3 mb-2.5 px-0.5">
+            <div className="flex items-center space-x-2">
+              <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+              <span className="text-xs sm:text-sm font-bold text-white tracking-wide uppercase">
+                Workshop Capabilities
+              </span>
+              <span className="text-white/20 hidden sm:inline">•</span>
+              <span className="text-xs text-slate-400 hidden sm:inline">
+                Click any service to inspect direct Kadapa manufacturing
+              </span>
+            </div>
+
+            <div className="flex items-center space-x-3 text-xs text-slate-400 font-mono">
+              <span>
+                <strong className="text-white">{String(currentSlide + 1).padStart(2, "0")}</strong>
+                <span className="text-slate-500"> / {String(HERO_SLIDES.length).padStart(2, "0")}</span>
+              </span>
+              <div className="hidden sm:flex items-center space-x-1">
+                <button
+                  onClick={prevSlide}
+                  className="p-1 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
+                  aria-label="Previous service slide"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="p-1 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
+                  aria-label="Next service slide"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Real-Time Continuous Rotation Progress Line */}
-          <div className="flex items-center space-x-3 w-40 sm:w-56 shrink-0">
-            <span className="font-mono text-xs font-bold text-slate-400 shrink-0">
-              {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
-            </span>
-            <div className="relative w-full h-1 bg-white/10 rounded-full overflow-hidden">
-              <div
-                className="absolute top-0 left-0 bottom-0 bg-brand-red rounded-full transition-all duration-100"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
+          {/* Interactive Category Tabs with Real-Time Progress Underline */}
+          <div
+            ref={categoryTabsRef}
+            className="flex items-stretch gap-2 sm:gap-2.5 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0"
+          >
+            {HERO_SLIDES.map((s, idx) => {
+              const isActive = currentSlide === idx;
+              return (
+                <button
+                  key={s.id}
+                  data-tab-index={idx}
+                  onClick={() => goToSlide(idx)}
+                  className={`group relative text-left p-2.5 sm:p-3 rounded-xl transition-all duration-200 shrink-0 flex flex-col justify-between border ${
+                    isActive
+                      ? "bg-white/[0.08] border-white/25 shadow-lg ring-1 ring-white/10"
+                      : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/15"
+                  } min-w-[135px] sm:min-w-[150px] lg:min-w-0 lg:flex-1`}
+                  aria-label={`Switch to ${s.categoryName}`}
+                >
+                  {/* Tab Top Row: Slide Number & Status */}
+                  <div className="flex items-center justify-between w-full mb-1">
+                    <span
+                      className={`font-mono text-[10px] sm:text-[11px] font-bold ${
+                        isActive ? "text-brand-red" : "text-slate-500 group-hover:text-slate-300"
+                      }`}
+                    >
+                      {String(s.id).padStart(2, "0")}
+                    </span>
+                    {isActive ? (
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
+                    ) : (
+                      <span className="text-[10px] text-slate-500 font-mono hidden sm:inline">
+                        {s.turnaroundTime.includes("Minutes") ? "15m" : "Express"}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Tab Middle: Category Name */}
+                  <div className="w-full">
+                    <div
+                      className={`text-xs sm:text-[13px] font-bold tracking-tight line-clamp-1 ${
+                        isActive
+                          ? "text-white"
+                          : "text-slate-300 group-hover:text-white"
+                      }`}
+                    >
+                      {s.categoryName}
+                    </div>
+                    <div className="text-[10px] text-slate-400 truncate mt-0.5 hidden sm:block">
+                      {s.startingPrice}
+                    </div>
+                  </div>
+
+                  {/* Tab Bottom: Live Active Progress Bar */}
+                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mt-2">
+                    <div
+                      className={`h-full rounded-full transition-all duration-100 ${
+                        isActive
+                          ? "bg-brand-red"
+                          : "bg-transparent group-hover:bg-white/20"
+                      }`}
+                      style={{
+                        width: isActive ? `${progress}%` : "0%",
+                      }}
+                    />
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
