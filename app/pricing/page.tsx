@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo } from "react";
 import { ALL_PRICING_TABLES, PricingRow } from "@/data/pricing";
-import FlexCalculator from "@/components/calculator/FlexCalculator";
 import { Search, Tag, ShieldAlert, Sparkles, MessageCircle, FileText, CheckCircle2 } from "lucide-react";
 import { getWhatsAppLink } from "@/data/business";
 
@@ -64,9 +63,6 @@ export default function PricingPage() {
 
       {/* Main Container */}
       <div className="site-container -mt-6 sm:-mt-8 space-y-10 sm:space-y-12 relative z-20">
-        {/* Interactive Flex Calculator Section */}
-        <FlexCalculator />
-
         {/* Rate Card Filter & Search Bar */}
         <div className="bg-white p-6 sm:p-7 rounded-2xl border border-slate-200 shadow-sm space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">

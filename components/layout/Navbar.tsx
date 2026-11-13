@@ -10,7 +10,7 @@ import {
   Menu,
   X,
   ChevronDown,
-  Calculator,
+  Tag,
   MapPin,
   Clock,
   ArrowRight,
@@ -53,7 +53,7 @@ export default function Navbar() {
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/services", hasDropdown: true },
     { label: "Our Work", href: "/our-work" },
-    { label: "Pricing & Calculator", href: "/pricing" },
+    { label: "Pricing & Rates", href: "/pricing" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -266,7 +266,7 @@ export default function Navbar() {
                               })}
                             </div>
 
-                            {/* Right Column: Workshop Direct Desk & Live Calculator */}
+                            {/* Right Column: Workshop Direct Desk & Wholesale Rates */}
                             <div className="col-span-5 bg-slate-50/80 p-5 border-l border-slate-100 flex flex-col justify-between space-y-4">
                               <div className="space-y-1.5">
                                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red bg-red-50 px-2 py-0.5 rounded inline-block">
@@ -284,21 +284,21 @@ export default function Navbar() {
                                 </div>
                               </div>
 
-                              {/* Mini Price Estimator CTA Card */}
+                              {/* Wholesale Rate Card CTA Card */}
                               <Link
-                                href="/pricing#calculator"
+                                href="/pricing"
                                 onClick={() => setIsServicesOpen(false)}
                                 className="p-3 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-royal hover:shadow-md transition-all group block"
                               >
                                 <div className="flex items-center space-x-2 text-xs font-bold text-brand-navy mb-1">
-                                  <Calculator className="w-4 h-4 text-brand-royal" />
-                                  <span>Instant Flex Price Estimator</span>
+                                  <Tag className="w-4 h-4 text-brand-royal" />
+                                  <span>Official Wholesale Rate Card</span>
                                 </div>
                                 <p className="text-[11px] text-slate-500 leading-snug">
-                                  Input custom dimensions in feet to get transparent rates instantly.
+                                  Transparent workshop rates for Star Flex, CAD blueprints, signage & gifts.
                                 </p>
                                 <span className="text-[11px] text-brand-royal font-bold inline-flex items-center mt-2 group-hover:translate-x-1 transition-transform">
-                                  <span>Calculate Online</span>
+                                  <span>View Rate Card</span>
                                   <ArrowRight className="w-3 h-3 ml-1" />
                                 </span>
                               </Link>
@@ -376,13 +376,15 @@ export default function Navbar() {
             </a>
 
             {/* Get a Quote CTA Button */}
-            <Link
-              href="/pricing#calculator"
+            <a
+              href={getWhatsAppLink("Hello City Grafix, I want to get an instant quotation for printing in Kadapa.")}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-gradient-to-r from-brand-red to-brand-redDark hover:from-brand-redLight hover:to-brand-red text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-lg shadow-brand-red/30 hover:shadow-brand-red/50 transition-all flex items-center space-x-1.5 tracking-wide"
             >
-              <Calculator className="w-3.5 h-3.5" />
+              <MessageCircle className="w-3.5 h-3.5" />
               <span>Get Instant Quote</span>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu & Quick Contact Trigger */}
@@ -475,11 +477,11 @@ export default function Navbar() {
 
               <div className="pt-4 mt-2 border-t border-white/10 space-y-2">
                 <Link
-                  href="/pricing#calculator"
+                  href="/pricing"
                   className="w-full bg-gradient-to-r from-brand-red to-brand-redDark text-white py-3.5 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-lg"
                 >
-                  <Calculator className="w-4 h-4" />
-                  <span>Flex & Signage Price Calculator</span>
+                  <Tag className="w-4 h-4" />
+                  <span>Official Wholesale Rate Card</span>
                 </Link>
 
                 <div className="grid grid-cols-2 gap-2 pt-2">

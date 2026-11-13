@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, Home, Phone, Calculator } from "lucide-react";
+import { ArrowLeft, Home, Phone } from "lucide-react";
 import { BUSINESS_DATA } from "@/data/business";
 
 export default function NotFound() {

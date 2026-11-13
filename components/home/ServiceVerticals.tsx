@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MessageCircle, Check, Clock, Tag, Calculator } from "lucide-react";
+import { ArrowRight, MessageCircle, Check, Clock, Tag } from "lucide-react";
 import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
 import { getWhatsAppLink } from "@/data/business";
 
@@ -44,13 +44,13 @@ export default function ServiceVerticals() {
           </div>
 
           <div className="mt-4 md:mt-0 flex items-center space-x-3 shrink-0">
-            <a
-              href="#calculator-section"
+            <Link
+              href="/pricing"
               className="inline-flex items-center text-xs sm:text-sm font-bold bg-brand-navy text-white px-4 py-2.5 rounded-xl hover:bg-brand-navyLight transition-colors shadow-sm space-x-1.5"
             >
-              <Calculator className="w-4 h-4 text-brand-gold" />
-              <span>Instant Price Calculator ↓</span>
-            </a>
+              <Tag className="w-4 h-4 text-brand-gold" />
+              <span>Official Rate Card →</span>
+            </Link>
           </div>
         </div>
 

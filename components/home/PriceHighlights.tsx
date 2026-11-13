@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Tag, ShieldCheck, Calculator, Clock, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, Tag, ShieldCheck, Clock, MessageCircle, Sparkles } from "lucide-react";
 import { getWhatsAppLink } from "@/data/business";
 
 interface PopularProduct {
@@ -163,13 +163,15 @@ export default function PriceHighlights() {
           </div>
 
           <div className="mt-4 md:mt-0 flex items-center space-x-3 shrink-0">
-            <Link
-              href="/pricing#calculator"
-              className="inline-flex items-center text-xs sm:text-sm font-bold bg-brand-navy text-white px-4 py-2.5 rounded-xl hover:bg-brand-navyLight transition-colors shadow-sm space-x-1.5"
+            <a
+              href={getWhatsAppLink("Hello City Grafix, I want to get a custom wholesale price quote for printing:")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl transition-colors shadow-sm space-x-1.5"
             >
-              <Calculator className="w-4 h-4 text-brand-gold" />
-              <span>Instant Price Calculator</span>
-            </Link>
+              <MessageCircle className="w-4 h-4 fill-white" />
+              <span>Request WhatsApp Quote</span>
+            </a>
             <Link
               href="/pricing"
               className="inline-flex items-center text-xs sm:text-sm font-bold text-brand-navy border border-slate-300 px-4 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"

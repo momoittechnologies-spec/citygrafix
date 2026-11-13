@@ -1,5 +1,5 @@
 import React from "react";
-import { Layers, MessageSquare, Calculator, Truck, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Layers, MessageSquare, FileCheck, Truck, ArrowRight, CheckCircle2 } from "lucide-react";
 import { getWhatsAppLink } from "@/data/business";
 
 export default function OrderSteps() {
@@ -9,7 +9,7 @@ export default function OrderSteps() {
       icon: Layers,
       title: "Choose Your Service",
       telugu: "మీ సేవను ఎంచుకోండి",
-      description: "Browse our 12 in-house printing verticals or use our live calculator to pick your substrate and dimensions.",
+      description: "Browse our 12 in-house printing verticals and explore our transparent wholesale rate card.",
     },
     {
       step: "02",
@@ -20,7 +20,7 @@ export default function OrderSteps() {
     },
     {
       step: "03",
-      icon: Calculator,
+      icon: FileCheck,
       title: "Confirm Your Quotation",
       telugu: "కొటేషన్ కన్ఫర్మ్ చేయండి",
       description: "Review your transparent wholesale quotation and approve the calibrated digital pre-print proof on your phone.",

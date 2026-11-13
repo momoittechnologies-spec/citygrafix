@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, MessageCircle, Calculator, MapPin, Layers } from "lucide-react";
+import { Phone, MessageCircle, Tag, MapPin, Layers } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 
 export default function StickyBottomBar() {
@@ -37,23 +37,23 @@ export default function StickyBottomBar() {
           <span className="text-[10px] tracking-tight">Services</span>
         </Link>
 
-        {/* 2. Price Estimator */}
+        {/* 2. Official Pricing Card */}
         <Link
-          href="/pricing#calculator"
+          href="/pricing"
           className={`flex-1 flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all active:scale-95 ${
             isPricingActive
               ? "text-white font-bold bg-white/10"
               : "text-slate-300 hover:text-white hover:bg-white/5"
           }`}
-          aria-label="Price Calculator"
+          aria-label="View Pricing"
         >
           <div className="relative">
-            <Calculator className={`w-4 h-4 mb-0.5 ${isPricingActive ? "text-brand-gold" : "text-brand-cyan"}`} />
+            <Tag className={`w-4 h-4 mb-0.5 ${isPricingActive ? "text-brand-gold" : "text-brand-cyan"}`} />
             {isPricingActive && (
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-gold" />
             )}
           </div>
-          <span className="text-[10px] tracking-tight">Calculator</span>
+          <span className="text-[10px] tracking-tight">Pricing</span>
         </Link>
 
         {/* 3. Center Elevated Hero Action: WhatsApp Order Desk */}

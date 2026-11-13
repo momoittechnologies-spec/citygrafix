@@ -57,10 +57,10 @@ export default function OurWorkPage() {
               <span>Share Artwork on WhatsApp</span>
             </a>
             <Link
-              href="/pricing#calculator"
+              href="/pricing"
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3 rounded-xl border border-white/15 transition-colors text-sm"
             >
-              Price Calculator
+              Wholesale Rate Card
             </Link>
           </div>
         </div>

@@ -6,7 +6,6 @@ import ServiceVerticals from "@/components/home/ServiceVerticals";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import OrderSteps from "@/components/home/OrderSteps";
 import PriceHighlights from "@/components/home/PriceHighlights";
-import FlexCalculator from "@/components/calculator/FlexCalculator";
 import PortfolioSection from "@/components/home/PortfolioSection";
 import ReviewSection from "@/components/home/ReviewSection";
 import LocationContact from "@/components/home/LocationContact";
@@ -44,14 +43,7 @@ export default function HomePage() {
       {/* 3. Master Capabilities & Services Hub (Interactive Filters) */}
       <ServiceVerticals />
 
-      {/* 4. Live Flex & Signage Price Calculator (Directly accessible below services) */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-slate-100/60" id="calculator-section">
-        <div className="site-container">
-          <FlexCalculator />
-        </div>
-      </section>
-
-      {/* 6. Why Choose City Grafix */}
+      {/* 4. Why Choose City Grafix */}
       <WhyChooseUs />
 
       {/* 7. How to Place an Order (4-Step Flow) */}

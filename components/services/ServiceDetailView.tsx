@@ -158,12 +158,14 @@ export default function ServiceDetailView({ service }: Props) {
                     <span>Call Technician</span>
                   </a>
 
-                  <Link
-                    href="/pricing#calculator"
+                  <a
+                    href={getWhatsAppLink(`Hello City Grafix, I want a quotation for ${service.title}.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-brand-red hover:bg-brand-redDark text-white font-bold px-4 py-3 rounded-xl shadow-sm transition-colors text-sm"
                   >
-                    Calculate Price
-                  </Link>
+                    Get Quotation
+                  </a>
                 </div>
               </div>
 
@@ -363,10 +365,10 @@ export default function ServiceDetailView({ service }: Props) {
                   </a>
 
                   <Link
-                    href="/pricing#calculator"
+                    href="/pricing"
                     className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center space-x-1.5 text-xs text-center"
                   >
-                    <span>Use Flex Calculator</span>
+                    <span>View Rate Card</span>
                   </Link>
                 </div>
 

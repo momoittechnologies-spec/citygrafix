@@ -99,10 +99,15 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing#calculator" className="hover:text-brand-gold transition-colors text-brand-gold font-semibold flex items-center space-x-1">
-                  <span>Instant Flex Calculator</span>
+                <a
+                  href={getWhatsAppLink("Hello City Grafix, I want to get an instant quotation for printing in Kadapa.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-gold transition-colors text-brand-gold font-semibold flex items-center space-x-1"
+                >
+                  <span>Instant WhatsApp Quote</span>
                   <span>→</span>
-                </Link>
+                </a>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-brand-gold transition-colors text-slate-300">
