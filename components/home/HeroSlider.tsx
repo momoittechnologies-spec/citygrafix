@@ -14,7 +14,6 @@ interface HeroSlide {
   id: number;
   categoryName: string;
   badge: string;
-  badgeTelugu: string;
   headline: string;
   accentText: string;
   description: string;
@@ -31,7 +30,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 1,
     categoryName: "Complete Printing Solutions",
     badge: "Direct Workshop in Kadapa • Since 2014",
-    badgeTelugu: "కడపలో సంపూర్ణ ప్రింటింగ్ సొల్యూషన్స్",
     headline: "Commercial Printing, Flex & CAD Blueprints",
     accentText: "Under One Roof.",
     description: "In-house production for wide-format flex banners, A0 architectural plotting, 3D acrylic LED signboards, and personalized gifting.",
@@ -46,7 +44,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 2,
     categoryName: "Star Flex Printing",
     badge: "340+ GSM Weather-Tolerant Flex",
-    badgeTelugu: "స్టార్ ఫ్లెక్స్ & ఔట్‌డోర్ ప్రచారం",
     headline: "Heavy-Duty Star Flex Banners & Hoardings",
     accentText: "Built to Last.",
     description: "Vibrant wide-format banners engineered with UV-cured inks to endure Kadapa's harsh sun and heat with reinforced brass eyelets.",
@@ -61,7 +58,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 3,
     categoryName: "Jumbo Xerox & CAD",
     badge: "Millimeter-Accurate Plotting",
-    badgeTelugu: "జంబో జిరాక్స్ & ఇంజనీరింగ్ ప్లాన్స్",
     headline: "A0, A1, A2 & A3 Architectural CAD Plotting",
     accentText: "Ready in 15 Minutes.",
     description: "High-speed wide-format line plotting for civil engineers, builders, and DTCP municipal sanctions with accordion folding.",
@@ -76,7 +72,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 4,
     categoryName: "3D LED Signage",
     badge: "3-Year Electrical Assurance",
-    badgeTelugu: "3D అక్రిలిక్ ఎల్ఈడీ లెటర్స్ & గ్లో బోర్డ్స్",
     headline: "3D Acrylic Letters & Illuminated Glow Boards",
     accentText: "Directly Fabricated.",
     description: "Precision CNC laser-cut cast acrylic letters, solid aluminum returns, and waterproof Samsung IP67 LED modules.",
@@ -91,7 +86,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 5,
     categoryName: "Personalised Gifts",
     badge: "10% IG Discount on Photo Frames",
-    badgeTelugu: "కస్టమ్ గిఫ్ట్స్ & సబ్లిమేషన్ స్టూడియో",
     headline: "Custom Photo Frames, Mugs & DTF T-Shirts",
     accentText: "Crafted On-Demand.",
     description: "Premium wall photo frames (Glossy/Matty/Glitter with Flat 10% Instagram Discount), AAA ceramic mugs, plush pillows, and washproof DTF T-shirts.",
@@ -106,7 +100,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 6,
     categoryName: "Visiting Cards & Offset",
     badge: "Commercial Offset Printing",
-    badgeTelugu: "విజిటింగ్ కార్డ్స్, బిల్ బుక్స్ & పాంప్లెట్లు",
     headline: "Premium Visiting Cards & Carbonless Bill Books",
     accentText: "Direct Wholesale.",
     description: "350 GSM velvet-matte visiting cards with raised Spot UV gloss highlights and custom duplicate/triplicate NCR bill books.",
@@ -121,7 +114,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 7,
     categoryName: "Municipal Layout Maps",
     badge: "DTCP & KUDA Sanction Compliant",
-    badgeTelugu: "మున్సిపల్ లేఅవుట్స్ & విలేజ్ మ్యాప్స్",
     headline: "Real Estate Venture Layouts & Village Maps",
     accentText: "Continuous 44\" Rolls.",
     description: "High-definition plotting on continuous roll paper for large real estate layouts, revenue village maps (FMB sketches), and building sanctions.",
@@ -136,7 +128,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 8,
     categoryName: "CAD Blueprints",
     badge: "Strict 1:100 & 1:50 Scale Accuracy",
-    badgeTelugu: "ఆర్కిటెక్చరల్ & ఇంజనీరింగ్ డ్రాయింగ్స్",
     headline: "Structural Blueprints & Engineering Layouts",
     accentText: "Zero Line Distortion.",
     description: "Accurate structural plans, foundation grids, column schedules, electrical schematics, and plumbing designs plotted with zero distortion.",
@@ -151,7 +142,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 9,
     categoryName: "Auto Publicity",
     badge: "Turnkey Mobile Rickshaw Campaigns",
-    badgeTelugu: "ఆటో పబ్లిసిటీ & మొబైల్ ప్రచారం",
     headline: "Auto Rickshaw Publicity with DTS Audio",
     accentText: "Cover Every Ward.",
     description: "Complete street-level mobile advertising across Kadapa: 3-sided auto rickshaw flex branding and high-output DTS loudspeaker announcements.",
@@ -166,7 +156,6 @@ const HERO_SLIDES: HeroSlide[] = [
     id: 10,
     categoryName: "Highway Hoardings",
     badge: "Reinforced Wind-Resistant Framing",
-    badgeTelugu: "హోర్డింగ్ ఫలెక్స్ & హైవే బిల్ బోర్డ్స్",
     headline: "Highway Hoardings & Outdoor Steel Billboards",
     accentText: "High-Span Visibility.",
     description: "Heavy-gauge industrial outdoor banners for major traffic arteries and highway bypasses across Kadapa district.",
@@ -365,10 +354,6 @@ export default function HeroSlider() {
             <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
             <span className="text-xs sm:text-sm font-bold text-white tracking-wide">
               {slide.categoryName}
-            </span>
-            <span className="text-white/30 hidden sm:inline">•</span>
-            <span className="text-xs text-brand-gold font-medium hidden sm:inline">
-              {slide.badgeTelugu}
             </span>
           </div>
 
