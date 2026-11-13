@@ -201,21 +201,39 @@ export const ALL_PRICING_TABLES: Record<string, { title: string; rows: PricingRo
     ],
   },
   gifts: {
-    title: "E. Personalized Gifts Rate Card",
+    title: "E. Personalized Gifts & Framing Official Rate Card",
     rows: [
-      { item: "Plain Sparkling White Ceramic Mug (AAA Grade)", rate: "₹350", unit: "per piece", recommendedFor: "Includes protective gift box. Ready in 1–2 hours", category: "gifts" },
-      { item: "Inner Colour Coffee Mug (Red/Blue/Black/Yellow)", rate: "₹450", unit: "per piece", recommendedFor: "Vibrant interior color ceramic coffee mug", category: "gifts" },
-      { item: "Heart Handle Couple Coffee Mug", rate: "₹500", unit: "per piece", recommendedFor: "Sculpted romantic heart handle for couples", category: "gifts" },
-      { item: "Magic Heat Reveal Photo Mug", rate: "₹550", unit: "per piece", recommendedFor: "Black when cold, reveals photo on hot liquid", category: "gifts" },
-      { item: "Custom Photo T-Shirt (Sublimation Round Neck)", rate: "₹300", unit: "per piece (S, M, L)", recommendedFor: "Dry-fit sports fabric, vibrant color prints", category: "gifts" },
-      { item: "Custom Photo T-Shirt (DTF Print - 100% Washproof)", rate: "₹400", unit: "per piece (S, M, L)", recommendedFor: "Combed cotton, lifetime washproof finish", category: "gifts" },
-      { item: "Desktop Photo Stand Frame (6 × 8 inches)", rate: "₹250", unit: "per frame", recommendedFor: "Includes fold-out desktop easel & wall hook", category: "gifts" },
-      { item: "Classic Wall Photo Frame (8 × 12 inches / A4)", rate: "₹350", unit: "per frame", recommendedFor: "Synthetic wooden molding with crystal clear face", category: "gifts" },
-      { item: "Family Collage Wall Frame (12 × 18 inches)", rate: "₹650", unit: "per frame", recommendedFor: "Fits 4 to 8 family photographs", category: "gifts" },
-      { item: "Ambient LED Glow Backlit Wall Frame (12 × 18 in)", rate: "₹1,250", unit: "per frame", recommendedFor: "Internal warm night light glow with power adapter", category: "gifts" },
-      { item: "Standard Heart or Square Photo Pillow", rate: "₹450", unit: "per pillow", recommendedFor: "Hypoallergenic microfiber stuffed cushion", category: "gifts" },
-      { item: "Magic Reversible Sequins Pillow (Swipe to reveal)", rate: "₹800", unit: "per pillow", recommendedFor: "Shiny sequins swipe to reveal hidden photo", category: "gifts" },
-      { item: "Structured Cap with DTF Logo / Photo Print", rate: "₹300", unit: "per cap", recommendedFor: "Baseball trucker caps in Black, White, Red, Navy", category: "gifts" },
+      // 1. Photo Frames (Official Flyer Rate Card)
+      { item: "Custom Photo Frame (A4 / 8 × 12 inches)", teluguItem: "కస్టమ్ ఫోటో ఫ్రేమ్ A4 (8x12)", rate: "₹600", unit: "per frame", recommendedFor: "Glossy or Matty Sheet finish. Flat 10% off with IG follow", category: "gifts" },
+      { item: "Custom Photo Frame (12 × 18 inches)", teluguItem: "కస్టమ్ ఫోటో ఫ్రేమ్ (12x18)", rate: "₹1,200", unit: "per frame", recommendedFor: "Standard wall portrait. Glossy/Matty sheet included", category: "gifts" },
+      { item: "Custom Photo Frame (16 × 24 inches)", teluguItem: "కస్టమ్ ఫోటో ఫ్రేమ్ (16x24)", rate: "₹2,000", unit: "per frame", recommendedFor: "Medium wall frame for couple/family portraits", category: "gifts" },
+      { item: "Custom Photo Frame (18 × 24 inches)", teluguItem: "కస్టమ్ ఫోటో ఫ్రేమ్ (18x24)", rate: "₹2,300", unit: "per frame", recommendedFor: "Grand wall showcase framing with sturdy back support", category: "gifts" },
+      { item: "Custom Photo Frame (12 × 36 inches Panorama)", teluguItem: "కస్టమ్ ఫోటో ఫ్రేమ్ (12x36)", rate: "₹3,000", unit: "per frame", recommendedFor: "Panoramic wide family collage & milestone montage", category: "gifts" },
+      { item: "Custom Photo Frame (24 × 36 inches Mega Wall)", teluguItem: "కస్టమ్ ఫోటో ఫ్రేమ్ (24x36)", rate: "₹4,500", unit: "per frame", recommendedFor: "Living room mega centerpiece wall portrait", category: "gifts" },
+      { item: "Glitter Sheet Finish Upgrade (Photo Frames)", teluguItem: "గ్లిట్టర్ షీట్ ఫినిష్", rate: "+₹50", unit: "extra per frame", recommendedFor: "Sparkling & eye-catching luxury finish (₹50 extra only)", category: "gifts" },
+      { item: "Instagram Special: Flat 10% Off Photo Frames", teluguItem: "ఇన్‌స్టాగ్రామ్ ఫాలోవర్స్ 10% డిస్కౌంట్", rate: "10% OFF", unit: "special discount", recommendedFor: "Follow @citygrafix1 on Instagram to claim instant 10% off", category: "gifts" },
+
+      // 2. Custom Photo Mugs (Official Flyer Rate Card)
+      { item: "Plain Ceramic Photo Cup (White AAA Grade)", teluguItem: "ప్లెయిన్ వైట్ సిరామిక్ కప్", rate: "₹350", unit: "per cup", recommendedFor: "High-gloss crisp sublimation print. Ready in 1–2 hours", category: "gifts" },
+      { item: "Inner Colour Ceramic Coffee Cup", teluguItem: "ఇన్నర్ కలర్ కాఫీ కప్", rate: "₹450", unit: "per cup", recommendedFor: "White exterior with vibrant red/blue/black/yellow interior", category: "gifts" },
+      { item: "Heart Handle Couple Coffee Cup", teluguItem: "హార్ట్ హ్యాండిల్ కపుల్ కప్", rate: "₹500", unit: "per cup", recommendedFor: "Romantic sculpted red heart handle for anniversaries", category: "gifts" },
+      { item: "Magic Heat Reveal Photo Mug", teluguItem: "మ్యాజిక్ హీట్ రివీల్ కప్", rate: "₹550", unit: "per cup", recommendedFor: "Pitch black when cool; hot beverage magically reveals photo", category: "gifts" },
+      { item: "Gift Wrapping Service (Mugs & Pillows)", teluguItem: "గిఫ్ట్ ప్యాకింగ్ సర్వీస్", rate: "+₹50", unit: "extra per gift", recommendedFor: "Decorative festive box packaging with satin ribbon", category: "gifts" },
+
+      // 3. Beautiful Photo Pillows (Official Flyer Rate Card)
+      { item: "Heart or Square Personalized Photo Pillow", teluguItem: "హార్ట్ లేదా స్క్వేర్ ఫోటో పిల్లో", rate: "₹500", unit: "per pillow", recommendedFor: "Plush soft red fur cushion with custom photo print", category: "gifts" },
+      { item: "Heart or Square Fancy Photo Pillow", teluguItem: "హార్ట్ లేదా స్క్వేర్ ఫ్యాన్సీ పిల్లో", rate: "₹600", unit: "per pillow", recommendedFor: "Rose petal texture / satin ruffled luxury border", category: "gifts" },
+      { item: "Heart or Square Magic Sequins Pillow", teluguItem: "మ్యాజిక్ సీక్విన్స్ పిల్లో", rate: "₹750", unit: "per pillow", recommendedFor: "Reversible two-way sequins swipe to reveal hidden photo", category: "gifts" },
+      { item: "Heart or Square Glowing L.E.D. Pillow", teluguItem: "ఎల్ఈడీ గ్లోయింగ్ ఫోటో పిల్లో", rate: "₹800", unit: "per pillow", recommendedFor: "Built-in multi-color glowing fairy LED lights with switch", category: "gifts" },
+
+      // 4. Custom T-Shirts & DTF Printing (Official Flyer Rate Card)
+      { item: "DTF Heat Print Only (Customer's Own T-Shirt)", teluguItem: "డీటీఎఫ్ హీట్ ప్రింట్ ఓన్లీ", rate: "₹200", unit: "each print", recommendedFor: "Bring your own T-shirt or fabric; 100% washproof DTF print", category: "gifts" },
+      { item: "Sublimation Without Collar T-Shirt (S, M, L)", teluguItem: "సబ్లిమేషన్ రౌండ్ నెక్ టీ-షర్ట్", rate: "₹400", unit: "per t-shirt", recommendedFor: "Dry-fit sports fabric, vibrant multi-color full prints", category: "gifts" },
+      { item: "DTF Print + Without Collar T-Shirt (S, M, L)", teluguItem: "డీటీఎఫ్ రౌండ్ నెక్ టీ-షర్ట్", rate: "₹400", unit: "per t-shirt", recommendedFor: "Combed cotton round neck with 100% washproof DTF print", category: "gifts" },
+      { item: "DTF Print + Collar Polo T-Shirt (S, M, L)", teluguItem: "డీటీఎఫ్ కాలర్ పోలో టీ-షర్ట్", rate: "₹500", unit: "per t-shirt", recommendedFor: "Executive collar polo with chest/back high-density DTF logo", category: "gifts" },
+      { item: "Custom Cap + DTF Print", teluguItem: "కస్టమ్ క్యాప్ + ప్రింట్", rate: "₹300", unit: "per cap", recommendedFor: "Structured trucker / baseball cap with custom logo or photo", category: "gifts" },
+      { item: "T-Shirt Size Add-on: XL & XXL", teluguItem: "XL & XXL సైజుల చార్జీ", rate: "+₹50", unit: "extra per t-shirt", recommendedFor: "Applies to all collar and round neck T-shirt models", category: "gifts" },
+      { item: "T-Shirt Size Add-on: XXXL & Jumbo", teluguItem: "XXXL & జంబో సైజుల చార్జీ", rate: "+₹100", unit: "extra per t-shirt", recommendedFor: "Applies to all collar and round neck T-shirt models", category: "gifts" },
     ],
   },
 };

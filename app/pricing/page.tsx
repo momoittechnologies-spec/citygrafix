@@ -16,7 +16,7 @@ export default function PricingPage() {
     { id: "finishing", label: "B. Finishing & Add-ons" },
     { id: "xeroxCad", label: "C. Jumbo Xerox & CAD" },
     { id: "offsetCommercial", label: "D. Commercial Offset" },
-    { id: "gifts", label: "E. Personalized Gifts" },
+    { id: "gifts", label: "E. Personalized Gifts & Framing" },
   ];
 
   // Filter items based on activeTab and searchTerm
