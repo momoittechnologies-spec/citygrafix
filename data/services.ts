@@ -110,7 +110,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     teluguTitle: "స్టిక్కర్లు, బోర్డులు & కమర్షియల్ ప్రింటింగ్",
     description: "Vinyl stickers, Sunboard rigid displays, one-way vision glass films, 350 GSM visiting cards, NCR carbonless bill books, and pamphlets.",
     iconName: "Printer",
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/stickers-boards-commercial.jpg",
     keyServices: [
       "Waterproof Vinyl Stickers & Decals",
       "3mm & 5mm Sunboard / PVC Displays",
@@ -554,7 +554,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     startingPrice: "₹750 / 1000 cards",
     pricingDetails: "1000 Visiting Cards (Matte): ₹750 | 350 GSM Gloss: ₹950 | Spot UV Velvet: ₹1,650 | Duplicate Bill Books (5 pack): ₹850 | A5 Flyers (1000): ₹950",
     supportedSizes: ["Standard Business Card (3.5 x 2 in)", "A5 Flyer (148 x 210 mm)", "A4 Flyer (210 x 297 mm)", "Standard Bill Book Dimensions"],
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/stickers-boards-commercial.jpg",
     benefits: [
       "Crisp offset printing with rich saturated inks and sharp typography",
       "High-grade carbonless paper that produces sharp duplicates without messy carbon sheets",

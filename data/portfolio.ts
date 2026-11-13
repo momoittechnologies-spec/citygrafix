@@ -60,7 +60,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     title: "Velvet Spot UV 350 GSM Corporate Visiting Cards",
     category: "offset",
     categoryLabel: "Commercial Offset",
-    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=1000&q=80",
+    image: "/images/stickers-boards-commercial.jpg",
     description: "Wholesale 1000-pack business cards with matte velvet lamination and raised gloss Spot UV detailing on brand typography.",
     location: "Ganagapeta Commercial Hub, Kadapa",
     clientType: "Corporate Enterprise",
