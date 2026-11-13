@@ -179,7 +179,7 @@ const HERO_SLIDES: HeroSlide[] = [
   },
 ];
 
-const ROTATION_DURATION_MS = 6500;
+const ROTATION_DURATION_MS = 7000;
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -190,39 +190,61 @@ export default function HeroSlider() {
   const touchEndX = useRef<number>(0);
   const progressStartTimeRef = useRef<number>(Date.now());
   const animationFrameRef = useRef<number>();
+  const resumeTimeoutRef = useRef<NodeJS.Timeout>();
 
-  const nextSlide = useCallback(() => {
+  // Pause temporarily when user interacts (swipes, clicks arrows, or taps)
+  const pauseTemporarily = useCallback((durationMs = 8000) => {
+    setIsPaused(true);
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      progressStartTimeRef.current = Date.now();
+      setProgress(0);
+      setIsPaused(false);
+    }, durationMs);
+  }, []);
+
+  const nextSlide = useCallback((manual = false) => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     setProgress(0);
     progressStartTimeRef.current = Date.now();
-  }, []);
+    if (manual) pauseTemporarily();
+  }, [pauseTemporarily]);
 
-  const prevSlide = useCallback(() => {
+  const prevSlide = useCallback((manual = false) => {
     setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
     setProgress(0);
     progressStartTimeRef.current = Date.now();
-  }, []);
+    if (manual) pauseTemporarily();
+  }, [pauseTemporarily]);
 
-  const goToSlide = useCallback((index: number) => {
+  const goToSlide = useCallback((index: number, manual = false) => {
     setCurrentSlide(index);
     setProgress(0);
     progressStartTimeRef.current = Date.now();
+    if (manual) pauseTemporarily();
+  }, [pauseTemporarily]);
+
+  // Clean up timers on unmount
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    };
   }, []);
 
   // Keyboard Navigation (ArrowLeft / ArrowRight)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
-        prevSlide();
+        prevSlide(true);
       } else if (e.key === "ArrowRight") {
-        nextSlide();
+        nextSlide(true);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // Page Visibility API
+  // Page Visibility API (Sleep when tab is minimized/hidden to preserve mobile battery)
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -249,7 +271,7 @@ export default function HeroSlider() {
       setProgress(pct);
 
       if (elapsed >= ROTATION_DURATION_MS) {
-        nextSlide();
+        nextSlide(false);
       } else {
         animationFrameRef.current = requestAnimationFrame(updateProgress);
       }
@@ -262,10 +284,11 @@ export default function HeroSlider() {
     };
   }, [isPaused, currentSlide, nextSlide]);
 
-  // Touch Gesture Handling
+  // Touch Gesture Handling with Smart Mobile Hold
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
     touchEndX.current = e.targetTouches[0].clientX;
+    setIsPaused(true);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -274,12 +297,17 @@ export default function HeroSlider() {
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     const endX = e.changedTouches && e.changedTouches[0] ? e.changedTouches[0].clientX : touchEndX.current;
-    if (!touchStartX.current || !endX) return;
+    if (!touchStartX.current || !endX) {
+      pauseTemporarily(6000);
+      return;
+    }
     const distance = touchStartX.current - endX;
     if (distance > 40) {
-      nextSlide();
+      nextSlide(true);
     } else if (distance < -40) {
-      prevSlide();
+      prevSlide(true);
+    } else {
+      pauseTemporarily(6000);
     }
     touchStartX.current = 0;
     touchEndX.current = 0;
@@ -309,10 +337,10 @@ export default function HeroSlider() {
         <AnimatePresence mode="wait">
           <motion.div
             key={slide.id}
-            initial={{ opacity: 0, scale: 1.02 }}
+            initial={{ opacity: 0, scale: 1.025 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
             className="absolute inset-0 w-full h-full"
           >
             <Image
@@ -344,26 +372,31 @@ export default function HeroSlider() {
             </span>
           </div>
 
-          {/* Slide Number Indicator */}
-          <div className="pointer-events-auto bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-xs font-mono font-bold text-slate-200 shadow-md">
+          {/* Slide Number Indicator with subtle status */}
+          <div className="pointer-events-auto bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-xs font-mono font-bold text-slate-200 shadow-md flex items-center space-x-1.5">
             <span className="text-brand-red">{String(currentSlide + 1).padStart(2, "0")}</span>
-            <span className="text-slate-500"> / </span>
+            <span className="text-slate-500">/</span>
             <span>{String(HERO_SLIDES.length).padStart(2, "0")}</span>
+            {isPaused ? (
+              <span className="text-[10px] text-amber-400 font-sans font-medium pl-1.5 border-l border-white/15 hidden sm:inline">
+                Paused
+              </span>
+            ) : null}
           </div>
         </div>
 
         {/* Floating Left & Right Cinematic Arrow Controls */}
         <button
-          onClick={prevSlide}
-          className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl"
+          onClick={() => prevSlide(true)}
+          className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl cursor-pointer"
           aria-label="Previous Slide"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
         <button
-          onClick={nextSlide}
-          className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl"
+          onClick={() => nextSlide(true)}
+          className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl cursor-pointer"
           aria-label="Next Slide"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -413,7 +446,9 @@ export default function HeroSlider() {
         {/* Subtle Progress Bar Along Bottom Edge of Full-Width Slider */}
         <div className="absolute bottom-0 inset-x-0 h-1 bg-white/10 z-20">
           <div
-            className="h-full bg-brand-red transition-all duration-100 ease-linear"
+            className={`h-full bg-brand-red transition-all duration-100 ease-linear ${
+              isPaused ? "opacity-60" : "opacity-100"
+            }`}
             style={{ width: `${progress}%` }}
           />
         </div>
