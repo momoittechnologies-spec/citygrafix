@@ -93,7 +93,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     teluguTitle: "పర్సనలైజ్డ్ గిఫ్ట్స్, ఫోటో ఫ్రేమ్స్ & డీటీఎఫ్ ప్రింటింగ్",
     description: "Premium wall photo frames (Glossy/Matty/Glitter with Flat 10% Instagram Discount), AAA ceramic photo mugs, magic reveal mugs, plush photo pillows, and washproof DTF T-shirts.",
     iconName: "Gift",
-    image: "/images/gifting-photo-frames-price-chart.jpg",
+    image: "/images/personalized-gifts-collection.jpg",
     keyServices: [
       "Custom Photo Frames (A4 to 24×36 - Glossy/Matty/Glitter)",
       "Flat 10% Discount on Photo Frames with Instagram Follow",
@@ -598,7 +598,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     startingPrice: "From ₹200 (DTF Print) / ₹350 (Mugs) / ₹600 (Frames)",
     pricingDetails: "Photo Frames: A4 ₹600 | 12×18 ₹1,200 | 16×24 ₹2,000 | 18×24 ₹2,300 | 12×36 ₹3,000 | 24×36 ₹4,500 (10% IG Discount applies) | Mugs: ₹350–₹550 | Pillows: ₹500–₹800 | T-Shirts: ₹400–₹500 (or ₹200 print only)",
     supportedSizes: ["Photo Frames: A4/8x12, 12x18, 16x24, 18x24, 12x36, 24x36", "T-Shirts: S, M, L, XL, XXL, XXXL, Jumbo", "Pillows: Heart & Square Standard/Fancy", "Mugs: 325ml Standard & Magic"],
-    image: "/images/gifting-photo-frames-price-chart.jpg",
+    image: "/images/personalized-gifts-collection.jpg",
     benefits: [
       "In-house workshop production with high-speed color calibration and zero middleman delays",
       "True-to-life vibrant colors with UV-protective laminates and sturdy synthetic wooden backings",
