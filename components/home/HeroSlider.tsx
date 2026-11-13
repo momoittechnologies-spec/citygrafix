@@ -7,8 +7,10 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
+  MessageCircle,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getWhatsAppLink } from "@/data/business";
 
 interface HeroSlide {
   id: number;
@@ -322,11 +324,11 @@ export default function HeroSlider() {
       <link rel="preload" as="image" href={nextSlideData.image} />
 
       {/* Full-Width Bezel-less Cinematic Image Showcase */}
-      <div className="relative w-full h-[440px] sm:h-[520px] md:h-[600px] lg:h-[680px] xl:h-[740px] 2xl:h-[800px] overflow-hidden bg-slate-950 group">
+      <div className="relative w-full h-[520px] sm:h-[580px] md:h-[640px] lg:h-[700px] xl:h-[760px] overflow-hidden bg-slate-950 group">
         <AnimatePresence mode="wait">
           <motion.div
             key={slide.id}
-            initial={{ opacity: 0, scale: 1.025 }}
+            initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
@@ -341,39 +343,77 @@ export default function HeroSlider() {
               sizes="100vw"
             />
 
-            {/* Natural Seamless Vignette Overlays for Text Legibility & Depth */}
-            <div className="absolute inset-x-0 bottom-0 h-52 sm:h-72 bg-gradient-to-t from-slate-950 via-slate-950/65 to-transparent pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-slate-950/70 via-slate-950/30 to-transparent pointer-events-none" />
+            {/* Asymmetric Cinematic Scrim: Dense on the left for maximum text contrast, fading out to reveal authentic machinery */}
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/55 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-40 sm:h-52 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/60 to-transparent pointer-events-none" />
           </motion.div>
         </AnimatePresence>
 
-        {/* Floating Top Elements: Category Badge & Slide Counter */}
-        <div className="site-container absolute top-4 sm:top-6 inset-x-0 z-20 pointer-events-none flex items-center justify-between">
-          {/* Category Identification Badge */}
-          <div className="pointer-events-auto bg-brand-navy/90 backdrop-blur-md border border-white/15 px-3.5 sm:px-4 py-1.5 rounded-xl shadow-lg flex items-center space-x-2">
-            <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-            <span className="text-xs sm:text-sm font-bold text-white tracking-wide">
-              {slide.categoryName}
-            </span>
-          </div>
-
-          {/* Slide Number Indicator with subtle status */}
-          <div className="pointer-events-auto bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-xs font-mono font-bold text-slate-200 shadow-md flex items-center space-x-1.5">
-            <span className="text-brand-red">{String(currentSlide + 1).padStart(2, "0")}</span>
-            <span className="text-slate-500">/</span>
-            <span>{String(HERO_SLIDES.length).padStart(2, "0")}</span>
-            {isPaused ? (
-              <span className="text-[10px] text-amber-400 font-sans font-medium pl-1.5 border-l border-white/15 hidden sm:inline">
-                Paused
+        {/* Integrated Left-Aligned Hero Content */}
+        <div className="site-container relative z-20 h-full flex flex-col justify-end pb-12 sm:pb-16 md:justify-center md:pb-0 pointer-events-none">
+          <div className="max-w-2xl pointer-events-auto space-y-3 sm:space-y-4 pt-10 sm:pt-0">
+            {/* Category & Verified Badge */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center space-x-1.5 bg-brand-red text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span>{slide.categoryName}</span>
               </span>
-            ) : null}
+              <span className="inline-flex items-center text-[11px] sm:text-xs bg-white/10 text-slate-200 border border-white/15 px-3 py-1 rounded-full font-medium backdrop-blur-sm">
+                {slide.badge}
+              </span>
+            </div>
+
+            {/* Main Headline with Highlight Accent */}
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.12]">
+              <span>{slide.headline} </span>
+              <span className="text-brand-gold">{slide.accentText}</span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-slate-300 text-xs sm:text-base lg:text-lg leading-relaxed max-w-xl line-clamp-2 sm:line-clamp-3">
+              {slide.description}
+            </p>
+
+            {/* Quick Metrics Bar: Wholesale Pricing & Fast Turnaround */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm pt-1">
+              <div className="flex items-center space-x-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+                <span className="text-slate-400 font-normal">Pricing:</span>
+                <span className="text-emerald-400 font-bold">{slide.startingPrice}</span>
+              </div>
+              <div className="flex items-center space-x-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+                <span className="text-slate-400 font-normal">Turnaround:</span>
+                <span className="text-white font-bold">{slide.turnaroundTime}</span>
+              </div>
+            </div>
+
+            {/* Dual Action CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <Link
+                href={slide.primaryCtaLink}
+                className="bg-brand-red hover:bg-brand-redDark text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all shadow-lg shadow-brand-red/30 hover:shadow-brand-red/50 flex items-center space-x-2 group/btn"
+              >
+                <span>{slide.primaryCtaText}</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+              </Link>
+
+              <a
+                href={getWhatsAppLink(`Hello City Grafix, I want to inquire about ${slide.categoryName} (${slide.headline}).`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl backdrop-blur-sm transition-all flex items-center space-x-2"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-400" />
+                <span>Quick WhatsApp Quote</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Floating Left & Right Cinematic Arrow Controls */}
+        {/* Floating Minimal Navigation Controls */}
         <button
           onClick={() => prevSlide(true)}
-          className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl cursor-pointer"
+          className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-black/75 backdrop-blur-md border border-white/15 text-white transition-all flex items-center justify-center opacity-70 hover:opacity-100 hover:scale-105 active:scale-95 shadow-xl cursor-pointer"
           aria-label="Previous Slide"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -381,50 +421,18 @@ export default function HeroSlider() {
 
         <button
           onClick={() => nextSlide(true)}
-          className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl cursor-pointer"
+          className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-black/75 backdrop-blur-md border border-white/15 text-white transition-all flex items-center justify-center opacity-70 hover:opacity-100 hover:scale-105 active:scale-95 shadow-xl cursor-pointer"
           aria-label="Next Slide"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
 
-        {/* Sleek Bottom Information Overlay Bar */}
-        <div className="site-container absolute bottom-10 sm:bottom-14 lg:bottom-16 inset-x-0 z-20">
-          <div className="bg-slate-950/80 backdrop-blur-md border border-white/15 p-3.5 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xl">
-            <div className="flex items-center space-x-3 min-w-0">
-              <div className="w-2.5 h-2.5 rounded-full bg-brand-gold shrink-0 hidden sm:block" />
-              <div className="min-w-0">
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm sm:text-base lg:text-lg font-black text-white tracking-tight truncate">
-                    {slide.headline}
-                  </span>
-                  <span className="text-xs font-bold text-brand-red hidden lg:inline">
-                    {slide.accentText}
-                  </span>
-                </div>
-                <p className="text-slate-300 text-xs sm:text-sm line-clamp-1 mt-0.5 max-w-2xl">
-                  {slide.description}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-2 sm:space-x-4 shrink-0 self-end sm:self-auto">
-              <div className="text-right hidden md:block">
-                <span className="text-[10px] text-slate-400 block uppercase font-mono tracking-wider">
-                  {slide.locationContext}
-                </span>
-                <span className="text-xs font-bold text-emerald-400">
-                  {slide.startingPrice}
-                </span>
-              </div>
-
-              <Link
-                href={slide.primaryCtaLink}
-                className="bg-brand-red hover:bg-brand-redDark text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl transition-colors flex items-center space-x-1.5 shadow-sm"
-              >
-                <span>View Service</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+        {/* Slide Counter & Indicators */}
+        <div className="site-container absolute bottom-4 sm:bottom-6 right-0 z-20 pointer-events-none flex items-center justify-end">
+          <div className="pointer-events-auto bg-black/50 backdrop-blur-md border border-white/15 px-3 py-1 rounded-xl text-xs font-mono font-bold text-slate-200 shadow-md flex items-center space-x-1.5">
+            <span className="text-brand-red">{String(currentSlide + 1).padStart(2, "0")}</span>
+            <span className="text-slate-500">/</span>
+            <span>{String(HERO_SLIDES.length).padStart(2, "0")}</span>
           </div>
         </div>
 

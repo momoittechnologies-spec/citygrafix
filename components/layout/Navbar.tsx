@@ -108,7 +108,11 @@ export default function Navbar() {
   return (
     <>
       {/* Top Notification Bar for Kadapa Local Trust */}
-      <div className="bg-brand-dark text-slate-300 text-xs py-2 px-4 border-b border-white/10 hidden md:block">
+      <div
+        className={`bg-brand-dark text-slate-300 text-xs px-4 border-b border-white/10 hidden md:block transition-all duration-300 overflow-hidden ${
+          scrolled ? "max-h-0 py-0 opacity-0 border-b-0" : "max-h-12 py-2 opacity-100"
+        }`}
+      >
         <div className="site-container flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <span className="flex items-center text-amber-400 font-medium">
@@ -152,8 +156,8 @@ export default function Navbar() {
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-brand-navy/95 backdrop-blur-md shadow-xl border-b border-white/10 py-2.5"
-            : "bg-brand-navy border-b border-white/10 py-3.5"
+            ? "bg-brand-navy/95 backdrop-blur-md shadow-xl border-b border-white/10 py-2 sm:py-2.5"
+            : "bg-brand-navy border-b border-white/10 py-2.5 sm:py-3.5"
         }`}
       >
         <div className="site-container flex items-center justify-between">

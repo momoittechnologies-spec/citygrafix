@@ -77,19 +77,25 @@ export default function ServiceVerticals() {
             {SERVICE_CATEGORIES.map((category) => (
               <div
                 key={category.id}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group"
+                className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 {/* Product Photo */}
-                <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-900">
+                <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-slate-900">
                   <Image
                     src={category.image}
                     alt={category.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute top-3 left-3 bg-brand-navy/95 backdrop-blur-sm px-2.5 py-1 rounded text-xs font-bold text-brand-gold">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-3.5 left-3.5 bg-brand-navy/95 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-bold text-brand-gold border border-white/10 shadow-sm">
                     {category.teluguTitle}
+                  </div>
+                  <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-xs text-white">
+                    <span className="font-semibold text-[11px] bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
+                      ⚡ {category.turnaroundSummary}
+                    </span>
                   </div>
                 </div>
 
@@ -99,17 +105,17 @@ export default function ServiceVerticals() {
                     <h3 className="text-lg font-bold text-brand-navy group-hover:text-brand-royal transition-colors">
                       {category.title}
                     </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                    <p className="text-slate-600 text-xs sm:text-sm mt-1.5 leading-relaxed line-clamp-2">
                       {category.description}
                     </p>
                   </div>
 
                   {/* Capabilities list */}
                   <div className="space-y-1.5 pt-3 border-t border-slate-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
-                      Manufactured On-Site:
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                      Direct In-House Fabrication:
                     </span>
-                    {category.keyServices.map((service, idx) => (
+                    {category.keyServices.slice(0, 3).map((service, idx) => (
                       <div key={idx} className="flex items-center text-xs text-slate-700 font-medium">
                         <Check className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
                         <span className="truncate">{service}</span>
@@ -117,21 +123,13 @@ export default function ServiceVerticals() {
                     ))}
                   </div>
 
-                  <div className="pt-2 text-xs text-slate-600 flex items-center justify-between border-t border-slate-100">
-                    <span className="flex items-center">
-                      <Clock className="w-3.5 h-3.5 mr-1 text-slate-400" />
-                      Turnaround:
-                    </span>
-                    <span className="font-bold text-brand-navy">{category.turnaroundSummary}</span>
-                  </div>
-
                   {/* Card Actions */}
-                  <div className="grid grid-cols-2 gap-2 pt-2">
+                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100">
                     <button
                       onClick={() => setActiveTab(category.slug)}
-                      className="bg-slate-100 hover:bg-brand-navy hover:text-white text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1"
+                      className="bg-slate-100 hover:bg-brand-navy hover:text-white text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1"
                     >
-                      <span>Explore Items</span>
+                      <span>View Services</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
 
@@ -139,10 +137,10 @@ export default function ServiceVerticals() {
                       href={getWhatsAppLink(`Hello City Grafix, I want a quotation for ${category.title}. Here are my requirements:`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1 shadow-sm"
+                      className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1 shadow-sm"
                     >
                       <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                      <span>WhatsApp Quote</span>
+                      <span>Quote</span>
                     </a>
                   </div>
                 </div>

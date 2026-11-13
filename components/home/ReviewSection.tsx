@@ -316,12 +316,12 @@ export default function ReviewSection() {
           ))}
         </div>
 
-        {/* Review Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Review Cards Grid & Mobile Horizontal Snap Carousel */}
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
           {filteredReviews.map((r) => (
             <div
               key={r.id}
-              className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all relative group"
+              className="min-w-[280px] sm:min-w-[320px] md:min-w-0 snap-center bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all relative group"
             >
               {/* Card Header */}
               <div>

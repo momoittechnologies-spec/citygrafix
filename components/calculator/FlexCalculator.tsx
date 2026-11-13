@@ -318,7 +318,7 @@ Please confirm the quote and let me know the artwork submission and delivery tim
         </div>
 
         {/* Right Column: Visual Aspect-Ratio Preview & Calculation Summary */}
-        <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-slate-50/80 p-5 sm:p-6 rounded-2xl border border-slate-200">
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-slate-50/90 p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-sm lg:sticky lg:top-24 h-fit">
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center space-x-1">
