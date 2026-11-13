@@ -359,7 +359,7 @@ export default function HeroSlider() {
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 <span>{slide.categoryName}</span>
               </span>
-              <span className="inline-flex items-center text-[11px] sm:text-xs bg-white/10 text-slate-200 border border-white/15 px-3 py-1 rounded-full font-medium backdrop-blur-sm">
+              <span className="hidden sm:inline-flex items-center text-[11px] sm:text-xs bg-white/10 text-slate-200 border border-white/15 px-3 py-1 rounded-full font-medium backdrop-blur-sm">
                 {slide.badge}
               </span>
             </div>
@@ -370,25 +370,13 @@ export default function HeroSlider() {
               <span className="text-brand-gold">{slide.accentText}</span>
             </h1>
 
-            {/* Description */}
+            {/* Description (Concise & Legible) */}
             <p className="text-slate-300 text-xs sm:text-base lg:text-lg leading-relaxed max-w-xl line-clamp-2 sm:line-clamp-3">
               {slide.description}
             </p>
 
-            {/* Quick Metrics Bar: Wholesale Pricing & Fast Turnaround */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm pt-1">
-              <div className="flex items-center space-x-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
-                <span className="text-slate-400 font-normal">Pricing:</span>
-                <span className="text-emerald-400 font-bold">{slide.startingPrice}</span>
-              </div>
-              <div className="flex items-center space-x-1.5 bg-black/40 border border-white/15 px-3 py-1.5 rounded-lg backdrop-blur-sm">
-                <span className="text-slate-400 font-normal">Turnaround:</span>
-                <span className="text-white font-bold">{slide.turnaroundTime}</span>
-              </div>
-            </div>
-
-            {/* Dual Action CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Action CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <Link
                 href={slide.primaryCtaLink}
                 className="bg-brand-red hover:bg-brand-redDark text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all shadow-lg shadow-brand-red/30 hover:shadow-brand-red/50 flex items-center space-x-2 group/btn"
@@ -401,7 +389,7 @@ export default function HeroSlider() {
                 href={getWhatsAppLink(`Hello City Grafix, I want to inquire about ${slide.categoryName} (${slide.headline}).`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl backdrop-blur-sm transition-all flex items-center space-x-2"
+                className="hidden sm:flex bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl backdrop-blur-sm transition-all items-center space-x-2"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
                 <span>Quick WhatsApp Quote</span>
