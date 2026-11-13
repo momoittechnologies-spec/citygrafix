@@ -215,10 +215,16 @@ export const ALL_PRICING_TABLES: Record<string, { title: string; rows: PricingRo
 
       // 2. Custom Photo Mugs (Official Flyer Rate Card)
       { item: "Plain Ceramic Photo Cup (White AAA Grade)", teluguItem: "ప్లెయిన్ వైట్ సిరామిక్ కప్", rate: "₹350", unit: "per cup", recommendedFor: "High-gloss crisp sublimation print. Ready in 1–2 hours", category: "gifts" },
-      { item: "Inner Colour Ceramic Coffee Cup", teluguItem: "ఇన్నర్ కలర్ కాఫీ కప్", rate: "₹450", unit: "per cup", recommendedFor: "White exterior with vibrant red/blue/black/yellow interior", category: "gifts" },
-      { item: "Heart Handle Couple Coffee Cup", teluguItem: "హార్ట్ హ్యాండిల్ కపుల్ కప్", rate: "₹500", unit: "per cup", recommendedFor: "Romantic sculpted red heart handle for anniversaries", category: "gifts" },
-      { item: "Magic Heat Reveal Photo Mug", teluguItem: "మ్యాజిక్ హీట్ రివీల్ కప్", rate: "₹550", unit: "per cup", recommendedFor: "Pitch black when cool; hot beverage magically reveals photo", category: "gifts" },
+      { item: "Inner Colour Ceramic Coffee Cup (9 Colours)", teluguItem: "ఇన్నర్ కలర్ కాఫీ కప్", rate: "₹450", unit: "per cup", recommendedFor: "White exterior with vibrant red/blue/black/yellow/green/pink interior", category: "gifts" },
+      { item: "Heart Handle Couple Coffee Cup (Multi-Colour)", teluguItem: "హార్ట్ హ్యాండిల్ కపుల్ కప్", rate: "₹500", unit: "per cup", recommendedFor: "Romantic sculpted red/black/blue/yellow heart handle for anniversaries", category: "gifts" },
+      { item: "Magic Heat Reveal Photo Mug (Thermosensitive)", teluguItem: "మ్యాజిక్ హీట్ రివీల్ కప్", rate: "₹550", unit: "per cup", recommendedFor: "Pitch black when cold; hot beverage magically reveals full HD photo", category: "gifts" },
       { item: "Gift Wrapping Service (Mugs & Pillows)", teluguItem: "గిఫ్ట్ ప్యాకింగ్ సర్వీస్", rate: "+₹50", unit: "extra per gift", recommendedFor: "Decorative festive box packaging with satin ribbon", category: "gifts" },
+
+      // 3. Custom Printed Round Badges (Official Flyer Rate Card)
+      { item: "Round Pin Badge (44 mm / 4.4 cm)", teluguItem: "రౌండ్ పిన్ బ్యాడ్జ్ (44mm)", rate: "₹25", unit: "per badge", recommendedFor: "Schools, colleges, election campaigns, and bulk event identification", category: "gifts" },
+      { item: "Round Pin Badge (58 mm / 5.8 cm)", teluguItem: "రౌండ్ పిన్ బ్యాడ్జ్ (58mm)", rate: "₹30", unit: "per badge", recommendedFor: "Standard round badge size for brands, clubs, studios & conferences", category: "gifts" },
+      { item: "Round Magnetic Badge (44 mm / 4.4 cm)", teluguItem: "రౌండ్ మాగ్నెటిక్ బ్యాడ్జ్ (44mm)", rate: "₹55", unit: "per badge", recommendedFor: "No pin piercing; powerful dual neodymium magnet clasp for fine fabrics", category: "gifts" },
+      { item: "Round Magnetic Badge (58 mm / 5.8 cm)", teluguItem: "రౌండ్ మాగ్నెటిక్ బ్యాడ్జ్ (58mm)", rate: "₹65", unit: "per badge", recommendedFor: "Executive office uniforms, hospital staff, doctors & VIP delegates", category: "gifts" },
 
       // 3. Beautiful Photo Pillows (Official Flyer Rate Card)
       { item: "Heart or Square Personalized Photo Pillow", teluguItem: "హార్ట్ లేదా స్క్వేర్ ఫోటో పిల్లో", rate: "₹500", unit: "per pillow", recommendedFor: "Plush soft red fur cushion with custom photo print", category: "gifts" },

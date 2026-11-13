@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ServiceItem } from "@/data/services";
+import { ServiceItem, PERSONALIZED_GIFTS_ITEMS } from "@/data/services";
 import { CORE_SERVICES } from "@/data/services";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import {
@@ -223,6 +223,94 @@ export default function ServiceDetailView({ service }: Props) {
                 </div>
               </section>
 
+              {/* Specialized Gifting Catalog (when viewing Personalized Gifts & Framing) */}
+              {service.id === "personalized-gifts-framing-kadapa" && (
+                <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-brand-red flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        In-House Gifting Studio & Merchandise
+                      </span>
+                      <h2 className="text-xl sm:text-2xl font-black text-brand-navy mt-1">
+                        Select Your Gift or Custom Product
+                      </h2>
+                    </div>
+                    <span className="text-xs text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full font-medium w-fit">
+                      8 Dedicated Products • Same-Day Ready
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {PERSONALIZED_GIFTS_ITEMS.map((item) => (
+                      <div
+                        key={item.id}
+                        className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/50 hover:bg-white hover:border-brand-royal/40 hover:shadow-md transition-all flex flex-col justify-between"
+                      >
+                        <div>
+                          <div className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-cover hover:scale-105 transition-transform duration-500"
+                              sizes="(max-width: 768px) 100vw, 400px"
+                            />
+                            <div className="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-sm text-brand-gold text-xs font-bold px-2.5 py-1 rounded-md border border-white/10 shadow-sm">
+                              {item.price}
+                            </div>
+                            <div className="absolute top-3 right-3 bg-emerald-700/90 backdrop-blur-sm text-white text-[11px] font-semibold px-2 py-1 rounded-md flex items-center gap-1 border border-white/10 shadow-sm">
+                              <Clock className="w-3 h-3" />
+                              {item.turnaround}
+                            </div>
+                          </div>
+
+                          <div className="p-4 sm:p-5">
+                            <div className="text-[11px] font-bold text-brand-royal">
+                              {item.teluguTitle}
+                            </div>
+                            <h3 className="text-base font-black text-brand-navy mt-0.5 leading-snug">
+                              {item.title}
+                            </h3>
+                            <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                              {item.description}
+                            </p>
+
+                            <div className="mt-3 pt-3 border-t border-slate-200/80">
+                              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
+                                Available Options & Specs:
+                              </span>
+                              <div className="space-y-1">
+                                {item.options.slice(0, 4).map((opt, oi) => (
+                                  <div key={oi} className="flex items-center text-[11px] text-slate-700">
+                                    <CheckCircle2 className="w-3 h-3 text-emerald-600 mr-1.5 shrink-0" />
+                                    <span>{opt}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 pt-0 sm:p-5 sm:pt-0">
+                          <a
+                            href={getWhatsAppLink(
+                              `Hello City Grafix, I want to order ${item.title} (${item.price}):\n- Product: ${item.title}\n- Please confirm turnaround time and photo upload requirements.`
+                            )}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+                          >
+                            <MessageCircle className="w-4 h-4 fill-white" />
+                            <span>Order on WhatsApp</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               {/* Technical Specifications & Standards */}
               <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h2 className="text-xl sm:text-2xl font-black text-brand-navy mb-4 border-b border-slate-100 pb-3 flex items-center space-x-2">
@@ -268,7 +356,7 @@ export default function ServiceDetailView({ service }: Props) {
                     {service.galleryImages.map((imgSrc, idx) => (
                       <div
                         key={idx}
-                        className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-slate-200 shadow-sm group bg-slate-900"
+                        className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm group bg-slate-900"
                       >
                         <Image
                           src={imgSrc}
