@@ -28,6 +28,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        brand: ["var(--font-brand)", "Plus Jakarta Sans", "Montserrat", "Manrope", "system-ui", "sans-serif"],
       },
       boxShadow: {
         "3d": "0 20px 40px -15px rgba(11, 19, 43, 0.15), 0 0 0 1px rgba(11, 19, 43, 0.05)",
