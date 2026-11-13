@@ -17,6 +17,7 @@ interface PopularProduct {
   turnaround: string;
   whatsappMessage: string;
   detailUrl?: string;
+  variants?: { label: string; price?: string }[];
 }
 
 const POPULAR_PRODUCTS: PopularProduct[] = [
@@ -33,6 +34,11 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     turnaround: "2 to 4 Hours",
     whatsappMessage: "Hello City Grafix, I want to order Star Flex Banners (₹18/sq.ft). Here are my dimensions:",
     detailUrl: "/services/flex-banner-printing-kadapa",
+    variants: [
+      { label: "Normal Flex", price: "₹12/sq.ft" },
+      { label: "Star Flex", price: "₹18/sq.ft" },
+      { label: "Backlit Glow", price: "₹35/sq.ft" },
+    ],
   },
   {
     id: "photo-frame",
@@ -43,10 +49,18 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     rate: "₹600",
     unit: "A4 size (10% IG Discount)",
     badge: "10% IG Discount",
-    specs: "Glossy, Matty & Glitter sheets with luxury synthetic gold/black beading",
+    specs: "Synthetic gold & black beading with high-density moisture-resistant backboard",
     turnaround: "1 to 2 Hours",
     whatsappMessage: "Hello City Grafix, I want to order Custom Photo Frames with the 10% Instagram Discount:",
     detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Glossy Sheet", price: "Vibrant" },
+      { label: "Matty Sheet", price: "Non-Reflective" },
+      { label: "Glitter Sheet", price: "+₹50" },
+      { label: "A4 / 8x12", price: "₹600" },
+      { label: "12x18", price: "₹1,200" },
+      { label: "16x24", price: "₹2,000" },
+    ],
   },
   {
     id: "photo-mugs",
@@ -57,10 +71,16 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     rate: "₹350",
     unit: "starting per mug",
     badge: "Same-Day Gift",
-    specs: "Plain (₹350), Inner Colour (₹450), Heart Handle (₹500), Magic Reveal (₹550)",
+    specs: "Permanent HD sublimation print, 100% dishwasher & microwave safe ceramic",
     turnaround: "1 to 2 Hours",
     whatsappMessage: "Hello City Grafix, I want to order Custom Ceramic Photo Mugs:",
     detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Plain Ceramic", price: "₹350" },
+      { label: "Dual-Tone Red", price: "₹450" },
+      { label: "Heart Handle", price: "₹500" },
+      { label: "Magic Reveal", price: "₹550" },
+    ],
   },
   {
     id: "photo-pillows",
@@ -71,10 +91,16 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     rate: "₹500",
     unit: "starting per piece",
     badge: "Luxury Plush",
-    specs: "Standard (₹500), Fancy Border (₹600), Magic Sequins (₹750), Glowing LED (₹800)",
+    specs: "Ultra-soft micro-poly fill with zip closure, washproof HD photo prints",
     turnaround: "1 to 2 Hours",
     whatsappMessage: "Hello City Grafix, I want to order a Custom Photo Pillow:",
     detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Standard Plush", price: "₹500" },
+      { label: "Fancy Border", price: "₹600" },
+      { label: "Magic Sequins", price: "₹750" },
+      { label: "Glowing LED", price: "₹800" },
+    ],
   },
   {
     id: "dtf-tshirts",
@@ -85,10 +111,17 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     rate: "₹200",
     unit: "print only / ₹400 w/ tee",
     badge: "100% Washproof",
-    specs: "Sublimation (₹400), DTF Round Neck (₹400), DTF Collar Polo (₹500), Cap (₹300)",
+    specs: "Commercial 6-color digital transfer with melt adhesive, stretch & fade proof",
     turnaround: "Same-Day Dispatch",
     whatsappMessage: "Hello City Grafix, I want to order Custom DTF T-Shirts & Caps:",
     detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Print Only", price: "₹200" },
+      { label: "Sublimation", price: "₹400" },
+      { label: "DTF Tee", price: "₹400" },
+      { label: "Collar Polo", price: "₹500" },
+      { label: "Printed Cap", price: "₹300" },
+    ],
   },
   {
     id: "a0-cad",
@@ -103,6 +136,11 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     turnaround: "15 to 30 Minutes",
     whatsappMessage: "Hello City Grafix, I need A0 Jumbo Xerox / CAD Blueprint plotting in Kadapa:",
     detailUrl: "/services/jumbo-xerox-kadapa",
+    variants: [
+      { label: "A0 B&W CAD", price: "₹25" },
+      { label: "A0 Color Plot", price: "₹90" },
+      { label: "Tracing Film", price: "₹140" },
+    ],
   },
   {
     id: "visiting-cards",
@@ -117,6 +155,11 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     turnaround: "24 to 48 Hours",
     whatsappMessage: "Hello City Grafix, I want to order 1000 Visiting Cards wholesale pack (₹750):",
     detailUrl: "/services/visiting-cards-bill-books-pamphlets-kadapa",
+    variants: [
+      { label: "Standard Matte", price: "₹550" },
+      { label: "350 GSM Velvet", price: "₹750" },
+      { label: "Raised Spot UV", price: "₹1,100" },
+    ],
   },
   {
     id: "3d-led-signage",
@@ -131,6 +174,11 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
     turnaround: "2 to 4 Days Turnkey",
     whatsappMessage: "Hello City Grafix, I need a quotation for 3D Acrylic LED Signboard fabrication:",
     detailUrl: "/services/3d-led-sign-boards-kadapa",
+    variants: [
+      { label: "Frontlit Acrylic", price: "₹45/in" },
+      { label: "Backlit Halo", price: "₹55/in" },
+      { label: "Gold Titanium", price: "₹75/in" },
+    ],
   },
 ];
 
@@ -189,15 +237,15 @@ export default function PriceHighlights() {
               className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               {/* Product Visual */}
-              <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
 
                 {/* Badges */}
                 <div className="absolute top-3 left-3 bg-brand-navy/95 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-bold text-brand-gold border border-white/10 shadow-sm">
@@ -222,6 +270,26 @@ export default function PriceHighlights() {
                   <span className="text-[11px] text-slate-500 font-medium block mt-0.5">
                     {product.telugu}
                   </span>
+
+                  {/* Structured Variants Pills */}
+                  {product.variants && (
+                    <div className="flex flex-wrap gap-1.5 mt-2.5">
+                      {product.variants.map((v, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center space-x-1 text-[10px] bg-slate-50 hover:bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md border border-slate-200 transition-colors"
+                        >
+                          <span className="font-medium">{v.label}</span>
+                          {v.price && (
+                            <span className="font-bold text-brand-navy border-l border-slate-300 pl-1">
+                              {v.price}
+                            </span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   <p className="text-[11px] text-slate-600 mt-2 line-clamp-2 leading-relaxed">
                     {product.specs}
                   </p>
