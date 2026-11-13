@@ -190,7 +190,6 @@ export default function HeroSlider() {
   const touchEndX = useRef<number>(0);
   const progressStartTimeRef = useRef<number>(Date.now());
   const animationFrameRef = useRef<number>();
-  const categoryTabsRef = useRef<HTMLDivElement>(null);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
@@ -209,21 +208,6 @@ export default function HeroSlider() {
     setProgress(0);
     progressStartTimeRef.current = Date.now();
   }, []);
-
-  // Smoothly center active category tab into view on slide change
-  useEffect(() => {
-    if (!categoryTabsRef.current) return;
-    const activeTab = categoryTabsRef.current.querySelector<HTMLButtonElement>(
-      `[data-tab-index="${currentSlide}"]`
-    );
-    if (activeTab) {
-      activeTab.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center",
-      });
-    }
-  }, [currentSlide]);
 
   // Keyboard Navigation (ArrowLeft / ArrowRight)
   useEffect(() => {
@@ -307,7 +291,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full bg-brand-dark text-white overflow-hidden pt-3 sm:pt-4 md:pt-6 pb-6 sm:pb-8 lg:pb-10 select-none border-b border-white/10"
+      className="relative w-full bg-brand-dark text-white overflow-hidden py-4 sm:py-6 lg:py-8 select-none border-b border-white/10"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => {
         progressStartTimeRef.current = Date.now() - (progress / 100) * ROTATION_DURATION_MS;
@@ -428,116 +412,12 @@ export default function HeroSlider() {
               </Link>
             </div>
           </div>
-        </div>
-
-        {/* Category Navigation Dock Below Slider */}
-        <div className="mt-4 sm:mt-5 pt-3 border-t border-white/10">
-          {/* Header Row: Label & Micro-controls */}
-          <div className="flex items-center justify-between gap-3 mb-2.5 px-0.5">
-            <div className="flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-              <span className="text-xs sm:text-sm font-bold text-white tracking-wide uppercase">
-                Workshop Capabilities
-              </span>
-              <span className="text-white/20 hidden sm:inline">•</span>
-              <span className="text-xs text-slate-400 hidden sm:inline">
-                Click any service to inspect direct Kadapa manufacturing
-              </span>
-            </div>
-
-            <div className="flex items-center space-x-3 text-xs text-slate-400 font-mono">
-              <span>
-                <strong className="text-white">{String(currentSlide + 1).padStart(2, "0")}</strong>
-                <span className="text-slate-500"> / {String(HERO_SLIDES.length).padStart(2, "0")}</span>
-              </span>
-              <div className="hidden sm:flex items-center space-x-1">
-                <button
-                  onClick={prevSlide}
-                  className="p-1 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
-                  aria-label="Previous service slide"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  onClick={nextSlide}
-                  className="p-1 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
-                  aria-label="Next service slide"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Category Tabs with Real-Time Progress Underline */}
-          <div
-            ref={categoryTabsRef}
-            className="flex items-stretch gap-2 sm:gap-2.5 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0"
-          >
-            {HERO_SLIDES.map((s, idx) => {
-              const isActive = currentSlide === idx;
-              return (
-                <button
-                  key={s.id}
-                  data-tab-index={idx}
-                  onClick={() => goToSlide(idx)}
-                  className={`group relative text-left p-2.5 sm:p-3 rounded-xl transition-all duration-200 shrink-0 flex flex-col justify-between border ${
-                    isActive
-                      ? "bg-white/[0.08] border-white/25 shadow-lg ring-1 ring-white/10"
-                      : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/15"
-                  } min-w-[135px] sm:min-w-[150px] lg:min-w-0 lg:flex-1`}
-                  aria-label={`Switch to ${s.categoryName}`}
-                >
-                  {/* Tab Top Row: Slide Number & Status */}
-                  <div className="flex items-center justify-between w-full mb-1">
-                    <span
-                      className={`font-mono text-[10px] sm:text-[11px] font-bold ${
-                        isActive ? "text-brand-red" : "text-slate-500 group-hover:text-slate-300"
-                      }`}
-                    >
-                      {String(s.id).padStart(2, "0")}
-                    </span>
-                    {isActive ? (
-                      <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-                    ) : (
-                      <span className="text-[10px] text-slate-500 font-mono hidden sm:inline">
-                        {s.turnaroundTime.includes("Minutes") ? "15m" : "Express"}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Tab Middle: Category Name */}
-                  <div className="w-full">
-                    <div
-                      className={`text-xs sm:text-[13px] font-bold tracking-tight line-clamp-1 ${
-                        isActive
-                          ? "text-white"
-                          : "text-slate-300 group-hover:text-white"
-                      }`}
-                    >
-                      {s.categoryName}
-                    </div>
-                    <div className="text-[10px] text-slate-400 truncate mt-0.5 hidden sm:block">
-                      {s.startingPrice}
-                    </div>
-                  </div>
-
-                  {/* Tab Bottom: Live Active Progress Bar */}
-                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mt-2">
-                    <div
-                      className={`h-full rounded-full transition-all duration-100 ${
-                        isActive
-                          ? "bg-brand-red"
-                          : "bg-transparent group-hover:bg-white/20"
-                      }`}
-                      style={{
-                        width: isActive ? `${progress}%` : "0%",
-                      }}
-                    />
-                  </div>
-                </button>
-              );
-            })}
+          {/* Subtle Progress Bar Along Bottom Edge of Slider */}
+          <div className="absolute bottom-0 inset-x-0 h-1 bg-white/10 z-20">
+            <div
+              className="h-full bg-brand-red transition-all duration-100 ease-linear"
+              style={{ width: `${progress}%` }}
+            />
           </div>
         </div>
       </div>
