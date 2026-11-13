@@ -291,7 +291,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full bg-brand-dark text-white overflow-hidden py-4 sm:py-6 lg:py-8 select-none border-b border-white/10"
+      className="relative w-full bg-brand-dark text-white overflow-hidden select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => {
         progressStartTimeRef.current = Date.now() - (progress / 100) * ROTATION_DURATION_MS;
@@ -304,78 +304,74 @@ export default function HeroSlider() {
       {/* Background Image Preloader */}
       <link rel="preload" as="image" href={nextSlideData.image} />
 
-      {/* Subtle Geometric Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none" />
+      {/* Full-Width Bezel-less Cinematic Image Showcase */}
+      <div className="relative w-full h-[440px] sm:h-[520px] md:h-[600px] lg:h-[680px] xl:h-[740px] 2xl:h-[800px] overflow-hidden bg-slate-950 group">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={slide.id}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={slide.image}
+              alt={slide.headline}
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
 
-      <div className="site-container-hero relative z-10">
-        {/* Large Full-Width Immersive Image Showcase */}
-        <div className="relative w-full h-[320px] sm:h-[440px] md:h-[520px] lg:h-[600px] xl:h-[660px] 2xl:h-[720px] rounded-2xl lg:rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-slate-950 group">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={slide.id}
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              className="absolute inset-0 w-full h-full"
-            >
-              <Image
-                src={slide.image}
-                alt={slide.headline}
-                fill
-                priority
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 95vw"
-              />
+            {/* Natural Seamless Vignette Overlays for Text Legibility & Depth */}
+            <div className="absolute inset-x-0 bottom-0 h-52 sm:h-72 bg-gradient-to-t from-slate-950 via-slate-950/65 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-28 sm:h-36 bg-gradient-to-b from-slate-950/70 via-slate-950/30 to-transparent pointer-events-none" />
+          </motion.div>
+        </AnimatePresence>
 
-              {/* Natural Subtle Vignette Overlays for Maximum Image Clarity */}
-              <div className="absolute inset-x-0 bottom-0 h-36 sm:h-48 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
-              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Floating Top-Left Category Identification Badge */}
-          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center space-x-2">
-            <div className="bg-brand-navy/90 backdrop-blur-md border border-white/15 px-3 sm:px-4 py-1.5 rounded-xl shadow-lg flex items-center space-x-2">
-              <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
-              <span className="text-xs sm:text-sm font-bold text-white tracking-wide">
-                {slide.categoryName}
-              </span>
-              <span className="text-white/30 hidden sm:inline">•</span>
-              <span className="text-xs text-brand-gold font-medium hidden sm:inline">
-                {slide.badgeTelugu}
-              </span>
-            </div>
+        {/* Floating Top Elements: Category Badge & Slide Counter */}
+        <div className="site-container absolute top-4 sm:top-6 inset-x-0 z-20 pointer-events-none flex items-center justify-between">
+          {/* Category Identification Badge */}
+          <div className="pointer-events-auto bg-brand-navy/90 backdrop-blur-md border border-white/15 px-3.5 sm:px-4 py-1.5 rounded-xl shadow-lg flex items-center space-x-2">
+            <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse" />
+            <span className="text-xs sm:text-sm font-bold text-white tracking-wide">
+              {slide.categoryName}
+            </span>
+            <span className="text-white/30 hidden sm:inline">•</span>
+            <span className="text-xs text-brand-gold font-medium hidden sm:inline">
+              {slide.badgeTelugu}
+            </span>
           </div>
 
-          {/* Floating Top-Right Slide Number Indicator */}
-          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 flex items-center space-x-2">
-            <div className="bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-xs font-mono font-bold text-slate-200 shadow-md">
-              <span className="text-brand-red">{String(currentSlide + 1).padStart(2, "0")}</span>
-              <span className="text-slate-500"> / </span>
-              <span>{String(HERO_SLIDES.length).padStart(2, "0")}</span>
-            </div>
+          {/* Slide Number Indicator */}
+          <div className="pointer-events-auto bg-black/60 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-xl text-xs font-mono font-bold text-slate-200 shadow-md">
+            <span className="text-brand-red">{String(currentSlide + 1).padStart(2, "0")}</span>
+            <span className="text-slate-500"> / </span>
+            <span>{String(HERO_SLIDES.length).padStart(2, "0")}</span>
           </div>
+        </div>
 
-          {/* Floating Left & Right Cinematic Arrow Controls */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 shadow-xl"
-            aria-label="Previous Slide"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
+        {/* Floating Left & Right Cinematic Arrow Controls */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl"
+          aria-label="Previous Slide"
+        >
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
 
-          <button
-            onClick={nextSlide}
-            className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-105 active:scale-95 shadow-xl"
-            aria-label="Next Slide"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-black/40 hover:bg-black/80 backdrop-blur-md border border-white/20 text-white transition-all flex items-center justify-center opacity-75 hover:opacity-100 hover:scale-105 active:scale-95 shadow-2xl"
+          aria-label="Next Slide"
+        >
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
 
-          {/* Sleek Bottom Information Overlay Bar */}
-          <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-6 sm:right-6 z-20 bg-brand-dark/85 backdrop-blur-md border border-white/15 p-3.5 sm:p-4 rounded-xl sm:rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xl">
+        {/* Sleek Bottom Information Overlay Bar */}
+        <div className="site-container absolute bottom-10 sm:bottom-14 lg:bottom-16 inset-x-0 z-20">
+          <div className="bg-slate-950/80 backdrop-blur-md border border-white/15 p-3.5 sm:p-4 lg:p-5 rounded-xl sm:rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xl">
             <div className="flex items-center space-x-3 min-w-0">
               <div className="w-2.5 h-2.5 rounded-full bg-brand-gold shrink-0 hidden sm:block" />
               <div className="min-w-0">
@@ -412,13 +408,14 @@ export default function HeroSlider() {
               </Link>
             </div>
           </div>
-          {/* Subtle Progress Bar Along Bottom Edge of Slider */}
-          <div className="absolute bottom-0 inset-x-0 h-1 bg-white/10 z-20">
-            <div
-              className="h-full bg-brand-red transition-all duration-100 ease-linear"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
+        </div>
+
+        {/* Subtle Progress Bar Along Bottom Edge of Full-Width Slider */}
+        <div className="absolute bottom-0 inset-x-0 h-1 bg-white/10 z-20">
+          <div
+            className="h-full bg-brand-red transition-all duration-100 ease-linear"
+            style={{ width: `${progress}%` }}
+          />
         </div>
       </div>
     </section>
