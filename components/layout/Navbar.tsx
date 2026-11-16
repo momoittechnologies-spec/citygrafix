@@ -405,21 +405,10 @@ export default function Navbar() {
             {/* Call Now Button */}
             <a
               href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-              className="bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-2.5 rounded-xl border border-white/15 transition-all flex items-center space-x-1.5"
+              className="bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3.5 py-2.5 rounded-xl border border-white/15 transition-all flex items-center space-x-1.5"
             >
               <Phone className="w-3.5 h-3.5 text-brand-gold" />
               <span>Call Now</span>
-            </a>
-
-            {/* Get a Quote CTA Button */}
-            <a
-              href={getWhatsAppLink("Hello City Grafix, I want to get an instant quotation for printing in Kadapa.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold px-4.5 py-2.5 rounded-xl shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all flex items-center space-x-1.5 tracking-wide active:scale-95"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>Get a Free Quote</span>
             </a>
           </div>
 
@@ -519,16 +508,6 @@ export default function Navbar() {
               })}
 
               <div className="pt-4 mt-2 border-t border-white/10 space-y-2">
-                <a
-                  href={getWhatsAppLink("Hello City Grafix, I want to get an instant quotation for printing in Kadapa.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-[#F97316] hover:bg-[#EA580C] text-white py-3.5 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-lg shadow-orange-500/20 active:scale-95 transition-all text-sm"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Get a Free Quote (WhatsApp)</span>
-                </a>
-
                 <Link
                   href="/pricing"
                   className="w-full bg-white/10 hover:bg-white/15 text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 border border-white/15 text-xs transition-colors"
