@@ -51,7 +51,7 @@ const HERO_SLIDES: HeroSlide[] = [
     description: "City Grafix is officially available on Bajaj Finance! Get instant credit from ₹5,000 to ₹50,000 with down payment starting from just ₹1,000. Upgrade your shop branding without upfront stress.",
     primaryCtaText: "Check EMI Details",
     primaryCtaLink: "/#emi-finance",
-    image: "/images/bajaj-finance-emi-flex-printing.jpg",
+    image: "/images/bajaj-finance-slider-hero.jpg",
     startingPrice: "Down Payment from ₹1,000",
     turnaroundTime: "Instant In-Store Approval",
     locationContext: "Kadapa Workshop",
