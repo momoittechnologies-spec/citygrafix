@@ -1,6 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Manrope, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -151,7 +165,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${plusJakarta.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${manrope.variable} ${plusJakarta.variable}`}>
       <head>
         {/* Structured Data Schema */}
         <script
@@ -161,7 +175,7 @@ export default function RootLayout({
         {/* Analytics Placeholders */}
         {/* Google Tag Manager / GA4 placeholder: <!-- Google tag (gtag.js) - G-XXXXXXXXXX --> */}
       </head>
-      <body className="min-h-screen flex flex-col font-sans bg-slate-50 text-slate-900">
+      <body className="min-h-screen flex flex-col font-sans bg-white text-[#151923] antialiased">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <StickyBottomBar />

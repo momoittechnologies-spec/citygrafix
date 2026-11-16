@@ -214,7 +214,7 @@ export default function ReviewSection() {
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-[#151923] tracking-tight">
             Trusted by 500+ Businesses & Engineers in Kadapa
           </h2>
           <p className="text-slate-600 text-sm sm:text-base mt-2.5 leading-relaxed">

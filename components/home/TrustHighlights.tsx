@@ -48,28 +48,28 @@ export default function TrustHighlights() {
   ];
 
   return (
-    <section className="bg-white border-y border-slate-200/90 relative z-20 shadow-xs">
-      <div className="site-container py-5 sm:py-7">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-5 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+    <section className="bg-white border-y border-[#E5E7EB] relative z-20 shadow-xs">
+      <div className="site-container py-5 sm:py-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E7EB]">
           {highlights.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
-                className={`flex flex-col items-center text-center px-1 sm:px-2 ${
+                className={`flex flex-col items-center text-center px-1.5 sm:px-3 ${
                   index !== 0 ? "pt-3 sm:pt-0" : ""
                 }`}
               >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-50 border border-slate-200/80 text-brand-navy flex items-center justify-center mb-2 shadow-xs group-hover:scale-105 transition-transform">
-                  <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-brand-red" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#F4F5F7] border border-[#E5E7EB] text-[#151923] flex items-center justify-center mb-2 shadow-xs group-hover:scale-105 transition-transform">
+                  <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#F97316]" />
                 </div>
-                <h4 className="font-bold text-slate-900 text-xs sm:text-sm tracking-tight leading-tight">
+                <h4 className="font-heading font-bold text-[#151923] text-xs sm:text-sm tracking-tight leading-tight">
                   {item.title}
                 </h4>
-                <span className="text-[11px] font-semibold text-brand-royal mt-0.5">
+                <span className="text-[11px] font-semibold text-[#0066b2] mt-0.5">
                   {item.subtitle}
                 </span>
-                <span className="text-[10px] text-slate-400 mt-0.5">
+                <span className="text-[10px] text-[#667085] mt-0.5">
                   {item.telugu}
                 </span>
               </div>

@@ -48,15 +48,15 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-brand-navy text-white relative">
+    <section className="py-16 sm:py-20 lg:py-24 bg-[#151923] text-white relative">
       <div className="site-container relative z-10">
         {/* Header */}
         <div className="text-center max-w-3xl xl:max-w-4xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/15 px-3.5 py-1 rounded-full text-brand-gold text-xs font-bold uppercase tracking-wider mb-3">
-            <Zap className="w-3.5 h-3.5 text-brand-gold" />
+          <div className="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/30 px-3.5 py-1 rounded-full text-[#F97316] text-xs font-bold uppercase tracking-wider mb-3">
+            <Zap className="w-3.5 h-3.5 text-[#F97316]" />
             <span>The City Grafix Advantage</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-black text-white tracking-tight">
             Why Kadapa Trusts City Grafix
           </h2>
           <p className="text-slate-300 text-sm sm:text-base xl:text-lg mt-3 max-w-2xl mx-auto leading-relaxed">
@@ -71,22 +71,22 @@ export default function WhyChooseUs() {
             return (
               <div
                 key={i}
-                className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 sm:p-7 hover:bg-white/[0.08] hover:border-brand-gold/40 transition-all duration-300 group flex flex-col justify-between"
+                className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 sm:p-7 hover:bg-white/[0.08] hover:border-[#F97316]/50 transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition-colors shadow-inner">
-                      <Icon className="w-6 h-6 text-brand-gold group-hover:text-white transition-colors" />
+                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-[#F97316] transition-colors shadow-inner">
+                      <Icon className="w-6 h-6 text-[#F97316] group-hover:text-white transition-colors" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md">
                       {r.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white mb-1 tracking-tight">
+                  <h3 className="text-lg font-heading font-bold text-white mb-1 tracking-tight">
                     {r.title}
                   </h3>
-                  <span className="text-xs font-semibold text-brand-gold/90 block mb-2.5">
+                  <span className="text-xs font-semibold text-orange-300/90 block mb-2.5">
                     {r.telugu}
                   </span>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

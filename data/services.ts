@@ -644,13 +644,13 @@ export const CORE_SERVICES: ServiceItem[] = [
     recommendedLine: "orders",
     isFeatured: true,
     galleryImages: [
-      "/images/gifting-magic-mug-heat-reveal.jpg",
-      "/images/round-badges-pin-magnetic.jpg",
-      "/images/gifting-heart-handle-mug.jpg",
-      "/images/gifting-inner-colour-mug.jpg",
-      "/images/gifting-plain-white-mug.jpg",
-      "/images/gifting-photo-frames-price-chart.jpg",
-      "/images/gifting-photo-pillows.jpg",
+      "/images/magic-heat-reveal-mug.jpg",
+      "/images/round-badges-pin-magnetic-full.jpg",
+      "/images/heart-handle-mug.jpg",
+      "/images/inner-colour-mug.jpg",
+      "/images/plain-mug-sublimation.jpg",
+      "/images/photo-frames-price-chart-full.jpg",
+      "/images/photo-pillows-price-chart-full.jpg",
       "/images/gifting-tshirts-dtf-printing.jpg",
     ],
   },
@@ -663,7 +663,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "ప్లెయిన్ వైట్ సిరామిక్ ఫోటో మగ్గు",
     price: "₹350",
     turnaround: "1 to 2 Hours",
-    image: "/images/gifting-plain-white-mug.jpg",
+    image: "/images/plain-mug-sublimation.jpg",
     description: "High-gloss crisp sublimation print on pure white ceramic. 100% dishwasher and microwave safe. Ideal for corporate logos, family milestones, and Valentine calendar gifts.",
     options: [
       "Plain White AAA Ceramic (₹350)",
@@ -678,7 +678,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "ఇన్నర్ కలర్ కాఫీ కప్ (9 రంగులు)",
     price: "₹450",
     turnaround: "1 to 2 Hours",
-    image: "/images/gifting-inner-colour-mug.jpg",
+    image: "/images/inner-colour-mug.jpg",
     description: "White exterior paired with vivid inside colors: Red, Yellow, Cyan Blue, Dark Blue, Pink, Black, Light Green, Dark Green, and Orange. Matching color handles.",
     options: [
       "Inner Colour Ceramic (₹450)",
@@ -693,7 +693,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "హార్ట్ హ్యాండిల్ కపుల్ కప్ (మల్టీ-కలర్)",
     price: "₹500",
     turnaround: "1 to 2 Hours",
-    image: "/images/gifting-heart-handle-mug.jpg",
+    image: "/images/heart-handle-mug.jpg",
     description: "Artfully sculpted heart-shaped handle available in Red, Black, Blue, Yellow, Pink, Green, and Brown. The perfect anniversary and Valentine keepsake for couples.",
     options: [
       "Heart Handle Sculpted Mug (₹500)",
@@ -708,7 +708,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "మ్యాజిక్ హీట్ యాక్టివేటెడ్ మగ్గు",
     price: "₹550",
     turnaround: "1 to 2 Hours",
-    image: "/images/gifting-magic-mug-heat-reveal.jpg",
+    image: "/images/magic-heat-reveal-mug.jpg",
     description: "Solid gloss black when cold. When hot coffee, tea, or milk is poured, the thermosensitive layer magically dissolves to unveil your full HD photo and heartfelt text.",
     options: [
       "Thermosensitive Magic Reveal (₹550)",
@@ -723,7 +723,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "కస్టమ్ రౌండ్ బ్యాడ్జెస్ (పిన్ & మాగ్నెటిక్)",
     price: "₹25",
     turnaround: "Same-Day Dispatch",
-    image: "/images/round-badges-pin-magnetic.jpg",
+    image: "/images/round-badges-pin-magnetic-full.jpg",
     description: "Custom pin and magnetic badges in 44mm & 58mm with rustproof steel backing and scratchproof gloss Mylar coating. Ideal for school fests, election campaigns, and corporate uniforms.",
     options: [
       "Pin Badge 44 mm / 4.4 cm (₹25)",
@@ -739,7 +739,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "కస్టమ్ ఫోటో ఫ్రేమ్స్ (A4 నుండి 24×36)",
     price: "₹600",
     turnaround: "Same-Day (1–2 Hrs)",
-    image: "/images/gifting-photo-frames-price-chart.jpg",
+    image: "/images/photo-frames-price-chart-full.jpg",
     description: "Handcrafted synthetic wooden photo frames. Available in Glossy Sheet (high shine), Matty Sheet (glare-free elegance), and Glitter Sheet (₹50 extra sparkling luxury). Enjoy Flat 10% Discount on following @citygrafix1 on Instagram!",
     options: [
       "A4 / 8 × 12 (₹600)",
@@ -758,7 +758,7 @@ export const PERSONALIZED_GIFTS_ITEMS = [
     teluguTitle: "బ్యూటిఫుల్ ఫోటో పిల్లోస్ & కుషన్స్",
     price: "₹500",
     turnaround: "Same-Day (1–2 Hrs)",
-    image: "/images/gifting-photo-pillows.jpg",
+    image: "/images/photo-pillows-price-chart-full.jpg",
     description: "Super-soft hypoallergenic microfiber cushions in Heart and Square shapes. Choose from Standard Plush Pillow, Fancy Rose Border, two-way Magic Reversible Sequins, and multi-color Glowing L.E.D. Pillow.",
     options: [
       "Heart or Square Standard Pillow (₹500)",

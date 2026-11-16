@@ -25,25 +25,25 @@ export default function PortfolioSection() {
     : PORTFOLIO_ITEMS.filter((item) => item.category === activeCategory);
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-slate-50 relative" id="portfolio">
+    <section className="py-16 sm:py-20 lg:py-24 bg-white relative" id="portfolio">
       <div className="site-container">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
           <div>
-            <div className="inline-flex items-center space-x-1.5 bg-brand-navy/10 text-brand-navy px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2.5">
-              <Camera className="w-3.5 h-3.5 text-brand-navy" />
+            <div className="inline-flex items-center space-x-1.5 bg-orange-100 text-[#F97316] px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2.5">
+              <Camera className="w-3.5 h-3.5 text-[#F97316]" />
               <span>Fabricated in Kadapa</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight">
-              Our Recent Work & Portfolio
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-black text-[#151923] tracking-tight">
+              Featured Projects & Portfolio
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2 max-w-2xl">
+            <p className="text-[#667085] text-sm sm:text-base xl:text-lg mt-2 max-w-2xl">
               Inspect completed signage, blueprints, wide-format flex banners, and customized gifts manufactured right here at our workshop.
             </p>
           </div>
 
           <Link
             href="/our-work"
-            className="mt-4 md:mt-0 text-sm xl:text-base font-bold text-brand-royal hover:text-brand-navy transition-colors inline-flex items-center"
+            className="mt-4 md:mt-0 text-sm xl:text-base font-bold text-[#F97316] hover:text-[#EA580C] transition-colors inline-flex items-center gap-1"
           >
             <span>Explore Full Gallery →</span>
           </Link>
@@ -57,8 +57,8 @@ export default function PortfolioSection() {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shrink-0 sm:shrink ${
                 activeCategory === cat.id
-                  ? "bg-brand-navy text-white shadow-sm"
-                  : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
+                  ? "bg-[#151923] text-white shadow-sm"
+                  : "bg-[#F4F5F7] text-slate-700 border border-[#E5E7EB] hover:bg-slate-200"
               }`}
             >
               {cat.label}

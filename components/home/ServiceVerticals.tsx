@@ -31,25 +31,24 @@ export default function ServiceVerticals() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10">
           <div>
-            <div className="inline-flex items-center space-x-2 text-brand-red text-xs font-bold uppercase tracking-wider mb-2">
-              <span className="w-2 h-2 rounded-full bg-brand-red" />
+            <div className="inline-flex items-center space-x-2 text-[#F97316] text-xs font-bold uppercase tracking-wider mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#F97316]" />
               <span>In-House Workshop Manufacturing • Opp. Tirumala Hospital</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-black text-[#151923] tracking-tight">
               Master Printing Capabilities & Services
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+            <p className="text-[#667085] text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
               Explore our 6 core production verticals. From while-you-wait 15-minute CAD blueprints and heavy 340+ GSM Star Flex to precision CNC 3D acrylic letters.
             </p>
           </div>
 
           <div className="mt-4 md:mt-0 flex items-center space-x-3 shrink-0">
             <Link
-              href="/pricing"
-              className="inline-flex items-center text-xs sm:text-sm font-bold bg-brand-navy text-white px-4 py-2.5 rounded-xl hover:bg-brand-navyLight transition-colors shadow-sm space-x-1.5"
+              href="/services"
+              className="inline-flex items-center text-xs sm:text-sm font-bold bg-[#151923] text-white px-4 py-2.5 rounded-xl hover:bg-[#1C2230] transition-colors shadow-sm space-x-1.5"
             >
-              <Tag className="w-4 h-4 text-brand-gold" />
-              <span>Official Rate Card →</span>
+              <span>Explore All 12 Services →</span>
             </Link>
           </div>
         </div>
@@ -124,12 +123,12 @@ export default function ServiceVerticals() {
                   </div>
 
                   {/* Card Actions */}
-                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100">
+                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-[#E5E7EB]">
                     <button
                       onClick={() => setActiveTab(category.slug)}
-                      className="bg-slate-100 hover:bg-brand-navy hover:text-white text-slate-800 text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1"
+                      className="bg-[#F4F5F7] hover:bg-[#151923] hover:text-white text-[#151923] text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1"
                     >
-                      <span>View Services</span>
+                      <span>Explore Services</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
 
@@ -137,10 +136,10 @@ export default function ServiceVerticals() {
                       href={getWhatsAppLink(`Hello City Grafix, I want a quotation for ${category.title}. Here are my requirements:`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1 shadow-sm"
+                      className="bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1 shadow-sm active:scale-95"
                     >
                       <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                      <span>Quote</span>
+                      <span>Get Quote</span>
                     </a>
                   </div>
                 </div>

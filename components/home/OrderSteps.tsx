@@ -35,17 +35,17 @@ export default function OrderSteps() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-slate-50 relative" id="how-it-works">
+    <section className="py-16 sm:py-20 lg:py-24 bg-[#F4F5F7] relative" id="how-it-works">
       <div className="site-container">
         {/* Header */}
         <div className="text-center max-w-2xl xl:max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-brand-royal bg-brand-royal/10 px-3.5 py-1.5 rounded-full inline-block">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#F97316] bg-orange-100 px-3.5 py-1.5 rounded-full inline-block">
             Seamless 4-Step Process
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight mt-3">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-black text-[#151923] tracking-tight mt-3">
             How It Works
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2 leading-relaxed">
+          <p className="text-[#667085] text-sm sm:text-base xl:text-lg mt-2 leading-relaxed">
             Zero complicated paperwork. From your phone to finished print in four easy, transparent steps.
           </p>
         </div>
@@ -57,25 +57,25 @@ export default function OrderSteps() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative flex flex-col justify-between group"
+                className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E5E7EB] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <span className="text-3xl font-black text-slate-200 group-hover:text-brand-red/30 transition-colors font-mono">
+                    <span className="text-3xl font-black text-slate-300 group-hover:text-[#F97316]/50 transition-colors font-mono">
                       {s.step}
                     </span>
-                    <div className="w-12 h-12 rounded-xl bg-brand-royal/10 text-brand-royal group-hover:bg-brand-red group-hover:text-white transition-all flex items-center justify-center shadow-xs">
+                    <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#F97316] group-hover:bg-[#F97316] group-hover:text-white transition-all flex items-center justify-center shadow-xs">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-brand-navy mb-1 tracking-tight">
+                  <h3 className="text-lg font-heading font-bold text-[#151923] mb-1 tracking-tight">
                     {s.title}
                   </h3>
-                  <span className="text-xs font-semibold text-brand-red block mb-2.5">
+                  <span className="text-xs font-semibold text-[#F97316] block mb-2.5">
                     {s.telugu}
                   </span>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#667085] leading-relaxed">
                     {s.description}
                   </p>
                 </div>

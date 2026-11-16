@@ -255,15 +255,15 @@ export default function ServiceDetailView({ service }: Props) {
                         className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50/50 hover:bg-white hover:border-brand-royal/40 hover:shadow-md transition-all flex flex-col justify-between"
                       >
                         <div>
-                          <div className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
+                          <div className="relative aspect-square w-full bg-slate-50 border-b border-slate-100 overflow-hidden p-2 flex items-center justify-center">
                             <Image
                               src={item.image}
                               alt={item.title}
                               fill
-                              className="object-cover hover:scale-105 transition-transform duration-500"
+                              className="object-contain p-2 hover:scale-105 transition-transform duration-500"
                               sizes="(max-width: 768px) 100vw, 400px"
                             />
-                            <div className="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-sm text-brand-gold text-xs font-bold px-2.5 py-1 rounded-md border border-white/10 shadow-sm">
+                            <div className="absolute top-3 left-3 bg-[#151923]/90 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-md border border-white/10 shadow-sm">
                               {item.price}
                             </div>
                             <div className="absolute top-3 right-3 bg-emerald-700/90 backdrop-blur-sm text-white text-[11px] font-semibold px-2 py-1 rounded-md flex items-center gap-1 border border-white/10 shadow-sm">
@@ -363,13 +363,13 @@ export default function ServiceDetailView({ service }: Props) {
                     {service.galleryImages.map((imgSrc, idx) => (
                       <div
                         key={idx}
-                        className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm group bg-slate-900"
+                        className="relative aspect-square w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm group bg-slate-50 p-2 flex items-center justify-center"
                       >
                         <Image
                           src={imgSrc}
                           alt={`${service.title} Showcase ${idx + 1}`}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                           sizes="(max-width: 768px) 100vw, 50vw"
                         />
                       </div>

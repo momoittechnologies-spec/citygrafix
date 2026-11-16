@@ -9,6 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        primary: "#FFFFFF",
+        surface: "#F4F5F7",
+        dark: "#151923",
+        "dark-surface": "#1C2230",
+        "text-main": "#151923",
+        "text-muted": "#667085",
+        accent: {
+          DEFAULT: "#F97316",
+          hover: "#EA580C",
+          light: "#FFF7ED",
+          dark: "#C2410C",
+        },
+        "border-ui": "#E5E7EB",
         brand: {
           dark: "#070D1D",
           navy: "#0B132B",
@@ -27,7 +40,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        heading: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        display: ["var(--font-manrope)", "var(--font-outfit)", "system-ui", "sans-serif"],
         brand: ["var(--font-brand)", "Plus Jakarta Sans", "Montserrat", "Manrope", "system-ui", "sans-serif"],
       },
       boxShadow: {

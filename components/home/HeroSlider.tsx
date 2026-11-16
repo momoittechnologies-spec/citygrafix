@@ -25,17 +25,19 @@ interface HeroSlide {
   startingPrice: string;
   turnaroundTime: string;
   locationContext: string;
+  posterImage?: string;
+  features?: { label: string; value: string; color?: string }[];
 }
 
 const HERO_SLIDES: HeroSlide[] = [
   {
     id: 1,
-    categoryName: "Complete Printing Solutions",
+    categoryName: "Commercial Printing Hub",
     badge: "Direct Workshop in Kadapa • Since 2014",
-    headline: "Commercial Printing, Flex & CAD Blueprints",
-    accentText: "Under One Roof.",
-    description: "In-house production for wide-format flex banners, A0 architectural plotting, 3D acrylic LED signboards, and personalized gifting.",
-    primaryCtaText: "Browse All Services",
+    headline: "Everything You Imagine.",
+    accentText: "We Print.",
+    description: "From large-format printing and architectural signage to personalized gifts and commercial printing, City Grafix brings your ideas to life with quality, creativity and precision.",
+    primaryCtaText: "Explore Our Services",
     primaryCtaLink: "/services",
     image: "/images/flex-printing-machine.jpg",
     startingPrice: "Wholesale Rates",
@@ -51,7 +53,13 @@ const HERO_SLIDES: HeroSlide[] = [
     description: "City Grafix is officially available on Bajaj Finance! Get instant credit from ₹5,000 to ₹50,000 with down payment starting from just ₹1,000. Upgrade your shop branding without upfront stress.",
     primaryCtaText: "Check EMI Details",
     primaryCtaLink: "/#emi-finance",
-    image: "/images/bajaj-finance-slider-hero.jpg",
+    image: "/images/flex-printing-machine.jpg",
+    posterImage: "/images/bajaj-finance-emi-flyer.jpg",
+    features: [
+      { label: "Credit Range", value: "₹5,000 – ₹50,000", color: "text-amber-300" },
+      { label: "Down Payment", value: "From ₹1,000", color: "text-emerald-400" },
+      { label: "Interest", value: "0% No Interest", color: "text-cyan-300" },
+    ],
     startingPrice: "Down Payment from ₹1,000",
     turnaroundTime: "Instant In-Store Approval",
     locationContext: "Kadapa Workshop",
@@ -364,52 +372,138 @@ export default function HeroSlider() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Integrated Left-Aligned Hero Content */}
+        {/* Integrated Hero Content */}
         <div className="site-container relative z-20 h-full flex flex-col justify-end pb-12 sm:pb-16 md:justify-center md:pb-0 pointer-events-none">
-          <div className="max-w-2xl pointer-events-auto space-y-3 sm:space-y-4 pt-10 sm:pt-0">
-            {/* Category & Verified Badge */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center space-x-1.5 bg-brand-red text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span>{slide.categoryName}</span>
-              </span>
-              <span className="hidden sm:inline-flex items-center text-[11px] sm:text-xs bg-white/10 text-slate-200 border border-white/15 px-3 py-1 rounded-full font-medium backdrop-blur-sm">
-                {slide.badge}
-              </span>
+          {slide.posterImage ? (
+            /* Split 2-Column Showcase for Promotional Flyer Slides (Prevents Text Collision) */
+            <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center pointer-events-auto pt-8 sm:pt-0">
+              <div className="lg:col-span-7 space-y-3 sm:space-y-4">
+                {/* Category & Verified Badge */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center space-x-1.5 bg-amber-400 text-slate-950 text-[11px] sm:text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-950 animate-pulse" />
+                    <span>{slide.categoryName}</span>
+                  </span>
+                  <span className="hidden sm:inline-flex items-center text-[11px] sm:text-xs bg-white/10 text-slate-200 border border-white/15 px-3 py-1 rounded-full font-medium backdrop-blur-sm">
+                    {slide.badge}
+                  </span>
+                </div>
+
+                {/* Main Headline */}
+                <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
+                  <span>{slide.headline} </span>
+                  <span className="text-amber-400">{slide.accentText}</span>
+                </h1>
+
+                {/* Description */}
+                <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-xl">
+                  {slide.description}
+                </p>
+
+                {/* Key Metrics Strip */}
+                {slide.features && (
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3 py-1 max-w-lg">
+                    {slide.features.map((feat, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-slate-900/80 backdrop-blur-md border border-white/15 rounded-xl p-2 sm:p-2.5 text-center shadow-md"
+                      >
+                        <div className="text-[10px] sm:text-[11px] text-slate-400 font-semibold uppercase tracking-wider">
+                          {feat.label}
+                        </div>
+                        <div className={`text-xs sm:text-sm font-black mt-0.5 ${feat.color || "text-white"}`}>
+                          {feat.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Action CTA Buttons */}
+                <div className="flex flex-wrap items-center gap-3 pt-1">
+                  <Link
+                    href={slide.primaryCtaLink}
+                    className="bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-black px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all shadow-lg shadow-amber-500/25 flex items-center space-x-2 group/btn active:scale-95"
+                  >
+                    <span>{slide.primaryCtaText}</span>
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </Link>
+
+                  <a
+                    href={getWhatsAppLink(`Hello City Grafix, I want to inquire about Easy Installments with Bajaj Finance for printing / LED signage:`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl backdrop-blur-sm transition-all flex items-center space-x-2 active:scale-95"
+                  >
+                    <MessageCircle className="w-4 h-4 text-emerald-400" />
+                    <span>Quick WhatsApp Quote</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Column: Promotional Flyer Mockup Showcase */}
+              <div className="hidden lg:flex lg:col-span-5 justify-end">
+                <div className="relative w-64 xl:w-72 aspect-[935/1024] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/20 ring-4 ring-amber-400/20 group/flyer hover:scale-105 transition-transform duration-500 bg-slate-900">
+                  <Image
+                    src={slide.posterImage}
+                    alt={slide.headline}
+                    fill
+                    className="object-cover"
+                    sizes="320px"
+                  />
+                  <div className="absolute top-2.5 right-2.5 bg-amber-400 text-slate-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow-md">
+                    Official Partner
+                  </div>
+                </div>
+              </div>
             </div>
+          ) : (
+            /* Standard Cinematic Full-Width Slide */
+            <div className="max-w-2xl pointer-events-auto space-y-3 sm:space-y-4 pt-10 sm:pt-0">
+              {/* Category & Verified Badge */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center space-x-1.5 bg-brand-red text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span>{slide.categoryName}</span>
+                </span>
+                <span className="hidden sm:inline-flex items-center text-[11px] sm:text-xs bg-white/10 text-slate-200 border border-white/15 px-3 py-1 rounded-full font-medium backdrop-blur-sm">
+                  {slide.badge}
+                </span>
+              </div>
 
-            {/* Main Headline with Highlight Accent */}
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.12]">
-              <span>{slide.headline} </span>
-              <span className="text-brand-gold">{slide.accentText}</span>
-            </h1>
+              {/* Main Headline with Highlight Accent */}
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-[1.12]">
+                <span>{slide.headline} </span>
+                <span className="text-brand-gold">{slide.accentText}</span>
+              </h1>
 
-            {/* Description (Concise & Legible) */}
-            <p className="text-slate-300 text-xs sm:text-base lg:text-lg leading-relaxed max-w-xl line-clamp-2 sm:line-clamp-3">
-              {slide.description}
-            </p>
+              {/* Description (Concise & Legible) */}
+              <p className="text-slate-300 text-xs sm:text-base lg:text-lg leading-relaxed max-w-xl line-clamp-2 sm:line-clamp-3">
+                {slide.description}
+              </p>
 
-            {/* Action CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <Link
-                href={slide.primaryCtaLink}
-                className="bg-brand-red hover:bg-brand-redDark text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all shadow-lg shadow-brand-red/30 hover:shadow-brand-red/50 flex items-center space-x-2 group/btn"
-              >
-                <span>{slide.primaryCtaText}</span>
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-              </Link>
+              {/* Action CTA Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <Link
+                  href={slide.primaryCtaLink}
+                  className="bg-[#F97316] hover:bg-[#EA580C] text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center space-x-2 group/btn active:scale-95"
+                >
+                  <span>{slide.primaryCtaText}</span>
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
+                </Link>
 
-              <a
-                href={getWhatsAppLink(`Hello City Grafix, I want to inquire about ${slide.categoryName} (${slide.headline}).`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden sm:flex bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl backdrop-blur-sm transition-all items-center space-x-2"
-              >
-                <MessageCircle className="w-4 h-4 text-emerald-400" />
-                <span>Quick WhatsApp Quote</span>
-              </a>
+                <a
+                  href={getWhatsAppLink(`Hello City Grafix, I want to get a free quote for ${slide.categoryName} (${slide.headline}).`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl backdrop-blur-sm transition-all flex items-center space-x-2 active:scale-95"
+                >
+                  <MessageCircle className="w-4 h-4 text-emerald-400" />
+                  <span>Get a Free Quote</span>
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Floating Minimal Navigation Controls */}
