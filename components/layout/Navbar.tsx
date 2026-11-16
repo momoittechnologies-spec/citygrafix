@@ -63,7 +63,7 @@ export default function Navbar() {
       title: "Flex & Outdoor Advertising",
       telugu: "స్టార్ ఫ్లెక్స్ & హోర్డింగ్స్",
       description: "340+ GSM Star Flex, Grand Arches & Highway Billboards",
-      badge: "From ₹12/sq.ft",
+      badge: "Direct Workshop",
       icon: Layers,
       color: "text-brand-red bg-red-50 group-hover:bg-brand-red group-hover:text-white",
     },
@@ -292,7 +292,7 @@ export default function Navbar() {
                               >
                                 <div className="flex items-center space-x-2 text-xs font-bold text-brand-navy mb-1">
                                   <Tag className="w-4 h-4 text-brand-royal" />
-                                  <span>Official Wholesale Rate Card</span>
+                                  <span>Official Gifting Rate Card</span>
                                 </div>
                                 <p className="text-[11px] text-slate-500 leading-snug">
                                   Transparent workshop rates for Star Flex, CAD blueprints, signage & gifts.
@@ -325,7 +325,7 @@ export default function Navbar() {
                                 onClick={() => setIsServicesOpen(false)}
                                 className="font-bold text-brand-navy hover:text-brand-royal transition-colors inline-flex items-center space-x-1"
                               >
-                                <span>Official Wholesale Rate Card</span>
+                                <span>Official Gifting Rate Card</span>
                                 <ArrowRight className="w-3 h-3" />
                               </Link>
                             </div>
@@ -481,7 +481,7 @@ export default function Navbar() {
                   className="w-full bg-gradient-to-r from-brand-red to-brand-redDark text-white py-3.5 rounded-xl font-bold flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <Tag className="w-4 h-4" />
-                  <span>Official Wholesale Rate Card</span>
+                  <span>Official Gifting Rate Card</span>
                 </Link>
 
                 <div className="grid grid-cols-2 gap-2 pt-2">

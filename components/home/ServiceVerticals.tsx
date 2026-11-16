@@ -179,9 +179,15 @@ export default function ServiceVerticals() {
                     <div className="absolute top-3.5 left-3.5 bg-brand-navy/95 backdrop-blur-sm px-2.5 py-1 rounded text-xs font-bold text-brand-gold">
                       {service.teluguTitle}
                     </div>
-                    <div className="absolute bottom-3.5 right-3.5 bg-white/95 backdrop-blur-sm px-3 py-1 rounded shadow-sm font-mono text-xs font-bold text-emerald-700">
-                      From {service.startingPrice}
-                    </div>
+                    {service.categorySlug === "personalized-gifts" ? (
+                      <div className="absolute bottom-3.5 right-3.5 bg-white/95 backdrop-blur-sm px-3 py-1 rounded shadow-sm font-mono text-xs font-bold text-emerald-700">
+                        {service.startingPrice}
+                      </div>
+                    ) : (
+                      <div className="absolute bottom-3.5 right-3.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded shadow-sm text-xs font-bold text-brand-navy">
+                        Custom Quote
+                      </div>
+                    )}
                   </div>
 
                   <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">

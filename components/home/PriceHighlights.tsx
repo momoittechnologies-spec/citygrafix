@@ -22,25 +22,6 @@ interface PopularProduct {
 
 const POPULAR_PRODUCTS: PopularProduct[] = [
   {
-    id: "star-flex",
-    name: "Star Flex Banners (340+ GSM)",
-    telugu: "స్టార్ ఫ్లెక్స్ బ్యానర్లు",
-    category: "Flex & Hoardings",
-    image: "/images/star-flex-banner.jpg",
-    rate: "₹18",
-    unit: "per sq. ft.",
-    badge: "Most Popular",
-    specs: "Japanese UV outdoor ink, heavy wind tolerance, double brass eyelets",
-    turnaround: "2 to 4 Hours",
-    whatsappMessage: "Hello City Grafix, I want to order Star Flex Banners (₹18/sq.ft). Here are my dimensions:",
-    detailUrl: "/services/flex-banner-printing-kadapa",
-    variants: [
-      { label: "Normal Flex", price: "₹12/sq.ft" },
-      { label: "Star Flex", price: "₹18/sq.ft" },
-      { label: "Backlit Glow", price: "₹35/sq.ft" },
-    ],
-  },
-  {
     id: "photo-frame",
     name: "Custom Wall Photo Frames",
     telugu: "కస్టమ్ ఫోటో ఫ్రేమ్స్",
@@ -64,22 +45,82 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
   },
   {
     id: "photo-mugs",
-    name: "Ceramic Photo Mugs & Magic Reveal",
+    name: "Ceramic Photo Mugs (Plain White)",
     telugu: "సిరామిక్ ఫోటో మగ్గులు",
     category: "Personalized Gifting",
-    image: "/images/gifting-custom-photo-mugs.jpg",
+    image: "/images/gifting-plain-white-mug.jpg",
     rate: "₹350",
     unit: "starting per mug",
     badge: "Same-Day Gift",
     specs: "Permanent HD sublimation print, 100% dishwasher & microwave safe ceramic",
     turnaround: "1 to 2 Hours",
-    whatsappMessage: "Hello City Grafix, I want to order Custom Ceramic Photo Mugs:",
+    whatsappMessage: "Hello City Grafix, I want to order Plain White Ceramic Photo Mugs (₹350):",
     detailUrl: "/services/personalized-gifts-framing-kadapa",
     variants: [
       { label: "Plain Ceramic", price: "₹350" },
-      { label: "Inner Colour", price: "₹450" },
-      { label: "Heart Handle", price: "₹500" },
-      { label: "Magic Reveal", price: "₹550" },
+      { label: "AAA Grade", price: "Pure White" },
+      { label: "Microwave Safe", price: "Permanent" },
+      { label: "Gift Packing", price: "+₹50" },
+    ],
+  },
+  {
+    id: "inner-colour-mug",
+    name: "Inner Colour Ceramic Mugs (9 Tones)",
+    telugu: "ఇన్నర్ కలర్ కాఫీ కప్",
+    category: "Personalized Gifting",
+    image: "/images/gifting-inner-colour-mug.jpg",
+    rate: "₹450",
+    unit: "per mug",
+    badge: "9 Colour Tones",
+    specs: "White exterior with vibrant Red, Blue, Yellow, Pink, Green, Black, Orange interior",
+    turnaround: "1 to 2 Hours",
+    whatsappMessage: "Hello City Grafix, I want to order Inner Colour Ceramic Coffee Mugs (₹450):",
+    detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Red Interior", price: "₹450" },
+      { label: "Blue Interior", price: "₹450" },
+      { label: "Yellow / Green", price: "₹450" },
+      { label: "Black / Pink", price: "₹450" },
+    ],
+  },
+  {
+    id: "heart-handle-mug",
+    name: "Heart Handle Romantic Couple Coffee Mugs",
+    telugu: "హార్ట్ హ్యాండిల్ కపుల్ కప్",
+    category: "Personalized Gifting",
+    image: "/images/gifting-heart-handle-mug.jpg",
+    rate: "₹500",
+    unit: "per couple mug",
+    badge: "Keepsake Mug",
+    specs: "Sculpted heart-shaped handle in multi-color options, anniversary & Valentine special",
+    turnaround: "1 to 2 Hours",
+    whatsappMessage: "Hello City Grafix, I want to order Heart Handle Couple Mugs (₹500):",
+    detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Red Heart", price: "₹500" },
+      { label: "Black Heart", price: "₹500" },
+      { label: "Blue / Yellow", price: "₹500" },
+      { label: "Gift Packing", price: "+₹50" },
+    ],
+  },
+  {
+    id: "magic-mug",
+    name: "Personalized Magic Heat Reveal Ceramic Mug",
+    telugu: "మ్యాజిక్ హీట్ రివీల్ కప్",
+    category: "Personalized Gifting",
+    image: "/images/gifting-magic-mug-heat-reveal.jpg",
+    rate: "₹550",
+    unit: "per magic mug",
+    badge: "Hot Water Reveal",
+    specs: "Pitch black when cold; pouring hot coffee/tea magically dissolves coating to reveal HD photo",
+    turnaround: "1 to 2 Hours",
+    whatsappMessage: "Hello City Grafix, I want to order Personalized Magic Heat Reveal Mugs (₹550):",
+    detailUrl: "/services/personalized-gifts-framing-kadapa",
+    variants: [
+      { label: "Cold: Pitch Black", price: "Hidden" },
+      { label: "Hot: HD Photo", price: "Revealed" },
+      { label: "Microwave Safe", price: "₹550" },
+      { label: "Gift Packing", price: "+₹50" },
     ],
   },
   {
@@ -143,72 +184,6 @@ const POPULAR_PRODUCTS: PopularProduct[] = [
       { label: "Printed Cap", price: "₹300" },
     ],
   },
-  {
-    id: "a0-cad",
-    name: "A0 Jumbo Xerox & CAD Blueprints",
-    telugu: "A0 జంబో జిరాక్స్ & క్యాడ్ ప్లాన్స్",
-    category: "Engineering Plans",
-    image: "/images/a0-jumbo-xerox.jpg",
-    rate: "₹25",
-    unit: "starting per sheet",
-    badge: "15-Min Delivery",
-    specs: "1200 DPI vector plotting on 90 GSM bond paper, DTCP & KUDA compliant",
-    turnaround: "15 to 30 Minutes",
-    whatsappMessage: "Hello City Grafix, I need A0 Jumbo Xerox / CAD Blueprint plotting in Kadapa:",
-    detailUrl: "/services/jumbo-xerox-kadapa",
-    variants: [
-      { label: "A0 B&W CAD", price: "₹25" },
-      { label: "A0 Color Plot", price: "₹90" },
-      { label: "Tracing Film", price: "₹140" },
-    ],
-  },
-  {
-    id: "visiting-cards",
-    name: "350 GSM Velvet Visiting Cards",
-    telugu: "1000 విజిటింగ్ కార్డ్స్",
-    category: "Commercial Offset",
-    image: "/images/visiting-cards-offset.jpg",
-    rate: "₹750",
-    unit: "wholesale pack of 1000",
-    badge: "Wholesale Pack",
-    specs: "Matte velvet lamination, raised Spot UV gloss highlights on heavy cardstock",
-    turnaround: "24 to 48 Hours",
-    whatsappMessage: "Hello City Grafix, I want to order 1000 Visiting Cards wholesale pack (₹750):",
-    detailUrl: "/services/visiting-cards-bill-books-pamphlets-kadapa",
-    variants: [
-      { label: "Standard Matte", price: "₹550" },
-      { label: "350 GSM Velvet", price: "₹750" },
-      { label: "Raised Spot UV", price: "₹1,100" },
-    ],
-  },
-  {
-    id: "3d-led-signage",
-    name: "3D Acrylic Letters & LED Glow Boards",
-    telugu: "3D అక్రిలిక్ లెటర్స్",
-    category: "Architectural Signage",
-    image: "/images/3d-led-signage-storefront.jpg",
-    rate: "₹45",
-    unit: "per inch letter height",
-    badge: "3-Yr Assurance",
-    specs: "Laser-cut cast acrylic, Samsung IP67 waterproof LEDs, 48-hr burn-in test",
-    turnaround: "2 to 4 Days Turnkey",
-    whatsappMessage: "Hello City Grafix, I need a quotation for 3D Acrylic LED Signboard fabrication:",
-    detailUrl: "/services/3d-led-sign-boards-kadapa",
-    variants: [
-      { label: "Frontlit Acrylic", price: "₹45/in" },
-      { label: "Backlit Halo", price: "₹55/in" },
-      { label: "Gold Titanium", price: "₹75/in" },
-    ],
-  },
-];
-
-const ADDITIONAL_RATES = [
-  { name: "Normal Flex Banner", rate: "₹12 / sq.ft", badge: "Event Grade" },
-  { name: "Waterproof Vinyl Stickers", rate: "₹38 / sq.ft", badge: "Self-Adhesive" },
-  { name: "Sunboard Rigid Displays", rate: "₹65 / sq.ft", badge: "Foam Sheet" },
-  { name: "KUDA Approved Layout Maps", rate: "₹90 / sheet", badge: "Continuous Roll" },
-  { name: "Duplicate NCR Bill Books", rate: "₹850 / 5 books", badge: "Numbered" },
-  { name: "3-Sided Auto Publicity Flex", rate: "Custom Package", badge: "DTS Audio" },
 ];
 
 export default function PriceHighlights() {
@@ -218,33 +193,33 @@ export default function PriceHighlights() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12">
           <div>
-            <div className="inline-flex items-center space-x-1.5 bg-slate-100 text-slate-700 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2.5">
-              <Tag className="w-3.5 h-3.5 text-brand-navy" />
-              <span>Direct Workshop Catalog</span>
+            <div className="inline-flex items-center space-x-1.5 bg-purple-50 text-purple-700 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider mb-2.5 border border-purple-100">
+              <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+              <span>Personalized Gifting Studio • Direct Workshop</span>
             </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-brand-navy tracking-tight">
-              Popular Products & Direct Rates
+              Personalized Gifts & Custom Merchandise
             </h2>
             <p className="text-slate-600 text-sm sm:text-base xl:text-lg mt-2 max-w-2xl leading-relaxed">
-              Explore Kadapa&apos;s most requested commercial printing items, fabricated directly on in-house machinery with transparent wholesale pricing.
+              Explore Kadapa&apos;s favorite custom gifting items, fabricated in our workshop with transparent pricing. High-definition prints ready in 1 to 2 hours.
             </p>
           </div>
 
           <div className="mt-4 md:mt-0 flex items-center space-x-3 shrink-0">
             <a
-              href={getWhatsAppLink("Hello City Grafix, I want to get a custom wholesale price quote for printing:")}
+              href={getWhatsAppLink("Hello City Grafix, I want to order personalized gifts in Kadapa:")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center text-xs sm:text-sm font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl transition-colors shadow-sm space-x-1.5"
             >
               <MessageCircle className="w-4 h-4 fill-white" />
-              <span>Request WhatsApp Quote</span>
+              <span>WhatsApp Gift Order</span>
             </a>
             <Link
               href="/pricing"
               className="inline-flex items-center text-xs sm:text-sm font-bold text-brand-navy border border-slate-300 px-4 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"
             >
-              <span>Full Rate Card →</span>
+              <span>Gifts Rate Card →</span>
             </Link>
           </div>
         </div>
@@ -353,46 +328,42 @@ export default function PriceHighlights() {
           ))}
         </div>
 
-        {/* Quick Rate Ticker for Additional Printing Services */}
-        <div className="mt-10 p-5 rounded-2xl bg-slate-50 border border-slate-200">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-            <div className="flex items-center space-x-2">
-              <Sparkles className="w-4 h-4 text-brand-gold" />
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                Additional Workshop Rate Highlights:
-              </span>
-            </div>
-            <Link
-              href="/pricing"
-              className="text-xs font-bold text-brand-royal hover:underline"
-            >
-              View Complete Itemized Rate Card (All 12 Verticals) →
-            </Link>
+        {/* Commercial Printing & Signage Quotation Notice */}
+        <div className="mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="space-y-1.5 max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-red-50 border border-red-100 px-2.5 py-0.5 rounded inline-block">
+              Commercial & Architectural Printing
+            </span>
+            <h3 className="text-lg sm:text-xl font-black text-brand-navy">
+              Looking for Star Flex, 3D LED Signboards, Jumbo Xerox or Visiting Cards?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Commercial advertising and engineering CAD prints are custom quoted based on dimensions, materials, and volume. Contact our Kadapa workshop for an instant factory quotation.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {ADDITIONAL_RATES.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-3 rounded-xl border border-slate-200 text-center flex flex-col justify-between"
-              >
-                <span className="text-[10px] text-slate-400 font-bold uppercase block truncate">
-                  {item.badge}
-                </span>
-                <span className="text-xs font-bold text-brand-navy mt-1 truncate">
-                  {item.name}
-                </span>
-                <span className="text-xs font-mono font-bold text-emerald-700 mt-1 block">
-                  {item.rate}
-                </span>
-              </div>
-            ))}
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href={getWhatsAppLink("Hello City Grafix, I need a quotation for commercial printing (Flex Banners / 3D Signage / Jumbo Xerox / Visiting Cards):")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-navy hover:bg-brand-navyLight text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors shadow-sm flex items-center space-x-1.5"
+            >
+              <MessageCircle className="w-4 h-4 text-brand-gold" />
+              <span>Get Commercial Quote</span>
+            </a>
+            <Link
+              href="/services"
+              className="border border-slate-300 text-slate-700 hover:bg-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors"
+            >
+              <span>Explore All Services →</span>
+            </Link>
           </div>
         </div>
 
         <div className="mt-6 text-center">
           <p className="text-xs text-slate-500">
-            * All prices reflect direct in-house production in Kadapa. Finishing add-ons, quantity discounts, and custom framing options available on request.
+            * All personalized gifts are manufactured in-house in Kadapa with same-day turnaround (1 to 2 hours). Follow @citygrafix1 on Instagram for Flat 10% Off Photo Frames!
           </p>
         </div>
       </div>

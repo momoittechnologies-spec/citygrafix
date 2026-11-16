@@ -102,9 +102,15 @@ export default function ServicesIndexPage() {
                       <div className="absolute top-3 left-3 bg-brand-navy/90 backdrop-blur-md px-2 py-0.5 rounded text-[11px] font-bold text-brand-gold">
                         {service.teluguTitle}
                       </div>
-                      <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded shadow font-mono text-xs font-extrabold text-emerald-700">
-                        {service.startingPrice}
-                      </div>
+                      {service.categorySlug === "personalized-gifts" ? (
+                        <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded shadow font-mono text-xs font-extrabold text-emerald-700">
+                          {service.startingPrice}
+                        </div>
+                      ) : (
+                        <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded shadow text-xs font-bold text-brand-navy">
+                          Custom Quote
+                        </div>
+                      )}
                     </div>
 
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-4">

@@ -141,8 +141,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Smudge-proof, UV-stable digital toner adhesion",
     ],
     turnaround: "15 to 30 Minutes (Instant while-you-wait)",
-    startingPrice: "₹25 / sheet",
-    pricingDetails: "A3 Colour: ₹25 | A2 B/W: ₹40 | A2 Colour: ₹90 | A1 B/W: ₹60 | A1 Colour: ₹140 | A0 B/W: ₹90 | A0 Colour: ₹220",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Customized based on sheet size (A0–A4), B/W vs. Colour plot, and paper stock. Contact us for direct workshop rates.",
     supportedSizes: ["A0 (841 x 1189 mm)", "A1 (594 x 841 mm)", "A2 (420 x 594 mm)", "A3 (297 x 420 mm)", "A4 (210 x 297 mm)", "Continuous roll up to 36 inches wide"],
     image: "/images/cad-blueprint-plotter.jpg",
     benefits: [
@@ -187,8 +187,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Automatic folding to standard A4 filing size with title block visible",
     ],
     turnaround: "15 to 30 Minutes",
-    startingPrice: "₹40 / sheet",
-    pricingDetails: "A2 B/W: ₹40 | A2 Colour: ₹90 | A1 B/W: ₹60 | A1 Colour: ₹140 | A0 B/W: ₹90 | A0 Colour: ₹220",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Customized based on sheet dimensions (A0–A2), vector density, and batch volume. Contact us for direct workshop rates.",
     supportedSizes: ["A0", "A1", "A2", "Custom CAD Plot Widths up to 36 inches"],
     image: "/images/cad-blueprint-plotter.jpg",
     benefits: [
@@ -228,8 +228,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Lamination option available for long-lasting field and office display",
     ],
     turnaround: "Express (Same Day)",
-    startingPrice: "₹90 / sheet",
-    pricingDetails: "A2 Colour: ₹90 | A1 Colour: ₹140 | A0 Colour: ₹220 | Lamination: ₹10/sq.ft",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Customized based on continuous roll length, zoning color density, and lamination options. Contact us for direct workshop rates.",
     supportedSizes: ["A2", "A1", "A0", "Custom Roll Lengths up to 10+ feet"],
     image: "/images/municipal-layout-village-map.jpg",
     benefits: [
@@ -268,8 +268,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Standard A0, A1, A2 sheet formats and continuous rolls",
     ],
     turnaround: "30 to 60 Minutes",
-    startingPrice: "₹320 / sheet",
-    pricingDetails: "A0 Tracing Paper / Drafting Cloth Plot: ₹320 per sheet | A1 Tracing: ₹220 | A2 Tracing: ₹150",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Customized based on sheet format (A0–A2) and Gateway tracing paper vs. drafting cloth.",
     supportedSizes: ["A0", "A1", "A2", "Custom Roll Widths"],
     image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=1200&q=80",
     benefits: [
@@ -303,8 +303,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Direct digital export to USB Pen Drive, Email, or WhatsApp as PDF, TIFF, or JPG",
     ],
     turnaround: "Instant while you wait",
-    startingPrice: "₹80 / document",
-    pricingDetails: "Large Document Scanning (A0 / A1): ₹80 per document | A2 / A3 Scanning: ₹40 per document",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Customized based on document dimensions (A0–A3) and fragility. Contact us for direct workshop rates.",
     supportedSizes: ["A0, A1, A2, A3, and continuous map lengths up to 10+ feet"],
     image: "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=1200&q=80",
     benefits: [
@@ -339,8 +339,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Brass metal eyelets (రింగులు) and border folding included/optional",
     ],
     turnaround: "Same-Day (2 to 4 Hours express)",
-    startingPrice: "₹18 / sq. ft.",
-    pricingDetails: "Star Flex: ₹18/sq.ft (Min. ₹100) | Normal Flex: ₹12/sq.ft (Min. ₹70) | Brass Rings: ₹20/banner | Wooden Beeding: ₹6/sq.ft",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Quoted based on banner dimensions, GSM grade, and framing options. Contact us for direct workshop rates.",
     supportedSizes: ["6x4 ft (Event)", "8x3 ft (Shop)", "10x5 ft (Hoarding)", "12x8 ft (Stage)", "Custom spans up to 100 ft"],
     image: "/images/flex-printing-machine.jpg",
     benefits: [
@@ -352,7 +352,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     faqs: [
       {
         question: "What is the difference between Normal Flex and Star Flex?",
-        answer: "Normal Flex (₹12/sq.ft) is standard event grade, best suited for short-term announcements. Star Flex (₹18/sq.ft) is 340+ GSM heavy-duty with high gloss, UV protection, and deep color saturation that lasts months outdoors.",
+        answer: "Normal Flex is standard event grade, best suited for short-term announcements. Star Flex is 340+ GSM heavy-duty with high gloss, UV protection, and deep color saturation that lasts months outdoors. Contact our workshop on WhatsApp for custom quotations based on your dimensions.",
       },
       {
         question: "How fast can I get a 10x5 ft banner printed?",
@@ -380,8 +380,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "On-site framing and erection assistance available across Kadapa",
     ],
     turnaround: "Same-Day Express Dispatch",
-    startingPrice: "₹22 / sq. ft.",
-    pricingDetails: "Arch Flex: ₹22/sq.ft (Min. Order ₹800) | Wooden Beeding: ₹6/sq.ft | MS Square Pipe Frame: ₹35/sq.ft",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Quoted based on arch road span dimensions, wooden beeding, or welded MS iron frame.",
     supportedSizes: ["20 x 10 ft", "25 x 12 ft", "30 x 15 ft", "Custom road spans"],
     image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
     benefits: [
@@ -415,8 +415,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Frontlit and Backlit flex variants available",
     ],
     turnaround: "2 to 4 Hours Fast Dispatch",
-    startingPrice: "₹20 / sq. ft.",
-    pricingDetails: "Hoarding Flex: ₹20/sq.ft (Min. Order ₹500) | Backlit Flex: ₹35/sq.ft (Min. ₹200)",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Quoted based on billboard dimensions, wind-load GSM, and frontlit vs. backlit specifications.",
     supportedSizes: ["20x10 ft", "30x15 ft", "40x20 ft", "60x30 ft", "Custom Highway Billboard Spans"],
     image: "/images/highway-hoarding-billboard.jpg",
     benefits: [
@@ -452,8 +452,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "3-Year structural & lighting durability guarantee",
     ],
     turnaround: "2 to 4 Days (Includes 48-hr electrical testing)",
-    startingPrice: "₹45 / inch letter height",
-    pricingDetails: "3D Letters: ₹45/inch height/letter (Min. ₹1,500) | Complete LED Glow Sign Board: ₹220/sq.ft (Min. ₹1,200)",
+    startingPrice: "Custom Quotation",
+    pricingDetails: "Custom fabrication quoted per inch letter height, LED module brand, and steel backing framework.",
     supportedSizes: ["6-inch to 48-inch letter heights", "Shopfront signboards from 8x3 ft up to 40x8 ft"],
     image: "/images/3d-led-signage-storefront.jpg",
     benefits: [
@@ -465,7 +465,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     faqs: [
       {
         question: "How is the price calculated for 3D acrylic letters?",
-        answer: "Price is calculated per inch of letter height at ₹45/inch. For example, a 12-inch high letter costs ₹540. A standard 10-letter board with 12-inch letters costs ₹5,400 plus frame.",
+        answer: "Pricing is calculated custom per letter height, style (frontlit, backlit halo, or titanium gold), and LED module specifications. Share your shopfront dimensions for an instant free 3D design mockup and direct factory quote.",
       },
       {
         question: "Do you come to our shop in Kadapa for site measurement?",
@@ -499,8 +499,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Dedicated booking helpline numbers: +91 99857 43730 | +91 72878 67584",
     ],
     turnaround: "Same Day / 24 Hours",
-    startingPrice: "₹450 / auto",
-    pricingDetails: "Single Auto (Front Hood + Rear Board): ₹450 | Full 3-Sided Auto with DTS Sound & Pamphlet Distribution: Custom Packages | 5 Autos Fleet: ₹2,100 | 10 Autos Mega Campaign: ₹3,900",
+    startingPrice: "Custom Packages",
+    pricingDetails: "Tailored campaign packages based on number of autos, duration, and DTS audio announcement.",
     supportedSizes: ["Sides: W6 x H5 ft (2 panels)", "Rear Panel: W4 x H5 ft (1 panel)", "Top Header: W4 x H1 ft (1 panel)", "Front Hood Flex Cover"],
     image: "/images/auto-publicity-branding.jpg",
     galleryImages: [
@@ -551,8 +551,8 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Standard A5 and A4 single/double-sided flyer formats",
     ],
     turnaround: "24 to 48 Hours",
-    startingPrice: "₹750 / 1000 cards",
-    pricingDetails: "1000 Visiting Cards (Matte): ₹750 | 350 GSM Gloss: ₹950 | Spot UV Velvet: ₹1,650 | Duplicate Bill Books (5 pack): ₹850 | A5 Flyers (1000): ₹950",
+    startingPrice: "Wholesale Packages",
+    pricingDetails: "Quoted based on cardstock GSM, lamination type (Matte/Velvet/Spot UV), and quantity.",
     supportedSizes: ["Standard Business Card (3.5 x 2 in)", "A5 Flyer (148 x 210 mm)", "A4 Flyer (210 x 297 mm)", "Standard Bill Book Dimensions"],
     image: "/images/stickers-boards-commercial.jpg",
     benefits: [
@@ -563,7 +563,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     faqs: [
       {
         question: "What is the minimum order for visiting cards?",
-        answer: "Our standard wholesale pack is 1000 cards starting at ₹750 for matte finish.",
+        answer: "Our standard wholesale pack is 1000 cards. Contact our order desk on WhatsApp for the latest wholesale package rates for Matte, Gloss, or Velvet Spot UV cards.",
       },
       {
         question: "Can you include my GST number and sequential serial numbers on bill books?",

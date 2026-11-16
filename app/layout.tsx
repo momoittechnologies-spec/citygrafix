@@ -102,7 +102,7 @@ export default function RootLayout({
     "image": "https://www.citygrafix.in/logo.png",
     "telephone": BUSINESS_DATA.contacts.primaryOrders.number,
     "email": BUSINESS_DATA.contacts.email,
-    "priceRange": "₹12 - ₹5000",
+    "priceRange": "₹25 - ₹4500",
     "description": "Commercial digital printing press, wide-format flex & hoarding manufacturer, 3D acrylic LED signage fabricator, and A0-A4 Jumbo Xerox hub in Kadapa.",
     "address": {
       "@type": "PostalAddress",

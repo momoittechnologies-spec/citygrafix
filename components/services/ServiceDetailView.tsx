@@ -127,10 +127,17 @@ export default function ServiceDetailView({ service }: Props) {
                     <span>Speed: <strong className="text-white">{service.turnaround}</strong></span>
                   </div>
 
-                  <div className="flex items-center bg-white/10 px-3.5 py-1.5 rounded-lg border border-white/15">
-                    <Tag className="w-4 h-4 text-brand-gold mr-2" />
-                    <span>Starting: <strong className="text-brand-gold">{service.startingPrice}</strong></span>
-                  </div>
+                  {service.categorySlug === "personalized-gifts" ? (
+                    <div className="flex items-center bg-white/10 px-3.5 py-1.5 rounded-lg border border-white/15">
+                      <Tag className="w-4 h-4 text-brand-gold mr-2" />
+                      <span>Starting: <strong className="text-brand-gold">{service.startingPrice}</strong></span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center bg-white/10 px-3.5 py-1.5 rounded-lg border border-white/15">
+                      <Tag className="w-4 h-4 text-brand-gold mr-2" />
+                      <span>Pricing: <strong className="text-brand-gold">Custom Workshop Quotation</strong></span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Primary Action Buttons */}
@@ -414,15 +421,29 @@ export default function ServiceDetailView({ service }: Props) {
             <aside className="lg:col-span-4 space-y-6">
               {/* Workshop Summary Card */}
               <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5 sticky top-24">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                    Direct Rate Card Info
-                  </span>
-                  <div className="text-2xl font-black text-brand-navy mt-1">
-                    {service.startingPrice}
+                {service.categorySlug === "personalized-gifts" ? (
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      Direct Rate Card Info
+                    </span>
+                    <div className="text-2xl font-black text-brand-navy mt-1">
+                      {service.startingPrice}
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">{service.pricingDetails}</p>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">{service.pricingDetails}</p>
-                </div>
+                ) : (
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
+                      Pricing Model
+                    </span>
+                    <div className="text-xl font-black text-brand-navy mt-1">
+                      Direct Factory Quotation
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Customized based on exact dimensions, materials, and order quantity.
+                    </p>
+                  </div>
+                )}
 
                 <div className="p-3.5 rounded-2xl bg-blue-50 border border-blue-100 space-y-1 text-xs">
                   <span className="font-bold text-brand-royal block">Turnaround Speed:</span>
@@ -456,7 +477,7 @@ export default function ServiceDetailView({ service }: Props) {
                     href="/pricing"
                     className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center space-x-1.5 text-xs text-center"
                   >
-                    <span>View Rate Card</span>
+                    <span>View Gifts Rate Card</span>
                   </Link>
                 </div>
 
@@ -480,7 +501,11 @@ export default function ServiceDetailView({ service }: Props) {
                         className="block p-2 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-colors"
                       >
                         <div className="text-xs font-bold text-slate-900 line-clamp-1">{rel.title}</div>
-                        <div className="text-[11px] text-brand-royal">From {rel.startingPrice}</div>
+                        {rel.categorySlug === "personalized-gifts" ? (
+                          <div className="text-[11px] text-brand-royal">From {rel.startingPrice}</div>
+                        ) : (
+                          <div className="text-[11px] text-slate-500 font-medium">Custom Quotation</div>
+                        )}
                       </Link>
                     ))}
                   </div>

@@ -10,12 +10,12 @@ export default function PricingPage() {
   const [activeTab, setActiveTab] = useState<string>("all");
 
   const tabs = [
-    { id: "all", label: "All Rates" },
-    { id: "flexBoards", label: "A. Flex, Boards & Signage" },
-    { id: "finishing", label: "B. Finishing & Add-ons" },
-    { id: "xeroxCad", label: "C. Jumbo Xerox & CAD" },
-    { id: "offsetCommercial", label: "D. Commercial Offset" },
-    { id: "gifts", label: "E. Personalized Gifts & Framing" },
+    { id: "all", label: "All Gifts Rates" },
+    { id: "photoFrames", label: "A. Wall Photo Frames" },
+    { id: "ceramicMugs", label: "B. Ceramic & Magic Mugs" },
+    { id: "roundBadges", label: "C. Round Badges (Pin & Magnetic)" },
+    { id: "photoPillows", label: "D. Photo Pillows" },
+    { id: "customApparel", label: "E. DTF T-Shirts & Caps" },
   ];
 
   // Filter items based on activeTab and searchTerm
@@ -50,13 +50,13 @@ export default function PricingPage() {
         <div className="site-container text-center">
           <div className="inline-flex items-center space-x-2 bg-white/10 px-3.5 py-1 rounded-md text-brand-gold text-xs font-bold uppercase tracking-wider mb-3.5 border border-white/15">
             <Tag className="w-3.5 h-3.5" />
-            <span>Official Business Rate Card</span>
+            <span>Official Gifting Rate Card</span>
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
-            Transparent Workshop Pricing
+            Personalized Gifts & Framing Rates
           </h1>
           <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-2.5">
-            Pure wholesale prices straight from our Kadapa production workshop. No hidden broker fees, no surprise costs.
+            Transparent workshop rates for custom photo frames, ceramic mugs, round badges, pillows, and DTF apparel. Same-day collection in Kadapa.
           </p>
         </div>
       </section>
@@ -68,10 +68,10 @@ export default function PricingPage() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-brand-navy">
-                Search Complete Rate Card
+                Search Gifting Products & Rates
               </h2>
               <p className="text-xs text-slate-500">
-                Filter by service name, category, or intended application.
+                Filter by gift item name, size, or intended occasion.
               </p>
             </div>
 
@@ -80,7 +80,7 @@ export default function PricingPage() {
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search Star Flex, A0, Mugs..."
+                placeholder="Search Mugs, Badges, Frames, Pillows..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50"
@@ -190,21 +190,53 @@ export default function PricingPage() {
           )}
         </div>
 
+        {/* Commercial Printing Direct Quotation Banner */}
+        <div className="bg-brand-navy rounded-2xl p-6 sm:p-8 text-white border border-white/10 shadow-lg flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center space-x-2 bg-brand-red text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              <span>Commercial & Industrial Printing</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Looking for Star Flex, 3D LED Signage, Jumbo Xerox or Visiting Cards?
+            </h3>
+            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              Commercial advertising and engineering blueprints are custom manufactured to your required dimensions, materials, and quantities. Contact our Kadapa workshop desk for an instant direct wholesale quotation.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href={getWhatsAppLink("Hello City Grafix, I need a quotation for commercial printing (Flex Banners / 3D Signage / Jumbo Xerox / Visiting Cards):")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-all shadow-md flex items-center space-x-2"
+            >
+              <MessageCircle className="w-4 h-4 fill-white" />
+              <span>WhatsApp Commercial Quote</span>
+            </a>
+            <a
+              href="tel:+919985743730"
+              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all"
+            >
+              <span>Call Order Desk</span>
+            </a>
+          </div>
+        </div>
+
         {/* Pricing Policies Notice */}
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 sm:p-7 text-amber-900 text-xs sm:text-sm leading-relaxed space-y-2">
           <div className="font-extrabold text-amber-950 flex items-center space-x-2 text-sm">
             <ShieldAlert className="w-4 h-4 text-amber-600" />
-            <span>Official City Grafix Pricing & Delivery Notes:</span>
+            <span>Official City Grafix Gifting & Delivery Notes:</span>
           </div>
           <p>
-            • All quotations are strictly based on customer-supplied ready-to-print artwork (.cdr, .psd, .pdf, .tiff, .jpg, .dwg). 
-            Our in-house pre-flight team checks CMYK colors, bleed, and DPI resolution free of cost.
+            • All gift orders are manufactured on-demand in our Kadapa workshop with same-day turnaround (1 to 2 hours for mugs, pillows, badges & frames).
           </p>
           <p>
-            • Turnaround speeds: Jumbo Xerox (15–30 mins), Star Flex (2–4 hours), Personalized Mugs/Caps (1–2 hours), Commercial Offset (24–48 hours), 3D Acrylic LED Signage (2–4 days including 48-hr electrical burn-in testing).
+            • Follow our official Instagram ID <span className="font-bold text-purple-900">@citygrafix1</span> to claim an instant Flat 10% discount on all photo frame sizes (A4 to 24×36).
           </p>
           <p>
-            • On-site erection, welded iron frameworks, and regional transport across Kadapa, Proddatur, and Rayachoty are quoted transparently based on site requirements.
+            • Free basic photo pre-flight, contrast enhancement, and layout centering before printing on all personalized gift orders.
           </p>
         </div>
       </div>
