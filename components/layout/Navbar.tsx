@@ -52,6 +52,7 @@ export default function Navbar() {
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/services", hasDropdown: true },
+    { label: "Easy EMI", href: "/#emi-finance", badge: "0% Interest" },
     { label: "Our Work", href: "/our-work" },
     { label: "Pricing & Rates", href: "/pricing" },
     { label: "Contact", href: "/contact" },
@@ -107,6 +108,36 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Exclusive Bajaj Finance Easy Installments Announcement Ribbon */}
+      <div className="bg-gradient-to-r from-[#00529b] via-brand-navy to-[#b80610] text-white text-[11px] sm:text-xs py-1.5 px-3 border-b border-white/15 relative z-50">
+        <div className="site-container flex items-center justify-between gap-2">
+          <Link
+            href="/#emi-finance"
+            className="flex items-center gap-1.5 sm:gap-2 hover:opacity-95 overflow-hidden text-ellipsis whitespace-nowrap group"
+          >
+            <span className="bg-amber-400 text-slate-950 text-[10px] sm:text-[11px] font-black uppercase px-2 py-0.5 rounded-full shrink-0 shadow-xs">
+              First Time in India
+            </span>
+            <span className="font-semibold text-slate-100 truncate">
+              Flex Printing & LED Signs Now on <strong className="text-white underline decoration-amber-400 decoration-2 font-black">Easy Installments</strong> with BAJAJ FINANCE! (Credit ₹5,000–₹50,000 • 0% Interest)
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-amber-300 shrink-0 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          <div className="hidden md:flex items-center gap-3 shrink-0 text-slate-200">
+            <span>Down Payment from <strong className="text-emerald-300 font-bold">₹1,000</strong></span>
+            <span className="text-white/30">•</span>
+            <a
+              href="tel:+917287867584"
+              className="font-bold text-white hover:text-amber-300 flex items-center gap-1 transition-colors"
+            >
+              <Phone className="w-3 h-3 text-emerald-400" />
+              <span>728 786 7584</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Top Notification Bar for Kadapa Local Trust */}
       <div
         className={`bg-brand-dark text-slate-300 text-xs px-4 border-b border-white/10 hidden md:block transition-all duration-300 overflow-hidden ${
@@ -341,13 +372,18 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`px-3 xl:px-3.5 py-2 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 ${
                     isActive
                       ? "text-brand-gold bg-white/10 shadow-sm font-semibold"
                       : "text-slate-200 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  {link.badge && (
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-tight bg-gradient-to-r from-amber-400 to-amber-300 text-slate-950 shadow-xs">
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}
@@ -471,6 +507,13 @@ export default function Navbar() {
                     }`}
                   >
                     <span>{link.label}</span>
+                    {link.badge ? (
+                      <span className="px-2 py-0.5 rounded text-xs font-black uppercase bg-amber-400 text-slate-950">
+                        {link.badge}
+                      </span>
+                    ) : (
+                      <ArrowRight className="w-4 h-4 text-slate-400" />
+                    )}
                   </Link>
                 );
               })}

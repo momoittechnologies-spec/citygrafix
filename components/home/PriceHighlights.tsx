@@ -329,35 +329,42 @@ export default function PriceHighlights() {
         </div>
 
         {/* Commercial Printing & Signage Quotation Notice */}
-        <div className="mt-12 bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-1.5 max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-red bg-red-50 border border-red-100 px-2.5 py-0.5 rounded inline-block">
-              Commercial & Architectural Printing
-            </span>
-            <h3 className="text-lg sm:text-xl font-black text-brand-navy">
+        <div className="mt-12 bg-gradient-to-r from-slate-900 via-brand-navy to-slate-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 border border-white/10 shadow-xl">
+          <div className="space-y-2 max-w-2xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-brand-gold bg-amber-400/15 border border-amber-400/30 px-2.5 py-0.5 rounded-full inline-block">
+                Commercial & Architectural Printing
+              </span>
+              <span className="text-[11px] font-black uppercase tracking-wider text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                <span>⚡ 0% EMI on Bajaj Finance</span>
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-black text-white">
               Looking for Star Flex, 3D LED Signboards, Jumbo Xerox or Visiting Cards?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Commercial advertising and engineering CAD prints are custom quoted based on dimensions, materials, and volume. Contact our Kadapa workshop for an instant factory quotation.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Commercial advertising and engineering CAD prints are custom quoted based on dimensions and specifications.
+              <strong className="text-brand-gold"> Now available on Bajaj Finance:</strong> Get instant credit from ₹5,000 to ₹50,000 with down payment starting from just ₹1,000 & zero interest charges!
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <Link
+              href="/#emi-finance"
+              className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-all shadow-md flex items-center space-x-1.5"
+            >
+              <span>Check 0% EMI Details</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
             <a
               href={getWhatsAppLink("Hello City Grafix, I need a quotation for commercial printing (Flex Banners / 3D Signage / Jumbo Xerox / Visiting Cards):")}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand-navy hover:bg-brand-navyLight text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors shadow-sm flex items-center space-x-1.5"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors shadow-sm flex items-center space-x-1.5"
             >
-              <MessageCircle className="w-4 h-4 text-brand-gold" />
-              <span>Get Commercial Quote</span>
+              <MessageCircle className="w-4 h-4" />
+              <span>Get WhatsApp Quote</span>
             </a>
-            <Link
-              href="/services"
-              className="border border-slate-300 text-slate-700 hover:bg-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors"
-            >
-              <span>Explore All Services →</span>
-            </Link>
           </div>
         </div>
 

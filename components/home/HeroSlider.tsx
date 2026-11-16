@@ -44,6 +44,20 @@ const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 2,
+    categoryName: "Easy Installments • Bajaj Finance",
+    badge: "First Time in India • 0% Interest Charges",
+    headline: "Flex Printing & 3D LED Signs on Easy Installments",
+    accentText: "Pay In EMIs.",
+    description: "City Grafix is officially available on Bajaj Finance! Get instant credit from ₹5,000 to ₹50,000 with down payment starting from just ₹1,000. Upgrade your shop branding without upfront stress.",
+    primaryCtaText: "Check EMI Details",
+    primaryCtaLink: "/#emi-finance",
+    image: "/images/bajaj-finance-emi-flex-printing.jpg",
+    startingPrice: "Down Payment from ₹1,000",
+    turnaroundTime: "Instant In-Store Approval",
+    locationContext: "Kadapa Workshop",
+  },
+  {
+    id: 3,
     categoryName: "Star Flex Printing",
     badge: "340+ GSM Weather-Tolerant Flex",
     headline: "Heavy-Duty Star Flex Banners & Hoardings",
@@ -57,7 +71,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "Instant Machine Dispatch",
   },
   {
-    id: 3,
+    id: 4,
     categoryName: "Jumbo Xerox & CAD",
     badge: "Millimeter-Accurate Plotting",
     headline: "A0, A1, A2 & A3 Architectural CAD Plotting",
@@ -71,7 +85,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "While-You-Wait Service",
   },
   {
-    id: 4,
+    id: 5,
     categoryName: "3D LED Signage",
     badge: "3-Year Electrical Assurance",
     headline: "3D Acrylic Letters & Illuminated Glow Boards",
@@ -85,7 +99,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "On-Site Installation Across Kadapa",
   },
   {
-    id: 5,
+    id: 6,
     categoryName: "Personalised Gifts",
     badge: "10% IG Discount on Photo Frames",
     headline: "Custom Photo Frames, Mugs & DTF T-Shirts",
@@ -99,7 +113,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "Same-Day Collection Desk",
   },
   {
-    id: 6,
+    id: 7,
     categoryName: "Visiting Cards & Offset",
     badge: "Commercial Offset Printing",
     headline: "Premium Visiting Cards & Carbonless Bill Books",
@@ -113,7 +127,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "Wholesale Bundles Available",
   },
   {
-    id: 7,
+    id: 8,
     categoryName: "Municipal Layout Maps",
     badge: "DTCP & KUDA Sanction Compliant",
     headline: "Real Estate Venture Layouts & Village Maps",
@@ -127,7 +141,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "Engineered for Surveyors & Builders",
   },
   {
-    id: 8,
+    id: 9,
     categoryName: "CAD Blueprints",
     badge: "Strict 1:100 & 1:50 Scale Accuracy",
     headline: "Structural Blueprints & Engineering Layouts",
@@ -141,7 +155,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "Walk-in & Digital Drop Desk",
   },
   {
-    id: 9,
+    id: 10,
     categoryName: "Auto Publicity",
     badge: "Turnkey Mobile Rickshaw Campaigns",
     headline: "Auto Rickshaw Publicity with DTS Audio",
@@ -155,7 +169,7 @@ const HERO_SLIDES: HeroSlide[] = [
     locationContext: "All Kadapa Town & Rural Routes",
   },
   {
-    id: 10,
+    id: 11,
     categoryName: "Highway Hoardings",
     badge: "Reinforced Wind-Resistant Framing",
     headline: "Highway Hoardings & Outdoor Steel Billboards",

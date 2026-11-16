@@ -99,6 +99,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/#emi-finance" className="hover:text-white transition-colors text-amber-300 font-bold flex items-center space-x-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  <span>Easy EMI (Bajaj Finance)</span>
+                </Link>
+              </li>
+              <li>
                 <a
                   href={getWhatsAppLink("Hello City Grafix, I want to get an instant quotation for printing in Kadapa.")}
                   target="_blank"

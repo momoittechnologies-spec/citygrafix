@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Link from "next/link";
 import { ALL_PRICING_TABLES, PricingRow } from "@/data/pricing";
-import { Search, Tag, ShieldAlert, Sparkles, MessageCircle, FileText, CheckCircle2 } from "lucide-react";
+import { Search, Tag, ShieldAlert, Sparkles, MessageCircle, FileText, CheckCircle2, ArrowRight } from "lucide-react";
 import { getWhatsAppLink } from "@/data/business";
 
 export default function PricingPage() {
@@ -190,36 +191,65 @@ export default function PricingPage() {
           )}
         </div>
 
-        {/* Commercial Printing Direct Quotation Banner */}
-        <div className="bg-brand-navy rounded-2xl p-6 sm:p-8 text-white border border-white/10 shadow-lg flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center space-x-2 bg-brand-red text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-              <span>Commercial & Industrial Printing</span>
+        {/* Commercial Printing Direct Quotation & Bajaj Finance Easy EMI Banner */}
+        <div className="bg-gradient-to-br from-brand-navy via-[#0A192F] to-slate-950 rounded-2xl p-6 sm:p-8 text-white border border-white/10 shadow-xl space-y-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center space-x-1.5 bg-brand-red text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span>Commercial & Industrial Printing</span>
+                </span>
+                <span className="inline-flex items-center space-x-1.5 bg-amber-400 text-slate-950 text-[11px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                  <span>First Time in India • 0% EMI</span>
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                Looking for Star Flex, 3D LED Signage, Jumbo Xerox or Visiting Cards?
+              </h3>
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                Commercial advertising and engineering blueprints are custom manufactured to your required dimensions, materials, and quantities.
+                <strong className="text-white"> Now available on Easy Installments:</strong> Pay comfortably in monthly EMIs with Bajaj Finance!
+              </p>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              Looking for Star Flex, 3D LED Signage, Jumbo Xerox or Visiting Cards?
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              Commercial advertising and engineering blueprints are custom manufactured to your required dimensions, materials, and quantities. Contact our Kadapa workshop desk for an instant direct wholesale quotation.
-            </p>
+
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <a
+                href={getWhatsAppLink("Hello City Grafix, I need a quotation for commercial printing (Flex Banners / 3D Signage / Jumbo Xerox / Visiting Cards):")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-all shadow-md flex items-center space-x-2"
+              >
+                <MessageCircle className="w-4 h-4 fill-white" />
+                <span>WhatsApp Commercial Quote</span>
+              </a>
+              <Link
+                href="/#emi-finance"
+                className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 py-3 rounded-xl transition-all shadow-md flex items-center space-x-1.5"
+              >
+                <span>Check 0% EMI Details</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <a
-              href={getWhatsAppLink("Hello City Grafix, I need a quotation for commercial printing (Flex Banners / 3D Signage / Jumbo Xerox / Visiting Cards):")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-all shadow-md flex items-center space-x-2"
-            >
-              <MessageCircle className="w-4 h-4 fill-white" />
-              <span>WhatsApp Commercial Quote</span>
-            </a>
-            <a
-              href="tel:+919985743730"
-              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all"
-            >
-              <span>Call Order Desk</span>
-            </a>
+          {/* Quick Bajaj Finance Feature Strip */}
+          <div className="pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+              <div className="text-xs text-slate-400 font-semibold uppercase">Instant Credit</div>
+              <div className="text-sm sm:text-base font-black text-white mt-0.5">₹5,000 – ₹50,000</div>
+            </div>
+            <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+              <div className="text-xs text-slate-400 font-semibold uppercase">Down Payment</div>
+              <div className="text-sm sm:text-base font-black text-emerald-400 mt-0.5">From Just ₹1,000</div>
+            </div>
+            <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+              <div className="text-xs text-slate-400 font-semibold uppercase">Interest Charges</div>
+              <div className="text-sm sm:text-base font-black text-amber-400 mt-0.5">0% No Interest*</div>
+            </div>
+            <div className="p-3 rounded-xl bg-white/5 border border-white/10">
+              <div className="text-xs text-slate-400 font-semibold uppercase">Finance Partner</div>
+              <div className="text-sm sm:text-base font-black text-cyan-400 mt-0.5">Bajaj Finance</div>
+            </div>
           </div>
         </div>
 

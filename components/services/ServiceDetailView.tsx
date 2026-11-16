@@ -450,6 +450,28 @@ export default function ServiceDetailView({ service }: Props) {
                   <span className="text-slate-700 font-semibold">{service.turnaround}</span>
                 </div>
 
+                {/* Bajaj Finance Easy Installments Callout */}
+                <div className="p-3.5 rounded-2xl bg-gradient-to-br from-brand-navy to-slate-900 border border-brand-gold/30 text-white space-y-1.5 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-brand-gold bg-brand-gold/20 px-2 py-0.5 rounded">
+                      0% Interest EMI
+                    </span>
+                    <span className="text-[10px] text-cyan-300 font-bold">Bajaj Finance</span>
+                  </div>
+                  <div className="text-xs font-bold text-white leading-snug">
+                    Easy Installments (₹5,000 to ₹50,000)
+                  </div>
+                  <p className="text-[11px] text-slate-300 leading-tight">
+                    Down payment from just ₹1,000 with 0% interest charges for flex, LED signboards & advertising.
+                  </p>
+                  <Link
+                    href="/#emi-finance"
+                    className="inline-flex items-center text-[11px] font-bold text-amber-300 hover:text-white pt-0.5 transition-colors"
+                  >
+                    <span>View EMI Details →</span>
+                  </Link>
+                </div>
+
                 <div className="space-y-2 pt-2 border-t border-slate-100">
                   <a
                     href={getWhatsAppLink(service.whatsappMessage, service.recommendedLine)}

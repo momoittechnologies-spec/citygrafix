@@ -13,9 +13,9 @@ export default function TrustHighlights() {
     {
       icon: ShieldCheck,
       title: "Direct Workshop Rates",
-      subtitle: "Zero Middleman Fees",
-      telugu: "సొంత ప్రొడక్షన్ ధరలు",
-      description: "In-house Japanese plotters and fabrication with zero third-party broker fees.",
+      subtitle: "0% EMI on Bajaj Finance",
+      telugu: "సులభ వాయిదాల సదుపాయం",
+      description: "In-house workshop rates with zero middleman fees. Easy installments on Bajaj Finance now available!",
     },
     {
       icon: Clock,

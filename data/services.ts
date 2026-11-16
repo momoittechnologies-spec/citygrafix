@@ -355,6 +355,10 @@ export const CORE_SERVICES: ServiceItem[] = [
         answer: "Normal Flex is standard event grade, best suited for short-term announcements. Star Flex is 340+ GSM heavy-duty with high gloss, UV protection, and deep color saturation that lasts months outdoors. Contact our workshop on WhatsApp for custom quotations based on your dimensions.",
       },
       {
+        question: "Is installment or EMI facility available for large flex printing orders?",
+        answer: "Yes! For large advertising projects, shop branding, or event campaigns (orders ₹5,000 to ₹50,000), City Grafix offers 0% interest easy installments with Bajaj Finance with down payment starting from just ₹1,000.",
+      },
+      {
         question: "How fast can I get a 10x5 ft banner printed?",
         answer: "If you provide a print-ready file, we can print, punch brass eyelets, and have it ready for collection in just 2 hours!",
       },
@@ -463,6 +467,10 @@ export const CORE_SERVICES: ServiceItem[] = [
       "Elite modern appearance that instantly elevates customer brand perception",
     ],
     faqs: [
+      {
+        question: "Can I pay for 3D LED Sign Boards in easy installments or EMIs?",
+        answer: "Yes! City Grafix is officially available on Bajaj Finance. You can get instant credit from ₹5,000 to ₹50,000 with down payment starting from just ₹1,000 and 0% interest charges. Pay in comfortable monthly EMIs while getting your signboard installed immediately.",
+      },
       {
         question: "How is the price calculated for 3D acrylic letters?",
         answer: "Pricing is calculated custom per letter height, style (frontlit, backlit halo, or titanium gold), and LED module specifications. Share your shopfront dimensions for an instant free 3D design mockup and direct factory quote.",

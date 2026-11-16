@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import HeroSlider from "@/components/home/HeroSlider";
 import TrustHighlights from "@/components/home/TrustHighlights";
+import EmiFinanceSection from "@/components/home/EmiFinanceSection";
 import ServiceVerticals from "@/components/home/ServiceVerticals";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import OrderSteps from "@/components/home/OrderSteps";
@@ -25,6 +26,9 @@ export const metadata: Metadata = {
     "3D Acrylic Letters in Kadapa",
     "Visiting Card Printing in Kadapa",
     "Custom Photo Mug Printing Kadapa",
+    "Flex Printing on Easy Installments Kadapa",
+    "Bajaj Finance Printing Kadapa",
+    "LED Sign Board EMI Kadapa",
   ],
   alternates: {
     canonical: "https://www.citygrafix.in",
@@ -39,6 +43,9 @@ export default function HomePage() {
 
       {/* 2. Trust Statistics Bar */}
       <TrustHighlights />
+
+      {/* 2.5 First Time in India: Bajaj Finance Easy Installments */}
+      <EmiFinanceSection />
 
       {/* 3. Master Capabilities & Services Hub (Interactive Filters) */}
       <ServiceVerticals />
