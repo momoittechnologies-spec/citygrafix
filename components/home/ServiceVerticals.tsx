@@ -73,7 +73,7 @@ export default function ServiceVerticals() {
         {/* 1. All Capabilities View (6 Pillars) */}
         {activeTab === "all" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {SERVICE_CATEGORIES.map((category) => (
+            {SERVICE_CATEGORIES.map((category, idx) => (
               <div
                 key={category.id}
                 className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
@@ -84,6 +84,7 @@ export default function ServiceVerticals() {
                     src={category.image}
                     alt={category.title}
                     fill
+                    loading={idx < 3 ? "eager" : "lazy"}
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />

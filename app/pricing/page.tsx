@@ -281,7 +281,7 @@ export default function PricingPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredCards.map((card) => (
+              {filteredCards.map((card, idx) => (
                 <div
                   key={card.id}
                   className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
@@ -301,6 +301,8 @@ export default function PricingPage() {
                       src={card.image}
                       alt={card.name}
                       fill
+                      loading={idx < 4 ? "eager" : "lazy"}
+                      priority={idx < 2}
                       className="object-contain p-2 transition-transform duration-500 group-hover/img:scale-105"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />

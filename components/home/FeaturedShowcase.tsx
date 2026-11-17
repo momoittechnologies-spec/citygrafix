@@ -36,7 +36,7 @@ export default function FeaturedShowcase() {
 
         {/* Featured Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {featured.map((service) => (
+          {featured.map((service, idx) => (
             <div
               key={service.id}
               className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between group"
@@ -46,6 +46,7 @@ export default function FeaturedShowcase() {
                   src={service.image}
                   alt={service.title}
                   fill
+                  loading={idx < 3 ? "eager" : "lazy"}
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />

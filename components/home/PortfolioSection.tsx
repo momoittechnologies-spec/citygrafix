@@ -68,7 +68,7 @@ export default function PortfolioSection() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredItems.map((item) => (
+          {filteredItems.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}
@@ -79,6 +79,7 @@ export default function PortfolioSection() {
                   src={item.image}
                   alt={item.title}
                   fill
+                  loading={idx < 4 ? "eager" : "lazy"}
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />

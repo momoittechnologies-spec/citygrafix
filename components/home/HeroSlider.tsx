@@ -327,8 +327,6 @@ export default function HeroSlider() {
   };
 
   const slide = HERO_SLIDES[currentSlide];
-  const nextSlideIndex = (currentSlide + 1) % HERO_SLIDES.length;
-  const nextSlideData = HERO_SLIDES[nextSlideIndex];
 
   return (
     <section
@@ -342,39 +340,49 @@ export default function HeroSlider() {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Background Image Preloader */}
-      <link rel="preload" as="image" href={nextSlideData.image} />
-
       {/* Full-Width Bezel-less Cinematic Image Showcase */}
       <div className="relative w-full h-[520px] sm:h-[580px] md:h-[640px] lg:h-[700px] xl:h-[760px] overflow-hidden bg-slate-950 group">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={slide.id}
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={slide.image}
-              alt={slide.headline}
-              fill
-              priority
-              className="object-cover object-center"
-              sizes="100vw"
-            />
+        {/* Seamless Stacked Slide Cross-Fade: Keeps all slides pre-mounted and smoothly cross-faded with ZERO blank void */}
+        {HERO_SLIDES.map((s, idx) => {
+          const isActive = idx === currentSlide;
+          return (
+            <div
+              key={s.id}
+              aria-hidden={!isActive}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+              }`}
+            >
+              <Image
+                src={s.image}
+                alt={s.headline}
+                fill
+                priority={idx <= 1}
+                loading={idx <= 1 ? "eager" : "lazy"}
+                className="object-cover object-center"
+                sizes="100vw"
+              />
 
-            {/* Asymmetric Cinematic Scrim: Dense on the left for maximum text contrast, fading out to reveal authentic machinery */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/55 to-transparent pointer-events-none" />
-            <div className="absolute inset-x-0 bottom-0 h-40 sm:h-52 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/60 to-transparent pointer-events-none" />
-          </motion.div>
-        </AnimatePresence>
+              {/* Asymmetric Cinematic Scrim: Dense on the left for maximum text contrast, fading out to reveal authentic machinery */}
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/55 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-40 sm:h-52 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/60 to-transparent pointer-events-none" />
+            </div>
+          );
+        })}
 
         {/* Integrated Hero Content */}
         <div className="site-container relative z-20 h-full flex flex-col justify-end pb-12 sm:pb-16 md:justify-center md:pb-0 pointer-events-none">
-          {slide.posterImage ? (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="w-full"
+            >
+              {slide.posterImage ? (
             /* Split 2-Column Showcase for Promotional Flyer Slides (Prevents Text Collision) */
             <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center pointer-events-auto pt-8 sm:pt-0">
               <div className="lg:col-span-7 space-y-3 sm:space-y-4">
@@ -504,6 +512,8 @@ export default function HeroSlider() {
               </div>
             </div>
           )}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Floating Minimal Navigation Controls */}
