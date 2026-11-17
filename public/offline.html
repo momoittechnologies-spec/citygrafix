@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover" />
+  <title>Offline | City Grafix Kadapa</title>
+  <meta name="theme-color" content="#0B132B" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0B132B;
+      color: #FFFFFF;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .card {
+      max-width: 420px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+    }
+    .logo-container {
+      margin-bottom: 20px;
+    }
+    .logo-img {
+      max-width: 90px;
+      height: auto;
+    }
+    .brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .brand-title span.red { color: #E50914; }
+    .tagline {
+      font-size: 11px;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+    }
+    .tagline span.gold { color: #FAC800; font-weight: bold; }
+    .badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      color: #FBBF24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    p {
+      color: #CBD5E1;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    .btn-call {
+      background: #E50914;
+      color: #FFFFFF;
+    }
+    .btn-call:active { transform: scale(0.98); }
+    .btn-retry {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-retry:active { transform: scale(0.98); }
+    .location-box {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+      color: #94A3B8;
+      line-height: 1.4;
+    }
+    .location-box strong { color: #FFFFFF; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-container">
+      <img src="/logo.png" alt="City Grafix Logo" class="logo-img" />
+    </div>
+    <div class="brand-title">CITY <span class="red">GRAFIX</span></div>
+    <div class="tagline">PRINTING • SIGNAGE • <span class="gold">KADAPA</span></div>
+
+    <div class="badge">No Internet Connection</div>
+    <h1>You are currently offline</h1>
+    <p>
+      Don't worry! You can still call our Kadapa workshop order desk directly to place orders or check status.
+    </p>
+
+    <div class="actions">
+      <a href="tel:7287867584" class="btn btn-call">
+        📞 Call Order Desk (728 786 7584)
+      </a>
+      <button onclick="window.location.reload()" class="btn btn-retry">
+        🔄 Try Again
+      </button>
+    </div>
+
+    <div class="location-box">
+      <strong>Workshop Address:</strong><br />
+      #21/135, Opp. Tirumala Hospital, beside New AF Automart Street, Kadapa.<br />
+      Open Daily: 9:30 AM – 9:30 PM
+    </div>
+  </div>
+</body>
+</html>

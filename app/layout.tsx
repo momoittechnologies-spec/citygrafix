@@ -25,12 +25,15 @@ const plusJakarta = Plus_Jakarta_Sans({
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyBottomBar from "@/components/layout/StickyBottomBar";
+import PwaRegister from "@/components/pwa/PwaRegister";
 import { BUSINESS_DATA } from "@/data/business";
 
 export const viewport: Viewport = {
   themeColor: "#0B132B",
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -88,12 +91,23 @@ export const metadata: Metadata = {
     description: "Quality Printing, Flex, 3D LED Signage & Jumbo Xerox in Kadapa. Direct workshop rates.",
     images: ["/logo.png"],
   },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "City Grafix",
+    startupImage: ["/icons/icon-512x512.png"],
+  },
   icons: {
     icon: [
+      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/brand-logo.svg", type: "image/svg+xml" },
-      { url: "/logo.png" },
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
-    apple: "/logo.png",
+    apple: [
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   verification: {
     google: "GSC_VERIFICATION_PLACEHOLDER_CITYGRAFIX",
@@ -176,6 +190,7 @@ export default function RootLayout({
         {/* Google Tag Manager / GA4 placeholder: <!-- Google tag (gtag.js) - G-XXXXXXXXXX --> */}
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-white text-[#151923] antialiased">
+        <PwaRegister />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <StickyBottomBar />

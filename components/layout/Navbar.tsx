@@ -21,6 +21,7 @@ import {
   Printer,
   Sparkles,
   Zap,
+  Download,
 } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
@@ -508,6 +509,20 @@ export default function Navbar() {
               })}
 
               <div className="pt-4 mt-2 border-t border-white/10 space-y-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOpen(false);
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("citygrafix-install-app"));
+                    }
+                  }}
+                  className="w-full bg-gradient-to-r from-amber-500/20 via-amber-400/10 to-red-500/20 hover:from-amber-500/30 hover:to-red-500/30 text-amber-300 py-2.5 px-3 rounded-xl font-bold flex items-center justify-center space-x-2 border border-amber-400/30 text-xs transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Install City Grafix Web App</span>
+                </button>
+
                 <Link
                   href="/pricing"
                   className="w-full bg-white/10 hover:bg-white/15 text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 border border-white/15 text-xs transition-colors"

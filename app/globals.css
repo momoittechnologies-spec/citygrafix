@@ -14,10 +14,13 @@
   html {
     scroll-behavior: smooth;
     color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
   }
   body {
     @apply bg-white text-[#151923] antialiased selection:bg-[#F97316] selection:text-white font-sans;
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {

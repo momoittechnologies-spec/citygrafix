@@ -4,6 +4,7 @@ import { Phone, MessageCircle, Mail, MapPin, Clock, ExternalLink, ShieldCheck, H
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { CORE_SERVICES } from "@/data/services";
 import BrandLogo from "@/components/ui/BrandLogo";
+import InstallAppButton from "@/components/pwa/InstallAppButton";
 
 export default function Footer() {
   return (
@@ -192,6 +193,13 @@ export default function Footer() {
                   <span>Timings:</span>
                 </div>
                 <span className="font-semibold text-white">09:30 AM – 09:30 PM</span>
+              </div>
+
+              <div className="pt-2">
+                <InstallAppButton
+                  label="Install City Grafix App"
+                  className="w-full bg-white/10 hover:bg-white/15"
+                />
               </div>
             </div>
           </div>

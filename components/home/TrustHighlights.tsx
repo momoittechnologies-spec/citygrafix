@@ -50,15 +50,13 @@ export default function TrustHighlights() {
   return (
     <section className="bg-white border-y border-[#E5E7EB] relative z-20 shadow-xs">
       <div className="site-container py-5 sm:py-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E5E7EB]">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4">
           {highlights.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
-                className={`flex flex-col items-center text-center px-1.5 sm:px-3 ${
-                  index !== 0 ? "pt-3 sm:pt-0" : ""
-                }`}
+                className="flex flex-col items-center text-center p-2.5 sm:p-2 rounded-xl bg-slate-50/70 sm:bg-transparent border border-slate-100 sm:border-0 hover:bg-slate-50 transition-colors"
               >
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#F4F5F7] border border-[#E5E7EB] text-[#151923] flex items-center justify-center mb-2 shadow-xs group-hover:scale-105 transition-transform">
                   <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#F97316]" />
