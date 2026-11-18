@@ -8,6 +8,7 @@ import PriceEstimator from "@/components/calculator/PriceEstimator";
 import PortfolioSection from "@/components/home/PortfolioSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import PriceHighlights from "@/components/home/PriceHighlights";
+import AppShowcaseSection from "@/components/home/AppShowcaseSection";
 import OrderSteps from "@/components/home/OrderSteps";
 import ReviewSection from "@/components/home/ReviewSection";
 import LocationContact from "@/components/home/LocationContact";
@@ -63,7 +64,10 @@ export default function HomePage() {
       {/* 8. Popular Products Showcase */}
       <PriceHighlights />
 
-      {/* 9. Customer Testimonials & Verified Google Reviews */}
+      {/* 9. Official Mobile App Showcase (Progressive Web App) */}
+      <AppShowcaseSection />
+
+      {/* 10. Customer Testimonials & Verified Google Reviews */}
       <ReviewSection />
 
       {/* 10. How It Works (4-Step Timeline) */}

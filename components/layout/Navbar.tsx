@@ -22,6 +22,7 @@ import {
   Sparkles,
   Zap,
   Download,
+  Smartphone,
 } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
@@ -391,7 +392,22 @@ export default function Navbar() {
           </nav>
 
           {/* Right Header Action Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center space-x-2.5">
+            {/* Install App Showcase Trigger */}
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("citygrafix-install-app"));
+                }
+              }}
+              className="bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3 py-2.5 rounded-xl border border-white/15 transition-all flex items-center space-x-1.5 cursor-pointer active:scale-95"
+              title="Install City Grafix Web App"
+            >
+              <Smartphone className="w-3.5 h-3.5 text-amber-400" />
+              <span>Install App</span>
+            </button>
+
             {/* WhatsApp Quick Trigger */}
             <a
               href={getWhatsAppLink("Hello City Grafix, I need a quotation for printing in Kadapa.")}
