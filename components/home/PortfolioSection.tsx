@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PORTFOLIO_ITEMS, PortfolioItem } from "@/data/portfolio";
-import { MapPin, Clock, ArrowRight, X, Camera } from "lucide-react";
+import { MapPin, Clock, ArrowRight, X, Camera, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function PortfolioSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -12,17 +12,46 @@ export default function PortfolioSection() {
 
   const categories = [
     { id: "all", label: "All Projects" },
-    { id: "flex", label: "Flex & Arches" },
-    { id: "signage", label: "3D LED Signage" },
+    { id: "hoardings", label: "Outdoor Hoardings" },
+    { id: "pole-kiosk", label: "Pole Kiosk Advertising" },
+    { id: "road-median", label: "Road Median Signage" },
+    { id: "flex", label: "Flex Printing" },
+    { id: "signage", label: "LED Signage" },
     { id: "xerox", label: "Jumbo Xerox & CAD" },
+    { id: "offset", label: "Commercial Printing" },
     { id: "gifts", label: "Personalized Gifts" },
-    { id: "offset", label: "Commercial Offset" },
-    { id: "vehicle", label: "Vehicle Branding" },
   ];
 
   const filteredItems = activeCategory === "all"
     ? PORTFOLIO_ITEMS
     : PORTFOLIO_ITEMS.filter((item) => item.category === activeCategory);
+
+  const handleNext = useCallback(() => {
+    if (!selectedItem) return;
+    const currentIndex = filteredItems.findIndex((i) => i.id === selectedItem.id);
+    if (currentIndex !== -1) {
+      setSelectedItem(filteredItems[(currentIndex + 1) % filteredItems.length]);
+    }
+  }, [selectedItem, filteredItems]);
+
+  const handlePrev = useCallback(() => {
+    if (!selectedItem) return;
+    const currentIndex = filteredItems.findIndex((i) => i.id === selectedItem.id);
+    if (currentIndex !== -1) {
+      setSelectedItem(filteredItems[(currentIndex - 1 + filteredItems.length) % filteredItems.length]);
+    }
+  }, [selectedItem, filteredItems]);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedItem(null);
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedItem, handleNext, handlePrev]);
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-white relative" id="portfolio">
@@ -131,13 +160,31 @@ export default function PortfolioSection() {
                 <X className="w-4 h-4" />
               </button>
 
-              <div className="relative h-60 sm:h-80 md:h-96 w-full bg-slate-900">
+              <div className="relative h-60 sm:h-80 md:h-96 w-full bg-slate-900 flex items-center justify-center">
                 <Image
                   src={selectedItem.image}
                   alt={selectedItem.title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
+
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20"
+                  aria-label="Previous project"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors cursor-pointer border border-white/20"
+                  aria-label="Next project"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
               </div>
 
               <div className="p-6">

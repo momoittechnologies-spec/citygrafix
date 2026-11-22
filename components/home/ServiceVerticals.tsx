@@ -242,6 +242,44 @@ export default function ServiceVerticals() {
             </div>
           </div>
         )}
+        {/* Dedicated Outdoor Advertising CTA Strip (Task 7) */}
+        <div className="mt-12 bg-gradient-to-r from-[#101B38] via-[#182852] to-[#0B1326] rounded-2xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/10">
+          <div className="space-y-1.5 text-center md:text-left">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FFC83D] uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-[#F04446] animate-pulse" />
+              <span>Commercial Outdoor Campaigns</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">
+              Need Roadside Hoardings, Pole Kiosks, or Highway Billboards?
+            </h3>
+            <p className="text-slate-300 text-xs sm:text-sm max-w-xl">
+              We fabricate welded metal iron frames, print 1440 DPI Star Flex, and handle on-site mounting across Kadapa, Proddatur, and highway corridors.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+            <Link
+              href="/services/outdoor-advertising-hoardings"
+              className="bg-[#F04446] hover:bg-[#D63335] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition-all flex items-center space-x-2"
+            >
+              <span>Get a Hoarding &amp; Outdoor Advertising Quote</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+
+            <a
+              href={getWhatsAppLink(
+                "Hello City Grafix, I want a quotation for Outdoor Hoardings / Pole Kiosk Advertising in Kadapa.",
+                "orders"
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all flex items-center space-x-1.5"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>WhatsApp Desk</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

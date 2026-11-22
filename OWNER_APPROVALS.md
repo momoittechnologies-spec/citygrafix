@@ -4,7 +4,18 @@ This document itemizes every business claim, price, policy, partnership detail, 
 
 ---
 
-## 1. Factual Claims & Credibility Metrics
+## 1. Brand Identity Modernization & Logo Approval (TASK 3)
+
+| Concept | Visual Mark Description | Suitable Usages | Status | Decision Needed from Owner |
+|---|---|---|---|---|
+| **Concept A (Precision Monogram)** | Interlocking vector 'C' and 'G' monogram with print registration dot in Royal Blue, Electric Coral & Gold. | Modern corporate branding, favicons, app icons, vehicle vinyl. | **Ready for Review** | Owner to review `/brand-identity-proposals.md` and confirm whether to adopt Concept A, B, or C. |
+| **Concept B (Heritage Seal Remastered)** | Vector flat modernization of the classic circular seal without blurry 3D bevels. | Maximum customer continuity, rubber stamps, visiting cards. | **Ready for Review** | Review in artifact. |
+| **Concept C (Architectural Hex / Facet)** | Isometric dimensional hexagon representing 3D LED signage, CAD blueprints & steel hoardings. | Commercial signage, corporate builders, industrial developers. | **Ready for Review** | Review in artifact. |
+| **Current Live Header** | Preserves original `/logo.png` emblem with modernized subtitle: `PRINTING • SIGNAGE • ADVERTISING • KADAPA`. | Production default until explicit concept approval. | **Active & Safe** | Preserves full customer trust without sudden brand disruption. |
+
+---
+
+## 2. Factual Claims & Credibility Metrics
 
 | Item | Current Website Claim | Evidence / Source Needed | Status | Decision Needed from Owner |
 |---|---|---|---|---|

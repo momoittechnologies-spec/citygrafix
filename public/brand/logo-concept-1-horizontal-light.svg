@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 80" width="100%" height="100%" fill="none">
+  <!-- Concept 1: Modern Precision Geometric Monogram - Light Surface Variant -->
+  <defs>
+    <linearGradient id="c1l-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="c1l-grad-coral" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F04446"/>
+      <stop offset="100%" stop-color="#DC2626"/>
+    </linearGradient>
+    <linearGradient id="c1l-grad-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Monogram Mark (64x64) -->
+  <g transform="translate(8, 8)">
+    <rect x="0" y="0" width="64" height="64" rx="16" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1.5"/>
+    
+    <!-- Outer 'C' Ribbon -->
+    <path d="M 44 16 C 38 12 22 12 16 22 C 10 32 10 42 16 50 C 22 58 38 58 44 52" 
+          stroke="url(#c1l-grad-blue)" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+    
+    <!-- Inner 'G' Arrow -->
+    <path d="M 38 28 C 30 24 24 28 24 35 C 24 43 31 46 38 43 L 38 35 L 30 35" 
+          stroke="url(#c1l-grad-coral)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    
+    <!-- Registration Eye -->
+    <circle cx="48" cy="18" r="4.5" fill="url(#c1l-grad-gold)"/>
+  </g>
+
+  <!-- Typography Lockup -->
+  <g transform="translate(86, 12)">
+    <text x="0" y="32" font-family="'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="28" letter-spacing="0.04em">
+      <tspan fill="#101B38">CITY </tspan>
+      <tspan fill="#F04446">GRAFIX</tspan>
+    </text>
+
+    <text x="1" y="50" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="9.5" letter-spacing="0.18em">
+      <tspan fill="#101B38">PRINTING</tspan>
+      <tspan fill="#94A3B8"> • </tspan>
+      <tspan fill="#475569">SIGNAGE</tspan>
+      <tspan fill="#94A3B8"> • </tspan>
+      <tspan fill="#101B38">ADVERTISING</tspan>
+      <tspan fill="#94A3B8"> • </tspan>
+      <tspan fill="#B45309">KADAPA</tspan>
+    </text>
+  </g>
+</svg>

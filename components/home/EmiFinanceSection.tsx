@@ -25,13 +25,13 @@ export default function EmiFinanceSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const eligibleServices = [
+    { name: "Roadside Hoardings & Metal Displays", telugu: "రోడ్డు హోర్డింగ్స్ & మెటల్ ఫ్రేమ్స్", tag: "Heavy MS Frames" },
+    { name: "Pole Kiosks & Road Median Panels", telugu: "పోల్ కియోస్క్స్ & రోడ్ డివైడర్ బోర్డులు", tag: "Double-Sided" },
     { name: "Flex Printing & Star Flex", telugu: "స్టార్ ఫ్లెక్స్ బ్యానర్లు", tag: "340+ GSM" },
     { name: "3D Acrylic & LED Signboards", telugu: "3D లెడ్ గ్లో సైన్ బోర్డులు", tag: "Waterproof LED" },
     { name: "Backlit Flex & Glow Boxes", telugu: "బ్యాక్‌లిట్ ఫ్లెక్స్ బోర్డులు", tag: "Day & Night" },
     { name: "Vinyl Stickers & Frosted Film", telugu: "వినైల్ స్టిక్కర్స్ & గ్లాస్ ఫిల్మ్స్", tag: "High-Res" },
     { name: "One Way Vision Window Graphics", telugu: "వన్ వే విజన్ గ్లాస్ గ్రాఫిక్స్", tag: "Storefront" },
-    { name: "Multi-Colour Commercial Offset", telugu: "మల్టీ కలర్ ఆఫ్‌సెట్ ప్రింటింగ్", tag: "Catalogues & Books" },
-    { name: "PVC Identity Cards & Lanyards", telugu: "ఐడీ కార్డులు & రిబ్బన్లు", tag: "Offices & Schools" },
     { name: "Custom Signage & Storefront Branding", telugu: "కంప్లీట్ షాప్ బ్రాండింగ్", tag: "Turnkey Setup" },
   ];
 

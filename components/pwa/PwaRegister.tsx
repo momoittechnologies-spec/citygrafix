@@ -108,6 +108,14 @@ export default function PwaRegister() {
     const checkEngagement = () => {
       if (hasScrolledHalfway) return;
 
+      try {
+        if (sessionStorage.getItem("citygrafix_pwa_session_dismissed")) {
+          return;
+        }
+      } catch {
+        // ignore
+      }
+
       const dismissedAt = localStorage.getItem("citygrafix_pwa_dismissed");
       if (dismissedAt) {
         const timePassed = Date.now() - parseInt(dismissedAt, 10);
@@ -165,155 +173,87 @@ export default function PwaRegister() {
 
   const handleDismiss = useCallback(() => {
     setIsModalOpen(false);
-    // Dismiss for 14 days so it does not disturb the user
-    localStorage.setItem("citygrafix_pwa_dismissed", Date.now().toString());
+    // Dismiss for current session and 14-day cooldown
+    try {
+      sessionStorage.setItem("citygrafix_pwa_session_dismissed", "true");
+      localStorage.setItem("citygrafix_pwa_dismissed", Date.now().toString());
+    } catch {
+      // ignore storage errors
+    }
   }, []);
 
   if (!isModalOpen || isInstalled) return null;
 
   return (
     <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Install City Grafix Mobile App"
-      className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200"
-      onClick={handleDismiss}
+      role="region"
+      aria-label="Install City Grafix Web App"
+      className="fixed bottom-20 left-3 sm:bottom-6 sm:left-6 z-45 max-w-[360px] w-[calc(100%-1.5rem)] sm:w-auto animate-in slide-in-from-bottom-5 fade-in duration-300 pointer-events-auto"
     >
-      {/* Modal / Bottom Sheet Card */}
-      <div
-        className="bg-[#0B132B] text-white w-full max-w-md rounded-t-[32px] sm:rounded-3xl border border-white/20 shadow-2xl p-6 sm:p-7 space-y-5 animate-in slide-in-from-bottom-6 duration-300 ring-1 ring-white/10"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Mobile Drag Indicator */}
-        <div className="w-12 h-1 bg-white/20 rounded-full mx-auto sm:hidden -mt-2 mb-3" />
-
-        {/* Modal Header */}
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-center space-x-3.5">
-            <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-slate-900 border-2 border-white/20 p-1 shrink-0 flex items-center justify-center shadow-lg ring-2 ring-amber-400/20">
+      {/* Compact Floating Toast Card (Zero dark overlay, zero scroll lock, no obstruction of WhatsApp on right) */}
+      <div className="bg-[#101B38] text-white rounded-2xl border border-white/20 shadow-2xl p-4 sm:p-4.5 space-y-3 ring-1 ring-black/20">
+        {/* Top Header */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center space-x-3">
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-slate-900 border border-white/20 p-0.5 shrink-0 flex items-center justify-center shadow-md">
               <Image
                 src="/icons/icon-192x192.png"
                 alt="City Grafix App Icon"
-                width={56}
-                height={56}
+                width={38}
+                height={38}
                 className="object-contain"
               />
             </div>
-            <div>
-              <div className="flex items-center space-x-1.5">
-                <h3 className="text-base sm:text-lg font-black tracking-tight text-white leading-tight">
-                  City Grafix App
-                </h3>
-                <span className="bg-[#FAC800] text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded uppercase">
-                  Official
-                </span>
-              </div>
-              <p className="text-xs text-slate-300 mt-0.5">
-                City Grafix Kadapa • Direct In-House Hub
+            <div className="min-w-0">
+              <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug">
+                City Grafix on Your Phone
+              </h4>
+              <p className="text-[11px] text-slate-300 truncate">
+                Quick access to services and quotations.
               </p>
             </div>
           </div>
 
           <button
             onClick={handleDismiss}
-            className="p-1.5 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
-            aria-label="Close dialog"
+            className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer shrink-0"
+            aria-label="Dismiss installation prompt"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Platform Content: Android/Desktop vs iOS Safari */}
+        {/* Content & Action Buttons */}
         {isIos ? (
-          /* iOS Safari Specific Step-by-Step Instructions */
-          <div className="space-y-3 pt-1">
-            <div className="text-xs text-amber-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <Smartphone className="w-4 h-4" />
-              <span>Install on iPhone or iPad</span>
-            </div>
-
-            <div className="space-y-2 text-xs text-slate-300">
-              <div className="flex items-start space-x-3 p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <span className="w-6 h-6 rounded-lg bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center shrink-0 text-xs">
-                  1
-                </span>
-                <p className="leading-snug pt-0.5">
-                  Tap the <strong className="text-white">Share</strong> icon <Share className="w-3.5 h-3.5 inline mx-1 text-cyan-400" /> at the bottom of Safari.
-                </p>
-              </div>
-
-              <div className="flex items-start space-x-3 p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <span className="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center shrink-0 text-xs">
-                  2
-                </span>
-                <p className="leading-snug pt-0.5">
-                  Scroll down the options and select <strong className="text-white">Add to Home Screen</strong> <PlusSquare className="w-3.5 h-3.5 inline mx-1 text-amber-400" />.
-                </p>
-              </div>
-
-              <div className="flex items-start space-x-3 p-2.5 rounded-xl bg-white/5 border border-white/10">
-                <span className="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center shrink-0 text-xs">
-                  3
-                </span>
-                <p className="leading-snug pt-0.5">
-                  Tap <strong className="text-white">Add</strong> in the top-right corner to place the app on your home screen!
-                </p>
-              </div>
-            </div>
-
+          <div className="space-y-2 pt-1 border-t border-white/10 text-[11px] text-slate-300">
+            <p className="leading-snug">
+              To install: tap <strong className="text-white">Share</strong> <Share className="w-3 h-3 inline mx-0.5 text-cyan-400" /> then select <strong className="text-white">Add to Home Screen</strong> <PlusSquare className="w-3 h-3 inline mx-0.5 text-[#FFC83D]" />.
+            </p>
             <button
               onClick={handleDismiss}
-              className="w-full bg-[#E50914] hover:bg-red-600 text-white font-bold text-xs py-3 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer mt-2"
+              className="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-1.5 rounded-lg text-xs transition-colors"
             >
-              Done
+              Got It
             </button>
           </div>
         ) : (
-          /* Standard App Feature Highlights & Install CTA */
-          <div className="space-y-4">
-            <div className="space-y-2 text-xs text-slate-300">
-              <div className="flex items-center space-x-2.5 p-2 rounded-xl bg-white/5 border border-white/5">
-                <Zap className="w-4 h-4 text-amber-400 shrink-0" />
-                <span><strong>1-Tap Instant Ordering:</strong> Direct photo & CAD dispatch on WhatsApp.</span>
-              </div>
-              <div className="flex items-center space-x-2.5 p-2 rounded-xl bg-white/5 border border-white/5">
-                <WifiOff className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span><strong>Works 100% Offline:</strong> Access gifts & printing rate cards anytime.</span>
-              </div>
-              <div className="flex items-center space-x-2.5 p-2 rounded-xl bg-white/5 border border-white/5">
-                <CreditCard className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span><strong>0% EMI Finance:</strong> Calculate Bajaj Finance credit from ₹5,000.</span>
-              </div>
-              <div className="flex items-center space-x-2.5 p-2 rounded-xl bg-white/5 border border-white/5">
-                <ShieldCheck className="w-4 h-4 text-brand-red shrink-0" />
-                <span><strong>Zero Storage (&lt;1MB):</strong> Installs in 2 seconds with no app store download.</span>
-              </div>
-            </div>
+          <div className="flex items-center space-x-2 pt-1">
+            <button
+              onClick={handleInstallClick}
+              className="flex-1 bg-[#F04446] hover:bg-[#D63335] text-white font-bold text-xs py-2 px-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-1.5 active:scale-95 cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Install App</span>
+            </button>
 
-            {/* Action Buttons */}
-            <div className="flex items-center space-x-2.5 pt-1">
-              <button
-                onClick={handleInstallClick}
-                className="flex-1 bg-gradient-to-r from-[#E50914] via-red-600 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-bold text-xs sm:text-sm py-3.5 px-4 rounded-xl shadow-lg shadow-red-950/50 flex items-center justify-center space-x-2 transition-all active:scale-95 cursor-pointer"
-              >
-                <Download className="w-4 h-4" />
-                <span>Install App to Home Screen</span>
-              </button>
-
-              <button
-                onClick={handleDismiss}
-                className="px-4 py-3.5 text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/15 rounded-xl transition-all cursor-pointer"
-              >
-                Maybe Later
-              </button>
-            </div>
+            <button
+              onClick={handleDismiss}
+              className="px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all cursor-pointer"
+            >
+              Not Now
+            </button>
           </div>
         )}
-
-        <div className="flex items-center justify-center space-x-2 text-[10px] text-slate-400 pt-1 border-t border-white/10">
-          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span>Official PWA • Safe, Fast &amp; Ad-Free</span>
-        </div>
       </div>
     </div>
   );

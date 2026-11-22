@@ -62,25 +62,28 @@ export default function Navbar() {
 
   const megaMenuCategories = [
     {
-      id: "flex-outdoor-advertising",
-      title: "Flex & Outdoor Advertising",
-      telugu: "స్టార్ ఫ్లెక్స్ & హోర్డింగ్స్",
-      description: "340+ GSM Star Flex, Grand Arches & Highway Billboards",
+      id: "outdoor-advertising-hoardings",
+      href: "/services/outdoor-advertising-hoardings",
+      title: "Outdoor Hoardings & Pole Kiosks",
+      telugu: "రోడ్డు హోర్డింగ్స్ & పోల్ కియోస్క్స్",
+      description: "Roadside Framed Hoardings, Pole Kiosks & Highway Billboards",
       badge: "Direct Workshop",
       icon: Layers,
-      color: "text-brand-red bg-red-50 group-hover:bg-brand-red group-hover:text-white",
+      color: "text-[#F04446] bg-red-50 group-hover:bg-[#F04446] group-hover:text-white",
     },
     {
       id: "jumbo-xerox-cad",
+      href: "/services#jumbo-xerox-cad",
       title: "Jumbo Xerox & CAD Blueprints",
       telugu: "A0 జిరాక్స్ & ఇంజనీరింగ్ ప్లాన్స్",
       description: "A0-A4 Plotting, Tracing Paper & Municipal Village Maps",
       badge: "15-Min Delivery",
       icon: FileText,
-      color: "text-blue-600 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white",
+      color: "text-[#2255D6] bg-blue-50 group-hover:bg-[#2255D6] group-hover:text-white",
     },
     {
       id: "3d-led-signage",
+      href: "/services#3d-led-signage",
       title: "Architectural 3D LED Signage",
       telugu: "3D అక్రిలిక్ లెటర్స్ & గ్లో బోర్డ్స్",
       description: "Laser-Cut Acrylic Channel Letters & Samsung IP67 LEDs",
@@ -90,6 +93,7 @@ export default function Navbar() {
     },
     {
       id: "personalized-gifts",
+      href: "/services#personalized-gifts",
       title: "Personalized Gifts & Framing",
       telugu: "కస్టమ్ ఫోటో ఫ్రేమ్స్, మగ్స్ & టీ-షర్ట్స్",
       description: "Photo Frames (10% IG Off), Mugs, Pillows & DTF T-Shirts",
@@ -99,6 +103,7 @@ export default function Navbar() {
     },
     {
       id: "stickers-boards-commercial",
+      href: "/services#stickers-boards-commercial",
       title: "Stickers, Boards & Offset",
       telugu: "వినైల్ స్టిక్కర్లు & విజిటింగ్ కార్డ్స్",
       description: "Sunboard Displays, 350 GSM Cards & Carbonless Bill Books",
@@ -274,7 +279,7 @@ export default function Navbar() {
                                 return (
                                   <Link
                                     key={item.id}
-                                    href={`/services#${item.id}`}
+                                    href={item.href}
                                     onClick={() => setIsServicesOpen(false)}
                                     className="group flex items-start space-x-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200"
                                   >
@@ -476,7 +481,7 @@ export default function Navbar() {
                           onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                           className="px-2.5 py-1 text-brand-gold bg-white/10 rounded-lg text-xs font-bold flex items-center space-x-1 border border-white/10"
                         >
-                          <span>11 Categories</span>
+                          <span>All Categories</span>
                           <ChevronDown
                             className={`w-3.5 h-3.5 transition-transform duration-200 ${
                               mobileServicesOpen ? "rotate-180 text-cyan-400" : ""
@@ -486,6 +491,16 @@ export default function Navbar() {
                       </div>
                       {mobileServicesOpen && (
                         <div className="pl-3 pr-2 py-2 space-y-1 bg-white/5 rounded-2xl my-1 border border-white/10">
+                          <Link
+                            href="/services/outdoor-advertising-hoardings"
+                            className="block p-2 text-xs text-[#FFC83D] hover:text-white hover:bg-white/10 rounded-lg font-bold border border-white/10 bg-white/5"
+                          >
+                            <div className="font-bold text-white flex items-center justify-between">
+                              <span>Outdoor Hoardings &amp; Pole Kiosks</span>
+                              <span className="text-[10px] text-[#FFC83D] font-mono">Specialized</span>
+                            </div>
+                            <div className="text-[10px] text-slate-300">రోడ్డు హోర్డింగ్స్ &amp; పోల్ కియోస్క్స్</div>
+                          </Link>
                           {SERVICE_CATEGORIES.map((cat) => (
                             <Link
                               key={cat.id}

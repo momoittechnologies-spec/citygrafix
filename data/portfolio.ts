@@ -1,7 +1,16 @@
 export interface PortfolioItem {
   id: string;
   title: string;
-  category: "flex" | "signage" | "xerox" | "gifts" | "offset" | "vehicle";
+  category:
+    | "hoardings"
+    | "pole-kiosk"
+    | "road-median"
+    | "flex"
+    | "signage"
+    | "xerox"
+    | "gifts"
+    | "offset"
+    | "vehicle";
   categoryLabel: string;
   image: string;
   description: string;
@@ -11,6 +20,39 @@ export interface PortfolioItem {
 }
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  {
+    id: "work-outdoor-1",
+    title: "Busetty Silver Jewellery Roadside Framed Display",
+    category: "hoardings",
+    categoryLabel: "Outdoor Hoardings",
+    image: "/images/roadside-jewellery-hoarding-proddatur.jpg",
+    description: "Heavy-duty roadside metal-framed advertising display board engineered for street and median visibility, printed in 1440 DPI with fade-resistant outdoor UV inks.",
+    location: "Proddatur / Kadapa Corridor",
+    clientType: "Retail Jewellery Showroom",
+    turnaround: "24 to 48 Hours",
+  },
+  {
+    id: "work-outdoor-2",
+    title: "Urban Boulevard Double-Sided Pole Kiosks & Night Signage",
+    category: "pole-kiosk",
+    categoryLabel: "Pole Kiosk Advertising",
+    image: "/images/pole-kiosk-median-advertising-night.jpg",
+    description: "Double-sided pole-mounted advertisement kiosks and road median display boards with weatherproof framing and night illumination along an urban transit boulevard.",
+    location: "Commercial Transit Boulevard, Kadapa",
+    clientType: "Commercial Outdoor Advertising",
+    turnaround: "24 to 48 Hours",
+  },
+  {
+    id: "work-outdoor-3",
+    title: "Commercial Road Divider & Median Display Board",
+    category: "road-median",
+    categoryLabel: "Road Median Signage",
+    image: "/images/roadside-jewellery-hoarding-proddatur.jpg",
+    description: "Eye-level road divider advertisement panel mounted on median railings with protective corner beading for bumper-to-bumper city traffic.",
+    location: "Kadapa Town Streets",
+    clientType: "Commercial Retailer",
+    turnaround: "Same-Day Refit",
+  },
   {
     id: "work-1",
     title: "Multi-Speciality Hospital 3D Acrylic LED Glow Signboard",

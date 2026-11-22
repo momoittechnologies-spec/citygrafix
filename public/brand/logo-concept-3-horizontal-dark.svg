@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 80" width="100%" height="100%" fill="none">
+  <!-- Concept 3: Architectural Signage Hex / Prismatic Mark - Dark Surface Variant -->
+  <defs>
+    <filter id="c3-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#F04446" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- 3D Isometric Hexagon Monogram (64x64) -->
+  <g transform="translate(8, 8)" filter="url(#c3-glow)">
+    <!-- Dark Container -->
+    <rect x="0" y="0" width="64" height="64" rx="16" fill="#101B38" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    
+    <!-- Top Face (Golden Yellow - Light & Illumination) -->
+    <path d="M 32 14 L 49 24 L 32 34 L 15 24 Z" fill="#FFC83D"/>
+    
+    <!-- Left Face (Royal Blue - Precision Engineering & CAD) -->
+    <path d="M 15 24 L 32 34 L 32 53 L 15 43 Z" fill="#2255D6"/>
+    
+    <!-- Right Face (Electric Coral - Dynamic Signage & Flex) -->
+    <path d="M 32 34 L 49 24 L 49 43 L 32 53 Z" fill="#F04446"/>
+    
+    <!-- Precision Central Crosshair / Cutting Matrix -->
+    <circle cx="32" cy="34" r="3.5" fill="#FAFAF7" stroke="#101B38" stroke-width="1.5"/>
+  </g>
+
+  <!-- Typography Lockup -->
+  <g transform="translate(86, 12)">
+    <text x="0" y="32" font-family="'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="28" letter-spacing="0.04em">
+      <tspan fill="#FAFAF7">CITY </tspan>
+      <tspan fill="#F04446">GRAFIX</tspan>
+    </text>
+
+    <text x="1" y="50" font-family="'Inter', system-ui, sans-serif" font-weight="700" font-size="9.5" letter-spacing="0.18em">
+      <tspan fill="#CBD5E1">PRINTING</tspan>
+      <tspan fill="#53627B"> • </tspan>
+      <tspan fill="#94A3B8">SIGNAGE</tspan>
+      <tspan fill="#53627B"> • </tspan>
+      <tspan fill="#CBD5E1">ADVERTISING</tspan>
+      <tspan fill="#53627B"> • </tspan>
+      <tspan fill="#FFC83D">KADAPA</tspan>
+    </text>
+  </g>
+</svg>

@@ -4,6 +4,7 @@ import HeroSection from "@/components/home/HeroSection";
 import TrustHighlights from "@/components/home/TrustHighlights";
 import ServiceVerticals from "@/components/home/ServiceVerticals";
 import PriceEstimator from "@/components/calculator/PriceEstimator";
+import ServiceWordCloud from "@/components/home/ServiceWordCloud";
 import PortfolioSection from "@/components/home/PortfolioSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import PriceHighlights from "@/components/home/PriceHighlights";
@@ -52,7 +53,10 @@ export default function HomePage() {
       {/* 4. Interactive Price Estimator (Instant 2-Column Calculator) */}
       <PriceEstimator />
 
-      {/* 5. Featured Real Projects Portfolio */}
+      {/* 5. Master Interactive Word Cloud ("One Studio. Endless Printing Possibilities.") */}
+      <ServiceWordCloud />
+
+      {/* 6. Featured Real Projects Portfolio */}
       <PortfolioSection />
 
       {/* 6. Why Choose City Grafix (Core Differentiators) */}

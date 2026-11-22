@@ -28,12 +28,12 @@ interface CapabilityTab {
 const CAPABILITY_TABS: CapabilityTab[] = [
   {
     id: "flex",
-    name: "Star Flex & Hoardings",
-    telugu: "స్టార్ ఫ్లెక్స్ బ్యానర్లు",
-    image: "/images/flex-printing-machine.jpg",
-    badge: "340+ GSM High-Gloss",
-    highlight: "UV Japanese eco-solvent inks engineered for Kadapa's climate. Ready in 2 to 4 hours.",
-    link: "/services/flex-banner-printing-kadapa",
+    name: "Outdoor Hoardings & Star Flex",
+    telugu: "హోర్డింగ్స్ & స్టార్ ఫ్లెక్స్",
+    image: "/images/roadside-jewellery-hoarding-proddatur.jpg",
+    badge: "Roadside, Pole & Highway",
+    highlight: "Roadside metal-framed hoardings, double-sided pole kiosks & 340+ GSM Star Flex with UV outdoor ink.",
+    link: "/services/outdoor-advertising-hoardings",
   },
   {
     id: "cad",
@@ -68,18 +68,18 @@ export default function HeroSection() {
   const [activeTab, setActiveTab] = useState<CapabilityTab>(CAPABILITY_TABS[0]);
 
   return (
-    <section className="relative w-full bg-[#0B132B] text-white overflow-hidden pt-8 pb-14 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 border-b border-white/10">
+    <section className="relative w-full bg-[#101B38] text-white overflow-hidden pt-8 pb-14 sm:pt-12 sm:pb-20 lg:pt-16 lg:pb-24 border-b border-white/10">
       {/* Background Ambient Lighting (Refined, Non-Distracting) */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#E50914]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#2255D6]/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#F04446]/15 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="site-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Value Proposition & High-Converting CTAs (7 cols) */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
             {/* Trust Pill Badge */}
-            <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold text-amber-300 backdrop-blur-sm shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#FFC83D] backdrop-blur-sm shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-[#FFC83D]" />
               <span>Direct In-House Printing Workshop • Since 2014</span>
             </div>
 
@@ -87,11 +87,11 @@ export default function HeroSection() {
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.12]">
                 <span>Kadapa&apos;s Complete </span>
-                <span className="text-[#FAC800]">Printing &amp; Signage </span>
+                <span className="text-[#FFC83D]">Printing &amp; Signage </span>
                 <span>Solutions.</span>
               </h1>
               <p className="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl pt-1">
-                From Star Flex Banners and Jumbo Xerox to 3D LED Signboards and Personalized Gifts — Professional Quality Under One Roof in Kadapa.
+                From Roadside Hoardings and Jumbo Xerox to 3D LED Signboards and Personalized Gifts — Professional Quality Under One Roof in Kadapa.
               </p>
             </div>
 
@@ -110,7 +110,7 @@ export default function HeroSection() {
                       onClick={() => setActiveTab(tab)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer ${
                         isActive
-                          ? "bg-[#FAC800] text-slate-950 shadow-md ring-2 ring-[#FAC800]/50"
+                          ? "bg-[#FFC83D] text-[#101B38] shadow-md ring-2 ring-[#FFC83D]/50"
                           : "bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10"
                       }`}
                     >

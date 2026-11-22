@@ -5,6 +5,7 @@ interface BrandLogoProps {
   variant?: "horizontal" | "mark-only" | "badge";
   theme?: "dark" | "light";
   size?: "sm" | "md" | "lg";
+  concept?: "legacy" | "concept-1" | "concept-2" | "concept-3";
   className?: string;
   priority?: boolean;
 }
@@ -13,6 +14,7 @@ export default function BrandLogo({
   variant = "horizontal",
   theme = "dark",
   size = "md",
+  concept = "legacy",
   className = "",
   priority = true,
 }: BrandLogoProps) {
@@ -48,22 +50,33 @@ export default function BrandLogo({
 
   return (
     <div className={`inline-flex items-center select-none ${className}`}>
-      {/* Official Logo Emblem - preserved exactly without recreation or disproportion */}
+      {/* Logo Emblem / Mark */}
       <div className="relative shrink-0 flex items-center justify-center">
-        <Image
-          src="/logo.png"
-          alt="City Grafix Kadapa Official Logo"
-          width={emblemMetrics.width * 2}
-          height={emblemMetrics.height * 2}
-          className={`${emblemMetrics.className} object-contain transition-transform duration-200 group-hover:scale-105`}
-          priority={priority}
-        />
+        {concept === "concept-1" ? (
+          <Image
+            src="/brand/monogram-cg.svg"
+            alt="City Grafix Modern Monogram"
+            width={emblemMetrics.width}
+            height={emblemMetrics.height}
+            className={`${emblemMetrics.className} object-contain transition-transform duration-200 group-hover:scale-105`}
+            priority={priority}
+          />
+        ) : (
+          <Image
+            src="/logo.png"
+            alt="City Grafix Kadapa Official Logo"
+            width={emblemMetrics.width * 2}
+            height={emblemMetrics.height * 2}
+            className={`${emblemMetrics.className} object-contain transition-transform duration-200 group-hover:scale-105`}
+            priority={priority}
+          />
+        )}
       </div>
 
-      {/* Premium Redesigned Brand Typography Lockup */}
+      {/* Premium Brand Typography Lockup */}
       {variant === "horizontal" && (
         <div className={`${spacingClass} flex flex-col justify-center`}>
-          {/* Brand Name on the same line with consistent baseline alignment */}
+          {/* Brand Wordmark: CITY GRAFIX */}
           <div className="flex items-baseline space-x-1.5 whitespace-nowrap leading-none font-brand">
             <span
               className={`${cityColor} ${brandNameClass} font-[800] uppercase tracking-[0.025em]`}
@@ -71,21 +84,23 @@ export default function BrandLogo({
               CITY
             </span>
             <span
-              className={`text-[#E50914] ${brandNameClass} font-[800] uppercase tracking-[0.025em]`}
+              className={`text-[#F04446] ${brandNameClass} font-[800] uppercase tracking-[0.025em]`}
             >
               GRAFIX
             </span>
           </div>
 
-          {/* Clean Tagline: PRINTING • SIGNAGE • KADAPA (White, Grey, Yellow) */}
+          {/* Subtitle & Location: PRINTING • SIGNAGE • ADVERTISING • KADAPA */}
           <div
             className={`flex items-center space-x-1 sm:space-x-1.5 mt-1 sm:mt-1.5 ${taglineClass} uppercase font-semibold leading-none font-brand`}
           >
-            <span className="text-slate-100">PRINTING</span>
+            <span className={theme === "dark" ? "text-slate-100" : "text-slate-800"}>PRINTING</span>
             <span className="text-slate-400 font-bold">•</span>
-            <span className="text-slate-300">SIGNAGE</span>
+            <span className={theme === "dark" ? "text-slate-300" : "text-slate-600"}>SIGNAGE</span>
             <span className="text-slate-400 font-bold">•</span>
-            <span className="text-[#FAC800] font-bold">KADAPA</span>
+            <span className={theme === "dark" ? "text-slate-200" : "text-slate-700"}>ADVERTISING</span>
+            <span className="text-slate-400 font-bold">•</span>
+            <span className="text-[#FFC83D] font-bold">KADAPA</span>
           </div>
         </div>
       )}
