@@ -8,10 +8,10 @@ This document itemizes every business claim, price, policy, partnership detail, 
 
 | Concept | Visual Mark Description | Suitable Usages | Status | Decision Needed from Owner |
 |---|---|---|---|---|
-| **Concept A (Precision Monogram)** | Interlocking vector 'C' and 'G' monogram with print registration dot in Royal Blue, Electric Coral & Gold. | Modern corporate branding, favicons, app icons, vehicle vinyl. | **Ready for Review** | Owner to review `/brand-identity-proposals.md` and confirm whether to adopt Concept A, B, or C. |
-| **Concept B (Heritage Seal Remastered)** | Vector flat modernization of the classic circular seal without blurry 3D bevels. | Maximum customer continuity, rubber stamps, visiting cards. | **Ready for Review** | Review in artifact. |
-| **Concept C (Architectural Hex / Facet)** | Isometric dimensional hexagon representing 3D LED signage, CAD blueprints & steel hoardings. | Commercial signage, corporate builders, industrial developers. | **Ready for Review** | Review in artifact. |
-| **Current Live Header** | Preserves original `/logo.png` emblem with modernized subtitle: `PRINTING • SIGNAGE • ADVERTISING • KADAPA`. | Production default until explicit concept approval. | **Active & Safe** | Preserves full customer trust without sudden brand disruption. |
+| **Concept A (Precision Monogram)** | Interlocking vector 'C' and 'G' monogram with print registration dot in Royal Blue, Electric Coral & Gold. | Modern corporate branding, favicons, app icons, vehicle vinyl. | **APPROVED & ACTIVE** | Activated across Navbar, Footer, PWA icons, Favicons, and Vector lockups per owner instruction. |
+| **Concept B (Heritage Seal Remastered)** | Vector flat modernization of the classic circular seal without blurry 3D bevels. | Maximum customer continuity, rubber stamps, visiting cards. | **Preserved Option** | Ready in `/brand/logo-concept-2-horizontal-dark.svg` if requested for print collaterals. |
+| **Concept C (Architectural Hex / Facet)** | Isometric dimensional hexagon representing 3D LED signage, CAD blueprints & steel hoardings. | Commercial signage, corporate builders, industrial developers. | **Preserved Option** | Ready in `/brand/logo-concept-3-horizontal-dark.svg`. |
+| **Legacy Logo Asset** | Original `/logo.png` raster emblem preserved intact on disk. | Backward compatibility with third-party crawlers and archival records. | **Preserved On Disk** | Kept in repository at `/public/logo.png`. |
 
 ---
 

@@ -25,6 +25,23 @@ All notable changes to the City Grafix project are documented in this file.
 
 ---
 
+## [Unreleased] — Brand Identity Activation (Concept A - Precision Monogram)
+
+### Added & Activated
+- **Brand Identity Concept A (Modern Precision Monogram):** Activated Concept A across the entire website as the primary brand identity, featuring the vector interlocking C and G ribbons, precision print registration eye, and Royal Navy / Royal Blue / Electric Coral / Golden Yellow brand colors.
+- **BrandLogo Component Update:** Updated default `concept = "concept-1"` in `components/ui/BrandLogo.tsx`, displaying the crisp vector monogram emblem alongside the bold `CITY GRAFIX` wordmark and `PRINTING • SIGNAGE • ADVERTISING • KADAPA` tagline across Header and Footer.
+- **Multi-Resolution Vector-Generated Brand Icons:** Created automated generator (`scripts/generate-brand-icons.js`) and produced high-fidelity PNG raster icons for all standard and maskable Android/iOS/web sizes:
+  - `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`
+  - `apple-touch-icon.png` (180x180)
+  - `icon-192x192.png` and `icon-512x512.png`
+  - `icon-maskable-192x192.png` and `icon-maskable-512x512.png` (with safe area circle margin)
+  - `favicon.ico` in both `public/` and `app/`
+  - `public/brand-logo.svg` updated to the official Concept 1 vector horizontal lockup
+- **PWA Service Worker Cache Management (v3):** Bumped service worker cache to `citygrafix-pwa-v3` in `public/sw.js` with auto-purge of stale `citygrafix-pwa-v2` assets and client claim to immediately serve fresh vector brand assets.
+- **PWA Manifest & Theme Alignment:** Synchronized `background_color` and `theme_color` to `#101B38` (Royal Navy) in both `app/manifest.ts` and `public/manifest.json`.
+
+---
+
 ## [Unreleased] — Premium Brand & Website Enhancement Sprint
 
 ### Added

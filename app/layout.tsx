@@ -29,7 +29,7 @@ import PwaRegister from "@/components/pwa/PwaRegister";
 import { BUSINESS_DATA } from "@/data/business";
 
 export const viewport: Viewport = {
-  themeColor: "#0B132B",
+  themeColor: "#101B38",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -100,9 +100,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/brand-logo.svg", type: "image/svg+xml" },
+      { url: "/brand/monogram-cg.svg", type: "image/svg+xml" },
       { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
     apple: [

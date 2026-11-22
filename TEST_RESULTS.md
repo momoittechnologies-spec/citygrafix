@@ -16,6 +16,9 @@
 | **Service Worker Route** | `GET /sw.js` | **PASS (HTTP 200)** | Content-Type: `application/javascript`. Stale-while-revalidate enabled. |
 | **Offline HTML Fallback** | `GET /offline.html` | **PASS (HTTP 200)** | Content-Type: `text/html`. Self-contained styles and call CTA present. |
 | **Next.js Image Endpoint** | `GET /_next/image?...` | **PASS (HTTP 200)** | Sharp native acceleration delivers AVIF format in sub-5ms times. |
+| **Brand Monogram SVG** | `GET /brand/monogram-cg.svg` | **PASS (HTTP 200)** | Clean vector geometric monogram with Royal Navy, Royal Blue, Coral & Gold. |
+| **Vector-Generated Icons** | `GET /icons/icon-192x192.png` | **PASS (HTTP 200)** | Generated via Sharp from vector master; crisp at all device pixel ratios. |
+| **PWA Service Worker v3** | `GET /sw.js` | **PASS (HTTP 200)** | `citygrafix-pwa-v3` with auto-purge of v2 cache and instant client claim. |
 
 ---
 
