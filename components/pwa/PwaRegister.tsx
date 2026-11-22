@@ -31,18 +31,32 @@ export default function PwaRegister() {
   const [isIos, setIsIos] = useState(false);
 
   useEffect(() => {
-    // 1. Register Service Worker in supporting browsers
+    // 1. Register Service Worker in supporting browsers with auto-update
     if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      // Reload page once new controller activates so user always has fresh assets
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/sw.js")
           .then((reg) => {
+            // Check for updates periodically and on registration
+            reg.update();
+
             reg.onupdatefound = () => {
               const worker = reg.installing;
               if (worker) {
                 worker.onstatechange = () => {
                   if (worker.state === "installed" && navigator.serviceWorker.controller) {
                     console.log("[PWA] City Grafix updated in background.");
+                    // Prompt new worker to take control
+                    worker.postMessage({ type: "SKIP_WAITING" });
                   }
                 };
               }

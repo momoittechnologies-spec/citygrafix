@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import LocationContact from "@/components/home/LocationContact";
+import ArtworkDropzone from "@/components/artwork/ArtworkDropzone";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { Phone, MessageCircle, Mail, MapPin, Clock, FileCheck, Navigation, Sparkles } from "lucide-react";
 
@@ -34,6 +35,11 @@ export default function ContactPage() {
       {/* Main Location Section */}
       <div className="-mt-6 sm:-mt-8 relative z-20">
         <LocationContact />
+      </div>
+
+      {/* Direct Artwork Dropzone & Instant Order Desk */}
+      <div className="site-container mt-10 sm:mt-12">
+        <ArtworkDropzone />
       </div>
 
       {/* Supported Files & Pre-flight Guide */}

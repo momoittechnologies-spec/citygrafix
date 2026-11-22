@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ServiceItem, PERSONALIZED_GIFTS_ITEMS } from "@/data/services";
 import { CORE_SERVICES } from "@/data/services";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
+import ArtworkDropzone from "@/components/artwork/ArtworkDropzone";
 import {
   Clock,
   Tag,
@@ -72,8 +73,50 @@ export default function ServiceDetailView({ service }: Props) {
     ],
   };
 
+  // Google Service Schema JSON-LD
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.title,
+    "alternateName": service.teluguTitle,
+    "description": service.shortDescription,
+    "provider": {
+      "@type": "PrintShop",
+      "name": "City Grafix Kadapa",
+      "url": "https://www.citygrafix.in",
+      "telephone": BUSINESS_DATA.contacts.primaryOrders.number,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "#21/135, Opp. Tirumala Hospital, Beside New AF Automart Street",
+        "addressLocality": "Kadapa",
+        "addressRegion": "Andhra Pradesh",
+        "postalCode": "516001",
+        "addressCountry": "IN"
+      }
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Kadapa"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": service.title,
+      "itemListElement": service.specs.map((spec, i) => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": `${service.title} - ${spec}`
+        }
+      }))
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -395,6 +438,11 @@ export default function ServiceDetailView({ service }: Props) {
                     </div>
                   ))}
                 </div>
+              </section>
+
+              {/* Direct Artwork Dropzone & Instant Proof Desk */}
+              <section className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+                <ArtworkDropzone defaultService={service.title} />
               </section>
 
               {/* Frequently Asked Questions */}

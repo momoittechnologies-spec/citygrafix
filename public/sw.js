@@ -1,5 +1,5 @@
-// City Grafix PWA Service Worker
-const CACHE_NAME = 'citygrafix-pwa-v1';
+// City Grafix PWA Service Worker - v2 (Auto-purges older caches)
+const CACHE_NAME = 'citygrafix-pwa-v2';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_ASSETS = [
@@ -8,29 +8,31 @@ const PRECACHE_ASSETS = [
   '/services',
   '/contact',
   '/offline.html',
-  '/manifest.json',
+  '/manifest.webmanifest',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
   '/icons/apple-touch-icon.png',
   '/logo.png',
 ];
 
-// Install: Precache shell & offline page
+// Install: Precache shell & offline page, immediately skip waiting
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(PRECACHE_ASSETS);
-    }).then(() => self.skipWaiting())
+    })
   );
 });
 
-// Activate: Clean up older cache versions
+// Activate: Immediately purge all older cache versions and claim clients
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
+            console.log('[PWA] Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -48,13 +50,14 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
 
-  // Ignore chrome-extension and external analytics
+  // Ignore external origins
   if (url.origin !== self.location.origin) return;
 
-  // 1. Navigation requests (HTML pages): Network first, fallback to cache, then offline.html
+  // 1. Navigation requests (HTML pages): ALWAYS network-first (no-cache header)
+  // Ensures user always gets the freshest live website when online
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      fetch(request, { cache: 'no-cache' })
         .then((response) => {
           if (response.status === 200) {
             const copy = response.clone();
@@ -72,7 +75,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2. Static assets (JS, CSS, images, icons, fonts): Stale-While-Revalidate
+  // 2. Static assets (JS, CSS, images, icons, fonts)
   if (
     url.pathname.startsWith('/_next/static/') ||
     url.pathname.startsWith('/icons/') ||

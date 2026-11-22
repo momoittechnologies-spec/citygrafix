@@ -22,8 +22,25 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesIndexPage() {
+  const serviceListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "City Grafix Kadapa Services Catalog",
+    "description": "Comprehensive commercial digital printing, flex hoarding, 3D acrylic signage, and CAD blueprint catalog in Kadapa.",
+    "itemListElement": CORE_SERVICES.map((svc, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": svc.title,
+      "url": `https://www.citygrafix.in/services/${svc.slug}`
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }}
+      />
       {/* Hero Header */}
       <section className="bg-brand-navy text-white py-14 sm:py-16 border-b border-white/10">
         <div className="site-container text-center">
