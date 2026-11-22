@@ -616,17 +616,20 @@ export default function Navbar() {
                 href={getWhatsAppLink("Hello City Grafix, I want to get a quotation for printing in Kadapa.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#F04446] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-lg text-sm"
+                className="w-full bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3.5 px-4 rounded-2xl flex items-center justify-center space-x-2 shadow-[0_8px_25px_rgba(255,106,0,0.5)] border-t border-amber-200/50 border-b border-orange-950/60 text-sm active:scale-95 transition-all group"
               >
-                <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Get a Free WhatsApp Quote</span>
+                <div className="relative">
+                  <MessageCircle className="w-4 h-4 fill-white" />
+                  <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-300 animate-ping" />
+                </div>
+                <span>Get Instant WhatsApp Quote</span>
               </a>
 
               <a
                 href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-                className="w-full bg-white/10 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-white/15 text-sm"
+                className="w-full bg-white/10 hover:bg-white/15 text-white font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center space-x-2 border border-white/15 backdrop-blur-md text-sm active:scale-95 transition-all"
               >
-                <Phone className="w-4 h-4 text-[#FFC83D]" />
+                <Phone className="w-4 h-4 text-amber-400" />
                 <span>Call Desk: {BUSINESS_DATA.contacts.primaryOrders.displayNumber}</span>
               </a>
             </div>

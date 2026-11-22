@@ -129,7 +129,7 @@ export default function HeroSection() {
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-950/40 hover:shadow-emerald-600/30 flex items-center space-x-2 transition-all active:scale-95 group/wa"
+                className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-lg shadow-orange-950/40 hover:shadow-orange-600/40 border-t border-amber-200/50 border-b border-orange-950/60 flex items-center space-x-2 transition-all active:scale-95 group/wa"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Get WhatsApp Quote</span>

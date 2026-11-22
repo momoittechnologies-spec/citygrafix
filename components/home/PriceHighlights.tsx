@@ -535,9 +535,9 @@ export default function PriceHighlights() {
               href={getWhatsAppLink("Hello City Grafix, I need a quotation for commercial printing (Flex Banners / 3D Signage / Jumbo Xerox / Visiting Cards):")}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors shadow-sm flex items-center space-x-1.5"
+              className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-all shadow-md shadow-orange-950/40 border-t border-amber-200/40 flex items-center space-x-1.5 active:scale-95"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 fill-white" />
               <span>Get WhatsApp Quote</span>
             </a>
           </div>

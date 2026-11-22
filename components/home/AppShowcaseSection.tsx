@@ -115,7 +115,7 @@ export default function AppShowcaseSection() {
                 href={getWhatsAppLink("Hello City Grafix, I want to place an order from your website:")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-5 py-3.5 rounded-xl shadow-md transition-all flex items-center space-x-2 active:scale-95"
+                className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black text-xs sm:text-sm px-5 py-3.5 rounded-2xl shadow-md shadow-orange-950/40 border-t border-amber-200/40 transition-all flex items-center space-x-2 active:scale-95"
               >
                 <MessageCircle className="w-4 h-4 fill-white" />
                 <span>WhatsApp Order Desk</span>

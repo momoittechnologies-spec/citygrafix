@@ -322,7 +322,7 @@ I am attaching the file directly in this WhatsApp chat.`;
         <div className="space-y-3 pt-2">
           <button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-sm active:scale-95 cursor-pointer"
+            className="w-full bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3.5 px-5 rounded-2xl shadow-lg shadow-orange-950/30 border-t border-amber-200/50 transition-all flex items-center justify-center space-x-2 text-sm active:scale-95 cursor-pointer"
           >
             <MessageCircle className="w-4 h-4 fill-white" />
             <span>Submit Order Details &amp; Open WhatsApp Desk</span>

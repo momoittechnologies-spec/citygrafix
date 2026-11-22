@@ -140,14 +140,20 @@ export default function ServiceWordCloud() {
     if (typeof window === "undefined") return;
     const updateRadius = () => {
       const w = window.innerWidth;
-      if (w < 640) {
-        setRadius(140);
+      if (w < 380) {
+        setRadius(110);
+      } else if (w < 480) {
+        setRadius(130);
+      } else if (w < 640) {
+        setRadius(150);
+      } else if (w < 768) {
+        setRadius(175);
       } else if (w < 1024) {
-        setRadius(185);
+        setRadius(205);
       } else if (w < 1440) {
-        setRadius(230);
+        setRadius(235);
       } else {
-        setRadius(260);
+        setRadius(270);
       }
     };
     updateRadius();
@@ -211,27 +217,34 @@ export default function ServiceWordCloud() {
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!touchStartRef.current || e.touches.length === 0) return;
-    const deltaX = e.touches[0].clientX - touchStartRef.current.x;
-    const deltaY = e.touches[0].clientY - touchStartRef.current.y;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const deltaX = currentX - touchStartRef.current.x;
+    const deltaY = currentY - touchStartRef.current.y;
 
-    rotationRef.current.rx -= deltaY * 0.008;
-    rotationRef.current.ry += deltaX * 0.008;
+    rotationRef.current.rx -= deltaY * 0.006;
+    rotationRef.current.ry += deltaX * 0.007;
     setRotation({ rx: rotationRef.current.rx, ry: rotationRef.current.ry });
 
-    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    touchStartRef.current = { x: currentX, y: currentY };
   };
 
   const handleTouchEnd = () => {
     touchStartRef.current = null;
   };
 
+  const handleResetOrbit = () => {
+    rotationRef.current = { rx: 0.1, ry: 0.2 };
+    setRotation({ rx: 0.1, ry: 0.2 });
+  };
+
   // Theme styling helpers (3D metallic glass & neon glows)
   const getThemePillStyles = (theme: WordItem["theme"], size: WordItem["size"], isFront: boolean) => {
     const baseSize = {
-      hero: "text-sm sm:text-base md:text-lg font-black px-4 py-2 sm:px-5 sm:py-2.5",
-      xl: "text-xs sm:text-sm md:text-base font-extrabold px-3.5 py-1.5 sm:px-4 sm:py-2",
-      lg: "text-xs sm:text-sm font-bold px-3 py-1.5 sm:px-3.5 sm:py-1.5",
-      md: "text-[11px] sm:text-xs font-semibold px-2.5 py-1 sm:px-3 sm:py-1",
+      hero: "text-[11px] sm:text-xs md:text-sm lg:text-base font-black px-2.5 py-1 sm:px-3.5 sm:py-1.5 md:px-4 md:py-2",
+      xl: "text-[10px] sm:text-[11px] md:text-xs lg:text-sm font-extrabold px-2 py-0.5 sm:px-3 sm:py-1 md:px-3.5 md:py-1.5",
+      lg: "text-[9.5px] sm:text-[10.5px] md:text-xs font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1",
+      md: "text-[9px] sm:text-[10px] md:text-[11px] font-semibold px-1.5 py-0.5 sm:px-2 sm:py-0.5 md:px-2.5 md:py-0.5",
     }[size];
 
     const themeColors = {
@@ -308,78 +321,94 @@ export default function ServiceWordCloud() {
           </p>
 
           {/* Interactive Mode & Play Controls Bar */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-2">
             {/* View Mode Toggle: 3D Orbital Sphere vs 3D Depth Matrix */}
-            <div className="bg-white/10 p-1 rounded-2xl border border-white/15 backdrop-blur-md flex items-center shadow-lg">
+            <div className="bg-white/10 p-0.5 sm:p-1 rounded-2xl border border-white/15 backdrop-blur-md flex items-center shadow-lg">
               <button
                 type="button"
                 onClick={() => setViewMode("sphere")}
-                className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`flex items-center space-x-1 sm:space-x-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all ${
                   viewMode === "sphere"
                     ? "bg-[#2255D6] text-white shadow-md shadow-blue-900/60"
                     : "text-slate-300 hover:text-white"
                 }`}
               >
-                <Globe2 className="w-3.5 h-3.5" />
-                <span>3D Orbital Sphere</span>
+                <Globe2 className="w-3.5 h-3.5 shrink-0" />
+                <span className="inline sm:hidden">3D Sphere</span>
+                <span className="hidden sm:inline">3D Orbital Sphere</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setViewMode("grid")}
-                className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                className={`flex items-center space-x-1 sm:space-x-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all ${
                   viewMode === "grid"
                     ? "bg-[#2255D6] text-white shadow-md shadow-blue-900/60"
                     : "text-slate-300 hover:text-white"
                 }`}
               >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span>3D Depth Matrix</span>
+                <LayoutGrid className="w-3.5 h-3.5 shrink-0" />
+                <span className="inline sm:hidden">3D Grid</span>
+                <span className="hidden sm:inline">3D Depth Matrix</span>
               </button>
             </div>
 
-            {/* Play/Pause Rotation Toggle (Sphere Mode only) */}
+            {/* Play/Pause & Reset Rotation Controls (Sphere Mode only) */}
             {viewMode === "sphere" && (
-              <button
-                type="button"
-                onClick={() => setIsPaused(!isPaused)}
-                aria-label={isPaused ? "Resume 3D rotation" : "Pause 3D rotation"}
-                className="bg-white/10 hover:bg-white/20 border border-white/15 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-200 flex items-center space-x-1.5 backdrop-blur-md transition-all shadow-md active:scale-95"
-              >
-                {isPaused ? (
-                  <>
-                    <Play className="w-3 h-3 text-emerald-400 fill-emerald-400" />
-                    <span>Spin</span>
-                  </>
-                ) : (
-                  <>
-                    <Pause className="w-3 h-3 text-[#FFC83D]" />
-                    <span>Pause</span>
-                  </>
-                )}
-              </button>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setIsPaused(!isPaused)}
+                  aria-label={isPaused ? "Resume 3D rotation" : "Pause 3D rotation"}
+                  className="bg-white/10 hover:bg-white/20 border border-white/15 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold text-slate-200 flex items-center space-x-1.5 backdrop-blur-md transition-all shadow-md active:scale-95"
+                >
+                  {isPaused ? (
+                    <>
+                      <Play className="w-3 h-3 text-emerald-400 fill-emerald-400" />
+                      <span>Spin</span>
+                    </>
+                  ) : (
+                    <>
+                      <Pause className="w-3 h-3 text-[#FFC83D]" />
+                      <span>Pause</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleResetOrbit}
+                  aria-label="Reset 3D sphere orientation"
+                  className="bg-white/10 hover:bg-white/20 border border-white/15 px-2.5 sm:px-3 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold text-slate-200 flex items-center space-x-1 backdrop-blur-md transition-all shadow-md active:scale-95"
+                >
+                  <RotateCw className="w-3 h-3 text-cyan-300" />
+                  <span className="hidden xs:inline">Reset</span>
+                </button>
+              </div>
             )}
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-2">
-            {FILTER_TABS.map((tab) => {
-              const isSelected = activeFilter === tab.key;
-              return (
-                <button
-                  key={tab.key}
-                  type="button"
-                  onClick={() => setActiveFilter(tab.key)}
-                  className={`text-xs font-bold px-3 py-1 rounded-xl transition-all cursor-pointer ${
-                    isSelected
-                      ? "bg-[#F04446] text-white shadow-md shadow-red-900/50 scale-102"
-                      : "bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              );
-            })}
+          {/* Category Filter Pills (Horizontal scroll on mobile, centered on tablet/desktop) */}
+          <div className="w-full max-w-4xl mx-auto overflow-x-auto no-scrollbar py-1">
+            <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 px-1 min-w-max mx-auto">
+              {FILTER_TABS.map((tab) => {
+                const isSelected = activeFilter === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setActiveFilter(tab.key)}
+                    className={`text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
+                      isSelected
+                        ? "bg-gradient-to-r from-[#FF7A00] to-[#E63900] text-white shadow-md shadow-orange-950/50 border-t border-amber-200/40"
+                        : "bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -393,12 +422,13 @@ export default function ServiceWordCloud() {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="relative w-full h-[520px] sm:h-[580px] md:h-[620px] lg:h-[660px] mx-auto rounded-3xl bg-slate-950/40 backdrop-blur-md border border-white/15 shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing flex items-center justify-center"
+            style={{ touchAction: "pan-y" }}
+            className="relative w-full h-[390px] xs:h-[430px] sm:h-[490px] md:h-[550px] lg:h-[600px] xl:h-[640px] mx-auto rounded-3xl bg-slate-950/40 backdrop-blur-md border border-white/15 shadow-2xl overflow-hidden cursor-grab active:cursor-grabbing flex items-center justify-center select-none"
           >
             {/* Center Gravitational Hologram Ring */}
-            <div className="absolute w-44 h-44 sm:w-60 sm:h-60 rounded-full border border-dashed border-[#2255D6]/30 pointer-events-none animate-spin-slow" />
-            <div className="absolute w-28 h-28 sm:w-36 sm:h-36 rounded-full border border-dotted border-[#FFC83D]/25 pointer-events-none animate-reverse-spin" />
-            <div className="absolute w-6 h-6 rounded-full bg-gradient-to-tr from-[#2255D6] to-[#F04446] blur-sm animate-pulse pointer-events-none" />
+            <div className="absolute w-36 h-36 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border border-dashed border-[#2255D6]/30 pointer-events-none animate-spin-slow" />
+            <div className="absolute w-24 h-24 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full border border-dotted border-[#FFC83D]/25 pointer-events-none animate-reverse-spin" />
+            <div className="absolute w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-[#2255D6] to-[#F04446] blur-sm animate-pulse pointer-events-none" />
 
             {/* Orbiting 3D Tags */}
             {mounted &&
@@ -418,9 +448,9 @@ export default function ServiceWordCloud() {
                 const x2 = pos.x * cosY + z1 * sinY;
                 const z2 = -pos.x * sinY + z1 * cosY;
 
-                // Perspective projection
-                const distance = 420;
-                const scale = Math.max(0.6, distance / (distance - z2 * radius));
+                // Adaptive perspective projection scaling mathematically with radius
+                const distance = Math.max(340, radius * 1.85);
+                const scale = Math.max(0.55, Math.min(1.15, distance / (distance - z2 * radius)));
                 const screenX = x2 * radius * scale;
                 const screenY = y1 * radius * scale;
 
@@ -428,7 +458,7 @@ export default function ServiceWordCloud() {
                 const isFront = z2 > 0;
                 const opacity = Math.min(1, Math.max(0.35, (z2 + 1) * 0.45 + 0.25));
                 const zIndex = Math.round((z2 + 1) * 100) + 10;
-                const blur = z2 < -0.3 ? Math.min(2.5, Math.abs(z2 + 0.3) * 3) : 0;
+                const blur = z2 < -0.3 ? Math.min(2, Math.abs(z2 + 0.3) * 2.5) : 0;
 
                 return (
                   <Link
@@ -442,7 +472,7 @@ export default function ServiceWordCloud() {
                     }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
-                    className={`absolute rounded-2xl border backdrop-blur-md transition-shadow duration-300 flex items-center space-x-1.5 whitespace-nowrap group active:scale-95 focus-visible:outline-2 focus-visible:outline-[#FFC83D] ${getThemePillStyles(
+                    className={`absolute rounded-2xl border backdrop-blur-md transition-shadow duration-300 flex items-center space-x-1 sm:space-x-1.5 whitespace-nowrap group active:scale-95 focus-visible:outline-2 focus-visible:outline-[#FFC83D] ${getThemePillStyles(
                       word.theme,
                       word.size,
                       isFront
@@ -450,27 +480,28 @@ export default function ServiceWordCloud() {
                     title={`Explore ${word.text} at City Grafix`}
                   >
                     <span>{word.text}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-[#FFC83D]" />
+                    <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-[#FFC83D] shrink-0" />
                   </Link>
                 );
               })}
 
-            {/* Micro Helper Tip */}
-            <div className="absolute bottom-3 inset-x-0 text-center pointer-events-none">
-              <span className="text-[11px] text-slate-400 bg-[#101B38]/80 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
-                🖱️ Move mouse or drag to rotate 3D sphere • Hover word to pause • Tap to explore
+            {/* Micro Helper Tip with device-specific instructions */}
+            <div className="absolute bottom-2.5 inset-x-2 text-center pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-slate-300 bg-[#0B132B]/85 border border-white/15 px-3 py-1 rounded-full backdrop-blur-md shadow-md">
+                <span className="hidden sm:inline">🖱️ Move mouse or drag to rotate 3D sphere • Hover word to pause</span>
+                <span className="sm:hidden">👆 Swipe to spin 3D sphere • Tap any service to open</span>
               </span>
             </div>
           </div>
         ) : (
           /* --- VIEW 2: 3D DEPTH MATRIX (TACTILE EXTRUDED BADGES) --- */
-          <div className="max-w-6xl mx-auto bg-slate-950/40 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl">
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-5">
+          <div className="max-w-6xl mx-auto bg-slate-950/40 backdrop-blur-md rounded-3xl p-4 sm:p-7 md:p-10 border border-white/15 shadow-2xl">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4.5">
               {filteredWords.map((word) => (
                 <Link
                   key={word.id}
                   href={word.href}
-                  className={`rounded-2xl border-2 backdrop-blur-md transition-all duration-300 flex items-center space-x-2 group hover:-translate-y-2 hover:scale-105 active:scale-95 shadow-[0_12px_24px_-6px_rgba(0,0,0,0.7)] ${getThemePillStyles(
+                  className={`rounded-2xl border-2 backdrop-blur-md transition-all duration-300 flex items-center space-x-1.5 sm:space-x-2 group hover:-translate-y-1.5 hover:scale-105 active:scale-95 shadow-[0_12px_24px_-6px_rgba(0,0,0,0.7)] ${getThemePillStyles(
                     word.theme,
                     word.size,
                     true
@@ -483,19 +514,19 @@ export default function ServiceWordCloud() {
                   <span className="group-hover:tracking-wide transition-all font-bold">
                     {word.text}
                   </span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#FFC83D] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 text-[#FFC83D] opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
                 </Link>
               ))}
             </div>
 
             {/* Card Footer */}
-            <div className="mt-10 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
-              <span>
+            <div className="mt-8 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-3">
+              <span className="text-center sm:text-left">
                 💡 All 35+ items engineered &amp; fabricated in-house at our Kadapa workshop.
               </span>
               <Link
                 href="/pricing"
-                className="text-[#FFC83D] hover:text-white font-bold inline-flex items-center gap-1 transition-colors"
+                className="text-[#FFC83D] hover:text-white font-bold inline-flex items-center gap-1 transition-colors self-center sm:self-auto"
               >
                 <span>View Complete Workshop Rates</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />

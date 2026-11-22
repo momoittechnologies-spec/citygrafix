@@ -85,10 +85,11 @@ export default function OrderSteps() {
         </div>
 
         {/* WhatsApp Banner CTA */}
-        <div className="mt-12 bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg border border-emerald-700/30">
-          <div className="space-y-1">
+        <div className="mt-12 bg-gradient-to-r from-[#0A1329] via-[#101E40] to-[#0A1329] text-white rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl border border-white/15 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF7A00]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="space-y-1 relative z-10">
             <h3 className="text-xl sm:text-2xl font-black tracking-tight">Ready to start your print order?</h3>
-            <p className="text-emerald-100 text-xs sm:text-sm max-w-xl">
+            <p className="text-slate-300 text-xs sm:text-sm max-w-xl">
               Drop your CDR, PDF, PSD, or mobile photos directly to our Kadapa Order Desk for an immediate wholesale quote.
             </p>
           </div>
@@ -96,9 +97,9 @@ export default function OrderSteps() {
             href={getWhatsAppLink("Hello City Grafix, I want to place a printing order. Here are my requirements:")}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white text-emerald-900 hover:bg-emerald-50 font-bold px-6 py-3.5 rounded-xl transition-all text-sm shadow-md flex items-center justify-center space-x-2 shrink-0 w-full sm:w-auto group"
+            className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black px-6 py-3.5 rounded-2xl transition-all text-sm shadow-lg shadow-orange-950/40 border-t border-amber-200/50 flex items-center justify-center space-x-2 shrink-0 w-full sm:w-auto group active:scale-95 relative z-10"
           >
-            <MessageSquare className="w-4 h-4 text-emerald-700" />
+            <MessageSquare className="w-4 h-4 text-white fill-white" />
             <span>Start WhatsApp Order Now</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>

@@ -104,7 +104,7 @@ export default function FeaturedShowcase() {
                     href={getWhatsAppLink(service.whatsappMessage, service.recommendedLine)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-bold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1.5 shadow-sm"
+                    className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white text-xs sm:text-sm font-black py-2.5 px-3.5 rounded-xl transition-all flex items-center justify-center space-x-1.5 shadow-md shadow-orange-950/40 border-t border-amber-200/40 active:scale-95"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
                     <span>WhatsApp</span>

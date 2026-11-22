@@ -189,7 +189,7 @@ export default function ServiceDetailView({ service }: Props) {
                     href={getWhatsAppLink(service.whatsappMessage, service.recommendedLine)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl shadow-sm transition-all flex items-center space-x-2 text-sm group"
+                    className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black px-6 py-3.5 rounded-2xl shadow-lg shadow-orange-950/40 hover:shadow-orange-600/40 border-t border-amber-200/50 border-b border-orange-950/60 transition-all flex items-center space-x-2 text-sm active:scale-95 group"
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                     <span>WhatsApp Inquiry</span>
@@ -349,7 +349,7 @@ export default function ServiceDetailView({ service }: Props) {
                             )}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors"
+                            className="w-full bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md shadow-orange-950/30 border-t border-amber-200/40 transition-all active:scale-95"
                           >
                             <MessageCircle className="w-4 h-4 fill-white" />
                             <span>Order on WhatsApp</span>
@@ -525,7 +525,7 @@ export default function ServiceDetailView({ service }: Props) {
                     href={getWhatsAppLink(service.whatsappMessage, service.recommendedLine)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-colors flex items-center justify-center space-x-2 text-xs"
+                    className="w-full bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3 px-4 rounded-xl shadow-md shadow-orange-950/40 border-t border-amber-200/40 transition-all flex items-center justify-center space-x-2 text-xs active:scale-95"
                   >
                     <MessageCircle className="w-4 h-4 fill-white" />
                     <span>WhatsApp Quotation</span>

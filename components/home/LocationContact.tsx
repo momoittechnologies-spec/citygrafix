@@ -98,7 +98,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.contacts.primaryOrders.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
+                    className="p-2 bg-gradient-to-r from-[#FF7A00] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white rounded-lg transition-all shadow-sm active:scale-95"
                     title="WhatsApp Line 1"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
@@ -124,7 +124,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.contacts.signageStructural.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors"
+                    className="p-2 bg-gradient-to-r from-[#FF7A00] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white rounded-lg transition-all shadow-sm active:scale-95"
                     title="WhatsApp Line 2"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
@@ -143,7 +143,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                     href={BUSINESS_DATA.contacts.receptionDesk.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg inline-flex items-center space-x-1 text-[11px] font-bold transition-colors"
+                    className="p-2 bg-gradient-to-r from-[#FF7A00] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white rounded-lg inline-flex items-center space-x-1 text-[11px] font-bold transition-all shadow-sm active:scale-95"
                   >
                     <MessageCircle className="w-3.5 h-3.5 fill-white" />
                     <span>WhatsApp</span>
@@ -245,7 +245,7 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
 
                 <button
                   type="submit"
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center space-x-2 text-sm"
+                  className="w-full bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3.5 px-4 rounded-xl shadow-md shadow-orange-950/40 border-t border-amber-200/50 transition-all flex items-center justify-center space-x-2 text-sm active:scale-95"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>Send Request to WhatsApp Orders</span>

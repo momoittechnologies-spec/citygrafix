@@ -497,7 +497,7 @@ Please confirm this quotation and advise on artwork preparation and turnaround.`
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl shadow-md shadow-emerald-900/20 active:scale-95 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm"
+                  className="w-full bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3 px-4 rounded-xl shadow-md shadow-orange-950/40 border-t border-amber-200/40 active:scale-95 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
                   <span>Send Quote on WhatsApp</span>

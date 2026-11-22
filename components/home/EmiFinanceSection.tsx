@@ -202,9 +202,9 @@ export default function EmiFinanceSection() {
                 href={getWhatsAppLink(whatsappMessage, "orders")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl text-center text-sm transition-all shadow-lg shadow-emerald-900/40 hover:shadow-emerald-700/50 flex items-center justify-center gap-2"
+                className="flex-1 bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3.5 px-6 rounded-2xl text-center text-sm transition-all shadow-lg shadow-orange-950/40 hover:shadow-orange-700/50 flex items-center justify-center gap-2 border-t border-amber-200/50 active:scale-95"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 fill-white" />
                 <span>Apply on WhatsApp: 72878 67584</span>
               </a>
 
@@ -319,9 +319,9 @@ export default function EmiFinanceSection() {
                 href={getWhatsAppLink(whatsappMessage, "orders")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-1.5 transition-colors"
+                className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-2.5 px-4 rounded-xl flex items-center gap-1.5 transition-all shadow-md shadow-orange-950/40 border-t border-amber-200/40 active:scale-95 text-xs"
               >
-                <MessageCircle className="w-3.5 h-3.5" />
+                <MessageCircle className="w-3.5 h-3.5 fill-white" />
                 <span>Apply Now on WhatsApp</span>
               </a>
             </div>
