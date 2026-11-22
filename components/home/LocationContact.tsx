@@ -176,10 +176,11 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                    <label htmlFor="contact-name" className="block text-xs font-bold text-slate-700 uppercase mb-1">
                       Your Name:
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       required
                       placeholder="e.g. Ramesh Kumar"
@@ -190,10 +191,11 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                    <label htmlFor="contact-phone" className="block text-xs font-bold text-slate-700 uppercase mb-1">
                       Phone Number:
                     </label>
                     <input
+                      id="contact-phone"
                       type="tel"
                       required
                       placeholder="e.g. 98765 43210"
@@ -205,10 +207,11 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                  <label htmlFor="contact-service" className="block text-xs font-bold text-slate-700 uppercase mb-1">
                     Select Printing Category / Service:
                   </label>
                   <select
+                    id="contact-service"
                     value={service}
                     onChange={(e) => setService(e.target.value)}
                     className="w-full text-base sm:text-xs px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-royal bg-slate-50 font-medium"
@@ -227,10 +230,11 @@ Details: ${message || "Please provide quotation and turnaround time."}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                  <label htmlFor="contact-message" className="block text-xs font-bold text-slate-700 uppercase mb-1">
                     Dimensions / Quantity / Notes:
                   </label>
                   <textarea
+                    id="contact-message"
                     rows={3}
                     placeholder="e.g. 10x4 ft banner, need urgent delivery by 4 PM today..."
                     value={message}

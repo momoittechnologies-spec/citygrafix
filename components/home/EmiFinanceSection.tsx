@@ -261,6 +261,11 @@ export default function EmiFinanceSection() {
                     <strong className="text-white">Making Printing More Affordable!</strong> Available at our workshop opposite Tirumala Hospital, Kadapa.
                   </p>
                 </div>
+
+                {/* Regulatory Disclaimer */}
+                <div className="p-3 bg-black/50 border-t border-white/5 text-[10px] text-slate-400 text-center leading-normal">
+                  *Disclaimer: Financing facility, instant credit approval, eligible tenure, and processing fees are provided by and subject to the sole discretion and underwriting policies of Bajaj Finance Ltd. Zero-interest and down payment terms apply to eligible commercial printing &amp; LED signage categories in Kadapa.
+                </div>
               </div>
             </div>
           </div>

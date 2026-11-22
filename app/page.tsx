@@ -1,16 +1,16 @@
 import React from "react";
 import type { Metadata } from "next";
-import HeroSlider from "@/components/home/HeroSlider";
+import HeroSection from "@/components/home/HeroSection";
 import TrustHighlights from "@/components/home/TrustHighlights";
-import EmiFinanceSection from "@/components/home/EmiFinanceSection";
 import ServiceVerticals from "@/components/home/ServiceVerticals";
 import PriceEstimator from "@/components/calculator/PriceEstimator";
 import PortfolioSection from "@/components/home/PortfolioSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import PriceHighlights from "@/components/home/PriceHighlights";
-import AppShowcaseSection from "@/components/home/AppShowcaseSection";
+import EmiFinanceSection from "@/components/home/EmiFinanceSection";
 import OrderSteps from "@/components/home/OrderSteps";
 import ReviewSection from "@/components/home/ReviewSection";
+import AppShowcaseSection from "@/components/home/AppShowcaseSection";
 import LocationContact from "@/components/home/LocationContact";
 
 export const metadata: Metadata = {
@@ -40,40 +40,40 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Hero Section ("Everything You Imagine. We Print.") */}
-      <HeroSlider />
+      {/* 1. Hero Section ("Kadapa's Complete Printing & Signage Solutions") */}
+      <HeroSection />
 
-      {/* 2. Trust Indicators Bar */}
+      {/* 2. Compact Credibility Strip (Verified Business Facts) */}
       <TrustHighlights />
 
-      {/* 3. Services Showcase (6 Major Verticals) */}
+      {/* 3. Six Core Service Categories */}
       <ServiceVerticals />
 
-      {/* 4. Bajaj Finance Easy Installments Feature */}
-      <EmiFinanceSection />
-
-      {/* 5. Featured Projects & Portfolio Gallery */}
-      <PortfolioSection />
-
-      {/* 6. Interactive Price Estimator (2-Column Calculator) */}
+      {/* 4. Interactive Price Estimator (Instant 2-Column Calculator) */}
       <PriceEstimator />
 
-      {/* 7. Why City Grafix (Core Business Strengths) */}
+      {/* 5. Featured Real Projects Portfolio */}
+      <PortfolioSection />
+
+      {/* 6. Why Choose City Grafix (Core Differentiators) */}
       <WhyChooseUs />
 
-      {/* 8. Popular Products Showcase */}
+      {/* 7. Personalized Gifts & Popular Products Showcase */}
       <PriceHighlights />
 
-      {/* 9. Official Mobile App Showcase (Progressive Web App) */}
-      <AppShowcaseSection />
+      {/* 8. Bajaj Finance Easy Installments Feature */}
+      <EmiFinanceSection />
 
-      {/* 10. Customer Testimonials & Verified Google Reviews */}
-      <ReviewSection />
-
-      {/* 10. How It Works (4-Step Timeline) */}
+      {/* 9. Simple 4-Step Order Flow */}
       <OrderSteps />
 
-      {/* 11. Workshop Location & Contact Enquiry Form */}
+      {/* 10. Verified Customer Reviews & Community Feedback */}
+      <ReviewSection />
+
+      {/* 11. Official Mobile App Showcase (Progressive Web App) */}
+      <AppShowcaseSection />
+
+      {/* 12. Workshop Location & Contact Form */}
       <LocationContact />
     </div>
   );

@@ -52,12 +52,6 @@ export default function ServicesIndexPage() {
               {cat.title}
             </a>
           ))}
-          <a
-            href="#personalized-gifts"
-            className="shrink-0 px-3 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-600 hover:text-white text-purple-700 font-bold transition-colors"
-          >
-            Personalized Gifts Menu
-          </a>
         </div>
       </div>
 

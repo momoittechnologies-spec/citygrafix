@@ -88,7 +88,7 @@ export const BUSINESS_DATA: BusinessInfo = {
   establishedYear: 2014,
   experienceYears: "10+ Years",
   rating: 5.0,
-  reviewCount: "500+",
+  reviewCount: "100+ Verified",
   address: {
     line1: "#21/135, Opp. Tirumala Hospital",
     line2: "Beside New AF Automart Street",
