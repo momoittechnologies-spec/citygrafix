@@ -25,6 +25,21 @@ All notable changes to the City Grafix project are documented in this file.
 
 ---
 
+## [Unreleased] — Official Brand Logo & Lockup Replacement
+
+### Added & Replaced
+- **Official Brand Logo Lockup Replacement:** Replaced website logo and text across Header (Navbar) and Footer with the client's official high-resolution logo graphic (`/brand/city-grafix-official-logo.webp`), featuring the 3D chrome "CITY", fiery gradient "GRAFIX", and "Kadapa's No #1 Printing & Branding Partner" capsule badge.
+- **Official Circular CG Emblem:** Extracted the circular 3D CG swoosh emblem (`/brand/city-grafix-emblem.webp`) directly from the master logo for clean standalone usage.
+- **PWA Icons & Favicon Regeneration:** Regenerated all raster icons from the official 3D emblem at full clarity using Sharp:
+  - `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`
+  - `apple-touch-icon.png` (180x180)
+  - `icon-192x192.png` and `icon-512x512.png`
+  - `icon-maskable-192x192.png` and `icon-maskable-512x512.png`
+- **PWA Service Worker Cache Management (v4):** Bumped cache to `citygrafix-pwa-v4` in `public/sw.js` with instant client claiming to auto-purge older logo caches and immediately serve fresh assets.
+- **Official Tagline Alignment:** Updated `tagline` in `data/business.ts` to *"Kadapa's No #1 Printing & Branding Partner"*.
+
+---
+
 ## [Unreleased] — Brand Identity Activation (Concept A - Precision Monogram)
 
 ### Added & Activated

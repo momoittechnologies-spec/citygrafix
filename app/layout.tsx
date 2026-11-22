@@ -78,10 +78,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
-        width: 680,
-        height: 453,
-        alt: "City Grafix Kadapa Logo",
+        url: "/brand/city-grafix-official-logo.png",
+        width: 940,
+        height: 255,
+        alt: "City Grafix - Kadapa's No #1 Printing & Branding Partner",
       },
     ],
   },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "City Grafix Kadapa | Complete Printing Solutions",
     description: "Quality Printing, Flex, 3D LED Signage & Jumbo Xerox in Kadapa. Direct workshop rates.",
-    images: ["/logo.png"],
+    images: ["/brand/city-grafix-official-logo.png"],
   },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/brand/monogram-cg.svg", type: "image/svg+xml" },
+      { url: "/brand/city-grafix-emblem.webp", type: "image/webp" },
       { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
     ],
     apple: [
@@ -127,8 +127,8 @@ export default function RootLayout({
     "name": BUSINESS_DATA.name,
     "alternateName": "City Grafix",
     "url": "https://www.citygrafix.in",
-    "logo": "https://www.citygrafix.in/logo.png",
-    "image": "https://www.citygrafix.in/logo.png",
+    "logo": "https://www.citygrafix.in/brand/city-grafix-official-logo.png",
+    "image": "https://www.citygrafix.in/brand/city-grafix-official-logo.png",
     "telephone": BUSINESS_DATA.contacts.primaryOrders.number,
     "email": BUSINESS_DATA.contacts.email,
     "priceRange": "₹25 - ₹4500",

@@ -77,7 +77,7 @@ export interface BusinessInfo {
 export const BUSINESS_DATA: BusinessInfo = {
   name: "City Grafix Kadapa",
   shortName: "City Grafix",
-  tagline: "Complete Printing Solutions in Kadapa",
+  tagline: "Kadapa's No #1 Printing & Branding Partner",
   mottos: [
     "Quality Printing",
     "Creative Designing",

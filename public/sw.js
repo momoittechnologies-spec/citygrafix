@@ -1,5 +1,5 @@
-// City Grafix PWA Service Worker - v3 (Auto-purges older caches & precaches vector brand assets)
-const CACHE_NAME = 'citygrafix-pwa-v3';
+// City Grafix PWA Service Worker - v4 (Auto-purges older caches & precaches official brand assets)
+const CACHE_NAME = 'citygrafix-pwa-v4';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_ASSETS = [
@@ -10,8 +10,10 @@ const PRECACHE_ASSETS = [
   '/contact',
   '/offline.html',
   '/manifest.webmanifest',
-  '/brand/monogram-cg.svg',
-  '/brand-logo.svg',
+  '/brand/city-grafix-official-logo.webp',
+  '/brand/city-grafix-official-logo.png',
+  '/brand/city-grafix-emblem.webp',
+  '/brand/city-grafix-emblem.png',
   '/favicon.ico',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
