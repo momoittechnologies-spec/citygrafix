@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   Phone,
@@ -10,7 +9,6 @@ import {
   Menu,
   X,
   ChevronDown,
-  Tag,
   MapPin,
   Clock,
   ArrowRight,
@@ -20,158 +18,190 @@ import {
   Gift,
   Printer,
   Sparkles,
-  Zap,
-  Download,
   Smartphone,
+  Tag,
+  CreditCard,
+  Image as ImageIcon,
 } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
-import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
 import BrandLogo from "@/components/ui/BrandLogo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<"services" | "products" | null>(null);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menus on path change
+  // Close menus on route change
   useEffect(() => {
     setIsOpen(false);
-    setIsServicesOpen(false);
+    setActiveDropdown(null);
     setMobileServicesOpen(false);
+    setMobileProductsOpen(false);
   }, [pathname]);
 
-  const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Services", href: "/services", hasDropdown: true },
-    { label: "Easy EMI", href: "/#emi-finance", badge: "0% Interest" },
-    { label: "Our Work", href: "/our-work" },
-    { label: "Pricing & Rates", href: "/pricing" },
-    { label: "Contact", href: "/contact" },
-  ];
+  const handleMouseEnter = (menu: "services" | "products") => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setActiveDropdown(menu);
+  };
 
-  const megaMenuCategories = [
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  };
+
+  const serviceItems = [
     {
-      id: "outdoor-advertising-hoardings",
-      href: "/services/outdoor-advertising-hoardings",
       title: "Outdoor Hoardings & Pole Kiosks",
       telugu: "రోడ్డు హోర్డింగ్స్ & పోల్ కియోస్క్స్",
-      description: "Roadside Framed Hoardings, Pole Kiosks & Highway Billboards",
-      badge: "Direct Workshop",
+      href: "/services/outdoor-advertising-hoardings",
+      description: "Roadside framed hoardings, street pole kiosks & highway billboards",
       icon: Layers,
-      color: "text-[#F04446] bg-red-50 group-hover:bg-[#F04446] group-hover:text-white",
+      color: "text-[#F04446]",
+      badge: "Direct Workshop",
     },
     {
-      id: "jumbo-xerox-cad",
-      href: "/services#jumbo-xerox-cad",
-      title: "Jumbo Xerox & CAD Blueprints",
-      telugu: "A0 జిరాక్స్ & ఇంజనీరింగ్ ప్లాన్స్",
-      description: "A0-A4 Plotting, Tracing Paper & Municipal Village Maps",
-      badge: "15-Min Delivery",
-      icon: FileText,
-      color: "text-[#2255D6] bg-blue-50 group-hover:bg-[#2255D6] group-hover:text-white",
-    },
-    {
-      id: "3d-led-signage",
-      href: "/services#3d-led-signage",
-      title: "Architectural 3D LED Signage",
-      telugu: "3D అక్రిలిక్ లెటర్స్ & గ్లో బోర్డ్స్",
-      description: "Laser-Cut Acrylic Channel Letters & Samsung IP67 LEDs",
-      badge: "3-Yr Assurance",
-      icon: Lightbulb,
-      color: "text-amber-600 bg-amber-50 group-hover:bg-amber-600 group-hover:text-white",
-    },
-    {
-      id: "personalized-gifts",
-      href: "/services#personalized-gifts",
-      title: "Personalized Gifts & Framing",
-      telugu: "కస్టమ్ ఫోటో ఫ్రేమ్స్, మగ్స్ & టీ-షర్ట్స్",
-      description: "Photo Frames (10% IG Off), Mugs, Pillows & DTF T-Shirts",
-      badge: "From ₹200 / 1–2 Hr",
-      icon: Gift,
-      color: "text-purple-600 bg-purple-50 group-hover:bg-purple-600 group-hover:text-white",
-    },
-    {
-      id: "stickers-boards-commercial",
-      href: "/services#stickers-boards-commercial",
-      title: "Stickers, Boards & Offset",
-      telugu: "వినైల్ స్టిక్కర్లు & విజిటింగ్ కార్డ్స్",
-      description: "Sunboard Displays, 350 GSM Cards & Carbonless Bill Books",
-      badge: "Wholesale Packs",
+      title: "Star Flex & Vinyl Banners",
+      telugu: "స్టార్ ఫ్లెక్స్ & బ్యానర్స్",
+      href: "/services/star-flex-banner-printing-kadapa",
+      description: "340+ GSM Star Flex, frontlit, backlit with outdoor UV inks",
       icon: Printer,
-      color: "text-emerald-600 bg-emerald-50 group-hover:bg-emerald-600 group-hover:text-white",
+      color: "text-amber-500",
+      badge: "Same-Day",
+    },
+    {
+      title: "Architectural 3D LED Signage",
+      telugu: "3D అక్రిలిక్ ఎల్ఈడీ బోర్డులు",
+      href: "/services/3d-led-sign-boards-kadapa",
+      description: "Laser-cut acrylic channel letters with Samsung IP67 waterproof LEDs",
+      icon: Lightbulb,
+      color: "text-[#2255D6]",
+      badge: "3-Yr Guarantee",
+    },
+    {
+      title: "A0 Jumbo Xerox & CAD Plotting",
+      telugu: "A0 జిరాక్స్ & ఇంజనీరింగ్ ప్లాన్స్",
+      href: "/services/jumbo-xerox-kadapa",
+      description: "Exact 1:100 scale architectural plans & municipal sanction maps",
+      icon: FileText,
+      color: "text-emerald-500",
+      badge: "15-Min Delivery",
+    },
+    {
+      title: "Vehicle Branding & Auto Publicity",
+      telugu: "ఆటో ప్రచారం & వెహికల్ బ్రాండింగ్",
+      href: "/services/auto-publicity-advertising-kadapa",
+      description: "Auto hood flex, driver back banners with route tracking in Kadapa",
+      icon: Sparkles,
+      color: "text-purple-500",
+      badge: "Turnkey Fleets",
+    },
+    {
+      title: "Commercial Stickers & Sunboards",
+      telugu: "స్టిక్కర్స్ & సన్‌బోర్డ్ ప్రింటింగ్",
+      href: "/services/vinyl-stickers-sunboard-kadapa",
+      description: "Die-cut product labels, 3mm-5mm sunboard displays & foam sheets",
+      icon: Tag,
+      color: "text-cyan-500",
+      badge: "Wholesale",
+    },
+  ];
+
+  const productItems = [
+    {
+      title: "Custom Wall Photo Frames",
+      telugu: "వాల్ ఫోటో ఫ్రేమ్స్",
+      href: "/services/personalized-gifts-framing-kadapa",
+      description: "A4 to 24×36 premium synthetic wood frames with matte/gloss sheet",
+      price: "From ₹600 (10% IG Off)",
+      icon: ImageIcon,
+    },
+    {
+      title: "Ceramic & Magic Heat Mugs",
+      telugu: "మ్యాజిక్ మగ్స్ & కస్టమ్ కప్స్",
+      href: "/services/personalized-gifts-framing-kadapa",
+      description: "Plain white, inner color, heart-handle & black heat-reveal mugs",
+      price: "From ₹350",
+      icon: Gift,
+    },
+    {
+      title: "Custom T-Shirts & DTF Apparel",
+      telugu: "కస్టమ్ టీ-షర్ట్స్ & క్యాప్స్",
+      href: "/services/personalized-gifts-framing-kadapa",
+      description: "Washproof DTF printing for corporate events, schools & birthdays",
+      price: "From ₹350",
+      icon: Sparkles,
+    },
+    {
+      title: "Photo Pillows & Cushions",
+      telugu: "కస్టమ్ ఫోటో పిల్లోస్",
+      href: "/services/personalized-gifts-framing-kadapa",
+      description: "Heart & square satin cushions with fiber filling and vibrant print",
+      price: "From ₹450",
+      icon: Gift,
+    },
+    {
+      title: "Visiting Cards & Corporate Stationery",
+      telugu: "విజిటింగ్ కార్డ్స్ & బిల్ బుక్స్",
+      href: "/services/visiting-cards-offset-kadapa",
+      description: "350 GSM matte/velvet cards, spot UV, letterheads & receipt books",
+      price: "From ₹600 / 1000",
+      icon: CreditCard,
+    },
+    {
+      title: "Official Workshop Rate Card",
+      telugu: "అన్ని ధరల పూర్తి వివరాలు",
+      href: "/pricing",
+      description: "Transparent pricing table for all printing, signage & gifting items",
+      price: "Full Rate Card",
+      icon: Tag,
     },
   ];
 
   return (
     <>
-      {/* Exclusive Bajaj Finance Easy Installments Announcement Ribbon */}
-      <div className="bg-gradient-to-r from-[#00529b] via-brand-navy to-[#b80610] text-white text-[11px] sm:text-xs py-1.5 px-3 border-b border-white/15 relative z-50">
-        <div className="site-container flex items-center justify-between gap-2">
-          <Link
-            href="/#emi-finance"
-            className="flex items-center gap-1.5 sm:gap-2 hover:opacity-95 overflow-hidden text-ellipsis whitespace-nowrap group"
-          >
-            <span className="bg-amber-400 text-slate-950 text-[10px] sm:text-[11px] font-black uppercase px-2 py-0.5 rounded-full shrink-0 shadow-xs">
-              First Time in India
-            </span>
-            <span className="font-semibold text-slate-100 truncate">
-              Flex Printing & LED Signs Now on <strong className="text-white underline decoration-amber-400 decoration-2 font-black">Easy Installments</strong> with BAJAJ FINANCE! (Credit ₹5,000–₹50,000 • 0% Interest)
-            </span>
-            <ArrowRight className="w-3.5 h-3.5 text-amber-300 shrink-0 group-hover:translate-x-1 transition-transform" />
-          </Link>
-
-          <div className="hidden md:flex items-center gap-3 shrink-0 text-slate-200">
-            <span>Down Payment from <strong className="text-emerald-300 font-bold">₹1,000</strong></span>
-            <span className="text-white/30">•</span>
-            <a
-              href="tel:+917287867584"
-              className="font-bold text-white hover:text-amber-300 flex items-center gap-1 transition-colors"
-            >
-              <Phone className="w-3 h-3 text-emerald-400" />
-              <span>728 786 7584</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Top Notification Bar for Kadapa Local Trust */}
+      {/* 1. Sleek Top Credibility & Direct Contact Bar (Hidden on mobile) */}
       <div
-        className={`bg-brand-dark text-slate-300 text-xs px-4 border-b border-white/10 hidden md:block transition-all duration-300 overflow-hidden ${
-          scrolled ? "max-h-0 py-0 opacity-0 border-b-0" : "max-h-12 py-2 opacity-100"
+        className={`bg-[#0A1124] text-slate-300 text-xs px-4 border-b border-white/10 hidden md:block transition-all duration-300 overflow-hidden ${
+          scrolled ? "max-h-0 py-0 opacity-0 border-b-0" : "max-h-11 py-2 opacity-100"
         }`}
       >
         <div className="site-container flex items-center justify-between">
+          {/* Left: Location & Hours */}
           <div className="flex items-center space-x-6">
-            <span className="flex items-center text-amber-400 font-medium">
-              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-amber-400" />
-              10+ Years of Quality Printing in Kadapa (Since 2014)
+            <span className="flex items-center text-[#FFC83D] font-semibold">
+              <Sparkles className="w-3.5 h-3.5 mr-1.5 text-[#FFC83D]" />
+              Kadapa&apos;s No #1 Printing &amp; Branding Partner
             </span>
             <span className="flex items-center text-slate-300">
-              <MapPin className="w-3.5 h-3.5 mr-1 text-brand-red" />
+              <MapPin className="w-3.5 h-3.5 mr-1 text-[#F04446]" />
               Opp. Tirumala Hospital, Kadapa
             </span>
             <span className="flex items-center text-slate-300">
-              <Clock className="w-3.5 h-3.5 mr-1 text-brand-cyan" />
-              Open 7 Days a Week (09:30 AM – 09:30 PM)
+              <Clock className="w-3.5 h-3.5 mr-1 text-cyan-400" />
+              Open 7 Days • 09:30 AM – 09:30 PM
             </span>
           </div>
 
+          {/* Right: Direct Desk Phone & WhatsApp */}
           <div className="flex items-center space-x-4">
-            <span className="text-slate-400">Order Desk:</span>
+            <span className="text-slate-400">Direct Workshop Desk:</span>
             <a
               href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-              className="text-white hover:text-brand-gold font-semibold flex items-center transition-colors"
+              className="text-white hover:text-[#FFC83D] font-bold flex items-center transition-colors"
             >
               <Phone className="w-3 h-3 mr-1 text-emerald-400" />
               {BUSINESS_DATA.contacts.primaryOrders.displayNumber}
@@ -181,7 +211,7 @@ export default function Navbar() {
               href={getWhatsAppLink("Hello City Grafix, I want to inquire about printing services in Kadapa.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center transition-colors"
+              className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center transition-colors"
             >
               <MessageCircle className="w-3.5 h-3.5 mr-1 fill-emerald-400/20" />
               WhatsApp Orders
@@ -190,20 +220,19 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Sticky Navbar */}
+      {/* 2. Main Sticky Navbar */}
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-brand-navy/95 backdrop-blur-md shadow-xl border-b border-white/10 py-2 sm:py-2.5"
-            : "bg-brand-navy border-b border-white/10 py-2.5 sm:py-3.5"
+            ? "bg-[#101B38]/95 backdrop-blur-md shadow-xl border-b border-white/10 py-2 sm:py-2.5"
+            : "bg-[#101B38] border-b border-white/10 py-2.5 sm:py-3.5"
         }`}
       >
         <div className="site-container flex items-center justify-between">
-          {/* Modern Executive Brand Logo */}
-          <Link href="/" className="flex items-center group py-1" aria-label="City Grafix Homepage">
+          {/* Official Brand Logo */}
+          <Link href="/" className="flex items-center group py-0.5" aria-label="City Grafix Homepage">
             <BrandLogo
               variant="horizontal"
-              theme="dark"
               size="md"
               className="group-hover:opacity-95 transition-opacity"
             />
@@ -211,194 +240,200 @@ export default function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+            <Link
+              href="/"
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                pathname === "/" ? "text-[#FFC83D] bg-white/10 shadow-sm" : "text-slate-200 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Home
+            </Link>
 
-              if (link.hasDropdown) {
-                return (
-                  <div
-                    key={link.label}
-                    className="relative"
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
-                  >
-                    <Link
-                      href={link.href}
-                      className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all flex items-center space-x-1 ${
-                        pathname.startsWith("/services")
-                          ? "text-brand-gold bg-white/10 shadow-sm"
-                          : "text-slate-200 hover:text-white hover:bg-white/5"
-                      }`}
-                    >
-                      <span>{link.label}</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          isServicesOpen ? "rotate-180 text-brand-gold" : ""
-                        }`}
-                      />
-                    </Link>
-
-                    {/* Mega Dropdown Menu */}
-                    {isServicesOpen && (
-                      <div className="absolute top-full -left-28 xl:-left-20 pt-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                        <div className="w-[820px] xl:w-[860px] bg-white rounded-2xl shadow-2xl border border-slate-200 ring-1 ring-slate-900/10 overflow-hidden text-slate-900">
-                          {/* Top Announcement Bar */}
-                          <div className="bg-slate-50 px-6 py-2.5 border-b border-slate-100 flex items-center justify-between text-xs">
-                            <div className="flex items-center space-x-2">
-                              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                              <span className="font-bold uppercase tracking-wider text-slate-700">
-                                In-House Printing Verticals & Machinery
-                              </span>
-                              <span className="text-slate-400">• Kadapa Workshop</span>
-                            </div>
-                            <Link
-                              href="/services"
-                              onClick={() => setIsServicesOpen(false)}
-                              className="font-bold text-brand-royal hover:text-brand-navy transition-colors flex items-center space-x-1"
-                            >
-                              <span>Browse Full 11-Service Catalog</span>
-                              <ArrowRight className="w-3.5 h-3.5" />
-                            </Link>
-                          </div>
-
-                          {/* Grid Body */}
-                          <div className="grid grid-cols-12">
-                            {/* Left Column: 5 Core Categories */}
-                            <div className="col-span-7 p-4 sm:p-5 space-y-1.5">
-                              <div className="flex items-center justify-between pb-2 mb-1 border-b border-slate-100 text-[11px]">
-                                <span className="font-bold uppercase tracking-wider text-slate-400">
-                                  Select Manufacturing Category
-                                </span>
-                                <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                                  Zero Middleman Brokerage
-                                </span>
-                              </div>
-
-                              {megaMenuCategories.map((item) => {
-                                const Icon = item.icon;
-                                return (
-                                  <Link
-                                    key={item.id}
-                                    href={item.href}
-                                    onClick={() => setIsServicesOpen(false)}
-                                    className="group flex items-start space-x-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200"
-                                  >
-                                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${item.color}`}>
-                                      <Icon className="w-4 h-4" />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                      <div className="flex items-center justify-between">
-                                        <span className="text-xs font-bold text-slate-900 group-hover:text-brand-navy transition-colors">
-                                          {item.title}
-                                        </span>
-                                        <span className="text-[10px] font-mono font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded shrink-0 ml-2">
-                                          {item.badge}
-                                        </span>
-                                      </div>
-                                      <p className="text-[11px] text-slate-500 truncate mt-0.5">
-                                        {item.description}
-                                      </p>
-                                    </div>
-                                  </Link>
-                                );
-                              })}
-                            </div>
-
-                            {/* Right Column: Workshop Direct Desk & Wholesale Rates */}
-                            <div className="col-span-5 bg-slate-50/80 p-5 border-l border-slate-100 flex flex-col justify-between space-y-4">
-                              <div className="space-y-1.5">
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-brand-red bg-red-50 px-2 py-0.5 rounded inline-block">
-                                  Direct Workshop Desk
-                                </span>
-                                <h4 className="text-sm font-black text-brand-navy">
-                                  City Grafix Kadapa
-                                </h4>
-                                <p className="text-[11px] text-slate-600 leading-snug">
-                                  #21/135, Opp. Tirumala Hospital, beside New AF Automart Street.
-                                </p>
-                                <div className="flex items-center text-[10px] text-emerald-700 font-semibold pt-1">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5" />
-                                  <span>Open 7 Days • 9:30 AM – 9:30 PM</span>
-                                </div>
-                              </div>
-
-                              {/* Wholesale Rate Card CTA Card */}
-                              <Link
-                                href="/pricing"
-                                onClick={() => setIsServicesOpen(false)}
-                                className="p-3 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-brand-royal hover:shadow-md transition-all group block"
-                              >
-                                <div className="flex items-center space-x-2 text-xs font-bold text-brand-navy mb-1">
-                                  <Tag className="w-4 h-4 text-brand-royal" />
-                                  <span>Official Gifting Rate Card</span>
-                                </div>
-                                <p className="text-[11px] text-slate-500 leading-snug">
-                                  Transparent workshop rates for Star Flex, CAD blueprints, signage & gifts.
-                                </p>
-                                <span className="text-[11px] text-brand-royal font-bold inline-flex items-center mt-2 group-hover:translate-x-1 transition-transform">
-                                  <span>View Rate Card</span>
-                                  <ArrowRight className="w-3 h-3 ml-1" />
-                                </span>
-                              </Link>
-
-                              {/* Direct WhatsApp Quote Button */}
-                              <a
-                                href={getWhatsAppLink("Hello City Grafix, I want a quotation for printing in Kadapa.")}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl shadow-sm transition-all flex items-center justify-center space-x-1.5 text-xs"
-                              >
-                                <MessageCircle className="w-4 h-4 fill-white" />
-                                <span>WhatsApp Order Desk</span>
-                              </a>
-                            </div>
-
-                            {/* Bottom Bar */}
-                            <div className="col-span-12 bg-slate-100/90 px-6 py-2.5 border-t border-slate-200 flex items-center justify-between text-xs">
-                              <span className="text-slate-600 font-medium">
-                                Direct In-House Production • 10+ Years Trusted in Kadapa
-                              </span>
-                              <Link
-                                href="/pricing"
-                                onClick={() => setIsServicesOpen(false)}
-                                className="font-bold text-brand-navy hover:text-brand-royal transition-colors inline-flex items-center space-x-1"
-                              >
-                                <span>Official Gifting Rate Card</span>
-                                <ArrowRight className="w-3 h-3" />
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`px-3 xl:px-3.5 py-2 rounded-lg text-sm font-medium transition-all flex items-center space-x-1.5 ${
-                    isActive
-                      ? "text-brand-gold bg-white/10 shadow-sm font-semibold"
-                      : "text-slate-200 hover:text-white hover:bg-white/5"
+            {/* Services Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("services")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                href="/services"
+                className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all flex items-center space-x-1 ${
+                  pathname.startsWith("/services")
+                    ? "text-[#FFC83D] bg-white/10 shadow-sm"
+                    : "text-slate-200 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <span>Services</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    activeDropdown === "services" ? "rotate-180 text-[#FFC83D]" : ""
                   }`}
-                >
-                  <span>{link.label}</span>
-                  {link.badge && (
-                    <span className="px-1.5 py-0.5 rounded text-[10px] font-black uppercase tracking-tight bg-gradient-to-r from-amber-400 to-amber-300 text-slate-950 shadow-xs">
-                      {link.badge}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
+                />
+              </Link>
+
+              {/* Services Mega Dropdown */}
+              {activeDropdown === "services" && (
+                <div className="absolute top-full -left-20 xl:-left-10 pt-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="w-[780px] bg-white rounded-2xl shadow-2xl border border-slate-200 ring-1 ring-slate-900/10 overflow-hidden text-slate-900">
+                    <div className="bg-slate-50 px-6 py-2.5 border-b border-slate-100 flex items-center justify-between text-xs">
+                      <span className="font-bold uppercase tracking-wider text-slate-700">
+                        In-House Printing &amp; Fabrication Verticals
+                      </span>
+                      <Link
+                        href="/services"
+                        className="font-bold text-[#2255D6] hover:underline flex items-center space-x-1"
+                      >
+                        <span>View All Services</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                    <div className="p-4 grid grid-cols-2 gap-2">
+                      {serviceItems.map((item) => (
+                        <Link
+                          key={item.title}
+                          href={item.href}
+                          className="p-3 rounded-xl hover:bg-slate-50 transition-colors flex items-start space-x-3 group"
+                        >
+                          <div className={`p-2.5 rounded-lg bg-slate-100 group-hover:bg-slate-200 transition-colors ${item.color}`}>
+                            <item.icon className="w-5 h-5" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between">
+                              <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#2255D6] transition-colors truncate">
+                                {item.title}
+                              </h4>
+                              {item.badge && (
+                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
+                                  {item.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                              {item.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Products Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("products")}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link
+                href="/pricing"
+                className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all flex items-center space-x-1 ${
+                  pathname === "/pricing"
+                    ? "text-[#FFC83D] bg-white/10 shadow-sm"
+                    : "text-slate-200 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <span>Products</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    activeDropdown === "products" ? "rotate-180 text-[#FFC83D]" : ""
+                  }`}
+                />
+              </Link>
+
+              {/* Products Dropdown Menu */}
+              {activeDropdown === "products" && (
+                <div className="absolute top-full -left-10 pt-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="w-[640px] bg-white rounded-2xl shadow-2xl border border-slate-200 ring-1 ring-slate-900/10 overflow-hidden text-slate-900">
+                    <div className="bg-slate-50 px-6 py-2.5 border-b border-slate-100 flex items-center justify-between text-xs">
+                      <span className="font-bold uppercase tracking-wider text-slate-700">
+                        Popular Gifting &amp; Commercial Products
+                      </span>
+                      <Link
+                        href="/pricing"
+                        className="font-bold text-[#2255D6] hover:underline flex items-center space-x-1"
+                      >
+                        <span>Full Price Rate Card</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                    <div className="p-4 grid grid-cols-2 gap-2">
+                      {productItems.map((item) => (
+                        <Link
+                          key={item.title}
+                          href={item.href}
+                          className="p-3 rounded-xl hover:bg-slate-50 transition-colors flex items-start space-x-3 group"
+                        >
+                          <div className="p-2 rounded-lg bg-amber-50 text-amber-600 group-hover:bg-amber-100 transition-colors">
+                            <item.icon className="w-4 h-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between">
+                              <h4 className="text-xs font-bold text-slate-900 group-hover:text-[#2255D6] transition-colors truncate">
+                                {item.title}
+                              </h4>
+                            </div>
+                            <span className="text-[10px] text-[#F04446] font-bold block mt-0.5">
+                              {item.price}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/our-work"
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                pathname === "/our-work"
+                  ? "text-[#FFC83D] bg-white/10 shadow-sm"
+                  : "text-slate-200 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Portfolio
+            </Link>
+
+            <Link
+              href="/pricing"
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                pathname === "/pricing"
+                  ? "text-[#FFC83D] bg-white/10 shadow-sm"
+                  : "text-slate-200 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Pricing
+            </Link>
+
+            <Link
+              href="/about"
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                pathname === "/about"
+                  ? "text-[#FFC83D] bg-white/10 shadow-sm"
+                  : "text-slate-200 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              About
+            </Link>
+
+            <Link
+              href="/contact"
+              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
+                pathname === "/contact"
+                  ? "text-[#FFC83D] bg-white/10 shadow-sm"
+                  : "text-slate-200 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* Right Header Action Buttons */}
           <div className="hidden lg:flex items-center space-x-2.5">
-            {/* Install App Showcase Trigger */}
+            {/* Install App Trigger */}
             <button
               type="button"
               onClick={() => {
@@ -413,28 +448,29 @@ export default function Navbar() {
               <span>Install App</span>
             </button>
 
-            {/* WhatsApp Quick Trigger */}
-            <a
-              href={getWhatsAppLink("Hello City Grafix, I need a quotation for printing in Kadapa.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white p-2.5 rounded-xl transition-all shadow-md hover:shadow-emerald-500/25 flex items-center justify-center group"
-              title="Chat on WhatsApp"
-            >
-              <MessageCircle className="w-4 h-4 fill-white" />
-            </a>
-
-            {/* Call Now Button */}
+            {/* Quick Call */}
             <a
               href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-              className="bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-3.5 py-2.5 rounded-xl border border-white/15 transition-all flex items-center space-x-1.5"
+              className="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl border border-white/15 transition-all flex items-center space-x-1.5"
             >
-              <Phone className="w-3.5 h-3.5 text-brand-gold" />
-              <span>Call Now</span>
+              <Phone className="w-3.5 h-3.5 text-[#FFC83D]" />
+              <span>Call Desk</span>
+            </a>
+
+            {/* Primary Get Quote CTA Button */}
+            <a
+              href={getWhatsAppLink("Hello City Grafix, I want to get a quotation for printing in Kadapa.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#F04446] hover:bg-[#d9383a] text-white text-xs font-extrabold px-4 py-2.5 rounded-xl shadow-md hover:shadow-[#F04446]/25 transition-all flex items-center space-x-1.5 active:scale-95 group"
+            >
+              <MessageCircle className="w-3.5 h-3.5 fill-white" />
+              <span>Get Quote</span>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </div>
 
-          {/* Mobile Menu & Quick Contact Trigger */}
+          {/* Mobile Quick Action Buttons & Menu Trigger */}
           <div className="flex items-center space-x-2 lg:hidden">
             <a
               href={getWhatsAppLink("Hello City Grafix, I would like to inquire about printing services.")}
@@ -443,145 +479,157 @@ export default function Navbar() {
               className="bg-emerald-600 text-white p-2 rounded-xl text-xs flex items-center"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-4 h-4 fill-white" />
             </a>
 
             <a
               href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-              className="bg-brand-red text-white p-2 rounded-xl text-xs flex items-center"
+              className="bg-white/10 text-white p-2 rounded-xl text-xs flex items-center border border-white/15"
               aria-label="Call"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4 text-[#FFC83D]" />
             </a>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors"
-              aria-label="Toggle menu"
+              className="text-white p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors border border-white/15"
+              aria-label="Toggle navigation menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Slide-down Drawer */}
+        {/* Mobile Slide-down Navigation Drawer */}
         {isOpen && (
-          <div className="lg:hidden bg-brand-navy border-b border-white/15 px-4 pt-3 pb-6 max-h-[85vh] overflow-y-auto animate-in slide-in-from-top-4 duration-300 shadow-2xl">
+          <div className="lg:hidden bg-[#101B38] border-b border-white/15 px-4 pt-3 pb-6 max-h-[85vh] overflow-y-auto animate-in slide-in-from-top-4 duration-300 shadow-2xl">
             <nav className="flex flex-col space-y-1">
-              {navLinks.map((link) => {
-                if (link.hasDropdown) {
-                  return (
-                    <div key={link.label} className="flex flex-col">
-                      <div className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5">
-                        <Link href={link.href} className="flex-1 font-semibold">
-                          {link.label}
-                        </Link>
-                        <button
-                          type="button"
-                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                          className="px-2.5 py-1 text-brand-gold bg-white/10 rounded-lg text-xs font-bold flex items-center space-x-1 border border-white/10"
-                        >
-                          <span>All Categories</span>
-                          <ChevronDown
-                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                              mobileServicesOpen ? "rotate-180 text-cyan-400" : ""
-                            }`}
-                          />
-                        </button>
-                      </div>
-                      {mobileServicesOpen && (
-                        <div className="pl-3 pr-2 py-2 space-y-1 bg-white/5 rounded-2xl my-1 border border-white/10">
-                          <Link
-                            href="/services/outdoor-advertising-hoardings"
-                            className="block p-2 text-xs text-[#FFC83D] hover:text-white hover:bg-white/10 rounded-lg font-bold border border-white/10 bg-white/5"
-                          >
-                            <div className="font-bold text-white flex items-center justify-between">
-                              <span>Outdoor Hoardings &amp; Pole Kiosks</span>
-                              <span className="text-[10px] text-[#FFC83D] font-mono">Specialized</span>
-                            </div>
-                            <div className="text-[10px] text-slate-300">రోడ్డు హోర్డింగ్స్ &amp; పోల్ కియోస్క్స్</div>
-                          </Link>
-                          {SERVICE_CATEGORIES.map((cat) => (
-                            <Link
-                              key={cat.id}
-                              href={`/services#${cat.id}`}
-                              className="block p-2 text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-lg font-medium"
-                            >
-                              <div className="font-bold text-slate-200">{cat.title}</div>
-                              <div className="text-[10px] text-brand-gold">{cat.teluguTitle}</div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
+              <Link
+                href="/"
+                className="px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10"
+              >
+                Home
+              </Link>
 
-                return (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className={`px-4 py-3 rounded-xl text-base font-medium flex items-center justify-between ${
-                      pathname === link.href
-                        ? "bg-white/15 text-brand-gold font-bold"
-                        : "text-slate-200 hover:bg-white/5"
-                    }`}
-                  >
-                    <span>{link.label}</span>
-                    {link.badge ? (
-                      <span className="px-2 py-0.5 rounded text-xs font-black uppercase bg-amber-400 text-slate-950">
-                        {link.badge}
-                      </span>
-                    ) : (
-                      <ArrowRight className="w-4 h-4 text-slate-400" />
-                    )}
+              {/* Mobile Services Accordion */}
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10">
+                  <Link href="/services" className="flex-1">
+                    Services
                   </Link>
-                );
-              })}
-
-              <div className="pt-4 mt-2 border-t border-white/10 space-y-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsOpen(false);
-                    if (typeof window !== "undefined") {
-                      window.dispatchEvent(new CustomEvent("citygrafix-install-app"));
-                    }
-                  }}
-                  className="w-full bg-gradient-to-r from-amber-500/20 via-amber-400/10 to-red-500/20 hover:from-amber-500/30 hover:to-red-500/30 text-amber-300 py-2.5 px-3 rounded-xl font-bold flex items-center justify-center space-x-2 border border-amber-400/30 text-xs transition-colors"
-                >
-                  <Download className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Install City Grafix Web App</span>
-                </button>
-
-                <Link
-                  href="/pricing"
-                  className="w-full bg-white/10 hover:bg-white/15 text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 border border-white/15 text-xs transition-colors"
-                >
-                  <Tag className="w-3.5 h-3.5 text-brand-gold" />
-                  <span>Official Gifting Rate Card</span>
-                </Link>
-
-                <div className="grid grid-cols-2 gap-2 pt-2">
-                  <a
-                    href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
-                    className="bg-white/10 text-white py-3 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 border border-white/10 active:scale-95"
+                  <button
+                    type="button"
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="p-1 text-[#FFC83D] bg-white/10 rounded-lg text-xs"
+                    aria-label="Toggle Services list"
                   >
-                    <Phone className="w-3.5 h-3.5 text-brand-gold" />
-                    <span>Call Order Desk</span>
-                  </a>
-                  <a
-                    href={getWhatsAppLink("Hello City Grafix, I want to inquire about printing in Kadapa.")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-emerald-600 text-white py-3 px-3 rounded-xl text-xs font-semibold flex items-center justify-center space-x-1.5 active:scale-95"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                    <span>WhatsApp Now</span>
-                  </a>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        mobileServicesOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
                 </div>
+                {mobileServicesOpen && (
+                  <div className="pl-4 pr-2 py-2 space-y-1 bg-white/5 rounded-2xl my-1 border border-white/10">
+                    {serviceItems.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        className="block p-2 text-xs text-slate-200 hover:text-white hover:bg-white/10 rounded-lg font-medium"
+                      >
+                        <div className="font-bold text-white">{item.title}</div>
+                        <div className="text-[10px] text-[#FFC83D]">{item.telugu}</div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              {/* Mobile Products Accordion */}
+              <div className="flex flex-col">
+                <div className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10">
+                  <Link href="/pricing" className="flex-1">
+                    Products &amp; Gifts
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                    className="p-1 text-[#FFC83D] bg-white/10 rounded-lg text-xs"
+                    aria-label="Toggle Products list"
+                  >
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        mobileProductsOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                </div>
+                {mobileProductsOpen && (
+                  <div className="pl-4 pr-2 py-2 space-y-1 bg-white/5 rounded-2xl my-1 border border-white/10">
+                    {productItems.map((item) => (
+                      <Link
+                        key={item.title}
+                        href={item.href}
+                        className="block p-2 text-xs text-slate-200 hover:text-white hover:bg-white/10 rounded-lg font-medium"
+                      >
+                        <div className="font-bold text-white">{item.title}</div>
+                        <div className="text-[10px] text-emerald-400">{item.price}</div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/our-work"
+                className="px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10"
+              >
+                Portfolio
+              </Link>
+
+              <Link
+                href="/pricing"
+                className="px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10"
+              >
+                Pricing &amp; Rates
+              </Link>
+
+              <Link
+                href="/about"
+                className="px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10"
+              >
+                About Us
+              </Link>
+
+              <Link
+                href="/contact"
+                className="px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10"
+              >
+                Contact
+              </Link>
             </nav>
+
+            {/* Mobile Drawer Bottom CTAs */}
+            <div className="pt-4 mt-4 border-t border-white/15 space-y-2.5">
+              <a
+                href={getWhatsAppLink("Hello City Grafix, I want to get a quotation for printing in Kadapa.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#F04446] text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-lg text-sm"
+              >
+                <MessageCircle className="w-4 h-4 fill-white" />
+                <span>Get a Free WhatsApp Quote</span>
+              </a>
+
+              <a
+                href={BUSINESS_DATA.contacts.primaryOrders.callUrl}
+                className="w-full bg-white/10 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 border border-white/15 text-sm"
+              >
+                <Phone className="w-4 h-4 text-[#FFC83D]" />
+                <span>Call Desk: {BUSINESS_DATA.contacts.primaryOrders.displayNumber}</span>
+              </a>
+            </div>
           </div>
         )}
       </header>

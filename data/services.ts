@@ -120,6 +120,40 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     ],
     turnaroundSummary: "24 to 48 Hours",
   },
+  {
+    id: "outdoor-advertising-hoardings",
+    slug: "outdoor-advertising-hoardings",
+    title: "Pole Kiosk & Outdoor Advertising",
+    teluguTitle: "పోల్ కియోస్క్ & రోడ్ మీడియన్ అడ్వర్టైజింగ్",
+    description: "Roadside framed advertising boards, double-sided street pole kiosks, and road divider advertising panels across Kadapa.",
+    iconName: "Layers",
+    image: "/images/pole-kiosk-median-advertising-night.webp",
+    keyServices: [
+      "Roadside Framed Hoardings",
+      "Street Pole Kiosks (Dual-Sided)",
+      "Road Median Display Boards",
+      "Highway Billboards & Spans",
+      "Turnkey Steel Frame Fabrication",
+    ],
+    turnaroundSummary: "Turnkey Fabrication & Installation",
+  },
+  {
+    id: "vehicle-branding-publicity",
+    slug: "vehicle-branding-publicity",
+    title: "Vehicle Branding & Auto Publicity",
+    teluguTitle: "ఆటో ప్రచారం & వెహికల్ బ్రాండింగ్",
+    description: "Mobile publicity across Kadapa with auto driver back banners, hood flex, and high-traction promotional fleet campaigns.",
+    iconName: "Sparkles",
+    image: "/images/auto-publicity-branding.jpg",
+    keyServices: [
+      "Auto Hood Flex & Roof Decals",
+      "Driver Back Panel Vinyl Branding",
+      "Promotional Vehicle Fleets",
+      "Ward-Wise Route Tracking in Kadapa",
+      "Waterproof Anti-Peel Adhesives",
+    ],
+    turnaroundSummary: "2 to 3 Days (Complete Fleet Execution)",
+  },
 ];
 
 export const CORE_SERVICES: ServiceItem[] = [

@@ -164,6 +164,15 @@
     transform: translateY(-4px);
     box-shadow: 0 16px 32px -8px rgba(11, 19, 43, 0.12);
   }
+
+  /* Slider Progress Keyframes */
+  @keyframes progressFill {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+  .animate-progress {
+    animation: progressFill linear forwards;
+  }
 }
 
 /* Custom Scrollbar */

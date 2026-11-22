@@ -5,7 +5,7 @@ export default function WhyChooseUs() {
   const reasons = [
     {
       icon: Award,
-      title: "12+ Years of Experience",
+      title: "10+ Years of Experience",
       telugu: "2014 నుండి కడపలో సేవలందిస్తున్నాం",
       description: "Over a decade of continuous operational excellence in Kadapa with thousands of satisfied businesses, engineers, and families.",
       badge: "Since 2014",

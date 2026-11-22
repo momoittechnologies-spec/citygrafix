@@ -20,6 +20,7 @@ export default function PortfolioSection() {
     { id: "xerox", label: "Jumbo Xerox & CAD" },
     { id: "offset", label: "Commercial Printing" },
     { id: "gifts", label: "Personalized Gifts" },
+    { id: "vehicle", label: "Vehicle Branding" },
   ];
 
   const filteredItems = activeCategory === "all"

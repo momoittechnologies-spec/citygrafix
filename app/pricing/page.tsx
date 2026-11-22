@@ -496,7 +496,7 @@ export default function PricingPage() {
                 <span>WhatsApp Commercial Quote</span>
               </a>
               <Link
-                href="/#emi-finance"
+                href="/emi-finance"
                 className="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm px-4 py-3 rounded-xl transition-all shadow-md flex items-center space-x-1.5"
               >
                 <span>Check 0% EMI Details</span>

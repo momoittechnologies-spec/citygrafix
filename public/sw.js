@@ -1,5 +1,5 @@
-// City Grafix PWA Service Worker - v4 (Auto-purges older caches & precaches official brand assets)
-const CACHE_NAME = 'citygrafix-pwa-v4';
+// City Grafix PWA Service Worker - v5 (Auto-purges older caches & precaches hero slider)
+const CACHE_NAME = 'citygrafix-pwa-v5';
 const OFFLINE_URL = '/offline.html';
 
 const PRECACHE_ASSETS = [
@@ -7,6 +7,7 @@ const PRECACHE_ASSETS = [
   '/pricing',
   '/services',
   '/services/outdoor-advertising-hoardings',
+  '/emi-finance',
   '/contact',
   '/offline.html',
   '/manifest.webmanifest',
@@ -14,6 +15,8 @@ const PRECACHE_ASSETS = [
   '/brand/city-grafix-official-logo.png',
   '/brand/city-grafix-emblem.webp',
   '/brand/city-grafix-emblem.png',
+  '/images/hero-slider/slide-1-brand-intro.webp',
+  '/images/hero-slider/slide-1-brand-intro-mobile.webp',
   '/favicon.ico',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',

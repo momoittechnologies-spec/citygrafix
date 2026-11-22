@@ -1,25 +1,28 @@
 import React from "react";
 import type { Metadata } from "next";
-import HeroSection from "@/components/home/HeroSection";
+import HeroSlider from "@/components/home/HeroSlider";
 import TrustHighlights from "@/components/home/TrustHighlights";
 import ServiceVerticals from "@/components/home/ServiceVerticals";
-import PriceEstimator from "@/components/calculator/PriceEstimator";
+import FeaturedOutdoorProjects from "@/components/home/FeaturedOutdoorProjects";
 import ServiceWordCloud from "@/components/home/ServiceWordCloud";
-import PortfolioSection from "@/components/home/PortfolioSection";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
+import PortfolioSection from "@/components/home/PortfolioSection";
 import PriceHighlights from "@/components/home/PriceHighlights";
-import EmiFinanceSection from "@/components/home/EmiFinanceSection";
+import PriceEstimator from "@/components/calculator/PriceEstimator";
 import OrderSteps from "@/components/home/OrderSteps";
 import ReviewSection from "@/components/home/ReviewSection";
-import AppShowcaseSection from "@/components/home/AppShowcaseSection";
 import LocationContact from "@/components/home/LocationContact";
 
 export const metadata: Metadata = {
-  title: "City Grafix Kadapa | Complete Printing, Flex, Signage & Jumbo Xerox Solutions",
-  description: "Kadapa's premier commercial printing press since 2014. Star flex banners, A0 jumbo xerox, CAD blueprints, 3D acrylic LED signboards, personalized gifts, and wholesale rates.",
+  title: "City Grafix Kadapa | Complete Printing, Signage, Hoardings & CAD Solutions",
+  description:
+    "Kadapa's premier commercial printing & branding partner since 2014. Roadside hoardings, Star Flex banners, 3D acrylic LED signboards, A0 Jumbo Xerox, CAD plotting, and personalized gifts.",
   keywords: [
     "Printing Services in Kadapa",
     "Printing Press in Kadapa",
+    "Hoardings in Kadapa",
+    "Outdoor Advertising Kadapa",
+    "Pole Kiosk Advertising Kadapa",
     "Flex Printing in Kadapa",
     "Jumbo Xerox in Kadapa",
     "A0 Xerox in Kadapa",
@@ -29,9 +32,6 @@ export const metadata: Metadata = {
     "3D Acrylic Letters in Kadapa",
     "Visiting Card Printing in Kadapa",
     "Custom Photo Mug Printing Kadapa",
-    "Flex Printing on Easy Installments Kadapa",
-    "Bajaj Finance Printing Kadapa",
-    "LED Sign Board EMI Kadapa",
   ],
   alternates: {
     canonical: "https://www.citygrafix.in",
@@ -41,41 +41,38 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Hero Section ("Kadapa's Complete Printing & Signage Solutions") */}
-      <HeroSection />
+      {/* 1. Premium Five-Slide Photographic Hero Slider */}
+      <HeroSlider />
 
-      {/* 2. Compact Credibility Strip (Verified Business Facts) */}
+      {/* 2. Compact Trust & Credibility Strip (Verified Business Facts) */}
       <TrustHighlights />
 
-      {/* 3. Six Core Service Categories */}
+      {/* 3. Core Printing & Advertising Services */}
       <ServiceVerticals />
 
-      {/* 4. Interactive Price Estimator (Instant 2-Column Calculator) */}
-      <PriceEstimator />
+      {/* 4. Featured Outdoor Advertising Projects (Roadside Hoardings & Pole Kiosks) */}
+      <FeaturedOutdoorProjects />
 
       {/* 5. Master Interactive Word Cloud ("One Studio. Endless Printing Possibilities.") */}
       <ServiceWordCloud />
 
-      {/* 6. Featured Real Projects Portfolio */}
-      <PortfolioSection />
-
-      {/* 6. Why Choose City Grafix (Core Differentiators) */}
+      {/* 6. Why Choose City Grafix (Core Differentiators & Workshop Advantages) */}
       <WhyChooseUs />
 
-      {/* 7. Personalized Gifts & Popular Products Showcase */}
+      {/* 7. Featured Real Projects Portfolio */}
+      <PortfolioSection />
+
+      {/* 8. Personalized Gifts & Popular Products Showcase */}
       <PriceHighlights />
 
-      {/* 8. Bajaj Finance Easy Installments Feature */}
-      <EmiFinanceSection />
+      {/* 9. Quick Quotation Calculator (2-Column Desktop / Stacked Mobile Estimator) */}
+      <PriceEstimator />
 
-      {/* 9. Simple 4-Step Order Flow */}
+      {/* 10. Simple 4-Step Order Flow */}
       <OrderSteps />
 
-      {/* 10. Verified Customer Reviews & Community Feedback */}
+      {/* 11. Genuine Customer Testimonials & Reviews */}
       <ReviewSection />
-
-      {/* 11. Official Mobile App Showcase (Progressive Web App) */}
-      <AppShowcaseSection />
 
       {/* 12. Workshop Location & Contact Form */}
       <LocationContact />

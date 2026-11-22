@@ -25,6 +25,35 @@ All notable changes to the City Grafix project are documented in this file.
 
 ---
 
+## [Unreleased] — Premium Homepage Hero Slider & Complete Website Refinement
+
+### Added & Redesigned
+- **Premium 5-Slide Full-Width Hero Slider (`HeroSlider.tsx`):**
+  - Built an accessible, high-performance photographic carousel featuring 5 custom slides:
+    1. *Brand Introduction:* "Big Ideas. Bold Prints. Made in Kadapa." with cinematic commercial wide-format printing press photography.
+    2. *Outdoor Advertising:* "Make Your Brand Impossible to Miss." featuring an editorial composite of authentic Kadapa installations (Busetty Jewellery roadside framed display + urban boulevard night pole kiosks).
+    3. *3D LED Signboards:* "Make Your Business Shine." showcasing architectural storefront channel letters with Samsung IP67 LEDs.
+    4. *Jumbo Xerox & CAD Plotting:* "Precision Printing for Every Plan." highlighting 1:100 scale blueprints and high-speed A0 engineering plotters.
+    5. *Personalized Gifts:* "Personalized Gifts. Lasting Memories." displaying custom wall photo frames, ceramic mugs, and DTF apparel.
+  - Dual responsive photography: $1920 \times 1080$ desktop landscape and dedicated $800 \times 1000$ portrait crops for mobile devices (no awkward cropping or distorted scaling).
+  - Autoplay management: 6.5s interval with animated progress bar indicator, pause-on-hover, pause-on-focus, pause on inactive browser tabs (`visibilitychange`), and `prefers-reduced-motion` compliance.
+  - Interactive touch swipe gestures on mobile and keyboard navigation (`ArrowLeft` / `ArrowRight`).
+  - Preloaded first slide (`priority={true}`) with lazy-loaded subsequent slides for optimal Core Web Vitals (LCP $\le 2.5\text{s}$, CLS $\le 0.1$).
+- **Header & Navigation Redesign (`Navbar.tsx`):**
+  - Removed loud promotional top banner; streamlined into a single executive top bar featuring Kadapa workshop address, hours (09:30 AM – 09:30 PM), order desk phone, and WhatsApp desk.
+  - Added dedicated desktop dropdowns for Services (all 6 verticals) and Products (photo frames, ceramic mugs, T-shirts, pillows, cards, rate card).
+  - Replaced navigation actions with a primary high-converting "Get Quote" button.
+- **Featured Outdoor Advertising Projects Section (`FeaturedOutdoorProjects.tsx`):**
+  - Created a dedicated section spotlighting authentic Kadapa roadside hoardings and street pole kiosks with verified project badges, structural framework specs, and 1-tap quote requests.
+- **7-Pillar Service Grid (`ServiceVerticals.tsx`):**
+  - Updated service cards to cover all 7 requested pillars with uniform $16:10$ real photography, concise one-sentence descriptions, and dual "View Details" + "Get Quote" actions.
+- **Dedicated EMI Finance Page (`app/emi-finance/page.tsx`):**
+  - Created dedicated route for Bajaj Finance with full regulatory disclaimers, removing clutter from the main homepage conversion flow.
+- **PWA Service Worker v5 (`public/sw.js`):**
+  - Precaches fresh hero slider WebP assets and automatically purges older v4 cache versions.
+
+---
+
 ## [Unreleased] — Official Brand Logo & Lockup Replacement
 
 ### Added & Replaced

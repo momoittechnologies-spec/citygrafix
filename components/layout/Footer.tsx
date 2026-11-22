@@ -100,7 +100,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#emi-finance" className="hover:text-white transition-colors text-amber-300 font-bold flex items-center space-x-1.5">
+                <Link href="/services/outdoor-advertising-hoardings" className="hover:text-brand-gold transition-colors text-slate-300">
+                  Outdoor Hoardings &amp; Pole Kiosks
+                </Link>
+              </li>
+              <li>
+                <Link href="/emi-finance" className="hover:text-white transition-colors text-amber-300 font-bold flex items-center space-x-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                   <span>Easy EMI (Bajaj Finance)</span>
                 </Link>

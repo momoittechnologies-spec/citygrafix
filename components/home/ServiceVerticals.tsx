@@ -3,141 +3,184 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MessageCircle, Check, Clock, Tag } from "lucide-react";
-import { SERVICE_CATEGORIES, CORE_SERVICES } from "@/data/services";
+import { ArrowRight, MessageCircle, CheckCircle2, Sparkles } from "lucide-react";
+import { SERVICE_CATEGORIES } from "@/data/services";
 import { getWhatsAppLink } from "@/data/business";
 
 export default function ServiceVerticals() {
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeFilter, setActiveFilter] = useState<string>("all");
 
-  const filterTabs = [
-    { id: "all", label: "All Capabilities (6 Verticals)" },
-    { id: "flex-outdoor-advertising", label: "Flex & Billboards" },
-    { id: "jumbo-xerox-cad", label: "Jumbo Xerox & CAD" },
-    { id: "3d-led-signage", label: "3D LED Signage" },
-    { id: "personalized-gifts", label: "Personalized Gifts" },
-    { id: "commercial-offset-printing", label: "Commercial Offset" },
-    { id: "vehicle-branding-publicity", label: "Vehicle Branding" },
+  const serviceList = [
+    {
+      id: "flex-hoardings",
+      title: "Flex Printing & Hoardings",
+      telugu: "స్టార్ ఫ్లెక్స్ & హోర్డింగ్స్",
+      category: "Outdoor Advertising",
+      description: "Heavy-duty 340+ GSM Star Flex, frontlit, backlit, and large-format promotional banners with weather-proof UV inks.",
+      image: "/images/flex-printing-machine.jpg",
+      link: "/services/star-flex-banner-printing-kadapa",
+      badge: "Express Same-Day",
+      quoteMsg: "Hello City Grafix, I want a quotation for Flex Printing & Banners in Kadapa.",
+    },
+    {
+      id: "pole-kiosks",
+      title: "Pole Kiosk & Outdoor Displays",
+      telugu: "పోల్ కియోస్క్స్ & మీడియన్ బోర్డ్స్",
+      category: "Highway & Urban",
+      description: "Roadside framed advertising hoardings, double-sided street pole kiosks, and road divider promotional panels.",
+      image: "/images/pole-kiosk-median-advertising-night.webp",
+      link: "/services/outdoor-advertising-hoardings",
+      badge: "Turnkey Framing",
+      quoteMsg: "Hello City Grafix, I want a quotation for Street Pole Kiosk & Roadside Hoarding displays in Kadapa.",
+    },
+    {
+      id: "cad-jumbo",
+      title: "Jumbo Xerox & CAD Plotting",
+      telugu: "A0 జిరాక్స్ & ఇంజనీరింగ్ ప్లాన్స్",
+      category: "Engineering & Maps",
+      description: "High-speed A0-A4 color & B/W digital plotting, architectural plans, tracing sheets, and village sanction maps.",
+      image: "/images/cad-blueprint-plotter.jpg",
+      link: "/services/jumbo-xerox-kadapa",
+      badge: "15-Min Turnaround",
+      quoteMsg: "Hello City Grafix, I need CAD blueprint plotting / Jumbo Xerox copying in Kadapa.",
+    },
+    {
+      id: "led-signage",
+      title: "3D Acrylic & LED Signboards",
+      telugu: "3D అక్రిలిక్ ఎల్ఈడీ లెటర్స్",
+      category: "Architectural Signage",
+      description: "Laser-cut 3D acrylic channel letters, halo backlit boards, and Samsung IP67 waterproof LED storefront installations.",
+      image: "/images/3d-led-signage-storefront.jpg",
+      link: "/services/3d-led-sign-boards-kadapa",
+      badge: "3-Yr Guarantee",
+      quoteMsg: "Hello City Grafix, I want a quotation for 3D Acrylic LED Signboards for my commercial store.",
+    },
+    {
+      id: "stickers-commercial",
+      title: "Stickers & Commercial Printing",
+      telugu: "స్టిక్కర్స్ & సన్‌బోర్డ్ డిస్‌ప్లేలు",
+      category: "Branding & Retail",
+      description: "Waterproof die-cut vinyl stickers, 3mm-5mm sunboards, one-way vision facade film, 350 GSM visiting cards, and bill books.",
+      image: "/images/stickers-boards-commercial.jpg",
+      link: "/services/vinyl-stickers-sunboard-kadapa",
+      badge: "Direct Wholesale",
+      quoteMsg: "Hello City Grafix, I want a quotation for Vinyl Stickers / Sunboards / Visiting Cards.",
+    },
+    {
+      id: "personalized-gifts",
+      title: "Personalized Gifts & Framing",
+      telugu: "కస్టమ్ గిఫ్ట్స్ & ఫోటో ఫ్రేమ్స్",
+      category: "Custom Keepsakes",
+      description: "Custom wall photo frames (A4 to 24×36 with 10% IG discount), magic heat mugs, satin photo pillows, and DTF apparel.",
+      image: "/images/personalized-gifts-collection.jpg",
+      link: "/services/personalized-gifts-framing-kadapa",
+      badge: "10% IG Off",
+      quoteMsg: "Hello City Grafix, I want to order Personalized Gifts / Photo Frames / Magic Mugs.",
+    },
+    {
+      id: "vehicle-branding",
+      title: "Vehicle Branding & Auto Publicity",
+      telugu: "ఆటో ప్రచారం & వెహికల్ బ్రాండింగ్",
+      category: "Transit Advertising",
+      description: "Promotional auto hood flex, driver back banners, and route-tracked transit publicity campaigns across Kadapa.",
+      image: "/images/auto-publicity-branding.jpg",
+      link: "/services/auto-publicity-advertising-kadapa",
+      badge: "Fleet Campaigns",
+      quoteMsg: "Hello City Grafix, I want a quotation for Auto Publicity & Vehicle Branding in Kadapa.",
+    },
   ];
 
-  // Specific services when a category tab is selected
-  const filteredServices = activeTab === "all"
-    ? []
-    : CORE_SERVICES.filter((s) => s.categorySlug === activeTab);
-
   return (
-    <section className="py-16 sm:py-20 bg-slate-50 relative" id="services">
+    <section className="py-14 sm:py-18 lg:py-22 bg-[#FAFAF7] border-b border-slate-200/80" id="services">
       <div className="site-container">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10">
-          <div>
-            <div className="inline-flex items-center space-x-2 text-[#F97316] text-xs font-bold uppercase tracking-wider mb-2">
-              <span className="w-2 h-2 rounded-full bg-[#F97316]" />
-              <span>In-House Workshop Manufacturing • Opp. Tirumala Hospital</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-4">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#101B38]/5 border border-[#101B38]/10 text-xs font-bold text-[#F04446] uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>In-House Production Verticals • Kadapa Workshop</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-heading font-black text-[#151923] tracking-tight">
-              Master Printing Capabilities & Services
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#101B38] tracking-tight">
+              Commercial Printing &amp; Advertising Services
             </h2>
-            <p className="text-[#667085] text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
-              Explore our 6 core production verticals. From while-you-wait 15-minute CAD blueprints and heavy 340+ GSM Star Flex to precision CNC 3D acrylic letters.
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Explore our 7 primary production verticals. Manufactured directly in our Kadapa workshop with zero intermediaries and transparent wholesale rates.
             </p>
           </div>
 
-          <div className="mt-4 md:mt-0 flex items-center space-x-3 shrink-0">
+          <div className="shrink-0">
             <Link
               href="/services"
-              className="inline-flex items-center text-xs sm:text-sm font-bold bg-[#151923] text-white px-4 py-2.5 rounded-xl hover:bg-[#1C2230] transition-colors shadow-sm space-x-1.5"
+              className="inline-flex items-center space-x-2 text-sm font-bold bg-[#101B38] hover:bg-[#2255D6] text-white px-5 py-2.5 rounded-xl transition-colors shadow-sm group"
             >
-              <span>Explore All 12 Services →</span>
+              <span>Browse Full 12-Service Catalog</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
 
-        {/* Category Filter Tabs (Scrollable on mobile, wrapped on desktop) */}
-        <div className="flex items-center space-x-2 overflow-x-auto pb-2 mb-8 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap sm:space-x-0 sm:gap-2 border-b border-slate-200/80">
-          {filterTabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap transition-all shrink-0 sm:shrink mb-2 ${
-                activeTab === tab.id
-                  ? "bg-brand-navy text-white shadow-sm"
-                  : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* 1. All Capabilities View (6 Pillars) */}
-        {activeTab === "all" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {SERVICE_CATEGORIES.map((category, idx) => (
+        {/* 7-Card Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+          {serviceList.map((service, index) => {
+            const isFeatured = index === 0 || index === 1; // First 2 cards can span 2 cols on certain breakpoints if desired
+            return (
               <div
-                key={category.id}
-                className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                key={service.id}
+                className="bg-white rounded-2xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
-                {/* Product Photo */}
-                <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-slate-900">
+                {/* Visual Image Header */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
                   <Image
-                    src={category.image}
-                    alt={category.title}
+                    src={service.image}
+                    alt={service.title}
                     fill
-                    loading={idx < 3 ? "eager" : "lazy"}
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-3.5 left-3.5 bg-brand-navy/95 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] font-bold text-brand-gold border border-white/10 shadow-sm">
-                    {category.teluguTitle}
+
+                  {/* Top Category Badge */}
+                  <div className="absolute top-3 left-3 bg-[#101B38]/90 backdrop-blur-md px-2.5 py-1 rounded-md text-[10px] font-bold text-white border border-white/10 shadow-xs">
+                    {service.category}
                   </div>
-                  <div className="absolute bottom-3 left-3.5 right-3.5 flex items-center justify-between text-xs text-white">
-                    <span className="font-semibold text-[11px] bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10">
-                      ⚡ {category.turnaroundSummary}
+
+                  {/* Operational Badge */}
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
+                    <span className="font-bold text-[10px] bg-black/60 backdrop-blur-md px-2 py-0.5 rounded border border-white/10 text-[#FFC83D]">
+                      ⚡ {service.badge}
+                    </span>
+                    <span className="text-[10px] text-slate-300 font-medium">
+                      {service.telugu}
                     </span>
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <h3 className="text-lg font-bold text-brand-navy group-hover:text-brand-royal transition-colors">
-                      {category.title}
+                    <h3 className="text-base sm:text-lg font-black text-[#101B38] group-hover:text-[#2255D6] transition-colors leading-snug">
+                      {service.title}
                     </h3>
-                    <p className="text-slate-600 text-xs sm:text-sm mt-1.5 leading-relaxed line-clamp-2">
-                      {category.description}
+                    <p className="text-slate-600 text-xs sm:text-sm mt-1.5 leading-relaxed line-clamp-2 font-normal">
+                      {service.description}
                     </p>
                   </div>
 
-                  {/* Capabilities list */}
-                  <div className="space-y-1.5 pt-3 border-t border-slate-100">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
-                      Direct In-House Fabrication:
-                    </span>
-                    {category.keyServices.slice(0, 3).map((service, idx) => (
-                      <div key={idx} className="flex items-center text-xs text-slate-700 font-medium">
-                        <Check className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0" />
-                        <span className="truncate">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Card Actions */}
-                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-[#E5E7EB]">
-                    <button
-                      onClick={() => setActiveTab(category.slug)}
-                      className="bg-[#F4F5F7] hover:bg-[#151923] hover:text-white text-[#151923] text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1"
+                  {/* Card Actions: View Details + Get Quote */}
+                  <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100">
+                    <Link
+                      href={service.link}
+                      className="bg-slate-100 hover:bg-[#101B38] hover:text-white text-[#101B38] text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1"
                     >
-                      <span>Explore Services</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+                      <span>View Details</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
 
                     <a
-                      href={getWhatsAppLink(`Hello City Grafix, I want a quotation for ${category.title}. Here are my requirements:`)}
+                      href={getWhatsAppLink(service.quoteMsg)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1 shadow-sm active:scale-95"
+                      className="bg-[#F04446] hover:bg-[#d9383a] text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all flex items-center justify-center space-x-1 shadow-xs active:scale-95"
                     >
                       <MessageCircle className="w-3.5 h-3.5 fill-white" />
                       <span>Get Quote</span>
@@ -145,140 +188,8 @@ export default function ServiceVerticals() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        ) : (
-          /* 2. Filtered Detailed Category Items View */
-          <div>
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
-                Showing {filteredServices.length} Specialized Services in this Vertical:
-              </span>
-              <button
-                onClick={() => setActiveTab("all")}
-                className="text-xs font-bold text-brand-royal hover:underline"
-              >
-                ← Back to All 6 Verticals
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {filteredServices.map((service) => (
-                <div
-                  key={service.id}
-                  className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group"
-                >
-                  <div className="relative h-56 w-full bg-slate-900 overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute top-3.5 left-3.5 bg-brand-navy/95 backdrop-blur-sm px-2.5 py-1 rounded text-xs font-bold text-brand-gold">
-                      {service.teluguTitle}
-                    </div>
-                    {service.categorySlug === "personalized-gifts" ? (
-                      <div className="absolute bottom-3.5 right-3.5 bg-white/95 backdrop-blur-sm px-3 py-1 rounded shadow-sm font-mono text-xs font-bold text-emerald-700">
-                        {service.startingPrice}
-                      </div>
-                    ) : (
-                      <div className="absolute bottom-3.5 right-3.5 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded shadow-sm text-xs font-bold text-brand-navy">
-                        Custom Quote
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-                    <div>
-                      <h3 className="text-lg font-bold text-brand-navy group-hover:text-brand-royal transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
-                        {service.shortDescription}
-                      </p>
-                    </div>
-
-                    <div className="space-y-1.5 py-3 border-y border-slate-100">
-                      {service.specs.slice(0, 3).map((spec, i) => (
-                        <div key={i} className="flex items-start text-xs text-slate-700">
-                          <Check className="w-3.5 h-3.5 text-emerald-600 mr-2 shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">{spec}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-between text-xs text-slate-500">
-                      <span className="flex items-center text-slate-600 font-medium">
-                        <Clock className="w-3.5 h-3.5 mr-1.5 text-brand-royal" />
-                        {service.turnaround.split("(")[0]}
-                      </span>
-                      <span className="text-xs text-brand-red font-semibold">Direct Workshop</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 pt-2">
-                      <Link
-                        href={`/services/${service.slug}`}
-                        className="bg-slate-50 hover:bg-slate-100 text-brand-navy border border-slate-200 text-xs font-bold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1"
-                      >
-                        <span>Full Details</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-
-                      <a
-                        href={getWhatsAppLink(service.whatsappMessage, service.recommendedLine)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-colors flex items-center justify-center space-x-1.5 shadow-sm"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                        <span>WhatsApp</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {/* Dedicated Outdoor Advertising CTA Strip (Task 7) */}
-        <div className="mt-12 bg-gradient-to-r from-[#101B38] via-[#182852] to-[#0B1326] rounded-2xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-white/10">
-          <div className="space-y-1.5 text-center md:text-left">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#FFC83D] uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-[#F04446] animate-pulse" />
-              <span>Commercial Outdoor Campaigns</span>
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
-              Need Roadside Hoardings, Pole Kiosks, or Highway Billboards?
-            </h3>
-            <p className="text-slate-300 text-xs sm:text-sm max-w-xl">
-              We fabricate welded metal iron frames, print 1440 DPI Star Flex, and handle on-site mounting across Kadapa, Proddatur, and highway corridors.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
-            <Link
-              href="/services/outdoor-advertising-hoardings"
-              className="bg-[#F04446] hover:bg-[#D63335] text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-md transition-all flex items-center space-x-2"
-            >
-              <span>Get a Hoarding &amp; Outdoor Advertising Quote</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            <a
-              href={getWhatsAppLink(
-                "Hello City Grafix, I want a quotation for Outdoor Hoardings / Pole Kiosk Advertising in Kadapa.",
-                "orders"
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all flex items-center space-x-1.5"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              <span>WhatsApp Desk</span>
-            </a>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

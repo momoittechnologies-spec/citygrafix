@@ -513,7 +513,7 @@ export default function ServiceDetailView({ service }: Props) {
                     Down payment from just ₹1,000 with 0% interest charges for flex, LED signboards & advertising.
                   </p>
                   <Link
-                    href="/#emi-finance"
+                    href="/emi-finance"
                     className="inline-flex items-center text-[11px] font-bold text-amber-300 hover:text-white pt-0.5 transition-colors"
                   >
                     <span>View EMI Details →</span>

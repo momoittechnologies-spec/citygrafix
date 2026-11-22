@@ -65,7 +65,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Easy EMI Finance",
         short_name: "Easy EMI",
         description: "0% interest flex and signage finance with Bajaj Finance",
-        url: "/#emi-finance",
+        url: "/emi-finance",
         icons: [{ src: "/icons/icon-192x192.png", sizes: "192x192" }],
       },
       {
