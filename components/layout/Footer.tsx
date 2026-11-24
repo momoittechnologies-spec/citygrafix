@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Phone, MessageCircle, Mail, MapPin, Clock, ExternalLink, ShieldCheck, Heart, Star } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPin, Clock, ExternalLink, ShieldCheck, Heart, Star, Camera } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import { CORE_SERVICES } from "@/data/services";
 import BrandLogo from "@/components/ui/BrandLogo";
@@ -97,6 +97,18 @@ export default function Footer() {
               <li>
                 <Link href="/pricing" className="hover:text-brand-gold transition-colors text-slate-300">
                   Official Rate Card & Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/photomall"
+                  className="hover:text-white transition-colors text-amber-300 font-bold flex items-center space-x-1.5 group"
+                >
+                  <Camera className="w-3.5 h-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
+                  <span>City PhotoMall (Client Portal)</span>
+                  <span className="text-[9px] uppercase tracking-wider font-extrabold px-1.5 py-0.5 bg-gradient-to-r from-[#FF7A00] to-[#E63900] text-white rounded-full shadow-sm">
+                    New
+                  </span>
                 </Link>
               </li>
               <li>
