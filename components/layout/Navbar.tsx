@@ -22,7 +22,6 @@ import {
   Tag,
   CreditCard,
   Image as ImageIcon,
-  Camera,
 } from "lucide-react";
 import { BUSINESS_DATA, getWhatsAppLink } from "@/data/business";
 import BrandLogo from "@/components/ui/BrandLogo";
@@ -399,18 +398,6 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/photomall"
-              className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all flex items-center space-x-1.5 ${
-                pathname === "/photomall"
-                  ? "text-[#FFC83D] bg-white/10 shadow-sm"
-                  : "text-amber-300 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              <Camera className="w-3.5 h-3.5 text-amber-400" />
-              <span>PhotoMall</span>
-            </Link>
-
-            <Link
               href="/pricing"
               className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
                 pathname === "/pricing"
@@ -599,19 +586,6 @@ export default function Navbar() {
                 className="px-4 py-3 rounded-xl text-base font-bold text-white hover:bg-white/10"
               >
                 Portfolio
-              </Link>
-
-              <Link
-                href="/photomall"
-                className="px-4 py-3 rounded-xl text-base font-bold text-amber-300 hover:bg-white/10 flex items-center justify-between"
-              >
-                <div className="flex items-center space-x-2">
-                  <Camera className="w-4 h-4 text-amber-400" />
-                  <span>City PhotoMall</span>
-                </div>
-                <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-[#FF7A00] to-[#E63900] text-white">
-                  Client Portal
-                </span>
               </Link>
 
               <Link
