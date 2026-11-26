@@ -18,16 +18,16 @@ export default function BrandLogo({
 }: BrandLogoProps) {
   // Dimension metrics for 940x255 official full logo (aspect ratio ~3.686 : 1)
   const fullMetrics = {
-    sm: { width: 144, height: 39, className: "h-8 sm:h-9 w-auto max-w-[155px]" },
-    md: { width: 184, height: 50, className: "h-10 sm:h-11 md:h-12 w-auto max-w-[210px]" },
-    lg: { width: 280, height: 76, className: "h-14 sm:h-16 md:h-20 w-auto max-w-[300px]" },
+    sm: { width: 144, height: 39, className: "h-8 sm:h-9 w-auto max-w-[160px]" },
+    md: { width: 206, height: 56, className: "h-11 sm:h-12 md:h-13 lg:h-14 w-auto max-w-[240px]" },
+    lg: { width: 295, height: 80, className: "h-14 sm:h-16 md:h-20 w-auto max-w-[320px]" },
   }[size];
 
-  // Dimension metrics for 245x255 circular CG emblem
+  // Dimension metrics for 260x255 circular CG emblem
   const markMetrics = {
-    sm: { width: 38, height: 39, className: "h-8 sm:h-9 w-auto" },
-    md: { width: 48, height: 50, className: "h-10 sm:h-11 md:h-12 w-auto" },
-    lg: { width: 73, height: 76, className: "h-14 sm:h-16 md:h-20 w-auto" },
+    sm: { width: 40, height: 39, className: "h-8 sm:h-9 w-auto" },
+    md: { width: 57, height: 56, className: "h-11 sm:h-12 md:h-13 w-auto" },
+    lg: { width: 82, height: 80, className: "h-14 sm:h-16 md:h-20 w-auto" },
   }[size];
 
   if (variant === "mark-only") {
@@ -53,7 +53,7 @@ export default function BrandLogo({
         alt="City Grafix - Kadapa's No #1 Printing & Branding Partner"
         width={fullMetrics.width}
         height={fullMetrics.height}
-        className={`${fullMetrics.className} object-contain transition-transform duration-200 group-hover:scale-105 drop-shadow-md`}
+        className={`${fullMetrics.className} object-contain transition-transform duration-200 group-hover:scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]`}
         priority={priority}
       />
       <span className="sr-only">

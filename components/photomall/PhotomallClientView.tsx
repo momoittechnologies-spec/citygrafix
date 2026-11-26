@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   Camera,
   Heart,
-  Share2,
   Lock,
   Unlock,
   CheckCircle2,
@@ -14,47 +13,92 @@ import {
   ChevronLeft,
   ChevronRight,
   Sparkles,
-  Download,
   Printer,
   MessageCircle,
   Phone,
   Eye,
-  Info,
+  EyeOff,
   Layers,
   ArrowRight,
+  ShieldCheck,
   Check,
+  ChevronDown,
+  Calendar,
+  MapPin,
+  HelpCircle,
+  Megaphone,
+  Building,
 } from "lucide-react";
 import {
   PHOTOMALL_META,
   PHOTOMALL_CATEGORIES,
+  ALBUM_PACKAGES,
   CLIENT_ALBUMS,
   SAMPLE_PHOTOS,
+  PHOTOGRAPHY_SERVICES,
+  PHOTOMALL_FAQS,
   PhotoItem,
   ClientAlbum,
+  AlbumPackage,
 } from "@/data/photomall";
 import { getWhatsAppLink } from "@/data/business";
 
 export default function PhotomallClientView() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [selectedSubEvent, setSelectedSubEvent] = useState<string>("All");
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState<boolean>(false);
+  const [showWatermark, setShowWatermark] = useState<boolean>(true);
   const [selectedPhotoIds, setSelectedPhotoIds] = useState<string[]>([]);
   const [activePrivateAlbum, setActivePrivateAlbum] = useState<ClientAlbum | null>(null);
   const [isPinModalOpen, setIsPinModalOpen] = useState<boolean>(false);
   const [pinInput, setPinInput] = useState<string>("");
   const [pinError, setPinError] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<string>("pkg-karizma-royal");
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  // Filter photos based on category or active private album
+  // Compute available sub-events
+  const availableSubEvents = useMemo(() => {
+    if (activePrivateAlbum && activePrivateAlbum.subEvents?.length) {
+      return activePrivateAlbum.subEvents;
+    }
+    const set = new Set<string>();
+    SAMPLE_PHOTOS.forEach((p) => {
+      if (activeCategory === "all" || p.category === activeCategory) {
+        if (p.subEvent) set.add(p.subEvent);
+      }
+    });
+    return ["All", ...Array.from(set)];
+  }, [activePrivateAlbum, activeCategory]);
+
+  // Target limit for album
+  const albumTarget = activePrivateAlbum ? activePrivateAlbum.albumLimit : 80;
+  const progressPercent = Math.min(100, Math.round((selectedPhotoIds.length / albumTarget) * 100));
+
+  // Filter photos based on category, private album, sub-event, and favorites toggle
   const displayedPhotos = useMemo(() => {
+    let list: PhotoItem[] = [];
+
     if (activePrivateAlbum) {
-      return SAMPLE_PHOTOS.filter((p) =>
-        activePrivateAlbum.photoIds.includes(p.id)
-      );
+      list = SAMPLE_PHOTOS.filter((p) => activePrivateAlbum.photoIds.includes(p.id));
+    } else if (activeCategory === "all") {
+      list = SAMPLE_PHOTOS;
+    } else {
+      list = SAMPLE_PHOTOS.filter((p) => p.category === activeCategory);
     }
-    if (activeCategory === "all") {
-      return SAMPLE_PHOTOS;
+
+    // Filter by SubEvent
+    if (selectedSubEvent !== "All") {
+      list = list.filter((p) => p.subEvent === selectedSubEvent);
     }
-    return SAMPLE_PHOTOS.filter((p) => p.category === activeCategory);
-  }, [activeCategory, activePrivateAlbum]);
+
+    // Filter by Favorites Only
+    if (showFavoritesOnly) {
+      list = list.filter((p) => selectedPhotoIds.includes(p.id));
+    }
+
+    return list;
+  }, [activeCategory, activePrivateAlbum, selectedSubEvent, showFavoritesOnly, selectedPhotoIds]);
 
   // Handle Photo Selection
   const togglePhotoSelection = (id: string, e?: React.MouseEvent) => {
@@ -75,6 +119,8 @@ export default function PhotomallClientView() {
     const foundAlbum = CLIENT_ALBUMS.find((a) => a.accessCode === cleanPin);
     if (foundAlbum) {
       setActivePrivateAlbum(foundAlbum);
+      setSelectedSubEvent("All");
+      setShowFavoritesOnly(false);
       setPinError(null);
       setIsPinModalOpen(false);
       setPinInput("");
@@ -86,6 +132,8 @@ export default function PhotomallClientView() {
   const handleExitPrivateAlbum = () => {
     setActivePrivateAlbum(null);
     setActiveCategory("all");
+    setSelectedSubEvent("All");
+    setShowFavoritesOnly(false);
   };
 
   // Lightbox handlers
@@ -98,13 +146,13 @@ export default function PhotomallClientView() {
   };
 
   const nextLightboxPhoto = () => {
-    if (lightboxIndex !== null) {
+    if (lightboxIndex !== null && displayedPhotos.length > 0) {
       setLightboxIndex((lightboxIndex + 1) % displayedPhotos.length);
     }
   };
 
   const prevLightboxPhoto = () => {
-    if (lightboxIndex !== null) {
+    if (lightboxIndex !== null && displayedPhotos.length > 0) {
       setLightboxIndex(
         (lightboxIndex - 1 + displayedPhotos.length) % displayedPhotos.length
       );
@@ -117,7 +165,10 @@ export default function PhotomallClientView() {
       ? `${activePrivateAlbum.clientName} - ${activePrivateAlbum.eventTitle}`
       : "Selected Public Gallery Photos";
 
-    const msg = `Hello City Grafix, I have selected ${selectedPhotoIds.length} photos on City PhotoMall for our Album Printing:\n\n- Event: ${albumName}\n- Selected Photo IDs (${selectedPhotoIds.length}):\n${selectedPhotoIds.join(", ")}\n\nPlease confirm print turnaround time and Karizma album package details.`;
+    const chosenPkg = ALBUM_PACKAGES.find((p) => p.id === selectedPackage);
+    const pkgText = chosenPkg ? `\n- Chosen Album Type: ${chosenPkg.name} (${chosenPkg.size})` : "";
+
+    const msg = `Hello City Grafix, I have finalized ${selectedPhotoIds.length} photos on City PhotoMall for our Album Printing:\n\n- Event: ${albumName}${pkgText}\n- Selected Photo IDs (${selectedPhotoIds.length}):\n${selectedPhotoIds.join(", ")}\n\nPlease confirm print turnaround time and dispatch schedule.`;
     return getWhatsAppLink(msg, "orders");
   };
 
@@ -127,7 +178,7 @@ export default function PhotomallClientView() {
   return (
     <div className="relative pb-28 sm:pb-32">
       {/* 1. HERO HEADER */}
-      <section className="relative pt-24 sm:pt-28 pb-14 sm:pb-20 px-4 overflow-hidden border-b border-white/10 bg-gradient-to-b from-[#0A1124] via-[#0E1838] to-[#060D1E]">
+      <section className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 overflow-hidden border-b border-white/10 bg-gradient-to-b from-[#0A1124] via-[#0E1838] to-[#060D1E]">
         {/* Glow Spheres */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#FF7A00]/15 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#2255D6]/20 rounded-full blur-[140px] pointer-events-none" />
@@ -223,15 +274,18 @@ export default function PhotomallClientView() {
 
       {/* 3. CATEGORY FILTER TABS (FOR PUBLIC VIEW) */}
       {!activePrivateAlbum && (
-        <section className="py-6 px-4 border-b border-white/10 sticky top-16 z-20 bg-[#060D1E]/95 backdrop-blur-md">
-          <div className="site-container max-w-5xl mx-auto overflow-x-auto no-scrollbar">
+        <section className="py-4 px-4 border-b border-white/10 sticky top-16 z-20 bg-[#060D1E]/95 backdrop-blur-md">
+          <div className="site-container max-w-6xl mx-auto overflow-x-auto no-scrollbar">
             <div className="flex items-center sm:justify-center gap-2 min-w-max mx-auto py-1">
               {PHOTOMALL_CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.key;
                 return (
                   <button
                     key={cat.key}
-                    onClick={() => setActiveCategory(cat.key)}
+                    onClick={() => {
+                      setActiveCategory(cat.key);
+                      setSelectedSubEvent("All");
+                    }}
                     className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer whitespace-nowrap active:scale-95 ${
                       isSelected
                         ? "bg-gradient-to-r from-[#FF7A00] to-[#E63900] text-white shadow-md shadow-orange-950/50 border-t border-amber-200/40"
@@ -239,7 +293,6 @@ export default function PhotomallClientView() {
                     }`}
                   >
                     <span>{cat.label}</span>
-                    <span className="text-[10px] opacity-70">({cat.count})</span>
                   </button>
                 );
               })}
@@ -248,86 +301,315 @@ export default function PhotomallClientView() {
         </section>
       )}
 
-      {/* 4. GALLERY GRID */}
-      <section className="py-10 px-4 site-container max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedPhotos.map((photo, index) => {
-            const isSelected = selectedPhotoIds.includes(photo.id);
+      {/* 4. SUB-EVENT PILLS & PROOFING CONTROLS TOOLBAR */}
+      <section className="py-4 px-4 border-b border-white/10 bg-[#0A1227]/90 backdrop-blur-sm">
+        <div className="site-container max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
+          {/* Sub-event pills */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar w-full md:w-auto py-1">
+            <span className="text-slate-400 font-bold uppercase tracking-wider text-[11px] shrink-0">
+              Ceremony / Phase:
+            </span>
+            {availableSubEvents.map((sub) => {
+              const active = selectedSubEvent === sub;
+              return (
+                <button
+                  key={sub}
+                  onClick={() => setSelectedSubEvent(sub)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                    active
+                      ? "bg-amber-400 text-slate-950 font-black shadow-sm"
+                      : "bg-white/10 text-slate-300 hover:text-white hover:bg-white/15"
+                  }`}
+                >
+                  {sub}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Quick Toolbar Toggles */}
+          <div className="flex items-center gap-2.5 w-full md:w-auto justify-end shrink-0">
+            {/* Show Favorites Only Toggle */}
+            <button
+              onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center space-x-1.5 cursor-pointer border ${
+                showFavoritesOnly
+                  ? "bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-sm"
+                  : "bg-white/5 text-slate-300 hover:text-white border-white/15"
+              }`}
+            >
+              <Heart
+                className={`w-3.5 h-3.5 ${
+                  showFavoritesOnly ? "fill-rose-400 text-rose-400" : "text-slate-400"
+                }`}
+              />
+              <span>
+                {showFavoritesOnly ? "Showing Favorites" : "Favorites Only"} ({selectedPhotoIds.length})
+              </span>
+            </button>
+
+            {/* Watermark Toggle */}
+            <button
+              onClick={() => setShowWatermark(!showWatermark)}
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 text-slate-300 hover:text-white border border-white/15 transition-all flex items-center space-x-1.5 cursor-pointer"
+              title={showWatermark ? "Hide studio watermark" : "Show studio watermark"}
+            >
+              {showWatermark ? <Eye className="w-3.5 h-3.5 text-cyan-400" /> : <EyeOff className="w-3.5 h-3.5 text-slate-400" />}
+              <span>{showWatermark ? "Watermark: On" : "Watermark: Off"}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Album Progress Bar */}
+        <div className="site-container max-w-7xl mx-auto mt-3 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+          <div className="flex items-center space-x-2 w-full sm:w-auto">
+            <span className="text-slate-400">Album Selection:</span>
+            <strong className="text-amber-300 font-mono text-sm">
+              {selectedPhotoIds.length} / {albumTarget}
+            </strong>
+            <span className="text-slate-400 text-[11px]">
+              ({progressPercent}% of target)
+            </span>
+          </div>
+
+          <div className="w-full sm:w-72 bg-slate-950/80 rounded-full h-2.5 overflow-hidden border border-white/10">
+            <div
+              className="h-full bg-gradient-to-r from-amber-400 via-orange-500 to-emerald-400 transition-all duration-300"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+
+          <div className="text-[11px] text-slate-400 text-right w-full sm:w-auto">
+            {selectedPhotoIds.length < albumTarget ? (
+              <span>Need {albumTarget - selectedPhotoIds.length} more photos for complete album</span>
+            ) : selectedPhotoIds.length === albumTarget ? (
+              <span className="text-emerald-400 font-bold">Target reached! Ready for printing</span>
+            ) : (
+              <span className="text-amber-300 font-bold">
+                {selectedPhotoIds.length - albumTarget} extra photos selected (additional sheets)
+              </span>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. GALLERY GRID */}
+      <section className="py-8 px-4 site-container max-w-7xl mx-auto">
+        {displayedPhotos.length === 0 ? (
+          <div className="text-center py-16 px-4 bg-white/5 rounded-3xl border border-white/10 max-w-md mx-auto space-y-3">
+            <Heart className="w-10 h-10 text-slate-500 mx-auto" />
+            <h4 className="text-lg font-bold text-white">No photos match this filter</h4>
+            <p className="text-xs text-slate-400">
+              {showFavoritesOnly
+                ? "You haven't selected any photos yet. Tap the heart icon on any photo to add it to your album."
+                : "No photos found under this category or ceremony phase."}
+            </p>
+            {showFavoritesOnly && (
+              <button
+                onClick={() => setShowFavoritesOnly(false)}
+                className="mt-2 bg-amber-400 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl"
+              >
+                View All Event Photos
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {displayedPhotos.map((photo, index) => {
+              const isSelected = selectedPhotoIds.includes(photo.id);
+
+              return (
+                <div
+                  key={photo.id}
+                  onClick={() => openLightbox(index)}
+                  className={`group relative rounded-2xl overflow-hidden bg-slate-900 border transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-1 ${
+                    isSelected
+                      ? "border-amber-400 ring-2 ring-amber-400/50"
+                      : "border-white/15 hover:border-white/30"
+                  }`}
+                >
+                  {/* Photo Image Aspect */}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
+                    <Image
+                      src={photo.src}
+                      alt={photo.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
+                    {/* Watermark Diagonal Overlay (If enabled) */}
+                    {showWatermark && (
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10 opacity-30 group-hover:opacity-40 transition-opacity">
+                        <div className="transform -rotate-12 border-2 border-white/60 px-4 py-1 rounded-xl text-center backdrop-blur-[1px]">
+                          <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-white block">
+                            CITY GRAFIX PHOTOGRAPHY
+                          </span>
+                          <span className="text-[9px] tracking-wider text-amber-300 block">
+                            CLIENT PROOF • NOT FOR REPRODUCTION
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Top Badges */}
+                    <div className="absolute top-3 inset-x-3 flex items-center justify-between z-20">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-mono text-[11px] font-black tracking-wider px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-amber-300 border border-white/15">
+                          {photo.id}
+                        </span>
+                        {photo.subEvent && (
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-white/20 backdrop-blur-md text-white">
+                            {photo.subEvent}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Heart / Album Select Button */}
+                      <button
+                        onClick={(e) => togglePhotoSelection(photo.id, e)}
+                        title={isSelected ? "Remove from Album Selection" : "Select for Karizma Album"}
+                        className={`p-2 rounded-xl backdrop-blur-md transition-all active:scale-90 cursor-pointer ${
+                          isSelected
+                            ? "bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/50 scale-105"
+                            : "bg-black/60 text-white hover:text-amber-300 border border-white/20 hover:bg-black/80"
+                        }`}
+                      >
+                        <Heart
+                          className={`w-4 h-4 ${
+                            isSelected ? "fill-slate-950" : "fill-none"
+                          }`}
+                        />
+                      </button>
+                    </div>
+
+                    {/* Subtle Studio Corner Tag */}
+                    <div className="absolute bottom-3 right-3 text-[10px] tracking-widest font-black uppercase text-white/50 pointer-events-none select-none z-10">
+                      City Grafix Photography
+                    </div>
+                  </div>
+
+                  {/* Bottom Card Content */}
+                  <div className="p-4 space-y-2 bg-[#091122]">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-amber-400 font-bold">{photo.categoryLabel}</span>
+                      <span className="text-slate-400 text-[11px]">{photo.date}</span>
+                    </div>
+
+                    <h3 className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">
+                      {photo.title}
+                    </h3>
+
+                    <p className="text-[11px] text-slate-300 line-clamp-1">
+                      📍 {photo.eventTitle} • {photo.location}
+                    </p>
+
+                    {/* Camera EXIF Strip */}
+                    <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                      <span>{photo.cameraExif.camera}</span>
+                      <span>{photo.cameraExif.lens.split(" ")[1] || "Prime"} • {photo.cameraExif.aperture}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      {/* 6. KARIZMA ALBUM PACKAGES & BINDINGS SECTION */}
+      <section className="site-container max-w-7xl mx-auto px-4 my-12">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-8">
+          <span className="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center justify-center gap-1.5">
+            <Sparkles className="w-4 h-4" />
+            <span>Direct Workshop Album Bindings • Kadapa In-House</span>
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-white">
+            Choose Your Luxury Karizma Album Package
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300">
+            Handcrafted with metallic silk, 3D beveled acrylic glass covers, and non-tearable velvet pages. Because we manufacture albums locally in Kadapa, you save up to 35% over third-party studio commissions.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {ALBUM_PACKAGES.map((pkg) => {
+            const isSelected = selectedPackage === pkg.id;
 
             return (
               <div
-                key={photo.id}
-                onClick={() => openLightbox(index)}
-                className={`group relative rounded-2xl overflow-hidden bg-slate-900 border transition-all duration-300 cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-1 ${
+                key={pkg.id}
+                onClick={() => setSelectedPackage(pkg.id)}
+                className={`relative rounded-3xl p-6 transition-all duration-300 cursor-pointer flex flex-col justify-between border ${
                   isSelected
-                    ? "border-amber-400 ring-2 ring-amber-400/50"
-                    : "border-white/15 hover:border-white/30"
+                    ? "bg-gradient-to-b from-[#101F42] to-[#0A1227] border-amber-400 ring-2 ring-amber-400/50 shadow-2xl scale-[1.02]"
+                    : "bg-[#091122] border-white/15 hover:border-white/30"
                 }`}
               >
-                {/* Photo Image Aspect */}
-                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
-                  <Image
-                    src={photo.src}
-                    alt={photo.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#FF7A00] to-[#E63900] text-white text-[11px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full shadow-md">
+                    Most Popular Choice
+                  </div>
+                )}
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-
-                  {/* Top Badges */}
-                  <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
-                    <span className="font-mono text-[11px] font-black tracking-wider px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md text-amber-300 border border-white/15">
-                      {photo.id}
-                    </span>
-
-                    {/* Heart / Album Select Button */}
-                    <button
-                      onClick={(e) => togglePhotoSelection(photo.id, e)}
-                      title={isSelected ? "Remove from Album Selection" : "Select for Karizma Album"}
-                      className={`p-2 rounded-xl backdrop-blur-md transition-all active:scale-90 cursor-pointer ${
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-lg font-bold text-white">{pkg.name}</h3>
+                      <p className="text-xs text-amber-300 font-semibold">{pkg.size}</p>
+                    </div>
+                    <div
+                      className={`w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${
                         isSelected
-                          ? "bg-amber-400 text-slate-950 shadow-lg shadow-amber-400/50 scale-105"
-                          : "bg-black/60 text-white hover:text-amber-300 border border-white/20 hover:bg-black/80"
+                          ? "bg-amber-400 border-amber-400 text-slate-950"
+                          : "border-white/20 text-transparent"
                       }`}
                     >
-                      <Heart
-                        className={`w-4 h-4 ${
-                          isSelected ? "fill-slate-950" : "fill-none"
-                        }`}
-                      />
-                    </button>
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
                   </div>
 
-                  {/* Subtle Studio Watermark */}
-                  <div className="absolute bottom-3 right-3 text-[10px] tracking-widest font-black uppercase text-white/40 pointer-events-none select-none">
-                    City Grafix Photography
+                  <div className="text-xl sm:text-2xl font-black text-white">
+                    {pkg.priceEstimate}
+                    <span className="text-xs text-slate-400 font-normal block">Complete Print &amp; Hardcover Box</span>
+                  </div>
+
+                  <div className="space-y-2 pt-2 border-t border-white/10 text-xs text-slate-300">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span>{pkg.sheets}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span>{pkg.finish}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span>{pkg.boxType}</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Bottom Card Content */}
-                <div className="p-4 space-y-2 bg-[#091122]">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-amber-400 font-bold">{photo.categoryLabel}</span>
-                    <span className="text-slate-400 text-[11px]">{photo.date}</span>
-                  </div>
-
-                  <h3 className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">
-                    {photo.title}
-                  </h3>
-
-                  <p className="text-[11px] text-slate-300 line-clamp-1">
-                    📍 {photo.eventTitle} • {photo.location}
-                  </p>
-
-                  {/* Camera EXIF Strip */}
-                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                    <span>{photo.cameraExif.camera}</span>
-                    <span>{photo.cameraExif.lens.split(" ")[1] || "Prime"} • {photo.cameraExif.aperture}</span>
-                  </div>
+                <div className="pt-6 mt-4 border-t border-white/10">
+                  <a
+                    href={getWhatsAppLink(
+                      `Hello City Grafix, I want to inquire about the ${pkg.name} (${pkg.size}) album package for our event.`
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center space-x-2 transition-all ${
+                      isSelected
+                        ? "bg-gradient-to-r from-[#FF7A00] to-[#E63900] text-white shadow-md shadow-orange-950/40"
+                        : "bg-white/10 hover:bg-white/15 text-white"
+                    }`}
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>Inquire {pkg.name}</span>
+                  </a>
                 </div>
               </div>
             );
@@ -335,83 +617,139 @@ export default function PhotomallClientView() {
         </div>
       </section>
 
-      {/* 5. WORKSHOP ALBUM & WALL PRINTING UPGRADE STRIP */}
-      <section className="site-container max-w-6xl mx-auto px-4 my-12">
-        <div className="rounded-3xl bg-gradient-to-r from-[#0C152E] via-[#101F42] to-[#0C152E] border border-white/15 p-6 sm:p-10 text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-b from-[#FF7A00]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* 7. PHOTOGRAPHY SERVICES SECTION */}
+      <section className="site-container max-w-7xl mx-auto px-4 my-14">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+          <span className="text-xs font-black uppercase tracking-wider text-cyan-400 flex items-center justify-center gap-1.5">
+            <Camera className="w-4 h-4" />
+            <span>Complete Event Coverage • Kadapa &amp; Rayalaseema</span>
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-white">
+            Comprehensive Photography &amp; Cinematography Services
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300">
+            From traditional weddings and political roadshows to grand store openings. Our crew is equipped with Sony FX3 cinema cameras, DJI 4K drones, and multi-light setups.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
-            <div className="lg:col-span-2 space-y-3 text-left">
-              <span className="text-amber-400 text-xs font-black uppercase tracking-wider flex items-center gap-1.5">
-                <Printer className="w-4 h-4" />
-                <span>In-House Workshop Manufacturing • No Middlemen</span>
-              </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {PHOTOGRAPHY_SERVICES.map((srv) => (
+            <div
+              key={srv.id}
+              className="bg-[#091122] border border-white/15 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl hover:border-amber-400/50 transition-all"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white">{srv.title}</h3>
+                  <p className="text-xs text-amber-300 font-semibold">{srv.teluguTitle}</p>
+                </div>
+                <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full">
+                  {srv.startingRate}
+                </span>
+              </div>
 
-              <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
-                Turn Your Selected Moments into Luxury Karizma Albums &amp; Acrylic Wall Mounts.
-              </h2>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl">
-                Because City Grafix operates Kadapa&apos;s leading commercial print workshop, you get direct wholesale pricing for high-gloss, matte velvet, and metallic laminated albums without paying third-party lab margins.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                {srv.description}
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs text-slate-200">
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Karizma &amp; Canvera Bindings</span>
-                </div>
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>3D Acrylic Wall Frames</span>
-                </div>
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>0% Bajaj EMI Available</span>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-white/10 text-xs text-slate-300">
+                {srv.highlights.map((h, i) => (
+                  <div key={i} className="flex items-center space-x-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-3 flex items-center justify-between">
+                <a
+                  href={getWhatsAppLink(
+                    `Hello City Grafix, I want to check availability and book: ${srv.title}`
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/15 text-white font-bold text-xs px-4 py-2.5 rounded-xl border border-white/20 flex items-center space-x-1.5 transition-all"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Check Availability on WhatsApp</span>
+                </a>
+
+                <a
+                  href={`tel:${PHOTOMALL_META.photographyDeskPhone}`}
+                  className="text-xs font-bold text-slate-400 hover:text-white flex items-center space-x-1"
+                >
+                  <Phone className="w-3 h-3 text-amber-400" />
+                  <span>{PHOTOMALL_META.photographyDeskPhone}</span>
+                </a>
               </div>
             </div>
-
-            <div className="flex flex-col space-y-3">
-              <a
-                href={getWhatsAppLink("Hello City Grafix, I want a quotation for Karizma Wedding Album Printing & Acrylic Wall Frames in Kadapa.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#FF7A00] via-[#FF5500] to-[#E63900] hover:from-[#FFA000] hover:to-[#FF4D00] text-white font-black py-3 px-5 rounded-xl text-center text-xs sm:text-sm shadow-lg shadow-orange-950/40 border-t border-amber-200/50 transition-all active:scale-95 flex items-center justify-center space-x-2"
-              >
-                <MessageCircle className="w-4 h-4 fill-white" />
-                <span>Inquire Album Printing Rates</span>
-              </a>
-
-              <Link
-                href="/pricing"
-                className="bg-white/10 hover:bg-white/15 text-white font-bold py-3 px-5 rounded-xl text-center text-xs sm:text-sm border border-white/20 transition-all flex items-center justify-center space-x-2"
-              >
-                <span>View Full Gift &amp; Frame Rates</span>
-                <ArrowRight className="w-3.5 h-3.5 text-amber-300" />
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* 6. STICKY SELECTION PROOFING DRAWER (WHEN 1+ PHOTOS ARE SELECTED) */}
+      {/* 8. PHOTOMALL FAQ ACCORDION */}
+      <section className="site-container max-w-4xl mx-auto px-4 my-14">
+        <div className="text-center space-y-2 mb-8">
+          <span className="text-xs font-black uppercase tracking-wider text-amber-400 flex items-center justify-center gap-1.5">
+            <HelpCircle className="w-4 h-4" />
+            <span>Frequently Asked Questions</span>
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-white">
+            Everything You Need to Know About City PhotoMall
+          </h2>
+        </div>
+
+        <div className="space-y-3">
+          {PHOTOMALL_FAQS.map((faq, idx) => {
+            const isOpen = openFaqIndex === idx;
+
+            return (
+              <div
+                key={idx}
+                className="bg-[#091122] border border-white/15 rounded-2xl overflow-hidden transition-all"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-white hover:text-amber-300 transition-colors"
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-amber-400 shrink-0 transition-transform duration-200 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {isOpen && (
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/10 pt-3">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 9. STICKY SELECTION PROOFING TRAY (POSITIONED ABOVE MOBILE STICKY BAR) */}
       {selectedPhotoIds.length > 0 && (
         <aside
           aria-label="Photo Selection Tray"
-          className="fixed bottom-3 inset-x-2 sm:inset-x-6 z-40 max-w-2xl mx-auto animate-in slide-in-from-bottom-5 duration-300"
+          className="fixed bottom-[4.85rem] sm:bottom-4 inset-x-2 sm:inset-x-6 z-40 max-w-3xl mx-auto animate-in slide-in-from-bottom-5 duration-300"
         >
-          <div className="bg-[#060D1E] border-2 border-amber-400/80 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] p-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
+          <div className="bg-[#060D1E]/95 backdrop-blur-xl border-2 border-amber-400/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.95)] p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
             <div className="flex items-center space-x-3 w-full sm:w-auto justify-between sm:justify-start">
-              <div className="flex items-center space-x-2">
-                <span className="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 font-black flex items-center justify-center text-sm shadow-md">
+              <div className="flex items-center space-x-2.5">
+                <span className="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 font-black flex items-center justify-center text-sm shadow-md">
                   {selectedPhotoIds.length}
                 </span>
                 <div>
                   <h4 className="text-xs sm:text-sm font-black text-white leading-none">
-                    Photos Selected
+                    Photos Selected for Album
                   </h4>
                   <p className="text-[10px] text-amber-300 mt-0.5">
-                    Ready to submit for album proofing
+                    Target: {selectedPhotoIds.length} / {albumTarget} photos ({progressPercent}%)
                   </p>
                 </div>
               </div>
@@ -425,6 +763,13 @@ export default function PhotomallClientView() {
             </div>
 
             <div className="flex items-center space-x-2 w-full sm:w-auto">
+              <button
+                onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+                className="px-3 py-2.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-slate-200 border border-white/15 transition-all"
+              >
+                {showFavoritesOnly ? "View All" : "Review Set"}
+              </button>
+
               <a
                 href={generateWhatsAppSelectionUrl()}
                 target="_blank"
@@ -439,7 +784,7 @@ export default function PhotomallClientView() {
         </aside>
       )}
 
-      {/* 7. PASSCODE (PIN) UNLOCK MODAL */}
+      {/* 10. PASSCODE (PIN) UNLOCK MODAL */}
       {isPinModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-200">
           <div className="bg-[#091122] border-2 border-white/20 rounded-3xl max-w-md w-full p-6 text-white shadow-2xl relative space-y-4">
@@ -483,14 +828,14 @@ export default function PhotomallClientView() {
                   <button
                     type="button"
                     onClick={() => setPinInput("2026")}
-                    className="p-1 rounded bg-white/5 hover:bg-white/10 text-left border border-white/10"
+                    className="p-1.5 rounded bg-white/5 hover:bg-white/10 text-left border border-white/10"
                   >
                     💍 Wedding: <strong className="text-amber-300 font-mono">2026</strong>
                   </button>
                   <button
                     type="button"
                     onClick={() => setPinInput("7287")}
-                    className="p-1 rounded bg-white/5 hover:bg-white/10 text-left border border-white/10"
+                    className="p-1.5 rounded bg-white/5 hover:bg-white/10 text-left border border-white/10"
                   >
                     🏛️ Rally: <strong className="text-amber-300 font-mono">7287</strong>
                   </button>
@@ -507,7 +852,7 @@ export default function PhotomallClientView() {
                 <button
                   type="button"
                   onClick={() => setIsPinModalOpen(false)}
-                  className="px-4 py-3 bg-white/10 hover:bg-white/15 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors"
+                  className="px-4 py-3 bg-white/10 hover:bg-white/15 text-slate-300 hover:text-white rounded-xl text-xs font-semibold transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -517,13 +862,13 @@ export default function PhotomallClientView() {
         </div>
       )}
 
-      {/* 8. LIGHTBOX MODAL */}
+      {/* 11. FULLSCREEN LIGHTBOX MODAL */}
       {activePhotoForLightbox && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl animate-in fade-in duration-200">
           {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
             title="Close Lightbox"
           >
             <X className="w-6 h-6" />
@@ -532,7 +877,7 @@ export default function PhotomallClientView() {
           {/* Navigation Controls */}
           <button
             onClick={prevLightboxPhoto}
-            className="absolute left-3 sm:left-6 z-50 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="absolute left-3 sm:left-6 z-50 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
             title="Previous Photo"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -540,7 +885,7 @@ export default function PhotomallClientView() {
 
           <button
             onClick={nextLightboxPhoto}
-            className="absolute right-3 sm:right-6 z-50 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+            className="absolute right-3 sm:right-6 z-50 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
             title="Next Photo"
           >
             <ChevronRight className="w-6 h-6" />
@@ -556,6 +901,20 @@ export default function PhotomallClientView() {
                 className="object-contain"
                 priority
               />
+
+              {/* Watermark in Lightbox if enabled */}
+              {showWatermark && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10 opacity-30">
+                  <div className="transform -rotate-12 border-2 border-white/60 px-6 py-2 rounded-2xl text-center backdrop-blur-[1px]">
+                    <span className="text-sm sm:text-base font-black uppercase tracking-widest text-white block">
+                      CITY GRAFIX PHOTOGRAPHY
+                    </span>
+                    <span className="text-xs tracking-wider text-amber-300 block">
+                      CLIENT PROOF • WATERMARKED
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Bottom Info Bar inside Lightbox */}
